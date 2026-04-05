@@ -1,0 +1,19 @@
+{
+  "id_example": {
+    "order": 0,
+    "name": "Hong Gildong",
+    "position": "M.S Student",
+    "email": "example@ajou.ac.kr",
+    "homepage": "https://example.com",
+    "research_interests": [
+      "Computer Vision",
+      "Multimodal Learning"
+    ],
+    "current_position": [],
+    "links": {
+      "github": "https://github.com/example",
+      "linkedin": "https://www.linkedin.com/in/example/",
+      "google_scholar": "https://scholar.google.com/citations?user=xxxxx"
+    }
+  }
+}

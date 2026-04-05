@@ -1,0 +1,35 @@
+name: Content Build Check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  content-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Sync Content
+        run: npm run content:sync
+
+      - name: Validate Content
+        run: npm run validate:content
+
+      - name: Build Site
+        run: npm run build
+
