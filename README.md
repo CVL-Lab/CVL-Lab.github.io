@@ -1,6 +1,6 @@
 # CVL-Lab 웹사이트
 
-CVL-Lab 웹사이트를 위한 React + Vite 단일 페이지 애플리케이션입니다.
+CVL-Lab 정적 웹사이트를 위한 React + Vite public repository입니다.
 
 ## 운영 문서
 

@@ -55,11 +55,10 @@ const people_images = {
         donggun_lee: DonggunLee,
         euihak_heo: EuihakHeo,
         eunju_shin: EunjuShin,
+        duyeon_na: DuyeonNa,
     },
     intern: {
-        duyeon_na: DuyeonNa,
         geunhyung_park: GeunhyungPark,
-        hwasik_jeong: HwasikJeong,
         minjae_kim: MinjaeKim,
     },
     alumni: {
