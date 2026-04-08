@@ -3,7 +3,7 @@
         "schema_version": "2.0",
         "section_order": [
             "professor",
-            "intergrated_mp",
+            "integrated_mp",
             "phd",
             "master",
             "intern",
@@ -35,8 +35,8 @@
                 }
             }
         },
-        "intergrated_mp": {
-            "title": "Intergrated M.S and Ph.D",
+        "integrated_mp": {
+            "title": "Integrated M.S and Ph.D",
             "entries": {
                 "sungeun_kim": {
                     "order": 0,
@@ -281,16 +281,11 @@
                         "linkedin": null,
                         "google_scholar": null
                     }
-                }
-            }
-        },
-        "intern": {
-            "title": "Intern",
-            "entries": {
+                },
                 "duyeon_na": {
-                    "order": 0,
+                    "order": 11,
                     "name": "Duyeon Na",
-                    "position": "Intern",
+                    "position": "M.S Student",
                     "email": "ndy10101@gmail.com",
                     "homepage": null,
                     "research_interests": [
@@ -303,7 +298,12 @@
                         "linkedin": null,
                         "google_scholar": null
                     }
-                },
+                }
+            }
+        },
+        "intern": {
+            "title": "Intern",
+            "entries": {
                 "geunhyung_park": {
                     "order": 1,
                     "name": "Geunhyung Park",
@@ -321,22 +321,8 @@
                         "google_scholar": null
                     }
                 },
-                "hwasik_jeong": {
-                    "order": 2,
-                    "name": "Hwasik Jeong",
-                    "position": "Intern",
-                    "email": "y5ryan@ajou.ac.kr",
-                    "homepage": null,
-                    "research_interests": ["Computer Vision"],
-                    "current_position": [],
-                    "links": {
-                        "github": null,
-                        "linkedin": null,
-                        "google_scholar": null
-                    }
-                },
                 "minjae_kim": {
-                    "order": 3,
+                    "order": 2,
                     "name": "Minjae Kim",
                     "position": "Intern",
                     "email": "meansash@ajou.ac.kr",
