@@ -10,31 +10,38 @@ import AppRoutes from "./routes/AppRoutes";
 import { resolveTabFromPath } from "./routes/routeUtils";
 import "./App.css";
 
-const Lablvm = lazy(() => import("./components/tabs/Lablvm"));
+const CvlLab = lazy(() => import("./components/tabs/CvlLab"));
 
 function App() {
-  const location = useLocation();
-  const selectedTab = resolveTabFromPath(location.pathname);
+    const location = useLocation();
+    const selectedTab = resolveTabFromPath(location.pathname);
+    const appClassName = "app";
 
-  return (
-    <div className="app">
-      <ScrollProgress />
-      <RouteScrollManager />
-      <div className="app__content site-shell">
-        <Nav />
-        {selectedTab === "home" ? (
-          <Suspense fallback={<div className="app__hero-loading" aria-hidden="true" />}>
-            <Lablvm isHome />
-          </Suspense>
-        ) : null}
-        <MainContent selectedTab={selectedTab}>
-          <AppRoutes />
-        </MainContent>
-      </div>
-      <BackToTopButton />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className={appClassName}>
+            <ScrollProgress />
+            <RouteScrollManager />
+            <div className="app__content site-shell">
+                <Nav />
+                {selectedTab === "home" ? (
+                    <Suspense
+                        fallback={
+                            <div
+                                className="app__hero-loading"
+                                aria-hidden="true"
+                            />
+                        }>
+                        <CvlLab isHome />
+                    </Suspense>
+                ) : null}
+                <MainContent selectedTab={selectedTab}>
+                    <AppRoutes />
+                </MainContent>
+            </div>
+            <BackToTopButton />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;

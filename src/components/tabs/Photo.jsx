@@ -124,18 +124,23 @@ function Photo() {
   const lightboxRoot = typeof document !== "undefined" ? document.body : null;
 
   const renderGalleryThumbnail = useCallback(
-    ({ imageProps, item }) => (
-      <img
-        {...imageProps}
-        src={item.thumbnailSrc || item.src}
-        alt={item.alt || item.caption || "Lab photo"}
-        width={item.width}
-        height={item.height}
-        sizes="(max-width: 430px) 47vw, (max-width: 768px) 31vw, (max-width: 1024px) 24vw, 15rem"
-        loading="lazy"
-        decoding="async"
-      />
-    ),
+    ({ imageProps, item }) => {
+      const { key: thumbnailKey, ...restImageProps } = imageProps || {};
+
+      return (
+        <img
+          key={thumbnailKey}
+          {...restImageProps}
+          src={item.thumbnailSrc || item.src}
+          alt={item.alt || item.caption || "Lab photo"}
+          width={item.width}
+          height={item.height}
+          sizes="(max-width: 430px) 47vw, (max-width: 768px) 31vw, (max-width: 1024px) 24vw, 15rem"
+          loading="lazy"
+          decoding="async"
+        />
+      );
+    },
     [],
   );
 

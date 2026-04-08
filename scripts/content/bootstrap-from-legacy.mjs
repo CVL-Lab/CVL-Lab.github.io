@@ -62,7 +62,7 @@ const bootstrapNews = async () => {
   for (const item of items) {
     const id = normalizeText(item.id) || normalizeSlug(item.title);
     if (!id) continue;
-    const summary = normalizeText(item.summary) || "Update from Lab-LVM.";
+    const summary = normalizeText(item.summary) || "Update from CVL-Lab.";
     await writeMarkdown(
       NEWS_CONTENT_DIR,
       `${id}.md`,

@@ -18,8 +18,8 @@
   border-radius: var(--radius-lg);
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--home-block-tint) 30%, var(--surface)) 0%,
-    var(--surface) 64%
+    color-mix(in srgb, var(--home-block-tint) 32%, rgba(255, 255, 255, 0.94)) 0%,
+    rgba(255, 255, 255, 0.93) 64%
   );
   box-shadow: var(--shadow-elev-1);
   position: relative;
@@ -300,7 +300,7 @@
 .home-pubs__list-head {
   margin-bottom: var(--space-2);
   display: grid;
-  gap: 0.15rem;
+  gap: var(--space-1);
 }
 
 .home-pubs__list-kicker,
@@ -350,13 +350,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.14rem 0.48rem;
+  padding: 0.16rem 0.52rem;
   border: 1px solid transparent;
   border-radius: 999px;
   font-size: var(--badge-text-size);
   text-transform: none;
   font-weight: var(--type-badge-weight);
-  line-height: 1.2;
+  line-height: var(--type-button-line-height);
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
@@ -458,24 +458,24 @@
 .home-news__body {
   display: flex;
   flex-direction: column;
-  gap: 0.24rem;
+  gap: var(--space-1);
 }
 
 .home-news__badges {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem;
+  gap: var(--space-1p5);
 }
 
 .home-news__badge {
   width: fit-content;
-  padding: 0.16rem 0.52rem;
+  padding: 0.18rem 0.54rem;
   border: 1px solid var(--outline-color);
   border-radius: 999px;
   font-size: var(--badge-text-size);
   font-weight: var(--type-badge-weight);
-  line-height: 1.2;
+  line-height: var(--type-button-line-height);
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -516,7 +516,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.34rem;
+  gap: var(--space-1p5);
   color: var(--text-muted);
   justify-self: end;
 }
@@ -640,7 +640,7 @@
 .home-people__meta {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: var(--space-0p5);
   min-width: 0;
 }
 
@@ -941,8 +941,8 @@
   }
 
   .home-pubs__badge {
-    font-size: 0.64rem;
-    padding: 0.12rem 0.42rem;
+    font-size: var(--badge-text-size);
+    padding: 0.14rem 0.44rem;
   }
 }
 

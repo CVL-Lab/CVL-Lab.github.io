@@ -14,7 +14,7 @@ function People() {
         <h1>People</h1>
         <p className="page-head__summary">
           Meet the professor, graduate researchers, interns, and alumni contributing to
-          ongoing Lab-LVM projects.
+          ongoing CVL-Lab projects.
         </p>
       </div>
       {sections.map((section) => (

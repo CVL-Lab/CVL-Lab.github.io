@@ -4,7 +4,7 @@ type: graduation
 title: "Congratulations to spring graduates"
 summary: "We congratulate graduating students and thank them for their contributions to the lab."
 date: 2025-02-20
-related_person: "Lab-LVM Alumni"
+related_person: "CVL-Lab Alumni"
 venue: "Ajou University"
 external_url: ""
 is_external: false

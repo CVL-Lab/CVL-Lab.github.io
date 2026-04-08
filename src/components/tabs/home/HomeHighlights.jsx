@@ -50,7 +50,7 @@ export default function HomeHighlights() {
       <div className="home-block__head">
         <div>
           <h2 id="home-highlights-title">Highlights</h2>
-          <p>At-a-glance overview of Lab-LVM activity.</p>
+          <p>At-a-glance overview of CVL-Lab activity.</p>
         </div>
       </div>
 

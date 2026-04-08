@@ -61,7 +61,7 @@ const normalizeLegacyNewsItems = (items) =>
       summary:
         normalizeText(item.summary) ||
         normalizeText(item.desc) ||
-        "Publication update from Lab-LVM.",
+        "Publication update from CVL-Lab.",
       date: normalizeText(item.date) || "1970-01-01",
       year: extractYear(item.year, parsedDate),
       related_person: "",
@@ -90,7 +90,7 @@ const normalizeStructuredNewsItems = (items) =>
       id: normalizeText(item?.id) || `news-${index + 1}`,
       type: normalizeText(item?.type) || "general",
       title: normalizeText(item?.title) || "Lab Update",
-      summary: normalizeText(item?.summary) || "Update from Lab-LVM.",
+      summary: normalizeText(item?.summary) || "Update from CVL-Lab.",
       date: normalizeText(item?.date) || "1970-01-01",
       year: extractYear(item?.year, parsedDate),
       related_person: normalizeText(item?.related_person),

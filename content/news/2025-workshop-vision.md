@@ -5,7 +5,7 @@ title: "Lab workshop on biomedical vision pipelines"
 summary: "Internal workshop covered annotation quality, uncertainty, and deployment constraints."
 date: 2025-09-11
 related_person: "Biomedical AI Group"
-venue: "Lab-LVM Workshop"
+venue: "CVL-Lab Workshop"
 external_url: ""
 is_external: false
 featured: false

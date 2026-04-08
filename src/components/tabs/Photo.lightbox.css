@@ -2,6 +2,11 @@
   --lightbox-pad: clamp(0.6rem, 2.2vw, 1.35rem);
   --lightbox-control-size: clamp(2.15rem, 2.8vw, 2.55rem);
   --lightbox-close-offset: clamp(0.42rem, 1.4vw, 0.85rem);
+  --lightbox-close-safe-zone: calc(
+    var(--lightbox-control-size) +
+    (var(--lightbox-close-offset) * 2) +
+    clamp(0.22rem, 0.7vw, 0.42rem)
+  );
 
   position: fixed;
   inset: 0;
@@ -38,13 +43,13 @@
   align-items: center;
   justify-content: center;
   padding:
-    clamp(2.2rem, 3.4vw, 2.7rem)
+    var(--lightbox-close-safe-zone)
     clamp(0.85rem, 2vw, 1.28rem)
     clamp(0.42rem, 1vw, 0.72rem);
 }
 
 .photo-lightbox__stage.is-portrait {
-  padding-block: clamp(1.95rem, 3vw, 2.3rem) clamp(0.32rem, 0.8vw, 0.52rem);
+  padding-block: var(--lightbox-close-safe-zone) clamp(0.32rem, 0.8vw, 0.52rem);
 }
 
 .photo-lightbox__frame {
@@ -105,6 +110,7 @@
   right: var(--lightbox-close-offset);
   z-index: 6;
   font-size: clamp(1.16rem, 2vw, 1.36rem);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.16);
 }
 
 .photo-lightbox__close > span {
@@ -118,7 +124,7 @@
 }
 
 .photo-lightbox__controls {
-  margin-top: 0.18rem;
+  margin-top: var(--space-1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,7 +140,7 @@
   display: grid;
   justify-items: center;
   align-content: start;
-  gap: 0.2rem;
+  gap: var(--space-1);
   text-align: center;
 }
 
@@ -211,17 +217,17 @@
   }
 
   .photo-lightbox__stage {
-    padding: 2.1rem 0.62rem 0.48rem;
+    padding: var(--lightbox-close-safe-zone) 0.62rem 0.48rem;
   }
 
   .photo-lightbox__stage.is-portrait {
-    padding-block: 1.9rem 0.3rem;
+    padding-block: var(--lightbox-close-safe-zone) 0.3rem;
   }
 
   .photo-lightbox__meta {
     min-height: 5.1rem;
     padding: var(--panel-pad-sm) var(--panel-pad-sm) var(--panel-pad-sm);
-    gap: 0.2rem;
+    gap: var(--space-1);
   }
 }
 
@@ -237,22 +243,22 @@
   }
 
   .photo-lightbox__stage {
-    padding: 1.95rem 0.46rem 0.36rem;
+    padding: var(--lightbox-close-safe-zone) 0.46rem 0.36rem;
   }
 
   .photo-lightbox__stage.is-portrait {
-    padding-block: 1.78rem 0.24rem;
+    padding-block: var(--lightbox-close-safe-zone) 0.24rem;
   }
 
   .photo-lightbox__meta {
     min-height: 4.55rem;
     padding: var(--space-1) var(--panel-pad-sm) var(--panel-pad-sm);
-    gap: 0.16rem;
+    gap: var(--space-1);
   }
 
   .photo-lightbox__caption,
   .photo-lightbox__description {
-    font-size: var(--font-size-xs);
+    font-size: var(--type-support-size);
   }
 }
 

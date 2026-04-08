@@ -1,22 +1,21 @@
 export const TAB_KEYS = [
-  "home",
-  "news",
-  "research",
-  "publication",
-  "people",
-  "photo",
-  "contact",
-  "join",
-  "test",
+    "home",
+    "news",
+    "research",
+    "publication",
+    "people",
+    "photo",
+    "contact",
+    "join",
 ];
 
 const TAB_KEY_SET = new Set(TAB_KEYS);
 
 export const resolveTabFromPath = (pathname = "/") => {
-  if (!pathname || pathname === "/") {
-    return "home";
-  }
+    if (!pathname || pathname === "/") {
+        return "home";
+    }
 
-  const segment = pathname.replace(/^\/+/, "").split("/")[0] ?? "";
-  return TAB_KEY_SET.has(segment) ? segment : "home";
+    const segment = pathname.replace(/^\/+/, "").split("/")[0] ?? "";
+    return TAB_KEY_SET.has(segment) ? segment : "home";
 };

@@ -15,7 +15,6 @@
     - `dist/photo/index.html`
     - `dist/contact/index.html`
     - `dist/join/index.html`
-    - `dist/test/index.html`
 - route 목록은 `src/routes/routeDefinitions.js`에서 일원화해 관리합니다.
 
 ### 2) client + prerender용 명시적 route manifest

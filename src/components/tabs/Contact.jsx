@@ -4,9 +4,9 @@ import MailIcon from "../icons/MailIcon";
 
 function Contact() {
   const emailAddress = "jongbinryu@ajou.ac.kr";
-  const mailSubject = encodeURIComponent("Lab-LVM Inquiry");
+  const mailSubject = encodeURIComponent("CVL-Lab Inquiry");
   const mailBody = encodeURIComponent(
-    "Hello Lab-LVM,\n\nI would like to ask about...\n\nName:\nAffiliation:\n",
+    "Hello CVL-Lab,\n\nI would like to ask about...\n\nName:\nAffiliation:\n",
   );
   const mapMedia = HOME_MEDIA_IMAGES.research_environment || HOME_MEDIA_IMAGES.intro_meeting_room;
 
@@ -20,8 +20,8 @@ function Contact() {
       </div>
       <section data-reveal className="contact__body page-panel">
         <header data-reveal data-reveal-load-delay="60" className="contact__header">
-          <p className="contact__kicker">Ajou University · Lab-LVM</p>
-          <h2>Get in touch with Lab-LVM</h2>
+          <p className="contact__kicker">Ajou University · CVL-Lab</p>
+          <h2>Get in touch with CVL-Lab</h2>
           <p>We welcome collaboration inquiries, student applications, and research partnerships.</p>
         </header>
 
@@ -36,7 +36,7 @@ function Contact() {
               Industry-Academic Cooperation Foundation, Room 213
             </p>
             <p className="contact__location-copy">
-              Lab-LVM is based at Ajou University in Suwon. Use the map for directions and the
+              CVL-Lab is based at Ajou University in Suwon. Use the map for directions and the
               address panel below for mailing and campus delivery details.
             </p>
           </div>
@@ -44,15 +44,15 @@ function Contact() {
           <div className="contact__location-media">
             {mapMedia ? (
               <figure className="contact__map-media">
-                <img src={mapMedia} alt="Lab-LVM building and research environment at Ajou University" />
-                <figcaption>Ajou University campus and Lab-LVM environment</figcaption>
+                <img src={mapMedia} alt="CVL-Lab building and research environment at Ajou University" />
+                <figcaption>Ajou University campus and CVL-Lab environment</figcaption>
               </figure>
             ) : null}
             <div className="contact__map-wrap">
               <iframe
                 className="contact__map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5357.338900879886!2d127.04129122331311!3d37.283889685557014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5b01481ca7d1%3A0x89aef569dce53536!2z7JWE7KO864yA7ZWZ6rWQIOyCsO2Vme2YkeugpeybkA!5e0!3m2!1sko!2skr!4v1735627049534!5m2!1sko!2skr"
-                title="Ajou University Lab-LVM location map"
+                title="Ajou University CVL-Lab location map"
                 loading="lazy"
               ></iframe>
             </div>

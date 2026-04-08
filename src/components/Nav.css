@@ -1,271 +1,270 @@
 .nav {
-  width: 100%;
-  margin: 0;
-  padding: var(--card-pad);
-  border: var(--outline-width) solid var(--outline-color);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: var(--shadow-elev-1);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: var(--space-4);
-  position: sticky;
-  top: max(var(--space-2), env(safe-area-inset-top));
-  z-index: 1000;
-  transform: translateY(0);
-  opacity: 1;
-  will-change: transform, opacity;
-  transition:
-    transform var(--dur-base) var(--ease-standard),
-    opacity var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft),
-    box-shadow var(--dur-base) var(--ease-standard);
+    width: 100%;
+    margin: 0;
+    padding: var(--card-pad);
+    border: var(--outline-width) solid var(--outline-color);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-elev-1);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--space-4);
+    position: sticky;
+    top: max(var(--space-2), env(safe-area-inset-top));
+    z-index: 1000;
+    transform: translateY(0);
+    opacity: 1;
+    will-change: transform, opacity;
+    transition:
+        transform var(--dur-base) var(--ease-standard),
+        opacity var(--dur-fast) var(--ease-soft),
+        border-color var(--dur-fast) var(--ease-soft),
+        box-shadow var(--dur-base) var(--ease-standard);
 }
 
 .nav.is-nav-hidden {
-  transform: translateY(calc(-100% - var(--space-2)));
-  opacity: 0.98;
-  pointer-events: none;
+    transform: translateY(calc(-100% - var(--space-2)));
+    opacity: 0.98;
+    pointer-events: none;
 }
 
 .nav.is-nav-visible {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .nav__header {
-  width: auto;
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    width: auto;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .nav__logo {
-  width: auto;
-  min-width: 10rem;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  padding: 0;
-  text-decoration: none;
-  transition:
-    transform var(--dur-base) var(--ease-standard),
-    opacity var(--dur-fast) var(--ease-soft);
+    width: auto;
+    min-width: 10rem;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+    text-decoration: none;
+    transition:
+        transform var(--dur-base) var(--ease-standard),
+        opacity var(--dur-fast) var(--ease-soft);
 }
 
 .nav__logo img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .nav__links {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: var(--space-2);
-  align-items: center;
-  justify-content: flex-end;
-  overflow: visible;
-  max-width: 100%;
-  padding-right: var(--space-1);
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: var(--space-2);
+    align-items: center;
+    justify-content: flex-end;
+    overflow: visible;
+    max-width: 100%;
+    padding-right: var(--space-1);
 }
 
 .nav__overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(15, 23, 42, 0.36);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity var(--dur-menu) var(--ease-standard),
-    visibility 0s linear var(--dur-menu);
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.36);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity var(--dur-menu) var(--ease-standard),
+        visibility 0s linear var(--dur-menu);
 }
 
 .nav__overlay.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition-delay: 0ms;
-}
-
-.nav__toggle {
-  --surface-hover-bg: rgba(15, 23, 42, 0.06);
-  --surface-hover-border: var(--line-strong);
-  --surface-hover-shadow: none;
-  --surface-hover-translate: 0px;
-
-  display: none;
-  width: 2.3rem;
-  height: 2.3rem;
-  min-width: 2.3rem;
-  min-height: 2.3rem;
-  padding: 0;
-  border: var(--outline-width) solid var(--outline-color);
-  border-radius: var(--radius-sm);
-  background-color: var(--surface);
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  line-height: 1;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--transition-interactive);
-  z-index: 1200;
-}
-
-.nav__toggle-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  line-height: 1;
-  transform: translateY(-0.5px);
-  transition:
-    transform var(--dur-base) var(--ease-standard),
-    opacity var(--dur-fast) var(--ease-soft);
-}
-
-.nav.is-menu-open .nav__toggle-icon {
-  transform: translateY(-0.5px) rotate(90deg);
-}
-
-.nav__button {
-  --nav-tab-tint: var(--tab-home-tint);
-  --nav-tab-border: var(--tab-home-border);
-  --nav-tab-accent: var(--tab-home-accent);
-  --surface-hover-bg: var(--nav-tab-tint);
-  --surface-hover-border: var(--nav-tab-border);
-  --surface-hover-shadow: none;
-  --surface-hover-translate: 0px;
-
-  text-align: center;
-  padding: 0.6rem 0.9rem 0.68rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background-color: transparent;
-  color: var(--text-secondary);
-  font-size: var(--action-label-size);
-  line-height: 1.2;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-interactive);
-  white-space: nowrap;
-  position: relative;
-}
-
-.nav__button--home,
-.nav__button--test {
-  --nav-tab-tint: var(--tab-home-tint);
-  --nav-tab-border: var(--tab-home-border);
-  --nav-tab-accent: var(--tab-home-accent);
-}
-
-.nav__button--news {
-  --nav-tab-tint: var(--tab-news-tint);
-  --nav-tab-border: var(--tab-news-border);
-  --nav-tab-accent: var(--tab-news-accent);
-}
-
-.nav__button--research {
-  --nav-tab-tint: var(--tab-research-tint);
-  --nav-tab-border: var(--tab-research-border);
-  --nav-tab-accent: var(--tab-research-accent);
-}
-
-.nav__button--publication {
-  --nav-tab-tint: var(--tab-publication-tint);
-  --nav-tab-border: var(--tab-publication-border);
-  --nav-tab-accent: var(--tab-publication-accent);
-}
-
-.nav__button--people {
-  --nav-tab-tint: var(--tab-people-tint);
-  --nav-tab-border: var(--tab-people-border);
-  --nav-tab-accent: var(--tab-people-accent);
-}
-
-.nav__button--photo {
-  --nav-tab-tint: var(--tab-photo-tint);
-  --nav-tab-border: var(--tab-photo-border);
-  --nav-tab-accent: var(--tab-photo-accent);
-}
-
-.nav__button--contact {
-  --nav-tab-tint: var(--tab-contact-tint);
-  --nav-tab-border: var(--tab-contact-border);
-  --nav-tab-accent: var(--tab-contact-accent);
-}
-
-.nav__button.is-active {
-  color: var(--nav-tab-accent);
-  background-color: var(--nav-tab-tint);
-  border-color: var(--nav-tab-border);
-}
-
-.nav__button::after {
-  content: "";
-  position: absolute;
-  left: 0.9rem;
-  right: 0.9rem;
-  bottom: 0.28rem;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--nav-tab-accent);
-  transform: scaleX(0.4);
-  opacity: 0;
-  transform-origin: center;
-  transition:
-    transform var(--dur-base) var(--ease-standard),
-    opacity var(--dur-fast) var(--ease-soft);
-}
-
-.nav__button.is-active::after {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .nav__logo:hover {
-    transform: translateY(var(--hover-translate-y-sm));
-    opacity: 0.92;
-  }
-
-  .nav__button:hover {
-    color: var(--nav-tab-accent);
-  }
-
-  .nav__button:hover::after {
-    opacity: 0.65;
-    transform: scaleX(0.86);
-  }
-
-  .nav__button.is-active:hover::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-}
-
-@media (min-width: 57.01rem) {
-  .nav__toggle {
-    display: none !important;
-  }
-
-  .nav__links {
-    position: static;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: none;
-  }
+    transition-delay: 0ms;
+}
+
+.nav__toggle {
+    --surface-hover-bg: rgba(15, 23, 42, 0.06);
+    --surface-hover-border: var(--line-strong);
+    --surface-hover-shadow: none;
+    --surface-hover-translate: 0px;
+
+    display: none;
+    width: 2.3rem;
+    height: 2.3rem;
+    min-width: 2.3rem;
+    min-height: 2.3rem;
+    padding: 0;
+    border: var(--outline-width) solid var(--outline-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    line-height: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-interactive);
+    z-index: 1200;
+}
+
+.nav__toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+    transform: translateY(-0.5px);
+    transition:
+        transform var(--dur-base) var(--ease-standard),
+        opacity var(--dur-fast) var(--ease-soft);
+}
+
+.nav.is-menu-open .nav__toggle-icon {
+    transform: translateY(-0.5px) rotate(90deg);
+}
+
+.nav__button {
+    --nav-tab-tint: var(--tab-home-tint);
+    --nav-tab-border: var(--tab-home-border);
+    --nav-tab-accent: var(--tab-home-accent);
+    --surface-hover-bg: var(--nav-tab-tint);
+    --surface-hover-border: var(--nav-tab-border);
+    --surface-hover-shadow: none;
+    --surface-hover-translate: 0px;
+
+    text-align: center;
+    padding: 0.6rem 0.9rem 0.68rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: var(--action-label-size);
+    line-height: 1.2;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-interactive);
+    white-space: nowrap;
+    position: relative;
+}
+
+.nav__button--home {
+    --nav-tab-tint: var(--tab-home-tint);
+    --nav-tab-border: var(--tab-home-border);
+    --nav-tab-accent: var(--tab-home-accent);
+}
+
+.nav__button--news {
+    --nav-tab-tint: var(--tab-news-tint);
+    --nav-tab-border: var(--tab-news-border);
+    --nav-tab-accent: var(--tab-news-accent);
+}
+
+.nav__button--research {
+    --nav-tab-tint: var(--tab-research-tint);
+    --nav-tab-border: var(--tab-research-border);
+    --nav-tab-accent: var(--tab-research-accent);
+}
+
+.nav__button--publication {
+    --nav-tab-tint: var(--tab-publication-tint);
+    --nav-tab-border: var(--tab-publication-border);
+    --nav-tab-accent: var(--tab-publication-accent);
+}
+
+.nav__button--people {
+    --nav-tab-tint: var(--tab-people-tint);
+    --nav-tab-border: var(--tab-people-border);
+    --nav-tab-accent: var(--tab-people-accent);
+}
+
+.nav__button--photo {
+    --nav-tab-tint: var(--tab-photo-tint);
+    --nav-tab-border: var(--tab-photo-border);
+    --nav-tab-accent: var(--tab-photo-accent);
+}
+
+.nav__button--contact {
+    --nav-tab-tint: var(--tab-contact-tint);
+    --nav-tab-border: var(--tab-contact-border);
+    --nav-tab-accent: var(--tab-contact-accent);
+}
+
+.nav__button.is-active {
+    color: var(--nav-tab-accent);
+    background-color: var(--nav-tab-tint);
+    border-color: var(--nav-tab-border);
+}
+
+.nav__button::after {
+    content: "";
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.28rem;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--nav-tab-accent);
+    transform: scaleX(0.4);
+    opacity: 0;
+    transform-origin: center;
+    transition:
+        transform var(--dur-base) var(--ease-standard),
+        opacity var(--dur-fast) var(--ease-soft);
+}
+
+.nav__button.is-active::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nav__logo:hover {
+        transform: translateY(var(--hover-translate-y-sm));
+        opacity: 0.92;
+    }
+
+    .nav__button:hover {
+        color: var(--nav-tab-accent);
+    }
+
+    .nav__button:hover::after {
+        opacity: 0.65;
+        transform: scaleX(0.86);
+    }
+
+    .nav__button.is-active:hover::after {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@media (min-width: 57.01rem) {
+    .nav__toggle {
+        display: none !important;
+    }
+
+    .nav__links {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+    }
 }

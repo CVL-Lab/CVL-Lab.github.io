@@ -8,9 +8,9 @@ function Join() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const to = "jongbinryu@ajou.ac.kr";
-    const subject = encodeURIComponent("Lab-LVM Join Inquiry");
+    const subject = encodeURIComponent("CVL-Lab Join Inquiry");
     const body = encodeURIComponent(
-      `Hello Lab-LVM,\n\nI am interested in joining the lab.\n\nMy email: ${email || "(not provided)"}\n\nMessage:\n${message || "(no message)"}\n`,
+      `Hello CVL-Lab,\n\nI am interested in joining the lab.\n\nMy email: ${email || "(not provided)"}\n\nMessage:\n${message || "(no message)"}\n`,
     );
     window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
   };

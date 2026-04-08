@@ -9,23 +9,21 @@ const PeoplePage = lazy(() => import("../pages/PeoplePage"));
 const PhotoPage = lazy(() => import("../pages/PhotoPage"));
 const ContactPage = lazy(() => import("../pages/ContactPage"));
 const JoinPage = lazy(() => import("../pages/JoinPage"));
-const TestPageRoute = lazy(() => import("../pages/TestPageRoute"));
 
 const PAGE_COMPONENTS = {
-  home: HomePage,
-  news: NewsPage,
-  research: ResearchPage,
-  publication: PublicationPage,
-  people: PeoplePage,
-  photo: PhotoPage,
-  contact: ContactPage,
-  join: JoinPage,
-  test: TestPageRoute,
+    home: HomePage,
+    news: NewsPage,
+    research: ResearchPage,
+    publication: PublicationPage,
+    people: PeoplePage,
+    photo: PhotoPage,
+    contact: ContactPage,
+    join: JoinPage,
 };
 
 export const PAGE_MANIFEST = ROUTE_DEFINITIONS.map((route) => ({
-  ...route,
-  component: PAGE_COMPONENTS[route.tabKey],
+    ...route,
+    component: PAGE_COMPONENTS[route.tabKey],
 }));
 
 export { SSG_ROUTE_PATHS };

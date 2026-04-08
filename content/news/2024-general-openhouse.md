@@ -4,7 +4,7 @@ type: general
 title: "Lab open house and project showcase"
 summary: "Visitors explored ongoing projects and discussed possible collaboration opportunities."
 date: 2024-11-08
-related_person: Lab-LVM
+related_person: CVL-Lab
 venue: "Ajou University"
 external_url: ""
 is_external: false

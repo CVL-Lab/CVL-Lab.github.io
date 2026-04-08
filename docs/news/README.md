@@ -107,10 +107,10 @@ npm run validate:content
 ---
 id: 2026-seminar-efficient-vlm
 type: seminar
-title: Efficient Multimodal Model 세미나 진행
+title: Efficient Vision-Learning Model 세미나 진행
 summary: 연구실 내부 세미나에서 최신 실험 결과와 재현 전략을 공유했습니다.
 date: 2026-03-16
-related_person: Lab-LVM Seminar Team
+related_person: CVL-Lab Seminar Team
 venue: Ajou University
 external_url: ""
 is_external: false
