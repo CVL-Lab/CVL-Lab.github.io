@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
-import { getHomeMediaBySection, getPeoplePreview } from "./homeData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
+import { getLatestPhotoItems, getPeopleSpotlight } from "./homeData";
+import {
+    PERSONAL_LINK_ITEMS,
+    getPersonalLinkUrl,
+    isValidExternalLink,
+} from "../peopleCardShared";
+
+const withBasePath = (relativePath) => {
+    const basePath = import.meta.env.BASE_URL || "/";
+    return `${basePath.replace(/\/+$/, "/")}${String(
+        relativePath || "",
+    ).replace(/^\/+/, "")}`;
+};
 
 export default function HomePeoplePreview() {
-    const members = getPeoplePreview(6);
-    const cultureMediaItems = getHomeMediaBySection("culture", 2);
-    const cultureMedia =
-        cultureMediaItems.find((item) => item.id === "culture_discussion") ??
-        cultureMediaItems[0];
+    const members = getPeopleSpotlight();
+    const latestPhotos = getLatestPhotoItems(6);
 
     return (
         <section
@@ -24,42 +35,51 @@ export default function HomePeoplePreview() {
                 </div>
             </div>
 
-            {cultureMedia ? (
-                <article
-                    data-reveal
-                    data-reveal-load-delay="140"
-                    className="home-people__culture interactive-row">
-                    <div className="home-people__culture-media">
-                        {cultureMedia.image ? (
+            <section
+                data-reveal
+                data-reveal-load-delay="140"
+                className="home-people__culture"
+                aria-labelledby="home-people-culture-title">
+                <div className="home-people__culture-head">
+                    <p
+                        id="home-people-culture-title"
+                        className="home-people__culture-title">
+                        Lab Culture & Environment
+                    </p>
+                    <p className="home-people__culture-desc">
+                        Explore recent moments from seminars, collaboration, and
+                        daily lab life.
+                    </p>
+                </div>
+
+                <div
+                    className="home-people__culture-track"
+                    aria-label="Recent lab photos">
+                    {latestPhotos.map((photoItem) => (
+                        <figure
+                            key={photoItem.id}
+                            className="home-people__culture-photo">
                             <img
-                                src={cultureMedia.image}
-                                alt={cultureMedia.alt || cultureMedia.title}
+                                src={withBasePath(
+                                    photoItem.thumbnail || photoItem.full,
+                                )}
+                                alt={photoItem.alt || photoItem.title}
+                                loading="lazy"
+                                decoding="async"
                             />
-                        ) : (
-                            <div className="home-people__culture-placeholder">
-                                Image placeholder
-                            </div>
-                        )}
-                    </div>
-                    <div className="home-people__culture-copy">
-                        <p className="home-people__culture-title">
-                            Lab Culture & Environment
-                        </p>
-                        <p className="home-people__culture-desc">
-                            Group discussions, mentoring, and shared
-                            experimentation define the day-to-day research
-                            environment across our vision and learning projects.
-                        </p>
-                    </div>
-                    <div className="home-people__culture-actions">
+                            <figcaption>{photoItem.title}</figcaption>
+                        </figure>
+                    ))}
+
+                    <div className="home-people__culture-more-wrap">
                         <Link
                             to="/photo"
-                            className="home-block__more-link btn btn--tertiary animated-underline">
-                            View gallery
+                            className="home-people__culture-more btn btn--secondary btn--sm interactive-button">
+                            More
                         </Link>
                     </div>
-                </article>
-            ) : null}
+                </div>
+            </section>
 
             <div className="home-people__grid">
                 {members.map((member, index) => (
@@ -68,28 +88,107 @@ export default function HomePeoplePreview() {
                         data-reveal
                         data-reveal-load-delay={`${120 + index * 60}`}
                         style={{ "--reveal-delay": `${index * 60}ms` }}
-                        className="home-people__card interactive-card">
-                        <div className="home-people__photo-wrap">
-                            {member.image ? (
-                                <img src={member.image} alt={member.name} />
-                            ) : (
-                                <span>{member.name[0]}</span>
-                            )}
-                        </div>
-                        <div className="home-people__meta">
-                            <p className="home-people__name">{member.name}</p>
-                            <p className="home-people__role">{member.role}</p>
-                            {member.email ? (
-                                <a
-                                    href={`mailto:${member.email}`}
-                                    className="animated-underline">
-                                    {member.email}
-                                </a>
-                            ) : (
-                                <p className="home-people__email-empty">
-                                    Email not listed
-                                </p>
-                            )}
+                        className="home-people__member-card interactive-card">
+                        <div className="home-people__member-main">
+                            <div className="home-people__member-identity">
+                                <div className="home-people__member-photo">
+                                    {member.image ? (
+                                        <img
+                                            src={member.image}
+                                            alt={member.name}
+                                        />
+                                    ) : (
+                                        <span>{member.name?.[0]}</span>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="home-people__member-content">
+                                <h3 className="home-people__meta-line home-people__meta-line--name">
+                                    <span
+                                        className="home-people__meta-icon"
+                                        aria-hidden="true">
+                                        <FontAwesomeIcon icon={faUser} />
+                                    </span>
+                                    <span>{member.name}</span>
+                                </h3>
+
+                                <div className="home-people__member-header-divider" />
+
+                                <div className="home-people__member-meta">
+                                    <p className="home-people__meta-line home-people__member-position">
+                                        <span>{member.position}</span>
+                                    </p>
+                                    {member.email ? (
+                                        <a
+                                            className="home-people__meta-line home-people__member-email"
+                                            href={`mailto:${member.email}`}>
+                                            <span
+                                                className="home-people__meta-icon"
+                                                aria-hidden="true">
+                                                <FontAwesomeIcon
+                                                    icon={faEnvelope}
+                                                />
+                                            </span>
+                                            <span>{member.email}</span>
+                                        </a>
+                                    ) : (
+                                        <p className="home-people__meta-line home-people__member-email home-people__member-email--placeholder">
+                                            <span
+                                                className="home-people__meta-icon"
+                                                aria-hidden="true">
+                                                <FontAwesomeIcon
+                                                    icon={faEnvelope}
+                                                />
+                                            </span>
+                                            <span>Email not listed</span>
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div
+                                    className="home-people__action-group"
+                                    aria-label={`${member.name} external profile links`}>
+                                    <div className="home-people__social-links">
+                                        {PERSONAL_LINK_ITEMS.map((item) => {
+                                            const url = getPersonalLinkUrl(
+                                                item.key,
+                                                member.homepage,
+                                                member.links,
+                                            );
+                                            const isEnabled =
+                                                isValidExternalLink(url);
+
+                                            if (!isEnabled) {
+                                                return (
+                                                    <span
+                                                        key={item.key}
+                                                        className="home-people__social-link home-people__social-link--disabled btn btn--icon btn--sm is-disabled"
+                                                        aria-hidden="true">
+                                                        <FontAwesomeIcon
+                                                            icon={item.icon}
+                                                        />
+                                                    </span>
+                                                );
+                                            }
+
+                                            return (
+                                                <a
+                                                    key={item.key}
+                                                    href={url}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="home-people__social-link btn btn--icon btn--sm interactive-button"
+                                                    aria-label={`${member.name} ${item.label}`}>
+                                                    <FontAwesomeIcon
+                                                        icon={item.icon}
+                                                    />
+                                                </a>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
                 ))}

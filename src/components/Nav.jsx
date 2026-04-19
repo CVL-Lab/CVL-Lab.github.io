@@ -45,7 +45,7 @@ export default function Nav() {
     useEffect(() => {
         setIsMenuOpen(false);
         setIsNavVisible(true);
-    }, [location.pathname]);
+    }, [selectedTab]);
 
     useEffect(() => {
         if (

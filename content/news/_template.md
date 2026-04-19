@@ -1,6 +1,6 @@
 ---
 id: 2026-example-news-item
-type: general
+type: notice
 title: Example News Title
 summary: One-sentence summary for the Home + News archive list.
 date: 2026-03-16

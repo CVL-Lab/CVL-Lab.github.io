@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import { getLatestPublications, isValidHttpUrl } from "./homeData";
+import PublicationLinkIcons, {
+    getPublicationPrimaryLink,
+} from "../Publication.LinkIcons";
+import { RESEARCH_CATEGORY_LABELS } from "../../../utils/researchData";
 
 const CATEGORY_LABELS = {
-    application: "Application",
-    biomedical: "Biomedical",
-    core: "Core",
-    "multi-modal": "Learning",
+    application: RESEARCH_CATEGORY_LABELS.application,
+    biomedical: RESEARCH_CATEGORY_LABELS.biomedical,
+    core: RESEARCH_CATEGORY_LABELS.core,
+    "multi-modal": RESEARCH_CATEGORY_LABELS["multi-modal"],
 };
 
 const formatPublicationVenue = (item) => {
@@ -22,8 +26,9 @@ export default function HomeSelectedPublications() {
         return null;
     }
 
-    const featuredPaperLink =
-        featuredPublication.research_meta.paper_link?.trim();
+    const featuredPaperLink = getPublicationPrimaryLink(
+        featuredPublication.research_meta,
+    );
     const hasFeaturedExternalLink = isValidHttpUrl(featuredPaperLink);
     const featuredQueryTarget = `/publication?q=${encodeURIComponent(featuredPublication.title)}&scope=title`;
     const featuredCategoryLabel =
@@ -40,8 +45,7 @@ export default function HomeSelectedPublications() {
                 <div>
                     <h2 id="home-selected-publications-title">Publications</h2>
                     <p>
-                        Editorial preview of recent work with direct access to
-                        the full publication archive.
+                        Browse our latest publications and research highlights.
                     </p>
                 </div>
             </div>
@@ -63,6 +67,21 @@ export default function HomeSelectedPublications() {
                             {formatPublicationVenue(featuredPublication)}
                         </p>
                     </div>
+                    {featuredPublication.research_meta.keywords?.length ? (
+                        <div
+                            className="home-pubs__keywords"
+                            aria-label="Featured publication keywords">
+                            {featuredPublication.research_meta.keywords.map(
+                                (keywordItem, keywordIndex) => (
+                                    <span
+                                        key={`${keywordItem}-${keywordIndex}`}
+                                        className="home-pubs__keyword-chip">
+                                        {keywordItem}
+                                    </span>
+                                ),
+                            )}
+                        </div>
+                    ) : null}
                     <h3 className="home-pubs__featured-title">
                         {hasFeaturedExternalLink ? (
                             <a
@@ -86,85 +105,60 @@ export default function HomeSelectedPublications() {
                     </p>
                 </div>
                 <div className="home-pubs__featured-actions">
-                    {hasFeaturedExternalLink ? (
-                        <a
-                            href={featuredPaperLink}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn btn--secondary btn--sm interactive-button">
-                            Open paper ↗
-                        </a>
-                    ) : null}
+                    <PublicationLinkIcons
+                        meta={featuredPublication.research_meta}
+                    />
                 </div>
             </article>
 
-            <div className="home-pubs__list-head">
-                <p className="home-pubs__list-kicker">
-                    More recent publications
-                </p>
-                <p className="home-pubs__list-caption">
-                    Additional curated items from the publication archive.
-                </p>
-            </div>
-
             <div className="home-pubs__list">
                 {previewPublications.map((item, index) => {
-                    const paperLink = item.research_meta.paper_link?.trim();
-                    const isExternal = isValidHttpUrl(paperLink);
                     const revealDelay = `${index * 60}ms`;
                     const revealLoadDelay = `${200 + index * 60}`;
                     const queryTarget = `/publication?q=${encodeURIComponent(item.title)}&scope=title`;
-                    const rowClassName =
-                        "home-pubs__row home-pubs__row--link interactive-row is-clickable";
-                    const rowContent = (
-                        <>
+                    return (
+                        <article
+                            key={item.key}
+                            data-reveal
+                            data-reveal-load-delay={revealLoadDelay}
+                            style={{ "--reveal-delay": revealDelay }}
+                            className="home-pubs__row interactive-row">
                             <p
                                 className={`home-pubs__badge home-pubs__badge--${item.category}`}>
                                 {CATEGORY_LABELS[item.category] ||
                                     item.category}
                             </p>
                             <div className="home-pubs__meta">
-                                <p className="home-pubs__title interactive-row__title animated-underline">
-                                    {item.title}
+                                {item.research_meta.keywords?.length ? (
+                                    <div
+                                        className="home-pubs__keywords"
+                                        aria-label={`${item.title} keywords`}>
+                                        {item.research_meta.keywords.map(
+                                            (keywordItem, keywordIndex) => (
+                                                <span
+                                                    key={`${item.key}-keyword-${keywordItem}-${keywordIndex}`}
+                                                    className="home-pubs__keyword-chip">
+                                                    {keywordItem}
+                                                </span>
+                                            ),
+                                        )}
+                                    </div>
+                                ) : null}
+                                <p className="home-pubs__title interactive-row__title">
+                                    <Link
+                                        to={queryTarget}
+                                        className="home-pubs__title-link animated-underline">
+                                        {item.title}
+                                    </Link>
                                 </p>
                                 <p>{formatPublicationVenue(item)}</p>
                             </div>
-                            <span
-                                className="home-pubs__arrow interactive-row__arrow"
-                                aria-hidden="true">
-                                →
-                            </span>
-                        </>
-                    );
-
-                    if (isExternal) {
-                        return (
-                            <a
-                                key={item.key}
-                                data-reveal
-                                data-reveal-load-delay={revealLoadDelay}
-                                style={{ "--reveal-delay": revealDelay }}
-                                className={rowClassName}
-                                href={paperLink}
-                                target="_blank"
-                                rel="noreferrer"
-                                aria-label={`Open publication: ${item.title}`}>
-                                {rowContent}
-                            </a>
-                        );
-                    }
-
-                    return (
-                        <Link
-                            key={item.key}
-                            data-reveal
-                            data-reveal-load-delay={revealLoadDelay}
-                            style={{ "--reveal-delay": revealDelay }}
-                            className={rowClassName}
-                            to={queryTarget}
-                            aria-label={`Search related publications: ${item.title}`}>
-                            {rowContent}
-                        </Link>
+                            <div className="home-pubs__actions">
+                                <PublicationLinkIcons
+                                    meta={item.research_meta}
+                                />
+                            </div>
+                        </article>
                     );
                 })}
             </div>

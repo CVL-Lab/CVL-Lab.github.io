@@ -22,7 +22,7 @@
 
 .publication__controls-group {
     min-width: 0;
-    gap: var(--space-1);
+    gap: var(--space-1p5);
 }
 
 .publication__controls-head {
@@ -43,7 +43,7 @@
 .publication__filter {
     width: 100%;
     min-width: 0;
-    padding-top: var(--space-0p5);
+    padding-top: 0;
 }
 
 .publication__button {
@@ -115,7 +115,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
-    gap: var(--space-2);
+    gap: var(--space-1p5);
 }
 
 .publication__search-input {
@@ -186,7 +186,7 @@
     width: 100%;
     margin: 0;
     display: grid;
-    gap: var(--space-1);
+    gap: var(--space-2);
 }
 
 .publication__card {
@@ -253,7 +253,7 @@
 
 .publication__card-badge {
     width: fit-content;
-    padding: 0.16rem 0.5rem;
+    padding: 0.18rem 0.54rem;
     border: 1px solid var(--outline-color);
     border-radius: 999px;
     background: var(--surface-2);
@@ -297,38 +297,41 @@
     letter-spacing: 0.01em;
 }
 
+.publication__card-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    max-height: calc(
+        var(--type-support-line-height) * var(--type-support-size) * 3 +
+            var(--space-1) * 2
+    );
+    overflow: hidden;
+}
+
+.publication__card-keyword-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.16rem 0.5rem;
+    border: 1px solid var(--outline-color);
+    border-radius: 999px;
+    background: color-mix(
+        in srgb,
+        var(--tab-publication-tint) 58%,
+        var(--surface)
+    );
+    color: var(--text-secondary);
+    font-size: var(--badge-text-size);
+    font-weight: var(--type-badge-weight);
+    line-height: var(--type-button-line-height);
+}
+
 .publication__card-side {
     min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    gap: var(--space-1p5);
-}
-
-.publication__card-action-link {
-    --btn-height-local: 1.9rem;
-    --btn-pad-x-local: 0.66rem;
-    --btn-bg: var(--surface);
-    --btn-border: var(--tab-identity-border, var(--outline-color));
-    --btn-ink: var(--tab-identity-accent, var(--text-primary));
-    --surface-hover-bg: rgba(15, 23, 42, 0.04);
-    --surface-hover-border: var(--line-strong);
-    --surface-hover-shadow: var(--shadow-elev-1);
-    --surface-hover-translate: 0px;
-
-    font-size: var(--type-button-size);
-    font-weight: var(--type-button-weight);
-    white-space: nowrap;
-}
-
-.publication__card-action-link--muted {
-    min-height: 0;
-    border: 0;
-    padding: 0;
-    color: var(--text-muted);
-    font-size: var(--type-support-size);
-    font-weight: var(--type-support-weight);
+    gap: var(--space-1);
 }
 
 .publication__card-title {

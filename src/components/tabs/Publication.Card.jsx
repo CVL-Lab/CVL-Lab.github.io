@@ -1,10 +1,14 @@
 import RESEARCH_IMAGES from "../../assets/images/research_concepts/research_concepts_image_index";
+import PublicationLinkIcons, {
+    getPublicationPrimaryLink,
+} from "./Publication.LinkIcons";
+import { RESEARCH_CATEGORY_LABELS } from "../../utils/researchData";
 
 const CATEGORY_META = {
-    application: { label: "Application" },
-    biomedical: { label: "Biomedical" },
-    core: { label: "Core" },
-    "multi-modal": { label: "Learning" },
+    application: { label: RESEARCH_CATEGORY_LABELS.application },
+    biomedical: { label: RESEARCH_CATEGORY_LABELS.biomedical },
+    core: { label: RESEARCH_CATEGORY_LABELS.core },
+    "multi-modal": { label: RESEARCH_CATEGORY_LABELS["multi-modal"] },
 };
 
 const CATEGORY_IMAGE = {
@@ -31,7 +35,7 @@ function PublicationCard({
     revealDelay = "0ms",
     revealLoadDelay = "80",
 }) {
-    const paperLink = meta.paper_link?.trim();
+    const paperLink = getPublicationPrimaryLink(meta);
     const hasPaperLink = isValidHttpUrl(paperLink);
     const categoryMeta =
         CATEGORY_META[category] ?? CATEGORY_META["multi-modal"];
@@ -40,6 +44,7 @@ function PublicationCard({
     const authorText = meta.author?.trim() ?? "";
     const venueText = meta.published_place?.trim() ?? "";
     const dateText = meta.published_date?.trim() ?? "";
+    const keywordList = Array.isArray(meta.keywords) ? meta.keywords : [];
 
     return (
         <article
@@ -66,6 +71,19 @@ function PublicationCard({
                         {categoryMeta.label}
                     </p>
                 </div>
+                {keywordList.length ? (
+                    <div
+                        className="publication__card-keywords"
+                        aria-label={`${title} keywords`}>
+                        {keywordList.map((keywordItem, keywordIndex) => (
+                            <span
+                                key={`${title}-${keywordItem}-${keywordIndex}`}
+                                className="publication__card-keyword-chip">
+                                {keywordItem}
+                            </span>
+                        ))}
+                    </div>
+                ) : null}
                 <h3 className="publication__card-title">
                     {hasPaperLink ? (
                         <a
@@ -101,19 +119,7 @@ function PublicationCard({
                 )}
             </div>
             <div className="publication__card-side">
-                {hasPaperLink ? (
-                    <a
-                        href={paperLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="publication__card-action-link btn btn--secondary btn--sm interactive-button">
-                        Open paper ↗
-                    </a>
-                ) : (
-                    <span className="publication__card-action-link publication__card-action-link--muted">
-                        Internal archive
-                    </span>
-                )}
+                <PublicationLinkIcons meta={meta} />
             </div>
         </article>
     );

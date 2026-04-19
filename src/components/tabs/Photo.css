@@ -1,206 +1,227 @@
 .photo-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--stack-gap);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--stack-gap);
 }
 
 .photo-gallery {
-  width: 100%;
-  margin: 0;
-  display: grid;
-  gap: var(--space-1);
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
 }
 
 .photo-gallery__head {
-  margin: 0;
-  padding-bottom: var(--space-1);
+    margin: 0;
+    padding-bottom: var(--space-2);
 }
 
 .photo-gallery__loading {
-  width: 100%;
-  min-height: 11rem;
-  border: 1px dashed var(--tab-identity-border, var(--outline-color));
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--tab-identity-tint, var(--surface-2)) 58%, var(--surface));
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
-  display: grid;
-  place-items: center;
+    width: 100%;
+    min-height: 11rem;
+    border: 1px dashed var(--tab-identity-border, var(--outline-color));
+    border-radius: var(--radius-md);
+    background: color-mix(
+        in srgb,
+        var(--tab-identity-tint, var(--surface-2)) 58%,
+        var(--surface)
+    );
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    display: grid;
+    place-items: center;
 }
 
 .photo-gallery .ReactGridGallery {
-  width: min(100%, 71rem);
-  margin: 0 auto;
-  padding-inline: 0.02rem;
+    width: min(100%, 71rem);
+    margin: 0 auto;
+    padding-inline: 0;
 }
 
 .photo-gallery .ReactGridGallery > div {
-  width: 100% !important;
-  margin: 0 auto;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-content: flex-start;
+    width: 100% !important;
+    margin: 0 auto;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-content: flex-start;
 }
 
 .photo-gallery :where(img) {
-  transition:
-    transform var(--dur-base) var(--ease-standard),
-    filter var(--dur-base) var(--ease-standard);
+    transition:
+        transform var(--dur-base) var(--ease-standard),
+        filter var(--dur-base) var(--ease-standard);
 }
 
 .photo-gallery .ReactGridGallery_tile {
-  border: 0;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  transform: translateY(0);
-  transition: var(--transition-interactive);
-  will-change: transform, border-color, box-shadow;
-  position: relative;
-  background: transparent;
+    border: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transform: translateY(0);
+    transition: var(--transition-interactive);
+    will-change: transform, border-color, box-shadow;
+    position: relative;
+    background: transparent;
 }
 
 .photo-gallery .ReactGridGallery_tile::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid transparent;
-  border-radius: inherit;
-  pointer-events: none;
-  transition: var(--transition-interactive);
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    transition: var(--transition-interactive);
 }
 
 .photo-gallery .ReactGridGallery_tile-viewport {
-  border-radius: var(--radius-md);
+    border-radius: var(--radius-md);
 }
 
 .photo-gallery .ReactGridGallery_custom-overlay {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .photo-overlay {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  padding: var(--space-2);
-  background: linear-gradient(180deg, transparent 44%, rgba(15, 23, 42, 0.78) 100%);
-  opacity: 0;
-  transform: translateY(4px);
-  transition:
-    opacity var(--dur-base) var(--ease-standard),
-    transform var(--dur-base) var(--ease-standard);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-2);
+    background: linear-gradient(
+        180deg,
+        transparent 44%,
+        rgba(15, 23, 42, 0.78) 100%
+    );
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+        opacity var(--dur-base) var(--ease-standard),
+        transform var(--dur-base) var(--ease-standard);
 }
 
 .photo-overlay__content {
-  width: 100%;
-  min-width: 0;
-  display: grid;
-  gap: 0.08rem;
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    gap: var(--space-0p5);
 }
 
 .photo-overlay__title,
 .photo-overlay__description {
-  margin: 0;
-  color: var(--white);
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+    margin: 0;
+    color: var(--white);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .photo-overlay__title {
-  font-size: var(--type-support-size);
-  font-weight: var(--type-meta-weight);
-  line-height: var(--type-support-line-height);
-  -webkit-line-clamp: 1;
+    font-size: var(--type-support-size);
+    font-weight: var(--type-meta-weight);
+    line-height: var(--type-support-line-height);
+    -webkit-line-clamp: 1;
 }
 
 .photo-overlay__description {
-  font-size: var(--type-support-size);
-  font-weight: var(--type-support-weight);
-  line-height: var(--type-support-line-height);
-  opacity: 0.92;
-  -webkit-line-clamp: 2;
+    font-size: var(--type-support-size);
+    font-weight: var(--type-support-weight);
+    line-height: var(--type-support-line-height);
+    opacity: 0.92;
+    -webkit-line-clamp: 2;
 }
 
 .photo-gallery .ReactGridGallery_tile:focus-within {
-  box-shadow: var(--shadow-elev-1);
-  transform: translateY(var(--hover-translate-y-sm));
+    box-shadow: var(--shadow-elev-1);
+    transform: translateY(var(--hover-translate-y-sm));
 }
 
 .photo-gallery .ReactGridGallery_tile:focus-within::after {
-  border-color: var(--tab-identity-accent, var(--line-strong));
+    border-color: var(--tab-identity-accent, var(--line-strong));
 }
 
 .photo-gallery :where(a:focus-visible) {
-  outline: var(--focus-w) solid var(--focus-ring);
-  outline-offset: 2px;
+    outline: var(--focus-w) solid var(--focus-ring);
+    outline-offset: 2px;
 }
 
 .photo-gallery :where(a:focus-visible) .photo-overlay,
 .photo-gallery .ReactGridGallery_tile:focus-within .photo-overlay {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media (max-width: 64rem) {
-  .photo-gallery .ReactGridGallery {
-    width: 100%;
-  }
+    .photo-gallery .ReactGridGallery {
+        width: 100%;
+    }
 
-  .photo-gallery .ReactGridGallery > div {
-    justify-content: flex-start !important;
-  }
+    .photo-gallery .ReactGridGallery > div {
+        justify-content: flex-start !important;
+    }
 }
 
 @media (max-width: 52rem) {
-  .photo-wrapper {
-    gap: var(--space-3);
-  }
+    .photo-wrapper {
+        gap: var(--space-3);
+    }
 
-  .photo-gallery .ReactGridGallery {
-    padding-inline: 0;
-  }
+    .photo-gallery .ReactGridGallery {
+        padding-inline: 0;
+    }
 
-  .photo-overlay {
-    padding: var(--space-1);
-    opacity: 1;
-    transform: translateY(0);
-  }
+    .photo-overlay {
+        padding: var(--space-1p5);
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .photo-gallery .ReactGridGallery_tile:hover {
-    box-shadow: var(--shadow-elev-1);
-    transform: translateY(var(--hover-translate-y-sm));
-  }
+    .photo-gallery .ReactGridGallery_tile:hover {
+        box-shadow: var(--shadow-elev-1);
+        transform: translateY(var(--hover-translate-y-sm));
+    }
 
-  .photo-gallery .ReactGridGallery_tile:hover::after {
-    border-color: var(--tab-identity-accent, var(--line-strong));
-  }
+    .photo-gallery .ReactGridGallery_tile:hover::after {
+        border-color: var(--tab-identity-accent, var(--line-strong));
+    }
 
-  .photo-gallery :where(.ReactGridGallery_tile:hover img, .ReactGridGallery_tile-viewport:hover img, a:hover img) {
-    transform: scale(1.012);
-    filter: saturate(1.04);
-  }
+    .photo-gallery
+        :where(
+            .ReactGridGallery_tile:hover img,
+            .ReactGridGallery_tile-viewport:hover img,
+            a:hover img
+        ) {
+        transform: scale(1.012);
+        filter: saturate(1.04);
+    }
 
-  .photo-gallery :where(.ReactGridGallery_tile:hover .photo-overlay, a:hover .photo-overlay) {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    .photo-gallery
+        :where(
+            .ReactGridGallery_tile:hover .photo-overlay,
+            a:hover .photo-overlay
+        ) {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .photo-gallery :where(img) {
-    transform: none;
-    filter: none;
-  }
+    .photo-gallery :where(img) {
+        transform: none;
+        filter: none;
+    }
 
-  .photo-overlay {
-    opacity: 1;
-    transform: translateY(0);
-    background: linear-gradient(180deg, transparent 42%, rgba(15, 23, 42, 0.68) 100%);
-  }
+    .photo-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        background: linear-gradient(
+            180deg,
+            transparent 42%,
+            rgba(15, 23, 42, 0.68) 100%
+        );
+    }
 }

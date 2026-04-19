@@ -1,19 +1,19 @@
-# 사진 운영 가이드 (자동 리사이즈/최적화/manifest)
+# Photo 운영 가이드 (자동 resize/최적화/manifest)
 
-이 문서는 사진 운영자가 “원본 파일 추가” 중심으로 작업할 수 있도록 설명합니다.
+이 문서는 Photo 운영자가 “원본 파일 추가” 중심으로 작업할 수 있도록 설명합니다.
 
 ---
 
 ## 1) 주요 개념
 
-운영자가 직접 관리하는 것은 **원본 사진**입니다.
+운영자가 직접 관리하는 것은 **원본 Photo**입니다.
 
 - 원본 입력: `content/photos/raw/...`
 - 자동 생성:
     - `public/uploads/photos/...` (썸네일/큰 이미지)
     - `src/generated/photos.generated.json` (갤러리 데이터)
 
-즉, 운영자는 보통 **원본 파일 추가 + (선택) 메타데이터 수정**만 하면 됩니다.
+즉, 운영자는 보통 **원본 파일 추가 + (선택) metadata 수정**만 하면 됩니다.
 
 ---
 
@@ -50,15 +50,15 @@ content/photos/raw/events/2026-03-16__spring-seminar/
 
 ---
 
-## 3) 사진 동기화 명령
+## 3) Photo 동기화 명령
 
-### 사진만 처리
+### Photo만 처리
 
 ```bash
 npm run photos:sync
 ```
 
-### 뉴스/논문/사진 전체 동기화
+### News/Publication/Photo 전체 동기화
 
 ```bash
 npm run content:sync
@@ -68,7 +68,7 @@ npm run content:sync
 
 ## 4) 자동으로 생성되는 것
 
-사진 동기화 시 자동으로:
+Photo 동기화 시 자동으로:
 
 1. 원본 → 큰 이미지(라이트박스용)
 2. 원본 → 썸네일(갤러리 목록용)
@@ -88,7 +88,7 @@ public/uploads/photos/events/2026-03-16__spring-seminar/
 
 ## 5) 갤러리용 vs 확대보기용 이미지
 
-현재 Photo 페이지는 아래 방식으로 동작합니다.
+현재 Photo page는 아래 방식으로 동작합니다.
 
 1. 목록(갤러리): `thumbnail` 경로 사용
 2. 클릭 후 라이트박스: `full` 경로 사용
@@ -97,15 +97,15 @@ public/uploads/photos/events/2026-03-16__spring-seminar/
 
 ---
 
-## 6) 메타데이터(선택) 사용법
+## 6) metadata(선택) 사용법
 
 파일:
 
 - 실제 사용: `content/photos/metadata.json`
 - 샘플: `content/photos/metadata.template.json`
-- 복붙용 템플릿: `docs/templates/photos.metadata.template.json`
+- 복사/붙여넣기용 template: `docs/templates/photos.metadata.template.json`
 
-메타데이터를 쓰면 제목/설명/날짜/순서를 직접 보정할 수 있습니다.
+metadata를 쓰면 제목/설명/날짜/순서를 직접 보정할 수 있습니다.
 
 예시:
 
@@ -170,13 +170,13 @@ npm run operator:verify
 
 ## 9) 이미지 처리 도구(환경)
 
-스크립트는 아래 순서로 사용 가능한 도구를 찾습니다.
+script는 아래 순서로 사용 가능한 도구를 찾습니다.
 
 1. `magick` (ImageMagick)
 2. `convert` + `identify` (ImageMagick)
 3. `sips` (macOS)
 
-아무 도구도 없으면 사진 동기화가 실패합니다.
+아무 도구도 없으면 Photo 동기화가 실패합니다.
 
 - 로컬 macOS는 기본적으로 `sips`가 있어 동작 가능
 - GitHub Actions는 workflow에서 ImageMagick 설치 후 실행
@@ -188,12 +188,12 @@ npm run operator:verify
 1. 폴더명을 `YYYY-MM-DD__slug` 규칙으로 안 만듦
 2. 날짜를 `YYYY/MM/DD`로 작성
 3. metadata key를 실제 파일명/상대경로와 다르게 입력
-4. `photos:sync` 없이 바로 배포
+4. `photos:sync` 없이 바로 deploy
 5. `src/generated/photos.generated.json` 수동 수정
 
 ---
 
-## 11) 사진 추가 체크리스트 (운영자용)
+## 11) Photo 추가 체크리스트 (운영자용)
 
 1. 원본 추가 위치 확인
     - `content/photos/raw/<category>/<YYYY-MM-DD>__<slug>/`

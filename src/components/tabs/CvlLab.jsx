@@ -9,11 +9,13 @@ function CvlLab({ isHome }) {
 
     return (
         <div ref={heroRef} className={`hero ${isHome ? "hero--home" : ""}`}>
-            <h1 data-reveal data-reveal-load-delay="90">
-                CVL-
-                <wbr />
-                Lab
-            </h1>
+            {!isHome ? (
+                <h1 data-reveal data-reveal-load-delay="90">
+                    CVL-
+                    <wbr />
+                    Lab
+                </h1>
+            ) : null}
 
             {isHome ? (
                 <div

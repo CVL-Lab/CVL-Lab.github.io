@@ -1,8 +1,8 @@
 ---
 id: 2026-example-news-item
-type: general
-title: 예시 뉴스 제목
-summary: Home + News 아카이브 목록에 표시될 한 줄 요약.
+type: notice
+title: 예시 News 제목
+summary: Home + News archive 목록에 표시될 한 줄 요약.
 date: 2026-03-16
 related_person: CVL-Lab
 venue: Ajou University

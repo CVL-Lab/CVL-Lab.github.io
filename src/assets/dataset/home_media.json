@@ -6,8 +6,8 @@
     "items": {
         "intro_group_photo": {
             "id": "intro_group_photo",
-            "title": "Lab Group",
-            "description": "CVL-Lab members during a recent group gathering.",
+            "title": "People",
+            "description": "Lab members overview.",
             "section": "introduction",
             "image_key": "intro_group_photo",
             "alt": "CVL-Lab team gathered together for a group photo.",
@@ -15,8 +15,8 @@
         },
         "intro_meeting_room": {
             "id": "intro_meeting_room",
-            "title": "Collaborative Workspace",
-            "description": "A day-to-day research discussion environment in the lab.",
+            "title": "Resources",
+            "description": "Lab infrastructure and equipment overview.",
             "section": "introduction",
             "image_key": "intro_meeting_room",
             "alt": "Researchers in a meeting room discussing vision AI projects.",

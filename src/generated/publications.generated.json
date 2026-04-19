@@ -1,7 +1,7 @@
 {
   "meta": {
-    "schema_version": "1.0",
-    "generated_at": "2026-04-05T19:48:01.129Z",
+    "schema_version": "1.1",
+    "generated_at": "2026-04-19T12:44:34.521Z",
     "source": "content/publications",
     "categories": [
       "biomedical",
@@ -26,6 +26,15 @@
         "author": "Inhyuk Park, Won Hwa Kim, Jongbin Ryu",
         "published_place": "Biomedical Signall Processing and Control",
         "published_date": "2024-12-29",
+        "keywords": [
+          "Class Imbalance",
+          "Knowledge Distillation",
+          "Medical Image Classification"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "https://www.sciencedirect.com/science/article/pii/S1746809423013617",
         "source_code_link": "",
         "paper_link": "https://www.sciencedirect.com/science/article/pii/S1746809423013617"
       },
@@ -47,6 +56,15 @@
         "author": "Junhyung Go, Jonngbin Ryu",
         "published_place": "Expert Systems with applications",
         "published_date": "2024-10-04",
+        "keywords": [
+          "Non-local Networks",
+          "Attention-free Vision",
+          "Spatial Bias"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "https://www.sciencedirect.com/science/article/pii/S0957417423025551",
         "source_code_link": "",
         "paper_link": "https://www.sciencedirect.com/science/article/pii/S0957417423025551"
       },
@@ -68,6 +86,15 @@
         "author": "Hankyul Kang, Namkug Kim, Jongbin Ryu",
         "published_place": "Computer Methods and Programs in Biomedicine",
         "published_date": "2024-04-21",
+        "keywords": [
+          "Chest X-ray",
+          "Attention Decoder",
+          "High-resolution Features"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "https://github.com/CVL-Lab/ADNet",
+        "project_link": "https://www.sciencedirect.com/science/article/pii/S0169260724001949",
         "source_code_link": "https://github.com/CVL-Lab/ADNet",
         "paper_link": "https://www.sciencedirect.com/science/article/pii/S0169260724001949"
       },
@@ -89,6 +116,15 @@
         "author": "Seungmin Oh, Namkug Kim, Jongbin Ryu",
         "published_place": "Scientific Reports",
         "published_date": "2024-04-16",
+        "keywords": [
+          "Medical Imaging",
+          "CNN and ViT Analysis",
+          "Model Interpretability"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "https://www.nature.com/articles/s41598-024-58382-3",
         "source_code_link": "",
         "paper_link": "https://www.nature.com/articles/s41598-024-58382-3"
       },
@@ -110,6 +146,15 @@
         "author": "Seungmin Oh, Jongbin Ryu, Ho-Jung Shin, Jeong Ho Song, Sang-Yong Son, Hoon Hur, Sang-Uk Han",
         "published_place": "International Journal of Surgery",
         "published_date": "2023-12-01",
+        "keywords": [
+          "CT Analysis",
+          "Risk Prediction",
+          "Clinical AI"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "https://journals.lww.com/international-journal-of-surgery/fulltext/2023/12000/deep_learning_using_computed_tomography_to.39.aspx",
         "source_code_link": "",
         "paper_link": "https://journals.lww.com/international-journal-of-surgery/fulltext/2023/12000/deep_learning_using_computed_tomography_to.39.aspx"
       },
@@ -131,6 +176,15 @@
         "author": "Wongi Park, Inhyuk Park, Sungeun Kim, Jongbin Ryu",
         "published_place": "ICCVW",
         "published_date": "2023-08-10",
+        "keywords": [
+          "Long-tailed Learning",
+          "Multi-label Classification",
+          "Robust Loss"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "https://github.com/kalelpark/RAL",
+        "project_link": "https://openaccess.thecvf.com/content/ICCV2023W/CVAMD/html/Park_Robust_Asymmetric_Loss_for_Multi-Label_Long-Tailed_Learning_ICCVW_2023_paper.html",
         "source_code_link": "https://github.com/kalelpark/RAL",
         "paper_link": "https://openaccess.thecvf.com/content/ICCV2023W/CVAMD/html/Park_Robust_Asymmetric_Loss_for_Multi-Label_Long-Tailed_Learning_ICCVW_2023_paper.html"
       },

@@ -1,0 +1,116 @@
+{
+    "topics": {
+        "core": {
+            "headline": "Foundational vision and learning methods for robust generalization",
+            "abstract": "This area investigates scalable visual representations and adaptation strategies that remain reliable across data shifts, label scarcity, and long-tail conditions.",
+            "workstreams": [
+                {
+                    "title": "Representation and Adaptation",
+                    "description": "Learn transferable visual features that can be reused across tasks and domains with minimal fine-tuning cost."
+                },
+                {
+                    "title": "Generalization Protocols",
+                    "description": "Build consistent evaluation protocols for robustness under domain shift, class imbalance, and noisy supervision."
+                },
+                {
+                    "title": "Efficient Training Recipes",
+                    "description": "Improve pretraining and adaptation loops with compute-aware recipes and reproducible experiment baselines."
+                }
+            ],
+            "applications": [
+                "Robust recognition in changing environments",
+                "Reusable backbones for multimodal pipelines",
+                "Low-supervision model adaptation workflows"
+            ],
+            "milestones": [
+                "Benchmark updates with controlled robustness settings",
+                "Cross-domain adaptation analysis report",
+                "Reproducibility package for open experiments"
+            ]
+        },
+        "multi-modal": {
+            "headline": "Efficient and practical multimodal intelligence for deployment",
+            "abstract": "This area focuses on making large language and multimodal models lighter, faster, and easier to deploy while preserving reasoning quality.",
+            "workstreams": [
+                {
+                    "title": "Compression and Distillation",
+                    "description": "Study compression methods that minimize quality loss under strict latency and memory constraints."
+                },
+                {
+                    "title": "System-level Optimization",
+                    "description": "Optimize inference kernels, scheduling, and batching policies for stable production serving."
+                },
+                {
+                    "title": "Task-aware Fine-tuning",
+                    "description": "Design lightweight adaptation pipelines for downstream multimodal tasks with limited domain data."
+                }
+            ],
+            "applications": [
+                "Multimodal assistants for enterprise workflows",
+                "Document and visual question-answering systems",
+                "Edge-oriented language model deployment"
+            ],
+            "milestones": [
+                "Latency-quality tradeoff benchmark release",
+                "Inference optimization checklist",
+                "Pilot deployment validation with partners"
+            ]
+        },
+        "application": {
+            "headline": "Embodied AI from perception to reliable robot behavior",
+            "abstract": "This area connects visual-language understanding to robot policies for practical perception-to-action pipelines in real environments.",
+            "workstreams": [
+                {
+                    "title": "Vision-Language-Action Integration",
+                    "description": "Align multimodal understanding modules with robot policies for instruction-following and task execution."
+                },
+                {
+                    "title": "3D-aware Perception",
+                    "description": "Improve object and scene understanding using geometry-aware representations for manipulation tasks."
+                },
+                {
+                    "title": "Efficient Robotics Runtime",
+                    "description": "Reduce latency and improve control stability for real-time deployment in physical systems."
+                }
+            ],
+            "applications": [
+                "Vision-guided robotic manipulation",
+                "Instruction-driven robotic task automation",
+                "Human-in-the-loop robot operations"
+            ],
+            "milestones": [
+                "Closed-loop demo protocol with safety gates",
+                "Real-world task benchmark package",
+                "Reusable integration testbed"
+            ]
+        },
+        "biomedical": {
+            "headline": "Trustworthy AI for industrial reliability and medical analysis",
+            "abstract": "This area applies machine learning to industry and healthcare with emphasis on reliability, interpretability, and robust validation in real use cases.",
+            "workstreams": [
+                {
+                    "title": "Battery and Fault Analytics",
+                    "description": "Model degradation and detect anomalies to support predictive maintenance and reliability planning."
+                },
+                {
+                    "title": "Medical Image Intelligence",
+                    "description": "Develop robust and calibrated diagnostic support pipelines for clinical imaging tasks."
+                },
+                {
+                    "title": "Deployment and Validation",
+                    "description": "Define practical validation protocols and interpretable outputs for stakeholders in regulated domains."
+                }
+            ],
+            "applications": [
+                "Industrial anomaly monitoring",
+                "Clinical decision support for imaging",
+                "Risk-aware deployment in regulated environments"
+            ],
+            "milestones": [
+                "Domain validation report with partner feedback",
+                "Interpretability-first model card templates",
+                "Readiness checklist for field pilots"
+            ]
+        }
+    }
+}

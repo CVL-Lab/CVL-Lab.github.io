@@ -7,6 +7,7 @@ import {
     getPublicationCategories,
 } from "./home/homeData";
 import { useLocation } from "react-router-dom";
+import { RESEARCH_CATEGORY_LABELS } from "../../utils/researchData";
 
 const areaCategory = getPublicationCategories();
 const publications = aggregatePublications();
@@ -15,13 +16,6 @@ const SEARCH_SCOPES = [
     { key: "title-authors", label: "Title + Authors" },
     { key: "title-authors-venue", label: "Title + Authors + Venue" },
 ];
-const AREA_LABELS = {
-    all: "All",
-    application: "Application",
-    biomedical: "Biomedical",
-    core: "Core",
-    "multi-modal": "Learning",
-};
 const SEARCH_PLACEHOLDER_BY_SCOPE = {
     title: "Search by title",
     "title-authors": "Search by title or authors",
@@ -138,7 +132,7 @@ function Publication() {
                                     areaKey={area}
                                     isSelected={selectedArea === area}
                                     onSelect={() => handleSelectedArea(area)}>
-                                    {AREA_LABELS[area] ||
+                                    {RESEARCH_CATEGORY_LABELS[area] ||
                                         area.charAt(0).toUpperCase() +
                                             area.slice(1)}
                                 </PublicationButton>
