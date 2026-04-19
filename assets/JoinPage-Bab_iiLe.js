@@ -1,4 +1,4 @@
-import{r as l,j as t,a as e}from"./index-C7jhY8Ml.js";function m(){const[n,i]=l.useState(""),[r,o]=l.useState("");return t("div",{className:"join",children:[e("div",{"data-reveal":!0,className:"tab-header",children:e("h1",{children:"Join"})}),e("section",{"data-reveal":!0,className:"join__section",children:t("form",{"data-reveal":!0,"data-reveal-load-delay":"80",className:"join__form",onSubmit:a=>{a.preventDefault();const s="jongbinryu@ajou.ac.kr",d=encodeURIComponent("CVL-Lab Join Inquiry"),c=encodeURIComponent(`Hello CVL-Lab,
+import{r as l,j as t,a as e}from"./index-DD7Yz4UN.js";function m(){const[n,i]=l.useState(""),[r,o]=l.useState("");return t("div",{className:"join",children:[e("div",{"data-reveal":!0,className:"tab-header",children:e("h1",{children:"Join"})}),e("section",{"data-reveal":!0,className:"join__section",children:t("form",{"data-reveal":!0,"data-reveal-load-delay":"80",className:"join__form",onSubmit:a=>{a.preventDefault();const s="jongbinryu@ajou.ac.kr",d=encodeURIComponent("CVL-Lab Join Inquiry"),c=encodeURIComponent(`Hello CVL-Lab,
 
 I am interested in joining the lab.
 
