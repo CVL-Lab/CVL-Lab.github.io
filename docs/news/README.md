@@ -15,6 +15,7 @@
 - `notice`
 
 참고:
+
 - 과거 type(`equipment`, `seminar`, `visit`, `workshop`, `general`)이 입력되어도 runtime에서 `notice`로 정규화됩니다.
 - 신규 등록 시에는 반드시 위 5개 중 하나를 사용해 주세요.
 
@@ -141,10 +142,10 @@ internal_slug: notice-efficient-vlm-2026
 4. `date` 형식이 `YYYY-MM-DD`인지 확인
 5. 외부 링크 News면 `is_external: true` + `external_url` 입력
 6. 아래 명령 실행
-   ```bash
-   npm run content:sync
-   npm run validate:content
-   ```
+    ```bash
+    npm run content:sync
+    npm run validate:content
+    ```
 7. Home + `/news`에서 실제 노출 확인
 
 ---

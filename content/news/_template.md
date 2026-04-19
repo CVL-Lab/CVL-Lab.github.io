@@ -13,4 +13,3 @@ internal_slug: example-news-title
 ---
 
 Optional body notes for operators.
-

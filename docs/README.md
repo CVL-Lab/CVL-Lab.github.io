@@ -41,8 +41,8 @@ Photo 최적화 출력물은 아래 경로에 생성됩니다.
 ### A. 로컬(내 PC)에서 운영할 때
 
 1. 원본 파일 추가/수정
-   - News/Publication/Photo: `content/...`
-   - People: `src/assets/dataset/people.json`
+    - News/Publication/Photo: `content/...`
+    - People: `src/assets/dataset/people.json`
 2. `npm run content:sync` 실행 (생성 데이터 갱신)
 3. `npm run build` 실행 (검증 포함)
 4. 커밋/푸시
@@ -51,8 +51,8 @@ Photo 최적화 출력물은 아래 경로에 생성됩니다.
 ### B. GitHub 웹에서 바로 운영할 때
 
 1. GitHub 저장소에서 원본 파일 추가/수정
-   - News/Publication/Photo: `content/...`
-   - People: `src/assets/dataset/people.json` / `src/assets/images/people/people_image_index.js`
+    - News/Publication/Photo: `content/...`
+    - People: `src/assets/dataset/people.json` / `src/assets/images/people/people_image_index.js`
 2. Commit to `main`(또는 PR)
 3. Actions의 `Content Build Check` 성공 확인
 4. Actions의 `Deploy GitHub Pages` 성공 확인
@@ -78,36 +78,36 @@ Photo 최적화 출력물은 아래 경로에 생성됩니다.
 ## 5) 처음 운영을 맡았을 때 가장 먼저 할 일
 
 1. 아래 경로 존재 여부 확인
-   - `content/news`
-   - `content/publications`
-   - `content/photos/raw`
-   - `src/generated`
+    - `content/news`
+    - `content/publications`
+    - `content/photos/raw`
+    - `src/generated`
 2. 로컬 준비
-   - `npm install`
+    - `npm install`
 3. 운영 pipeline 점검
-   - `npm run validate:content`
-   - `npm run content:sync`
+    - `npm run validate:content`
+    - `npm run content:sync`
 4. 생성 결과 확인
-   - `src/generated/*.generated.json`
-   - `public/uploads/photos/...`
+    - `src/generated/*.generated.json`
+    - `public/uploads/photos/...`
 5. 테스트 반영 권장
-   - 브랜치에서 1건 샘플 추가 → PR → Actions 확인
+    - 브랜치에서 1건 샘플 추가 → PR → Actions 확인
 
 ### 5-1. 인수인계 첫날(1일차) 권장 루틴
 
 1. 이 문서(`docs/README.md`)를 먼저 끝까지 읽습니다.
 2. 이어서 아래 순서로 읽습니다.
-   - `docs/pipeline/README.md`
-   - `docs/news/README.md`
-   - `docs/publications/README.md`
-   - `docs/photos/README.md`
-   - `docs/people/README.md`
-   - `docs/deployment/README.md`
+    - `docs/pipeline/README.md`
+    - `docs/news/README.md`
+    - `docs/publications/README.md`
+    - `docs/photos/README.md`
+    - `docs/people/README.md`
+    - `docs/deployment/README.md`
 3. 로컬에서 아래 명령 1회 실행
-   ```bash
-   npm install
-   npm run validate:content
-   ```
+    ```bash
+    npm install
+    npm run validate:content
+    ```
 4. template을 이용해 “테스트용 News 1건”을 임시로 작성해보고(저장 전 취소 가능),
    실제 입력 위치/필드 구조를 눈으로 확인합니다.
 5. 마지막으로 `docs/troubleshooting/README.md`를 읽고 자주 나는 오류를 숙지합니다.
@@ -193,13 +193,13 @@ npm run operator:verify
 검증 결과 요약:
 
 - 임시 content를 추가한 상태에서 `npm run validate:content` 통과 확인
-  - News: 10 -> 11
-  - Publication: 6 -> 7
-  - Photo: 13 -> 14
+    - News: 10 -> 11
+    - Publication: 6 -> 7
+    - Photo: 13 -> 14
 - 임시 content 제거 후 재검증
-  - News: 10
-  - Publication: 6
-  - Photo: 13
+    - News: 10
+    - Publication: 6
+    - Photo: 13
 - 즉, 현재 content schema/자동화 script는 운영 시나리오 기준으로 정상 작동합니다.
 
 ---
@@ -241,10 +241,10 @@ npm run operator:verify
 2. GitHub Actions에서 `Content Build Check` 성공 확인
 3. GitHub Actions에서 `Deploy GitHub Pages` 성공 확인
 4. 실제 사이트에서 아래 경로 확인
-   - `/news`
-   - `/publication`
-   - `/photo`
-   - Home 최신 미리보기
+    - `/news`
+    - `/publication`
+    - `/photo`
+    - Home 최신 미리보기
 5. 반영이 안 보이면 강력 새로고침 후 재확인
 
 ### 10-5. People 업데이트 체크리스트

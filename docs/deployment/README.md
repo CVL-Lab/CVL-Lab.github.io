@@ -19,9 +19,9 @@
 ### 1-2. GitHub Actions workflow
 
 - `.github/workflows/content-build.yml`
-   - content sync/validation/build 체크
+    - content sync/validation/build 체크
 - `.github/workflows/deploy-pages.yml`
-  - `main` push 시 GitHub Pages 자동 deploy
+    - `main` push 시 GitHub Pages 자동 deploy
 
 즉, 운영자는 `main`에 push하면 자동 deploy까지 진행됩니다.
 
@@ -33,21 +33,21 @@
 
 1. content 업데이트 (`content/...`)
 2. 아래 명령 실행
-   ```bash
-   npm run operator:verify
-   ```
+    ```bash
+    npm run operator:verify
+    ```
 3. 커밋/푸시
 4. Actions에서 아래 2개 성공 확인
-   - `Content Build Check`
-   - `Deploy GitHub Pages`
+    - `Content Build Check`
+    - `Deploy GitHub Pages`
 
 ### 2-2. GitHub 웹에서 직접 수정할 때
 
 1. GitHub에서 `content/...` 파일 수정
 2. Commit
 3. Actions에서 아래 2개 성공 확인
-   - `Content Build Check`
-   - `Deploy GitHub Pages`
+    - `Content Build Check`
+    - `Deploy GitHub Pages`
 4. 실제 사이트 반영 확인
 
 ---
@@ -73,9 +73,9 @@
 
 1. 사이트 메인 접속
 2. 아래 page 순서대로 확인
-   - `/news`
-   - `/publication`
-   - `/photo`
+    - `/news`
+    - `/publication`
+    - `/photo`
 3. Home preview(최신 News/Publication/Photo) 반영 확인
 4. 외부/내부 링크 동작 확인
 
@@ -85,13 +85,13 @@
 
 1. 저장소 상단 **Actions** tab
 2. 최근 실행에서 아래 workflow 확인
-   - `Content Build Check`
-   - `Deploy GitHub Pages`
+    - `Content Build Check`
+    - `Deploy GitHub Pages`
 3. 실패 시 로그에서 실패 단계 확인
-   - Sync Content
-   - Validate Content
-   - Build Site
-   - Deploy to gh-pages
+    - Sync Content
+    - Validate Content
+    - Build Site
+    - Deploy to gh-pages
 
 ---
 
