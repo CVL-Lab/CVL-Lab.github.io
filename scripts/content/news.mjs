@@ -1,172 +1,303 @@
 import path from "node:path";
 import { promises as fs } from "node:fs";
 import {
-  NEWS_CONTENT_DIR,
-  NEWS_GENERATED_FILE,
-  getNowIso,
-  isIsoDate,
-  listMarkdownFiles,
-  normalizeHttpUrl,
-  normalizeSlug,
-  parseMarkdownFrontmatter,
-  relativeFromRoot,
-  toYear,
-  writeJsonFile,
+    NEWS_CONTENT_DIR,
+    NEWS_GENERATED_FILE,
+    getNowIso,
+    isIsoDate,
+    listMarkdownFiles,
+    normalizeHttpUrl,
+    normalizeSlug,
+    parseMarkdownFrontmatter,
+    relativeFromRoot,
+    toYear,
+    writeJsonFile,
 } from "./lib.mjs";
+import { syncPublicationContent } from "./publications.mjs";
 
 const NEWS_TYPES = new Set([
-  "paper_accepted",
-  "equipment",
-  "new_member",
-  "graduation",
-  "seminar",
-  "award",
-  "visit",
-  "workshop",
-  "general",
+    "paper_accepted",
+    "notice",
+    "equipment",
+    "new_member",
+    "graduation",
+    "seminar",
+    "award",
+    "visit",
+    "workshop",
+    "general",
 ]);
 
 const TYPE_LABELS = {
-  paper_accepted: "Paper Accepted",
-  equipment: "Equipment",
-  new_member: "New Member",
-  graduation: "Graduation",
-  seminar: "Seminar / Talk",
-  award: "Award",
-  visit: "Visit / Collaboration",
-  workshop: "Workshop",
-  general: "General Update",
+    paper_accepted: "Paper Accepted",
+    notice: "Notice",
+    equipment: "Equipment",
+    new_member: "New Member",
+    graduation: "Graduation",
+    seminar: "Seminar / Talk",
+    award: "Award",
+    visit: "Visit / Collaboration",
+    workshop: "Workshop",
+    general: "General Update",
 };
+
+const PAPER_ACCEPTED_TYPE = "paper_accepted";
+const AUTO_PUBLICATION_SOURCE = "publications-auto";
 
 const normalizeText = (value) => String(value ?? "").trim();
 
+const isGenericPaperAcceptedTitle = (value) =>
+    /^paper\s+accepted\b/i.test(normalizeText(value));
+
+const normalizePaperKey = (date, title) =>
+    `${normalizeText(date)}::${normalizeSlug(title)}`;
+
 const requiredError = (filePath, fieldName, message = "is required") =>
-  `[news] ${relativeFromRoot(filePath)}: "${fieldName}" ${message}`;
+    `[news] ${relativeFromRoot(filePath)}: "${fieldName}" ${message}`;
 
 const validateType = (value, filePath) => {
-  const type = normalizeText(value);
-  if (!type) {
-    throw new Error(requiredError(filePath, "type"));
-  }
-  if (!NEWS_TYPES.has(type)) {
-    throw new Error(
-      `[news] ${relativeFromRoot(filePath)}: unsupported type "${type}". Allowed: ${Array.from(NEWS_TYPES).join(", ")}`,
-    );
-  }
-  return type;
+    const type = normalizeText(value);
+    if (!type) {
+        throw new Error(requiredError(filePath, "type"));
+    }
+    if (!NEWS_TYPES.has(type)) {
+        throw new Error(
+            `[news] ${relativeFromRoot(filePath)}: unsupported type "${type}". Allowed: ${Array.from(NEWS_TYPES).join(", ")}`,
+        );
+    }
+    return type;
 };
 
 const parseNewsFile = async (filePath) => {
-  const raw = await fs.readFile(filePath, "utf8");
-  const { data, body } = parseMarkdownFrontmatter(raw, filePath);
-  const id = normalizeText(data.id) || normalizeSlug(path.basename(filePath, ".md"));
-  const title = normalizeText(data.title);
-  const date = normalizeText(data.date);
-  const type = validateType(data.type, filePath);
-  const summary = normalizeText(data.summary) || body.split("\n")[0]?.trim() || "";
-  const venue = normalizeText(data.venue);
-  const relatedPerson = normalizeText(data.related_person);
-  const externalUrl = normalizeHttpUrl(data.external_url);
-  const internalSlug = normalizeText(data.internal_slug) || normalizeSlug(id || title);
-  const isExternal = data.is_external === true || Boolean(externalUrl);
-  const featured = data.featured === true;
+    const raw = await fs.readFile(filePath, "utf8");
+    const { data, body } = parseMarkdownFrontmatter(raw, filePath);
+    const id =
+        normalizeText(data.id) || normalizeSlug(path.basename(filePath, ".md"));
+    const title = normalizeText(data.title);
+    const date = normalizeText(data.date);
+    const type = validateType(data.type, filePath);
+    const summary =
+        normalizeText(data.summary) || body.split("\n")[0]?.trim() || "";
+    const venue = normalizeText(data.venue);
+    const relatedPerson = normalizeText(data.related_person);
+    const externalUrl = normalizeHttpUrl(data.external_url);
+    const internalSlug =
+        normalizeText(data.internal_slug) || normalizeSlug(id || title);
+    const isExternal = data.is_external === true || Boolean(externalUrl);
+    const featured = data.featured === true;
+    const publicationId = normalizeText(data.publication_id);
+    const publicationTitle = normalizeText(data.publication_title);
+    const publicationQueryInput = normalizeText(data.publication_query);
+    const publicationQuery =
+        publicationQueryInput ||
+        publicationTitle ||
+        (type === PAPER_ACCEPTED_TYPE && !isGenericPaperAcceptedTitle(title)
+            ? title
+            : "");
 
-  if (!id) {
-    throw new Error(requiredError(filePath, "id"));
-  }
-  if (!title) {
-    throw new Error(requiredError(filePath, "title"));
-  }
-  if (!date) {
-    throw new Error(requiredError(filePath, "date"));
-  }
-  if (!isIsoDate(date)) {
-    throw new Error(
-      `[news] ${relativeFromRoot(filePath)}: "date" must be YYYY-MM-DD (received "${date}")`,
-    );
-  }
-  if (!summary) {
-    throw new Error(requiredError(filePath, "summary"));
-  }
-  if (isExternal && !externalUrl) {
-    throw new Error(
-      `[news] ${relativeFromRoot(filePath)}: external item requires a valid "external_url"`,
-    );
-  }
+    if (!id) {
+        throw new Error(requiredError(filePath, "id"));
+    }
+    if (!title) {
+        throw new Error(requiredError(filePath, "title"));
+    }
+    if (!date) {
+        throw new Error(requiredError(filePath, "date"));
+    }
+    if (!isIsoDate(date)) {
+        throw new Error(
+            `[news] ${relativeFromRoot(filePath)}: "date" must be YYYY-MM-DD (received "${date}")`,
+        );
+    }
+    if (!summary) {
+        throw new Error(requiredError(filePath, "summary"));
+    }
+    if (isExternal && !externalUrl) {
+        throw new Error(
+            `[news] ${relativeFromRoot(filePath)}: external item requires a valid "external_url"`,
+        );
+    }
 
-  return {
-    id,
-    type,
-    title,
-    summary,
-    date,
-    year: toYear(date),
-    related_person: relatedPerson,
-    venue,
-    external_url: externalUrl,
-    internal_slug: internalSlug,
-    is_external: isExternal,
-    featured,
-  };
+    return {
+        id,
+        type,
+        title,
+        summary,
+        date,
+        year: toYear(date),
+        related_person: relatedPerson,
+        venue,
+        external_url: externalUrl,
+        internal_slug: internalSlug,
+        is_external: isExternal,
+        featured,
+        publication_id: publicationId,
+        publication_title: publicationTitle,
+        publication_query: publicationQuery,
+        generated_from: "",
+    };
 };
 
-export const syncNewsContent = async ({ validateOnly = false } = {}) => {
-  const markdownFiles = (await listMarkdownFiles(NEWS_CONTENT_DIR)).filter(
-    (filePath) => !path.basename(filePath).startsWith("_"),
-  );
-
-  if (markdownFiles.length === 0) {
-    throw new Error(
-      `[news] No markdown files found in ${relativeFromRoot(NEWS_CONTENT_DIR)}. Add content before syncing.`,
+const createAutoPublicationNewsItem = (publicationItem) => {
+    const publicationId = normalizeText(publicationItem.id);
+    const publicationTitle = normalizeText(publicationItem.title);
+    const publicationSummary = normalizeText(publicationItem.summary);
+    const publicationDate = normalizeText(
+        publicationItem.research_meta?.published_date,
     );
-  }
+    const publicationVenue = normalizeText(
+        publicationItem.research_meta?.published_place,
+    );
+    const publicationAuthors = normalizeText(
+        publicationItem.research_meta?.author,
+    );
 
-  const items = [];
-  const seenIds = new Set();
+    const summary =
+        publicationSummary ||
+        (publicationVenue
+            ? `${publicationVenue} publication update from CVL-Lab.`
+            : "Publication update from CVL-Lab.");
 
-  for (const filePath of markdownFiles) {
-    const item = await parseNewsFile(filePath);
-    if (seenIds.has(item.id)) {
-      throw new Error(`[news] Duplicate id "${item.id}" in ${relativeFromRoot(filePath)}`);
+    return {
+        id: `publication-${publicationId}`,
+        type: PAPER_ACCEPTED_TYPE,
+        title: publicationTitle,
+        summary,
+        date: publicationDate,
+        year: toYear(publicationDate),
+        related_person: publicationAuthors,
+        venue: publicationVenue,
+        external_url: "",
+        internal_slug: normalizeSlug(`publication-${publicationId}`),
+        is_external: false,
+        featured: false,
+        publication_id: publicationId,
+        publication_title: publicationTitle,
+        publication_query: publicationTitle,
+        generated_from: AUTO_PUBLICATION_SOURCE,
+    };
+};
+
+const mergePublicationNewsItems = (manualItems, publicationItems) => {
+    const mergedItems = [...manualItems];
+    const seenIds = new Set(manualItems.map((item) => item.id));
+    const manualPublicationIds = new Set(
+        manualItems
+            .map((item) => normalizeText(item.publication_id))
+            .filter(Boolean),
+    );
+    const manualPaperKeys = new Set(
+        manualItems
+            .filter((item) => item.type === PAPER_ACCEPTED_TYPE)
+            .map((item) =>
+                normalizePaperKey(
+                    item.date,
+                    item.publication_title || item.title,
+                ),
+            )
+            .filter(Boolean),
+    );
+
+    publicationItems
+        .filter((item) => normalizeText(item.status) === "published")
+        .forEach((publicationItem) => {
+            const autoNews = createAutoPublicationNewsItem(publicationItem);
+            const paperKey = normalizePaperKey(
+                autoNews.date,
+                autoNews.publication_title || autoNews.title,
+            );
+
+            if (seenIds.has(autoNews.id)) {
+                return;
+            }
+            if (
+                autoNews.publication_id &&
+                manualPublicationIds.has(autoNews.publication_id)
+            ) {
+                return;
+            }
+            if (manualPaperKeys.has(paperKey)) {
+                return;
+            }
+
+            seenIds.add(autoNews.id);
+            mergedItems.push(autoNews);
+        });
+
+    return mergedItems;
+};
+
+export const syncNewsContent = async ({
+    validateOnly = false,
+    publicationItems = null,
+} = {}) => {
+    const markdownFiles = (await listMarkdownFiles(NEWS_CONTENT_DIR)).filter(
+        (filePath) => !path.basename(filePath).startsWith("_"),
+    );
+
+    if (markdownFiles.length === 0) {
+        throw new Error(
+            `[news] No markdown files found in ${relativeFromRoot(NEWS_CONTENT_DIR)}. Add content before syncing.`,
+        );
     }
-    seenIds.add(item.id);
-    items.push(item);
-  }
 
-  items.sort((a, b) => {
-    if (a.date === b.date) {
-      return a.id.localeCompare(b.id);
+    const items = [];
+    const seenIds = new Set();
+
+    for (const filePath of markdownFiles) {
+        const item = await parseNewsFile(filePath);
+        if (seenIds.has(item.id)) {
+            throw new Error(
+                `[news] Duplicate id "${item.id}" in ${relativeFromRoot(filePath)}`,
+            );
+        }
+        seenIds.add(item.id);
+        items.push(item);
     }
-    return b.date.localeCompare(a.date);
-  });
 
-  if (validateOnly) {
-    console.log(`[news] validated ${items.length} entries`);
-    return items;
-  }
+    const resolvedPublicationItems = Array.isArray(publicationItems)
+        ? publicationItems
+        : await syncPublicationContent({ validateOnly: true });
 
-  await writeJsonFile(NEWS_GENERATED_FILE, {
-    meta: {
-      schema_version: "4.0",
-      generated_at: getNowIso(),
-      default_sort: "date_desc",
-      source: "content/news",
-      type_labels: TYPE_LABELS,
-    },
-    items,
-  });
+    const mergedItems = mergePublicationNewsItems(
+        items,
+        resolvedPublicationItems,
+    );
 
-  console.log(
-    `[news] synced ${items.length} entries -> ${relativeFromRoot(NEWS_GENERATED_FILE)}`,
-  );
+    mergedItems.sort((a, b) => {
+        if (a.date === b.date) {
+            return a.id.localeCompare(b.id);
+        }
+        return b.date.localeCompare(a.date);
+    });
 
-  return items;
+    if (validateOnly) {
+        console.log(`[news] validated ${mergedItems.length} entries`);
+        return mergedItems;
+    }
+
+    await writeJsonFile(NEWS_GENERATED_FILE, {
+        meta: {
+            schema_version: "4.0",
+            generated_at: getNowIso(),
+            default_sort: "date_desc",
+            source: "content/news + publications(published)",
+            type_labels: TYPE_LABELS,
+        },
+        items: mergedItems,
+    });
+
+    console.log(
+        `[news] synced ${mergedItems.length} entries -> ${relativeFromRoot(NEWS_GENERATED_FILE)}`,
+    );
+
+    return mergedItems;
 };
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const validateOnly = process.argv.includes("--validate-only");
-  syncNewsContent({ validateOnly }).catch((error) => {
-    console.error(error.message || error);
-    process.exit(1);
-  });
+    const validateOnly = process.argv.includes("--validate-only");
+    syncNewsContent({ validateOnly }).catch((error) => {
+        console.error(error.message || error);
+        process.exit(1);
+    });
 }

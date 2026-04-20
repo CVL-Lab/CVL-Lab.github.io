@@ -30,6 +30,9 @@
 - `src/generated/publications.generated.json`
 - `src/generated/photos.generated.json`
 
+참고: `status: published` publication은 sync 시 `paper_accepted` News로 자동 생성되어
+`src/generated/news.generated.json`에 함께 포함됩니다.
+
 Photo 최적화 출력물은 아래 경로에 생성됩니다.
 
 - `public/uploads/photos/...`

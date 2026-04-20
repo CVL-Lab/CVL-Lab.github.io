@@ -1,4 +1,26 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faArrowRight,
+    faEnvelope,
+    faUser,
+    faUserGraduate,
+} from "@fortawesome/free-solid-svg-icons";
+
+const PRIMARY_CONTACTS = [
+    {
+        id: "professor",
+        role: "Professor",
+        email: "jongbinryu@ajou.ac.kr",
+        icon: faUser,
+    },
+    {
+        id: "student-representative",
+        role: "Student Representative",
+        email: "kimsungeun@ajou.ac.kr",
+        icon: faUserGraduate,
+    },
+];
 
 export default function HomeCTA() {
     return (
@@ -16,7 +38,7 @@ export default function HomeCTA() {
                 <p className="home-cta__institution">
                     We welcome inquiries from students, collaborators, and
                     anyone interested in our lab. Please feel free to contact us
-                    using the information on the right. We work with many
+                    using the contact information below. We work with many
                     academic and industrial partners on practical learning
                     algorithms and industrial AI applications
                 </p>
@@ -25,23 +47,38 @@ export default function HomeCTA() {
                 <div
                     className="home-cta__contacts"
                     aria-label="Primary contacts">
-                    <p className="home-cta__contact-line">
-                        <span>Professor:</span>{" "}
-                        <a href="mailto:jongbinryu@ajou.ac.kr">
-                            jongbinryu@ajou.ac.kr
-                        </a>
-                    </p>
-                    <p className="home-cta__contact-line">
-                        <span>Student Representative:</span>{" "}
-                        <a href="mailto:kimsungeun@ajou.ac.kr">
-                            kimsungeun@ajou.ac.kr
-                        </a>
-                    </p>
+                    {PRIMARY_CONTACTS.map((contactItem) => (
+                        <article
+                            key={contactItem.id}
+                            className="home-cta__contact-card">
+                            <p className="home-cta__contact-role">
+                                <span
+                                    className="home-cta__contact-icon"
+                                    aria-hidden="true">
+                                    <FontAwesomeIcon icon={contactItem.icon} />
+                                </span>
+                                <span>{contactItem.role}</span>
+                            </p>
+                            <a
+                                className="home-cta__contact-email"
+                                href={`mailto:${contactItem.email}`}>
+                                <span
+                                    className="home-cta__contact-icon"
+                                    aria-hidden="true">
+                                    <FontAwesomeIcon icon={faEnvelope} />
+                                </span>
+                                <span>{contactItem.email}</span>
+                            </a>
+                        </article>
+                    ))}
                 </div>
                 <Link
                     to="/contact"
-                    className="home-cta__btn home-cta__btn--primary btn btn--primary interactive-button lift-on-hover">
-                    More Information
+                    className="home-cta__btn home-cta__btn--primary btn btn--secondary interactive-button lift-on-hover">
+                    <span>More Information</span>
+                    <span className="home-cta__btn-icon" aria-hidden="true">
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </span>
                 </Link>
             </div>
         </section>

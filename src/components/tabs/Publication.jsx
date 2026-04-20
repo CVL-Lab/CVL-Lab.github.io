@@ -70,7 +70,7 @@ function Publication() {
                 return true;
             }
 
-            const searchParts = [publicationItem.title];
+            const searchParts = [publicationItem.title, publicationItem.id];
 
             if (
                 searchScope === "title-authors" ||
@@ -81,6 +81,9 @@ function Publication() {
 
             if (searchScope === "title-authors-venue") {
                 searchParts.push(publicationItem.research_meta.published_place);
+                searchParts.push(
+                    ...(publicationItem.research_meta.keywords ?? []),
+                );
             }
 
             const searchTarget = searchParts.join(" ").toLowerCase();

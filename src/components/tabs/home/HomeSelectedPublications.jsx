@@ -30,7 +30,7 @@ export default function HomeSelectedPublications() {
         featuredPublication.research_meta,
     );
     const hasFeaturedExternalLink = isValidHttpUrl(featuredPaperLink);
-    const featuredQueryTarget = `/publication?q=${encodeURIComponent(featuredPublication.title)}&scope=title`;
+    const featuredQueryTarget = `/publication?q=${encodeURIComponent(featuredPublication.title)}&scope=title-authors-venue`;
     const featuredCategoryLabel =
         CATEGORY_LABELS[featuredPublication.category] ??
         featuredPublication.category;
@@ -115,7 +115,7 @@ export default function HomeSelectedPublications() {
                 {previewPublications.map((item, index) => {
                     const revealDelay = `${index * 60}ms`;
                     const revealLoadDelay = `${200 + index * 60}`;
-                    const queryTarget = `/publication?q=${encodeURIComponent(item.title)}&scope=title`;
+                    const queryTarget = `/publication?q=${encodeURIComponent(item.title)}&scope=title-authors-venue`;
                     return (
                         <article
                             key={item.key}
@@ -123,12 +123,12 @@ export default function HomeSelectedPublications() {
                             data-reveal-load-delay={revealLoadDelay}
                             style={{ "--reveal-delay": revealDelay }}
                             className="home-pubs__row interactive-row">
-                            <p
-                                className={`home-pubs__badge home-pubs__badge--${item.category}`}>
-                                {CATEGORY_LABELS[item.category] ||
-                                    item.category}
-                            </p>
                             <div className="home-pubs__meta">
+                                <p
+                                    className={`home-pubs__badge home-pubs__badge--${item.category}`}>
+                                    {CATEGORY_LABELS[item.category] ||
+                                        item.category}
+                                </p>
                                 {item.research_meta.keywords?.length ? (
                                     <div
                                         className="home-pubs__keywords"
@@ -169,6 +169,7 @@ export default function HomeSelectedPublications() {
                     state={{ scroll: { mode: "top" } }}
                     className="home-block__section-action btn btn--tertiary animated-underline">
                     View all publications
+                    <span className="home-block__section-action-icon">→</span>
                 </Link>
             </div>
         </section>

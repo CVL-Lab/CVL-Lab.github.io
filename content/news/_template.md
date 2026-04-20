@@ -8,6 +8,9 @@ related_person: CVL-Lab
 venue: Ajou University
 external_url: ""
 is_external: false
+publication_id: ""
+publication_title: ""
+publication_query: ""
 featured: false
 internal_slug: example-news-title
 ---

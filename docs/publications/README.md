@@ -138,8 +138,11 @@ summary: 비용을 줄이면서 멀티모달 성능을 유지하는 attention ro
 동기화 후:
 
 1. `src/generated/publications.generated.json` 갱신
-2. Publication page 필터/검색 대상 갱신
-3. Home의 Publications preview(최신 항목) 자동 갱신
+2. `status: published` 항목은 `src/generated/news.generated.json`에 `paper_accepted` News로 자동 반영
+3. Publication page 필터/검색 대상 갱신
+4. Home의 Publications preview(최신 항목) + Latest News 자동 갱신
+
+자동 생성 News는 publication id/title을 함께 포함하므로 Home/News에서 `/publication`으로 정확한 검색 이동이 가능합니다.
 
 ---
 

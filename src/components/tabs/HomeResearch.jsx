@@ -38,6 +38,7 @@ function HomeResearch({ handleActiveResearch }) {
                     state={{ scroll: { mode: "top" } }}
                     className="home-block__section-action btn btn--tertiary animated-underline">
                     View all research
+                    <span className="home-block__section-action-icon">→</span>
                 </Link>
             </div>
         </div>

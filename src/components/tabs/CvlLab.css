@@ -79,7 +79,6 @@
 .hero__intro {
     width: 100%;
     padding-top: var(--heading-gap);
-    border-top: 1px solid var(--tab-home-border);
     position: relative;
     z-index: 2;
 }

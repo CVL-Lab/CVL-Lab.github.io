@@ -9,6 +9,39 @@ import {
 const isNonEmpty = (value) =>
     typeof value === "string" && value.trim().length > 0;
 
+const PAPER_ACCEPTED_TITLE_PATTERN = /^paper\s+accepted\b/i;
+
+const getPublicationSearchQuery = (item) => {
+    const candidates = [
+        item.publication_id,
+        item.publication_title,
+        item.publication_query,
+    ];
+
+    for (const candidate of candidates) {
+        if (isNonEmpty(candidate)) {
+            return candidate.trim();
+        }
+    }
+
+    if (
+        isNonEmpty(item.title) &&
+        !PAPER_ACCEPTED_TITLE_PATTERN.test(item.title.trim())
+    ) {
+        return item.title.trim();
+    }
+
+    if (isNonEmpty(item.summary)) {
+        return item.summary.trim();
+    }
+
+    if (isNonEmpty(item.venue)) {
+        return item.venue.trim();
+    }
+
+    return "";
+};
+
 export default function HomeLatestNewsList() {
     const newsItems = getLatestNews(4);
 
@@ -30,15 +63,29 @@ export default function HomeLatestNewsList() {
 
             <div className="home-news__list">
                 {newsItems.map((item, index) => {
+                    const isPaperAccepted = item.type === "paper_accepted";
+                    const publicationQuery = getPublicationSearchQuery(item);
+                    const publicationTarget = publicationQuery
+                        ? `/publication?q=${encodeURIComponent(publicationQuery)}&scope=title-authors-venue`
+                        : "/publication";
                     const isExternal =
-                        item.is_external && isValidHttpUrl(item.external_url);
+                        !isPaperAccepted &&
+                        item.is_external &&
+                        isValidHttpUrl(item.external_url);
                     const internalTarget = item.internal_slug
                         ? `/news#${item.internal_slug}`
                         : "/news";
+                    const targetPath = isPaperAccepted
+                        ? publicationTarget
+                        : internalTarget;
                     const revealDelay = `${index * 60}ms`;
                     const revealLoadDelay = `${120 + index * 60}`;
                     const typeLabel = getNewsTypeMeta(item.type).label;
-                    const statusLabel = isExternal ? "External" : "Lab update";
+                    const statusLabel = isPaperAccepted
+                        ? "Publication"
+                        : isExternal
+                          ? "External"
+                          : "Lab update";
                     const headline = item.title;
                     const summary = isNonEmpty(item.summary)
                         ? item.summary.trim()
@@ -80,16 +127,6 @@ export default function HomeLatestNewsList() {
                                     <p className="home-news__meta">{details}</p>
                                 ) : null}
                             </div>
-                            <span
-                                className="home-news__action"
-                                aria-hidden="true">
-                                <span className="home-news__action-label">
-                                    {isExternal ? "Open" : "News"}
-                                </span>
-                                <span className="home-news__arrow interactive-row__arrow">
-                                    →
-                                </span>
-                            </span>
                         </>
                     );
 
@@ -111,8 +148,8 @@ export default function HomeLatestNewsList() {
                         <Link
                             key={item.id}
                             {...commonProps}
-                            to={internalTarget}
-                            aria-label={`${headline} (view in news archive)`}>
+                            to={targetPath}
+                            aria-label={`${headline} (view related content)`}>
                             {rowContent}
                         </Link>
                     );
@@ -125,6 +162,7 @@ export default function HomeLatestNewsList() {
                     state={{ scroll: { mode: "top" } }}
                     className="home-block__section-action btn btn--tertiary animated-underline">
                     View all news
+                    <span className="home-block__section-action-icon">→</span>
                 </Link>
             </div>
         </section>

@@ -39,19 +39,7 @@ export default function HomePeoplePreview() {
                 data-reveal
                 data-reveal-load-delay="140"
                 className="home-people__culture"
-                aria-labelledby="home-people-culture-title">
-                <div className="home-people__culture-head">
-                    <p
-                        id="home-people-culture-title"
-                        className="home-people__culture-title">
-                        Lab Culture & Environment
-                    </p>
-                    <p className="home-people__culture-desc">
-                        Explore recent moments from seminars, collaboration, and
-                        daily lab life.
-                    </p>
-                </div>
-
+                aria-label="Recent lab culture photos">
                 <div
                     className="home-people__culture-track"
                     aria-label="Recent lab photos">
@@ -200,6 +188,7 @@ export default function HomePeoplePreview() {
                     state={{ scroll: { mode: "top" } }}
                     className="home-block__section-action btn btn--tertiary animated-underline">
                     View all people
+                    <span className="home-block__section-action-icon">→</span>
                 </Link>
             </div>
         </section>

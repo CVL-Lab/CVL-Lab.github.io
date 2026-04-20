@@ -6,8 +6,9 @@ summary: "Our work on robust visual representation learning was accepted for pub
 date: 2026-02-18
 related_person: "Sungeun Kim, Jonbin Ryu"
 venue: "WACV 2026"
-external_url: "https://arxiv.org/"
-is_external: true
+external_url: ""
+is_external: false
+publication_query: "robust visual representation learning"
 featured: true
 internal_slug: paper-accepted-wacv-2026
 ---

@@ -126,6 +126,10 @@ const normalizeStructuredNewsItems = (items) =>
             is_external:
                 normalizeBoolean(item?.is_external) && Boolean(externalUrl),
             featured: normalizeBoolean(item?.featured),
+            publication_id: normalizeText(item?.publication_id),
+            publication_title: normalizeText(item?.publication_title),
+            publication_query: normalizeText(item?.publication_query),
+            generated_from: normalizeText(item?.generated_from),
             _parsedDate: parsedDate,
         };
     });

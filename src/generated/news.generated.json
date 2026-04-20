@@ -1,11 +1,12 @@
 {
   "meta": {
     "schema_version": "4.0",
-    "generated_at": "2026-04-19T23:45:22.751Z",
+    "generated_at": "2026-04-20T07:42:05.345Z",
     "default_sort": "date_desc",
-    "source": "content/news",
+    "source": "content/news + publications(published)",
     "type_labels": {
       "paper_accepted": "Paper Accepted",
+      "notice": "Notice",
       "equipment": "Equipment",
       "new_member": "New Member",
       "graduation": "Graduation",
@@ -26,10 +27,14 @@
       "year": 2026,
       "related_person": "Sungeun Kim, Jonbin Ryu",
       "venue": "WACV 2026",
-      "external_url": "https://arxiv.org/",
+      "external_url": "",
       "internal_slug": "paper-accepted-wacv-2026",
-      "is_external": true,
-      "featured": true
+      "is_external": false,
+      "featured": true,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "robust visual representation learning",
+      "generated_from": ""
     },
     {
       "id": "2026-seminar-vlm",
@@ -43,7 +48,11 @@
       "external_url": "",
       "internal_slug": "seminar-efficient-vision-learning-models",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
     },
     {
       "id": "2026-new-member-winter",
@@ -57,7 +66,11 @@
       "external_url": "",
       "internal_slug": "winter-interns-2026",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
     },
     {
       "id": "2025-equipment-gpu",
@@ -71,7 +84,11 @@
       "external_url": "",
       "internal_slug": "new-gpu-workstation-2025",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
     },
     {
       "id": "2025-award-student",
@@ -85,7 +102,11 @@
       "external_url": "",
       "internal_slug": "best-student-presentation-2025",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
     },
     {
       "id": "2025-visit-collaboration",
@@ -99,7 +120,11 @@
       "external_url": "",
       "internal_slug": "industry-collaboration-visit-2025",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
     },
     {
       "id": "2025-workshop-vision",
@@ -113,7 +138,11 @@
       "external_url": "",
       "internal_slug": "biomedical-workshop-2025",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
     },
     {
       "id": "2025-paper-media",
@@ -124,10 +153,14 @@
       "year": 2025,
       "related_person": "Biomedical AI Group",
       "venue": "Medical Image Analysis",
-      "external_url": "https://www.sciencedirect.com/journal/medical-image-analysis",
+      "external_url": "",
       "internal_slug": "paper-accepted-media-2025",
-      "is_external": true,
-      "featured": true
+      "is_external": false,
+      "featured": true,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "medical image analysis",
+      "generated_from": ""
     },
     {
       "id": "2025-graduation-spring",
@@ -141,7 +174,29 @@
       "external_url": "",
       "internal_slug": "spring-graduation-2025",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
+    },
+    {
+      "id": "publication-biomedical-bapub4-style-kd-class-imbalanced-medical-image",
+      "type": "paper_accepted",
+      "title": "Style-KD : Class-Imbalanced Medical Image Classification via Style Knowledge Distillation",
+      "summary": "Biomedical Signall Processing and Control publication update from CVL-Lab.",
+      "date": "2024-12-29",
+      "year": 2024,
+      "related_person": "Inhyuk Park, Won Hwa Kim, Jongbin Ryu",
+      "venue": "Biomedical Signall Processing and Control",
+      "external_url": "",
+      "internal_slug": "publication-biomedical-bapub4-style-kd-class-imbalanced-medical-image",
+      "is_external": false,
+      "featured": false,
+      "publication_id": "biomedical-bapub4-style-kd-class-imbalanced-medical-image",
+      "publication_title": "Style-KD : Class-Imbalanced Medical Image Classification via Style Knowledge Distillation",
+      "publication_query": "Style-KD : Class-Imbalanced Medical Image Classification via Style Knowledge Distillation",
+      "generated_from": "publications-auto"
     },
     {
       "id": "2024-general-openhouse",
@@ -155,7 +210,101 @@
       "external_url": "",
       "internal_slug": "open-house-2024",
       "is_external": false,
-      "featured": false
+      "featured": false,
+      "publication_id": "",
+      "publication_title": "",
+      "publication_query": "",
+      "generated_from": ""
+    },
+    {
+      "id": "publication-core-capub0-spatial-bias-for-attention-free-non-local",
+      "type": "paper_accepted",
+      "title": "Spatial Bias for Attention-free Non-local Neural Networks",
+      "summary": "Expert Systems with applications publication update from CVL-Lab.",
+      "date": "2024-10-04",
+      "year": 2024,
+      "related_person": "Junhyung Go, Jonngbin Ryu",
+      "venue": "Expert Systems with applications",
+      "external_url": "",
+      "internal_slug": "publication-core-capub0-spatial-bias-for-attention-free-non-local",
+      "is_external": false,
+      "featured": false,
+      "publication_id": "core-capub0-spatial-bias-for-attention-free-non-local",
+      "publication_title": "Spatial Bias for Attention-free Non-local Neural Networks",
+      "publication_query": "Spatial Bias for Attention-free Non-local Neural Networks",
+      "generated_from": "publications-auto"
+    },
+    {
+      "id": "publication-biomedical-bapub2-attentional-decoder-networks-for-chest-x-r",
+      "type": "paper_accepted",
+      "title": "Attentional Decoder Networks for Chest X-ray Image Recognition on High-resolution Features",
+      "summary": "Computer Methods and Programs in Biomedicine publication update from CVL-Lab.",
+      "date": "2024-04-21",
+      "year": 2024,
+      "related_person": "Hankyul Kang, Namkug Kim, Jongbin Ryu",
+      "venue": "Computer Methods and Programs in Biomedicine",
+      "external_url": "",
+      "internal_slug": "publication-biomedical-bapub2-attentional-decoder-networks-for-chest-x-r",
+      "is_external": false,
+      "featured": false,
+      "publication_id": "biomedical-bapub2-attentional-decoder-networks-for-chest-x-r",
+      "publication_title": "Attentional Decoder Networks for Chest X-ray Image Recognition on High-resolution Features",
+      "publication_query": "Attentional Decoder Networks for Chest X-ray Image Recognition on High-resolution Features",
+      "generated_from": "publications-auto"
+    },
+    {
+      "id": "publication-biomedical-bapub3-analyzing-to-discover-origins-of-cnns-and",
+      "type": "paper_accepted",
+      "title": "Analyzing to Discover Origins of CNNs and ViT Architectures in Medical Images",
+      "summary": "Scientific Reports publication update from CVL-Lab.",
+      "date": "2024-04-16",
+      "year": 2024,
+      "related_person": "Seungmin Oh, Namkug Kim, Jongbin Ryu",
+      "venue": "Scientific Reports",
+      "external_url": "",
+      "internal_slug": "publication-biomedical-bapub3-analyzing-to-discover-origins-of-cnns-and",
+      "is_external": false,
+      "featured": false,
+      "publication_id": "biomedical-bapub3-analyzing-to-discover-origins-of-cnns-and",
+      "publication_title": "Analyzing to Discover Origins of CNNs and ViT Architectures in Medical Images",
+      "publication_query": "Analyzing to Discover Origins of CNNs and ViT Architectures in Medical Images",
+      "generated_from": "publications-auto"
+    },
+    {
+      "id": "publication-biomedical-bapub0-deep-learning-using-computed-tomography-to",
+      "type": "paper_accepted",
+      "title": "Deep Learning Using Computed Tomography to Identify High-Risk Patients for Acute Small Bowel Obstruction: Development and Validation of a Prediction Model: A Retrospective Cohort Study",
+      "summary": "International Journal of Surgery publication update from CVL-Lab.",
+      "date": "2023-12-01",
+      "year": 2023,
+      "related_person": "Seungmin Oh, Jongbin Ryu, Ho-Jung Shin, Jeong Ho Song, Sang-Yong Son, Hoon Hur, Sang-Uk Han",
+      "venue": "International Journal of Surgery",
+      "external_url": "",
+      "internal_slug": "publication-biomedical-bapub0-deep-learning-using-computed-tomography-to",
+      "is_external": false,
+      "featured": false,
+      "publication_id": "biomedical-bapub0-deep-learning-using-computed-tomography-to",
+      "publication_title": "Deep Learning Using Computed Tomography to Identify High-Risk Patients for Acute Small Bowel Obstruction: Development and Validation of a Prediction Model: A Retrospective Cohort Study",
+      "publication_query": "Deep Learning Using Computed Tomography to Identify High-Risk Patients for Acute Small Bowel Obstruction: Development and Validation of a Prediction Model: A Retrospective Cohort Study",
+      "generated_from": "publications-auto"
+    },
+    {
+      "id": "publication-biomedical-bapub1-robust-asymmetric-loss-for-multi-label-lon",
+      "type": "paper_accepted",
+      "title": "Robust Asymmetric Loss for Multi-Label Long-Tailed Learning",
+      "summary": "ICCVW publication update from CVL-Lab.",
+      "date": "2023-08-10",
+      "year": 2023,
+      "related_person": "Wongi Park, Inhyuk Park, Sungeun Kim, Jongbin Ryu",
+      "venue": "ICCVW",
+      "external_url": "",
+      "internal_slug": "publication-biomedical-bapub1-robust-asymmetric-loss-for-multi-label-lon",
+      "is_external": false,
+      "featured": false,
+      "publication_id": "biomedical-bapub1-robust-asymmetric-loss-for-multi-label-lon",
+      "publication_title": "Robust Asymmetric Loss for Multi-Label Long-Tailed Learning",
+      "publication_query": "Robust Asymmetric Loss for Multi-Label Long-Tailed Learning",
+      "generated_from": "publications-auto"
     }
   ]
 }

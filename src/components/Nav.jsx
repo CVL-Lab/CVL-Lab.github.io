@@ -176,13 +176,66 @@ export default function Nav() {
     };
 
     const tabs = [
-        "home",
-        "news",
-        "research",
-        "publication",
-        "people",
-        "photo",
-        "contact",
+        {
+            key: "home",
+            label: "Home",
+        },
+        {
+            key: "news",
+            label: "News",
+            sections: [
+                { label: "Filter & Controls", to: "/news#news-controls-title" },
+                { label: "Archive", to: "/news#news-archive-title" },
+            ],
+        },
+        {
+            key: "research",
+            label: "Research",
+            sections: [
+                {
+                    label: "Area Details",
+                    to: "/research#research-area-details-title",
+                },
+                {
+                    label: "Resources",
+                    to: "/research#research-resources-title",
+                },
+            ],
+        },
+        {
+            key: "publication",
+            label: "Publication",
+            sections: [
+                {
+                    label: "Filter & Search",
+                    to: "/publication#publication-controls-title",
+                },
+                {
+                    label: "Archive",
+                    to: "/publication#publication-archive-title",
+                },
+            ],
+        },
+        {
+            key: "people",
+            label: "People",
+            sections: [
+                { label: "Professor", to: "/people#people-section-professor" },
+                {
+                    label: "Integrated M.S./Ph.D.",
+                    to: "/people#people-section-integrated_mp",
+                },
+                { label: "Alumni", to: "/people#people-section-alumni" },
+            ],
+        },
+        {
+            key: "photo",
+            label: "Photo",
+        },
+        {
+            key: "contact",
+            label: "Contact",
+        },
     ];
 
     return (
@@ -228,14 +281,36 @@ export default function Nav() {
                 <div
                     id="nav-links"
                     className={`nav__links animated-surface ${isMobileNav && !isMenuOpen ? "is-hidden" : ""}`}>
-                    {tabs.map((tab, i) => (
-                        <NavButton
-                            key={tab + i}
-                            tabKey={tab}
-                            isSelected={selectedTab === tab}
-                            onSelect={handleSelectTab}>
-                            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                        </NavButton>
+                    {tabs.map((tabItem, i) => (
+                        <div
+                            key={tabItem.key + i}
+                            className={`nav__item ${tabItem.sections?.length ? "has-sections" : ""}`}>
+                            <NavButton
+                                tabKey={tabItem.key}
+                                isSelected={selectedTab === tabItem.key}
+                                onSelect={handleSelectTab}>
+                                {tabItem.label}
+                            </NavButton>
+
+                            {tabItem.sections?.length ? (
+                                <div
+                                    className="nav__submenu"
+                                    role="menu"
+                                    aria-label={`${tabItem.label} sections`}>
+                                    {tabItem.sections.map((sectionItem) => (
+                                        <Link
+                                            key={sectionItem.to}
+                                            to={sectionItem.to}
+                                            className="nav__submenu-link"
+                                            role="menuitem"
+                                            onClick={handleSelectTab}>
+                                            <span>{sectionItem.label}</span>
+                                            <span aria-hidden="true">→</span>
+                                        </Link>
+                                    ))}
+                                </div>
+                            ) : null}
+                        </div>
                     ))}
                 </div>
             </div>

@@ -49,6 +49,9 @@ npm run photos:sync         # photo resize + manifest only
 npm run operator:verify     # operator-friendly check (sync + build)
 ```
 
+`status: published` publication은 `content:sync` 시 `paper_accepted` news로 자동 생성되어
+`src/generated/news.generated.json`에 함께 반영됩니다.
+
 `npm run build`는 먼저 `validate:content`를 실행합니다.
 
 ## Static prerender build

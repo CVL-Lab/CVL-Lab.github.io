@@ -24,7 +24,9 @@ function People() {
                     className="people__section page-panel page-panel--compact">
                     <div className="people__degree-header">
                         <div className="people__degree-title-wrap">
-                            <h2>{section.title}</h2>
+                            <h2 id={`people-section-${section.key}`}>
+                                {section.title}
+                            </h2>
                         </div>
                         <span className="people__degree-count">
                             {section.people.length}

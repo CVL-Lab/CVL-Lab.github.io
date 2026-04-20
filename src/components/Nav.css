@@ -77,6 +77,57 @@
     padding-right: var(--space-1);
 }
 
+.nav__item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav__submenu {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 0.35rem);
+    transform: translate(-50%, 0.4rem);
+    min-width: 11.8rem;
+    padding: 0.42rem;
+    border: 1px solid var(--outline-color);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    box-shadow: var(--shadow-elev-1);
+    display: grid;
+    gap: 0.2rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 1100;
+    transition:
+        opacity var(--dur-fast) var(--ease-soft),
+        transform var(--dur-base) var(--ease-standard),
+        visibility 0s linear var(--dur-base);
+}
+
+.nav__submenu-link {
+    width: 100%;
+    padding: 0.38rem 0.54rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--meta-text-size);
+    font-weight: var(--type-support-weight);
+    line-height: var(--type-support-line-height);
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-1);
+    transition: var(--transition-interactive);
+}
+
+.nav__submenu-link:focus-visible {
+    outline: var(--focus-w) solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
 .nav__overlay {
     position: fixed;
     inset: 0;
@@ -253,6 +304,21 @@
         opacity: 1;
         transform: scaleX(1);
     }
+
+    .nav__item.has-sections:hover .nav__submenu,
+    .nav__item.has-sections:focus-within .nav__submenu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translate(-50%, 0);
+        transition-delay: 0ms;
+    }
+
+    .nav__submenu-link:hover {
+        border-color: var(--outline-color);
+        background: var(--surface-2);
+        color: var(--text-primary);
+    }
 }
 
 @media (min-width: 57.01rem) {
@@ -266,5 +332,11 @@
         visibility: visible;
         pointer-events: auto;
         transform: none;
+    }
+}
+
+@media (max-width: 57rem) {
+    .nav__submenu {
+        display: none;
     }
 }

@@ -54,6 +54,9 @@
 - `venue`: 장소/학회/행사명
 - `external_url`: 외부 링크
 - `is_external`: 외부 링크 News 여부 (`true/false`)
+- `publication_id`: (paper_accepted 권장) publication id와 직접 매핑
+- `publication_title`: (paper_accepted 권장) publication title 매핑
+- `publication_query`: (paper_accepted 권장) publication 검색 fallback query
 - `featured`: 강조 표시 여부 (`true/false`)
 - `internal_slug`: 내부 앵커 slug
 
@@ -98,9 +101,41 @@ npm run validate:content
 - `external_url` 생략 가능
 - Home에서는 `/news` archive로 이동
 
+### paper_accepted News (중요)
+
+- `paper_accepted` type은 UI에서 외부 링크보다 `/publication` 검색 이동을 우선합니다.
+- 따라서 `title`을 "Paper accepted ..."처럼 일반 문구로 쓰는 경우에는 아래 중 하나를 채워주세요.
+    - `publication_id`
+    - `publication_title`
+    - `publication_query`
+- 이 값이 있으면 Home/News에서 해당 논문 위치를 더 정확히 찾을 수 있습니다.
+
 ---
 
-## 6) 예시 파일
+## 6) Publication -> News 자동 생성
+
+`status: published` publication을 추가하면 `content:sync` 시 `paper_accepted` news가 자동 생성됩니다.
+
+- source: `content/publications/**/*.md`
+- output 포함 위치: `src/generated/news.generated.json`
+- 생성되는 항목 특징:
+    - `type: paper_accepted`
+    - `publication_id`, `publication_title`, `publication_query` 자동 포함
+    - 외부 링크 대신 `/publication` 이동 중심
+
+중복 방지 규칙:
+
+- 수동 News에 동일 `publication_id`가 있으면 자동 항목은 추가되지 않습니다.
+- 수동 News와 자동 News의 `date + title`이 같으면 자동 항목은 추가되지 않습니다.
+
+운영 권장:
+
+- 일반적으로는 publication만 추가해도 News가 자동 생성됩니다.
+- 별도 문구가 필요한 경우에만 `content/news`에 수동 `paper_accepted`를 작성하고 `publication_id`를 함께 넣어 주세요.
+
+---
+
+## 7) 예시 파일
 
 ```md
 ---
@@ -122,7 +157,7 @@ internal_slug: notice-efficient-vlm-2026
 
 ---
 
-## 7) Home 최신 News 반영 방식
+## 8) Home 최신 News 반영 방식
 
 현재 Home은 최신 News를 **최대 4개** preview로 표시합니다.
 
@@ -130,32 +165,34 @@ internal_slug: notice-efficient-vlm-2026
 - sort: 날짜 최신순
 - 위치: Home 상단 Latest News section
 
-즉, News 파일을 추가하고 동기화하면 Home/News에 자동 반영됩니다.
+즉, News 파일 추가 또는 published publication 추가 후 동기화하면 Home/News에 자동 반영됩니다.
 
 ---
 
-## 8) News 추가 체크리스트
+## 9) News 추가 체크리스트
 
 1. 파일 생성 위치가 `content/news`인지 확인
 2. 파일 확장자가 `.md`인지 확인
 3. 필수 필드 입력 확인: `id`, `type`, `title`, `summary`, `date`
 4. `date` 형식이 `YYYY-MM-DD`인지 확인
 5. 외부 링크 News면 `is_external: true` + `external_url` 입력
-6. 아래 명령 실행
+6. `paper_accepted`면 `publication_id`/`publication_title`/`publication_query` 중 최소 1개 권장
+7. 아래 명령 실행
     ```bash
     npm run content:sync
     npm run validate:content
     ```
-7. Home + `/news`에서 실제 노출 확인
+8. Home + `/news`에서 실제 노출 확인
 
 ---
 
-## 9) 자주 발생하는 실수
+## 10) 자주 발생하는 실수
 
 1. 날짜 형식 오류 (`2026/03/16`)
 2. `type` 오타 (`paperaccepted`)
 3. `id` 중복
 4. `is_external: true`인데 `external_url` 누락
 5. `src/generated/news.generated.json` 직접 편집
+6. `paper_accepted`를 일반 문구 제목으로만 쓰고 publication 매핑 필드를 비워 둠
 
 오류가 발생하면 `docs/troubleshooting/README.md`를 함께 확인해 주세요.
