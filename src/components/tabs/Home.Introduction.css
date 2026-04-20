@@ -61,7 +61,7 @@
     padding: 0.2rem 0.54rem;
     border: 1px solid var(--tab-home-border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.85);
+    background: color-mix(in srgb, var(--surface) 88%, var(--tab-home-tint));
     color: var(--text-secondary);
     font-size: var(--font-size-xs);
     font-weight: 600;

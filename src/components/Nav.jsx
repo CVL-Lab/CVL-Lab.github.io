@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavButton from "./Nav.Button";
 import { resolveTabFromPath } from "../routes/routeUtils";
+import {
+    DARK_THEME,
+    getDocumentTheme,
+    LIGHT_THEME,
+    resolvePreferredTheme,
+    THEME_CHANGE_EVENT,
+} from "../utils/themeMode";
 import "./Nav.css";
-import CVL_LAB_LOGO from "../assets/logo.svg";
+import CVL_LAB_LOGO_LIGHT from "../assets/logo-light.svg";
+import CVL_LAB_LOGO_DARK from "../assets/logo-dark.svg";
 
 const MOBILE_NAV_QUERY = "(max-width: 57rem)";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -39,12 +47,41 @@ export default function Nav() {
         }
         return window.matchMedia(MOBILE_NAV_QUERY).matches;
     });
+    const [themeMode, setThemeMode] = useState(() => resolvePreferredTheme());
+    const [isSubmenuSuppressed, setIsSubmenuSuppressed] = useState(false);
     const location = useLocation();
     const selectedTab = resolveTabFromPath(location.pathname);
 
     useEffect(() => {
+        const handleThemeChange = (event) => {
+            const nextTheme = event?.detail?.theme;
+            if (nextTheme === DARK_THEME || nextTheme === LIGHT_THEME) {
+                setThemeMode(nextTheme);
+                return;
+            }
+            setThemeMode(getDocumentTheme());
+        };
+
+        if (typeof window !== "undefined") {
+            window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
+        }
+
+        setThemeMode(getDocumentTheme());
+
+        return () => {
+            if (typeof window !== "undefined") {
+                window.removeEventListener(
+                    THEME_CHANGE_EVENT,
+                    handleThemeChange,
+                );
+            }
+        };
+    }, []);
+
+    useEffect(() => {
         setIsMenuOpen(false);
         setIsNavVisible(true);
+        setIsSubmenuSuppressed(false);
     }, [selectedTab]);
 
     useEffect(() => {
@@ -160,7 +197,15 @@ export default function Nav() {
         setIsNavVisible(true);
     };
 
-    const handleSelectTab = (_event) => {
+    const handleSelectTab = (event) => {
+        if (event?.currentTarget instanceof HTMLElement) {
+            event.currentTarget.blur();
+        }
+
+        if (!isMobileNav && Number(event?.detail || 0) > 0) {
+            setIsSubmenuSuppressed(true);
+        }
+
         setIsMenuOpen(false);
         setIsNavVisible(true);
     };
@@ -174,6 +219,9 @@ export default function Nav() {
         event.preventDefault();
         window.scrollTo({ top: 0, behavior: getScrollBehavior() });
     };
+
+    const navLogoSrc =
+        themeMode === DARK_THEME ? CVL_LAB_LOGO_DARK : CVL_LAB_LOGO_LIGHT;
 
     const tabs = [
         {
@@ -256,31 +304,34 @@ export default function Nav() {
                         className="nav__logo"
                         onClick={handleLogoClick}
                         aria-label="Go to Home">
-                        <img src={CVL_LAB_LOGO} alt="CVL-Lab logo" />
+                        <img src={navLogoSrc} alt="CVL-Lab logo" />
                     </Link>
                     {isMobileNav ? (
-                        <button
-                            type="button"
-                            className="nav__toggle btn btn--icon btn--sm interactive-button"
-                            onClick={toggleMenu}
-                            aria-expanded={isMenuOpen}
-                            aria-controls="nav-links"
-                            aria-label={
-                                isMenuOpen
-                                    ? "Close navigation menu"
-                                    : "Open navigation menu"
-                            }>
-                            <span
-                                className="nav__toggle-icon"
-                                aria-hidden="true">
-                                {isMenuOpen ? "✕" : "☰"}
-                            </span>
-                        </button>
+                        <div className="nav__header-actions">
+                            <button
+                                type="button"
+                                className="nav__toggle btn btn--icon btn--sm interactive-button"
+                                onClick={toggleMenu}
+                                aria-expanded={isMenuOpen}
+                                aria-controls="nav-links"
+                                aria-label={
+                                    isMenuOpen
+                                        ? "Close navigation menu"
+                                        : "Open navigation menu"
+                                }>
+                                <span
+                                    className="nav__toggle-icon"
+                                    aria-hidden="true">
+                                    {isMenuOpen ? "✕" : "☰"}
+                                </span>
+                            </button>
+                        </div>
                     ) : null}
                 </div>
                 <div
                     id="nav-links"
-                    className={`nav__links animated-surface ${isMobileNav && !isMenuOpen ? "is-hidden" : ""}`}>
+                    className={`nav__links animated-surface ${isMobileNav && !isMenuOpen ? "is-hidden" : ""} ${isSubmenuSuppressed ? "is-submenu-suppressed" : ""}`}
+                    onMouseLeave={() => setIsSubmenuSuppressed(false)}>
                     {tabs.map((tabItem, i) => (
                         <div
                             key={tabItem.key + i}

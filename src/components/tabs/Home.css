@@ -19,13 +19,8 @@
     border-radius: var(--radius-lg);
     background: linear-gradient(
         180deg,
-        color-mix(
-                in srgb,
-                var(--home-block-tint) 32%,
-                rgba(255, 255, 255, 0.94)
-            )
-            0%,
-        rgba(255, 255, 255, 0.93) 64%
+        color-mix(in srgb, var(--home-block-tint) 32%, var(--surface)) 0%,
+        color-mix(in srgb, var(--surface) 96%, var(--home-block-tint)) 64%
     );
     box-shadow: var(--shadow-elev-1);
     position: relative;
@@ -525,7 +520,7 @@
 }
 
 .home-news__badge--status.is-external {
-    background: #f4f8ff;
+    background: color-mix(in srgb, var(--tab-news-tint) 54%, var(--surface));
     border-color: var(--tab-news-border);
     color: var(--tab-news-accent);
 }
@@ -971,7 +966,7 @@
     }
 
     .home__research {
-        padding: 0;
+        padding: clamp(0.86rem, 3.8vw, 1.05rem);
     }
 
     .home-block__head {
@@ -1034,7 +1029,10 @@
     }
 
     .home-pubs__actions {
-        justify-self: start;
+        justify-self: center;
+        display: flex;
+        width: 100%;
+        justify-content: center;
         align-self: center;
     }
 

@@ -5,22 +5,25 @@ import "./index.css";
 // import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { getRouterBasename } from "./routes/routerBasename";
+import { applyThemeToDocument, resolvePreferredTheme } from "./utils/themeMode";
+
+applyThemeToDocument(resolvePreferredTheme());
 
 const appTree = (
-  <StrictMode>
-    <BrowserRouter basename={getRouterBasename()}>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
+    <StrictMode>
+        <BrowserRouter basename={getRouterBasename()}>
+            <App />
+        </BrowserRouter>
+    </StrictMode>
 );
 
 const container = document.getElementById("root");
 if (!container) {
-  throw new Error("Root container not found");
+    throw new Error("Root container not found");
 }
 
 if (container.hasChildNodes()) {
-  hydrateRoot(container, appTree);
+    hydrateRoot(container, appTree);
 } else {
-  createRoot(container).render(appTree);
+    createRoot(container).render(appTree);
 }

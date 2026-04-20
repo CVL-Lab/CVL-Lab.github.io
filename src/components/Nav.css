@@ -41,6 +41,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    gap: var(--space-2);
+}
+
+.nav__header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
 }
 
 .nav__logo {
@@ -86,8 +93,8 @@
 .nav__submenu {
     position: absolute;
     left: 50%;
-    top: calc(100% + 0.35rem);
-    transform: translate(-50%, 0.4rem);
+    top: calc(100% + 0.18rem);
+    transform: translate(-50%, -0.42rem);
     min-width: 11.8rem;
     padding: 0.42rem;
     border: 1px solid var(--outline-color);
@@ -104,6 +111,17 @@
         opacity var(--dur-fast) var(--ease-soft),
         transform var(--dur-base) var(--ease-standard),
         visibility 0s linear var(--dur-base);
+}
+
+@keyframes nav-submenu-drop {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -0.42rem);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 
 .nav__submenu-link {
@@ -285,6 +303,21 @@
     transform: scaleX(1);
 }
 
+.nav__links:not(.is-submenu-suppressed)
+    .nav__item.has-sections
+    > .nav__button:focus-visible
+    + .nav__submenu,
+.nav__links:not(.is-submenu-suppressed)
+    .nav__item.has-sections
+    .nav__submenu:focus-within {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+    animation: nav-submenu-drop var(--dur-base) var(--ease-standard);
+    transition-delay: 0ms;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .nav__logo:hover {
         transform: translateY(var(--hover-translate-y-sm));
@@ -305,12 +338,14 @@
         transform: scaleX(1);
     }
 
-    .nav__item.has-sections:hover .nav__submenu,
-    .nav__item.has-sections:focus-within .nav__submenu {
+    .nav__links:not(.is-submenu-suppressed)
+        .nav__item.has-sections:hover
+        .nav__submenu {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
         transform: translate(-50%, 0);
+        animation: nav-submenu-drop var(--dur-base) var(--ease-standard);
         transition-delay: 0ms;
     }
 

@@ -104,6 +104,12 @@
     --btn-ink: var(--text-secondary);
 }
 
+.fab__btn--theme {
+    --btn-bg: color-mix(in srgb, var(--surface-2) 82%, var(--surface));
+    --btn-border: var(--outline-color);
+    --btn-ink: var(--text-primary);
+}
+
 .fab__btn--contact {
     --btn-bg: var(--tab-contact-tint);
     --btn-border: var(--tab-contact-border);

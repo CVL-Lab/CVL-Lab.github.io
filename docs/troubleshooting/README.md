@@ -86,6 +86,11 @@
 3. 문자열 따옴표 처리 실수
 4. JSON 마지막 쉼표(trailing comma)
 
+참고:
+
+- 현재 content parser는 YAML frontmatter를 사용하므로 배열의 inline/multiline 표기를 모두 지원합니다.
+- 단, YAML 들여쓰기 자체가 깨지면 파싱 오류가 발생할 수 있습니다.
+
 ### 빠른 해결 팁
 
 1. template 파일을 복사해 붙여넣은 뒤 값만 수정합니다.

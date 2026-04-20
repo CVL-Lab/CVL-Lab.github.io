@@ -56,6 +56,17 @@
 - `featured` : 강조 여부
 - `summary` : 요약
 
+참고:
+
+- `keywords`는 아래 형식 모두 허용됩니다. - inline 배열: `keywords: [A, B, C]` - multiline 배열:
+  `md
+          keywords:
+              - A
+              - B
+              - C
+          `
+- Markdown auto formatting으로 배열이 multiline으로 바뀌어도 pipeline에서 정상 파싱됩니다.
+
 ### 4단계. 동기화/검증
 
 ```bash

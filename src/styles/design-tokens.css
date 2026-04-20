@@ -1,318 +1,384 @@
 :root {
-  --white: #ffffff;
-  --black: #0f172a;
+    --white: #ffffff;
+    --black: #0f172a;
 
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --surface-2: #f8fafc;
-  --surface-3: #f1f5f9;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f8fafc;
+    --surface-3: #f1f5f9;
 
-  --divider: #e2e8f0;
-  --line: #e5e7eb;
-  --border: var(--line);
-  --line-strong: #cbd5e1;
+    --divider: #e2e8f0;
+    --line: #e5e7eb;
+    --border: var(--line);
+    --line-strong: #cbd5e1;
 
-  --ink: #0f172a;
-  --ink-2: #334155;
-  --muted: #64748b;
-  --muted-2: #94a3b8;
+    --ink: #0f172a;
+    --ink-2: #334155;
+    --muted: #64748b;
+    --muted-2: #94a3b8;
 
-  --outline-color: var(--line);
-  --outline-width: 1px;
-  --outline-w: 1px;
+    --outline-color: var(--line);
+    --outline-width: 1px;
+    --outline-w: 1px;
 
-  --radius-sm: 12px;
-  --radius-md: 14px;
-  --radius-lg: 16px;
+    --radius-sm: 12px;
+    --radius-md: 14px;
+    --radius-lg: 16px;
 
-  --space-1: 0.25rem;
-  --space-0p5: 0.125rem;
-  --space-1p5: 0.375rem;
-  --space-2p5: 0.625rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 2.5rem;
+    --space-1: 0.25rem;
+    --space-0p5: 0.125rem;
+    --space-1p5: 0.375rem;
+    --space-2p5: 0.625rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
 
-  --viewport-min: 320px;
-  --viewport-max: 1440px;
-  --layout-max: 80rem;
-  --container-max: var(--layout-max);
-  --container-pad-x: clamp(1rem, 2.1vw, 2.2rem);
-  --content-measure: 68ch;
-  --page-pad-x: var(--container-pad-x);
-  --section-pad-y: clamp(1.1rem, 2.05vw, 1.88rem);
-  --stack-gap: clamp(1.08rem, 2.05vw, 1.82rem);
-  --section-gap: var(--stack-gap);
-  --section-pad: clamp(1rem, 2vw, 1.58rem);
-  --grid-gap: clamp(0.96rem, 1.9vw, 1.48rem);
-  --layout-shell-max: var(--container-max);
-  --layout-shell-pad-x: var(--container-pad-x);
-  --layout-shell-pad-y: var(--section-pad-y);
-  --layout-shell-gap: var(--stack-gap);
-  --panel-pad: clamp(0.92rem, 1.8vw, 1.24rem);
-  --panel-pad-sm: clamp(0.72rem, 1.45vw, 0.98rem);
-  --panel-radius: var(--radius-lg);
-  --heading-gap: clamp(0.5rem, 1.2vw, 0.75rem);
-  --card-pad: var(--panel-pad);
-  --section-head-bottom: clamp(0.72rem, 1.4vw, 1.04rem);
-  --section-head-gap: clamp(0.22rem, 0.52vw, 0.36rem);
-  --section-head-copy-max: 82ch;
-  --row-pad-y: clamp(0.76rem, 1.35vw, 0.96rem);
-  --row-pad-x: clamp(0.86rem, 1.65vw, 1.18rem);
-  --row-gap: clamp(0.74rem, 1.45vw, 1.06rem);
+    --viewport-min: 320px;
+    --viewport-max: 1440px;
+    --layout-max: 80rem;
+    --container-max: var(--layout-max);
+    --container-pad-x: clamp(1rem, 2.1vw, 2.2rem);
+    --content-measure: 68ch;
+    --page-pad-x: var(--container-pad-x);
+    --section-pad-y: clamp(1.1rem, 2.05vw, 1.88rem);
+    --stack-gap: clamp(1.08rem, 2.05vw, 1.82rem);
+    --section-gap: var(--stack-gap);
+    --section-pad: clamp(1rem, 2vw, 1.58rem);
+    --grid-gap: clamp(0.96rem, 1.9vw, 1.48rem);
+    --layout-shell-max: var(--container-max);
+    --layout-shell-pad-x: var(--container-pad-x);
+    --layout-shell-pad-y: var(--section-pad-y);
+    --layout-shell-gap: var(--stack-gap);
+    --panel-pad: clamp(0.92rem, 1.8vw, 1.24rem);
+    --panel-pad-sm: clamp(0.72rem, 1.45vw, 0.98rem);
+    --panel-radius: var(--radius-lg);
+    --heading-gap: clamp(0.5rem, 1.2vw, 0.75rem);
+    --card-pad: var(--panel-pad);
+    --section-head-bottom: clamp(0.72rem, 1.4vw, 1.04rem);
+    --section-head-gap: clamp(0.22rem, 0.52vw, 0.36rem);
+    --section-head-copy-max: 82ch;
+    --row-pad-y: clamp(0.76rem, 1.35vw, 0.96rem);
+    --row-pad-x: clamp(0.86rem, 1.65vw, 1.18rem);
+    --row-gap: clamp(0.74rem, 1.45vw, 1.06rem);
 
-  --shadow-elev-1:
-    0 1px 2px rgba(15, 23, 42, 0.06),
-    0 8px 20px rgba(15, 23, 42, 0.06);
-  --shadow-elev-2:
-    0 2px 8px rgba(15, 23, 42, 0.08),
-    0 14px 28px rgba(15, 23, 42, 0.08);
+    --shadow-elev-1:
+        0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 20px rgba(15, 23, 42, 0.06);
+    --shadow-elev-2:
+        0 2px 8px rgba(15, 23, 42, 0.08), 0 14px 28px rgba(15, 23, 42, 0.08);
 
-  --text-primary: var(--ink);
-  --text-secondary: var(--ink-2);
-  --text-muted: var(--muted);
-  --link: #1d4ed8;
-  --link-hover: #1e40af;
+    --text-primary: var(--ink);
+    --text-secondary: var(--ink-2);
+    --text-muted: var(--muted);
+    --link: #1d4ed8;
+    --link-hover: #1e40af;
 
-  --focus-ring: rgba(37, 99, 235, 0.36);
-  --focus-w: 2px;
-  --focus-offset: 2px;
-  --target-min: 24px;
+    --focus-ring: rgba(37, 99, 235, 0.36);
+    --focus-w: 2px;
+    --focus-offset: 2px;
+    --target-min: 24px;
 
-  --blue-100: #e0e5fd;
-  --blue-500: #546ef6;
-  --blue-800: #2a4dd0;
+    --blue-100: #e0e5fd;
+    --blue-500: #546ef6;
+    --blue-800: #2a4dd0;
 
-  --green-100: #e9faee;
-  --green-500: #57b47d;
-  --green-800: #3e8d27;
+    --green-100: #e9faee;
+    --green-500: #57b47d;
+    --green-800: #3e8d27;
 
-  --red-100: #fcefed;
-  --red-500: #e97b77;
-  --red-800: #aa2d26;
+    --red-100: #fcefed;
+    --red-500: #e97b77;
+    --red-800: #aa2d26;
 
-  --topic-core-100: var(--blue-100);
-  --topic-core-500: var(--blue-500);
-  --topic-core-800: var(--blue-800);
+    --topic-core-100: var(--blue-100);
+    --topic-core-500: var(--blue-500);
+    --topic-core-800: var(--blue-800);
 
-  --topic-application-100: var(--red-100);
-  --topic-application-500: var(--red-500);
-  --topic-application-800: var(--red-800);
+    --topic-application-100: var(--red-100);
+    --topic-application-500: var(--red-500);
+    --topic-application-800: var(--red-800);
 
-  --topic-biomedical-100: var(--green-100);
-  --topic-biomedical-500: var(--green-500);
-  --topic-biomedical-800: var(--green-800);
+    --topic-biomedical-100: var(--green-100);
+    --topic-biomedical-500: var(--green-500);
+    --topic-biomedical-800: var(--green-800);
 
-  --topic-multi-modal-100: #f1f5f9;
-  --topic-multi-modal-500: #64748b;
-  --topic-multi-modal-800: #334155;
+    --topic-multi-modal-100: #f1f5f9;
+    --topic-multi-modal-500: #64748b;
+    --topic-multi-modal-800: #334155;
 
-  --accent-ui-100: #eff6ff;
-  --accent-ui-500: #2563eb;
-  --accent-ui-800: #1d4ed8;
+    --accent-ui-100: #eff6ff;
+    --accent-ui-500: #2563eb;
+    --accent-ui-800: #1d4ed8;
 
-  /* Page identity palette (pastel + accent companions) */
-  --identity-news-soft: #eaf2ff;
-  --identity-news-accent: #7fa9e6;
-  --identity-research-soft: #eef7e8;
-  --identity-research-accent: #8dbb7f;
-  --identity-publication-soft: #fff2e5;
-  --identity-publication-accent: #e3a86b;
-  --identity-people-soft: #f3ecff;
-  --identity-people-accent: #a78bd8;
-  --identity-photo-soft: #eaf7f5;
-  --identity-photo-accent: #73beb3;
-  --identity-contact-soft: #fff0f5;
-  --identity-contact-accent: #e3a0b8;
+    /* Page identity palette (pastel + accent companions) */
+    --identity-news-soft: #eaf2ff;
+    --identity-news-accent: #7fa9e6;
+    --identity-research-soft: #eef7e8;
+    --identity-research-accent: #8dbb7f;
+    --identity-publication-soft: #fff2e5;
+    --identity-publication-accent: #e3a86b;
+    --identity-people-soft: #f3ecff;
+    --identity-people-accent: #a78bd8;
+    --identity-photo-soft: #eaf7f5;
+    --identity-photo-accent: #73beb3;
+    --identity-contact-soft: #fff0f5;
+    --identity-contact-accent: #e3a0b8;
 
-  --tab-home-tint: #f4f6fb;
-  --tab-home-border: #dfe6f2;
-  --tab-home-accent: #6481b0;
+    --tab-home-tint: #f4f6fb;
+    --tab-home-border: #dfe6f2;
+    --tab-home-accent: #6481b0;
 
-  --tab-news-tint: var(--identity-news-soft);
-  --tab-news-border: #cfdff7;
-  --tab-news-accent: var(--identity-news-accent);
+    --tab-news-tint: var(--identity-news-soft);
+    --tab-news-border: #cfdff7;
+    --tab-news-accent: var(--identity-news-accent);
 
-  --tab-research-tint: var(--identity-research-soft);
-  --tab-research-border: #d5e6cf;
-  --tab-research-accent: var(--identity-research-accent);
+    --tab-research-tint: var(--identity-research-soft);
+    --tab-research-border: #d5e6cf;
+    --tab-research-accent: var(--identity-research-accent);
 
-  --tab-publication-tint: var(--identity-publication-soft);
-  --tab-publication-border: #f2dfc9;
-  --tab-publication-accent: var(--identity-publication-accent);
+    --tab-publication-tint: var(--identity-publication-soft);
+    --tab-publication-border: #f2dfc9;
+    --tab-publication-accent: var(--identity-publication-accent);
 
-  --tab-people-tint: var(--identity-people-soft);
-  --tab-people-border: #e2d6f6;
-  --tab-people-accent: var(--identity-people-accent);
+    --tab-people-tint: var(--identity-people-soft);
+    --tab-people-border: #e2d6f6;
+    --tab-people-accent: var(--identity-people-accent);
 
-  --tab-photo-tint: var(--identity-photo-soft);
-  --tab-photo-border: #d2e8e5;
-  --tab-photo-accent: var(--identity-photo-accent);
+    --tab-photo-tint: var(--identity-photo-soft);
+    --tab-photo-border: #d2e8e5;
+    --tab-photo-accent: var(--identity-photo-accent);
 
-  --tab-contact-tint: var(--identity-contact-soft);
-  --tab-contact-border: #f3dbe5;
-  --tab-contact-accent: var(--identity-contact-accent);
+    --tab-contact-tint: var(--identity-contact-soft);
+    --tab-contact-border: #f3dbe5;
+    --tab-contact-accent: var(--identity-contact-accent);
 
-  --font-base:
-    ui-sans-serif,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Noto Sans",
-    sans-serif;
-  --font-heading: var(--font-base);
+    --font-base:
+        ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --font-heading: var(--font-base);
 
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-base: 16px;
-  --line-height: 1.62;
-  --h1: clamp(2rem, 4.2vw, 3.2rem);
-  --h2: clamp(1.4rem, 2.6vw, 2rem);
-  --letter-spacing: -0.01em;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-base: 16px;
+    --line-height: 1.62;
+    --h1: clamp(2rem, 4.2vw, 3.2rem);
+    --h2: clamp(1.4rem, 2.6vw, 2rem);
+    --letter-spacing: -0.01em;
 
-  /* Global type hierarchy */
-  --type-h1-size: clamp(1.94rem, 3.45vw, 2.62rem);
-  --type-h1-weight: 700;
-  --type-h1-line-height: 1.14;
-  --type-h2-size: clamp(1.2rem, 2.05vw, 1.42rem);
-  --type-h2-weight: 660;
-  --type-h2-line-height: 1.34;
-  --type-h3-size: clamp(0.98rem, 1.5vw, 1.1rem);
-  --type-h3-weight: 640;
-  --type-h3-line-height: 1.42;
-  --type-group-size: clamp(1.12rem, 1.95vw, 1.32rem);
-  --type-group-weight: 690;
-  --type-group-line-height: 1.36;
-  --type-page-support-size: clamp(0.96rem, 1.3vw, 1.04rem);
-  --type-page-support-weight: 420;
-  --type-page-support-line-height: 1.6;
-  --type-body-size: 0.97rem;
-  --type-body-weight: 400;
-  --type-body-line-height: 1.64;
-  --type-support-size: 0.88rem;
-  --type-support-weight: 500;
-  --type-support-line-height: 1.55;
-  --type-meta-size: 0.78rem;
-  --type-meta-weight: 600;
-  --type-meta-line-height: 1.45;
-  --type-badge-size: 0.74rem;
-  --type-badge-weight: 700;
-  --type-button-size: 0.87rem;
-  --type-button-weight: 600;
-  --type-button-line-height: 1.28;
+    /* Global type hierarchy */
+    --type-h1-size: clamp(1.94rem, 3.45vw, 2.62rem);
+    --type-h1-weight: 700;
+    --type-h1-line-height: 1.14;
+    --type-h2-size: clamp(1.2rem, 2.05vw, 1.42rem);
+    --type-h2-weight: 660;
+    --type-h2-line-height: 1.34;
+    --type-h3-size: clamp(0.98rem, 1.5vw, 1.1rem);
+    --type-h3-weight: 640;
+    --type-h3-line-height: 1.42;
+    --type-group-size: clamp(1.12rem, 1.95vw, 1.32rem);
+    --type-group-weight: 690;
+    --type-group-line-height: 1.36;
+    --type-page-support-size: clamp(0.96rem, 1.3vw, 1.04rem);
+    --type-page-support-weight: 420;
+    --type-page-support-line-height: 1.6;
+    --type-body-size: 0.97rem;
+    --type-body-weight: 400;
+    --type-body-line-height: 1.64;
+    --type-support-size: 0.88rem;
+    --type-support-weight: 500;
+    --type-support-line-height: 1.55;
+    --type-meta-size: 0.78rem;
+    --type-meta-weight: 600;
+    --type-meta-line-height: 1.45;
+    --type-badge-size: 0.74rem;
+    --type-badge-weight: 700;
+    --type-button-size: 0.87rem;
+    --type-button-weight: 600;
+    --type-button-line-height: 1.28;
 
-  /* Compatibility aliases used across existing components */
-  --page-title-size: var(--type-h1-size);
-  --page-support-size: var(--type-page-support-size);
-  --page-support-weight: var(--type-page-support-weight);
-  --page-support-line-height: var(--type-page-support-line-height);
-  --section-title-size: var(--type-h2-size);
-  --group-title-size: var(--type-group-size);
-  --group-title-weight: var(--type-group-weight);
-  --group-title-line-height: var(--type-group-line-height);
-  --section-copy-size: var(--type-body-size);
-  --supporting-text-size: var(--type-support-size);
-  --meta-text-size: var(--type-meta-size);
-  --badge-text-size: var(--type-badge-size);
-  --section-title-line-height: var(--type-h2-line-height);
-  --section-copy-line-height: var(--type-body-line-height);
-  --supporting-line-height: var(--type-support-line-height);
-  --action-label-size: var(--type-button-size);
-  --card-title-size: var(--type-h3-size);
-  --card-title-line-height: var(--type-h3-line-height);
-  --card-title-weight: var(--type-h3-weight);
+    /* Compatibility aliases used across existing components */
+    --page-title-size: var(--type-h1-size);
+    --page-support-size: var(--type-page-support-size);
+    --page-support-weight: var(--type-page-support-weight);
+    --page-support-line-height: var(--type-page-support-line-height);
+    --section-title-size: var(--type-h2-size);
+    --group-title-size: var(--type-group-size);
+    --group-title-weight: var(--type-group-weight);
+    --group-title-line-height: var(--type-group-line-height);
+    --section-copy-size: var(--type-body-size);
+    --supporting-text-size: var(--type-support-size);
+    --meta-text-size: var(--type-meta-size);
+    --badge-text-size: var(--type-badge-size);
+    --section-title-line-height: var(--type-h2-line-height);
+    --section-copy-line-height: var(--type-body-line-height);
+    --supporting-line-height: var(--type-support-line-height);
+    --action-label-size: var(--type-button-size);
+    --card-title-size: var(--type-h3-size);
+    --card-title-line-height: var(--type-h3-line-height);
+    --card-title-weight: var(--type-h3-weight);
 
-  --btn-font-size: var(--type-button-size);
-  --btn-font-weight: var(--type-button-weight);
-  --btn-height: 2.5rem;
-  --btn-height-sm: 2.15rem;
-  --btn-pad-x: 0.95rem;
-  --btn-pad-x-sm: 0.75rem;
-  --btn-gap: 0.42rem;
-  --btn-radius: 999px;
-  --btn-icon-size: 2.35rem;
-  --btn-border-w: 1px;
+    --btn-font-size: var(--type-button-size);
+    --btn-font-weight: var(--type-button-weight);
+    --btn-height: 2.5rem;
+    --btn-height-sm: 2.15rem;
+    --btn-pad-x: 0.95rem;
+    --btn-pad-x-sm: 0.75rem;
+    --btn-gap: 0.42rem;
+    --btn-radius: 999px;
+    --btn-icon-size: 2.35rem;
+    --btn-border-w: 1px;
 
-  --dur-fast: 140ms;
-  --dur-base: 220ms;
-  --dur-slow: 320ms;
-  --dur-route: 220ms;
-  --dur-menu: 260ms;
-  --dur-carousel: 300ms;
-  --dur-reveal: 300ms;
-  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-soft: cubic-bezier(0.25, 0.8, 0.25, 1);
-  --ease: var(--ease-standard);
-  --ease-reveal: var(--ease-standard);
-  --hover-lift: 3px;
-  --hover-lift-sm: 2px;
-  --press-shift: 1px;
-  --reveal-distance: 16px;
-  --hover-translate-y: calc(var(--hover-lift) * -1);
-  --hover-translate-y-sm: calc(var(--hover-lift-sm) * -1);
-  --press-translate-y: var(--press-shift);
-  --transition-fast: var(--dur-fast) var(--ease);
-  --transition-base: var(--dur-base) var(--ease);
-  --transition-interactive:
-    transform var(--dur-base) var(--ease-standard),
-    opacity var(--dur-base) var(--ease-standard),
-    color var(--dur-fast) var(--ease-soft),
-    background-color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft),
-    box-shadow var(--dur-base) var(--ease-standard);
-  --transition-overlay: opacity var(--dur-base) var(--ease-standard);
-  --transition-surface: var(--transition-interactive);
+    --dur-fast: 140ms;
+    --dur-base: 220ms;
+    --dur-slow: 320ms;
+    --dur-route: 220ms;
+    --dur-menu: 260ms;
+    --dur-carousel: 300ms;
+    --dur-reveal: 300ms;
+    --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-soft: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --ease: var(--ease-standard);
+    --ease-reveal: var(--ease-standard);
+    --hover-lift: 3px;
+    --hover-lift-sm: 2px;
+    --press-shift: 1px;
+    --reveal-distance: 16px;
+    --hover-translate-y: calc(var(--hover-lift) * -1);
+    --hover-translate-y-sm: calc(var(--hover-lift-sm) * -1);
+    --press-translate-y: var(--press-shift);
+    --transition-fast: var(--dur-fast) var(--ease);
+    --transition-base: var(--dur-base) var(--ease);
+    --transition-interactive:
+        transform var(--dur-base) var(--ease-standard),
+        opacity var(--dur-base) var(--ease-standard),
+        color var(--dur-fast) var(--ease-soft),
+        background-color var(--dur-fast) var(--ease-soft),
+        border-color var(--dur-fast) var(--ease-soft),
+        box-shadow var(--dur-base) var(--ease-standard);
+    --transition-overlay: opacity var(--dur-base) var(--ease-standard);
+    --transition-surface: var(--transition-interactive);
 }
 
 .u-card {
-  background: var(--surface);
-  border: var(--outline-width) solid var(--outline-color);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-elev-1);
+    background: var(--surface);
+    border: var(--outline-width) solid var(--outline-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-elev-1);
+}
+
+:root[data-theme="dark"] {
+    --white: #f8fafc;
+    --black: #020617;
+
+    --bg: #0a1220;
+    --surface: #111c2f;
+    --surface-2: #16233a;
+    --surface-3: #1b2b45;
+
+    --divider: #24364f;
+    --line: #29405d;
+    --border: var(--line);
+    --line-strong: #3b5a7d;
+
+    --ink: #e2e8f0;
+    --ink-2: #c8d5e6;
+    --muted: #9fb0c7;
+    --muted-2: #7f93af;
+
+    --outline-color: var(--line);
+
+    --shadow-elev-1:
+        0 1px 2px rgba(2, 6, 23, 0.38), 0 10px 24px rgba(2, 6, 23, 0.46);
+    --shadow-elev-2:
+        0 2px 10px rgba(2, 6, 23, 0.42), 0 16px 32px rgba(2, 6, 23, 0.52);
+
+    --link: #9ec5ff;
+    --link-hover: #c6dcff;
+    --focus-ring: rgba(147, 197, 253, 0.5);
+
+    --blue-100: #1a2642;
+    --blue-500: #83a8ff;
+    --blue-800: #c2d6ff;
+
+    --green-100: #152934;
+    --green-500: #7fcea4;
+    --green-800: #b9f1d2;
+
+    --red-100: #35222a;
+    --red-500: #f0a29d;
+    --red-800: #ffd6d0;
+
+    --topic-multi-modal-100: #202e46;
+    --topic-multi-modal-500: #a5b9d4;
+    --topic-multi-modal-800: #d6e1f0;
+
+    --accent-ui-100: #1b3256;
+    --accent-ui-500: #74a7ff;
+    --accent-ui-800: #b7d2ff;
+
+    --identity-news-soft: #182848;
+    --identity-news-accent: #9ac0ff;
+    --identity-research-soft: #182f2a;
+    --identity-research-accent: #99d3b2;
+    --identity-publication-soft: #352718;
+    --identity-publication-accent: #f6c38c;
+    --identity-people-soft: #2b1e43;
+    --identity-people-accent: #ceb2ff;
+    --identity-photo-soft: #183238;
+    --identity-photo-accent: #98d8cf;
+    --identity-contact-soft: #3a1f30;
+    --identity-contact-accent: #f0bdd1;
+
+    --tab-home-tint: #1a2943;
+    --tab-home-border: #31476a;
+    --tab-home-accent: #aac4e9;
+
+    --tab-news-border: #36558c;
+    --tab-research-border: #36594f;
+    --tab-publication-border: #5f4a34;
+    --tab-people-border: #544076;
+    --tab-photo-border: #3d6166;
+    --tab-contact-border: #6d4260;
 }
 
 @media (max-width: 64rem) {
-  :root {
-    --stack-gap: clamp(1rem, 2.35vw, 1.48rem);
-    --section-head-copy-max: 78ch;
-    --btn-height: 2.42rem;
-    --btn-height-sm: 2.05rem;
-    --row-pad-x: clamp(0.78rem, 2vw, 0.98rem);
-  }
+    :root {
+        --stack-gap: clamp(1rem, 2.35vw, 1.48rem);
+        --section-head-copy-max: 78ch;
+        --btn-height: 2.42rem;
+        --btn-height-sm: 2.05rem;
+        --row-pad-x: clamp(0.78rem, 2vw, 0.98rem);
+    }
 }
 
 @media (max-width: 52rem) {
-  :root {
-    --container-pad-x: clamp(0.88rem, 3.7vw, 1.08rem);
-    --layout-shell-gap: var(--space-3);
-    --section-head-copy-max: 74ch;
-    --panel-pad: clamp(0.82rem, 2.45vw, 1rem);
-    --panel-pad-sm: clamp(0.68rem, 2.2vw, 0.9rem);
-    --row-pad-y: clamp(0.68rem, 2.2vw, 0.82rem);
-    --row-pad-x: clamp(0.72rem, 2.6vw, 0.92rem);
-    --row-gap: clamp(0.62rem, 2vw, 0.88rem);
-    --btn-icon-size: 2.25rem;
-    --btn-pad-x: 0.88rem;
-  }
+    :root {
+        --container-pad-x: clamp(0.88rem, 3.7vw, 1.08rem);
+        --layout-shell-gap: var(--space-3);
+        --section-head-copy-max: 74ch;
+        --panel-pad: clamp(0.82rem, 2.45vw, 1rem);
+        --panel-pad-sm: clamp(0.68rem, 2.2vw, 0.9rem);
+        --row-pad-y: clamp(0.68rem, 2.2vw, 0.82rem);
+        --row-pad-x: clamp(0.72rem, 2.6vw, 0.92rem);
+        --row-gap: clamp(0.62rem, 2vw, 0.88rem);
+        --btn-icon-size: 2.25rem;
+        --btn-pad-x: 0.88rem;
+    }
 }
 
 @media (max-width: 26.875rem) {
-  :root {
-    --container-pad-x: 0.76rem;
-    --btn-height-sm: 2rem;
-    --btn-pad-x-sm: 0.68rem;
-    --btn-icon-size: 2.08rem;
-  }
+    :root {
+        --container-pad-x: 0.76rem;
+        --btn-height-sm: 2rem;
+        --btn-pad-x-sm: 0.68rem;
+        --btn-icon-size: 2.08rem;
+    }
 }
