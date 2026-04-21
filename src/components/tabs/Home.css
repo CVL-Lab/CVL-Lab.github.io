@@ -346,7 +346,7 @@
 .home-pubs__featured-actions {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: center;
     gap: var(--space-2);
     min-width: 8.5rem;
@@ -369,42 +369,41 @@
 }
 
 .home-pubs__badge {
+    width: fit-content;
     margin: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.16rem 0.52rem;
-    border: 1px solid transparent;
+    padding: 0.18rem 0.54rem;
+    border: 1px solid var(--outline-color);
     border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--text-secondary);
     font-size: var(--badge-text-size);
-    text-transform: none;
     font-weight: var(--type-badge-weight);
     line-height: var(--type-button-line-height);
     letter-spacing: 0.01em;
-    white-space: nowrap;
+    text-transform: none;
 }
 
 .home-pubs__badge--core {
+    border-color: #bdd0fa;
     background: var(--topic-core-100);
-    border-color: #becdfa;
     color: var(--topic-core-800);
 }
 
 .home-pubs__badge--biomedical {
+    border-color: #c3e0ce;
     background: var(--topic-biomedical-100);
-    border-color: #c8e3cf;
     color: var(--topic-biomedical-800);
 }
 
 .home-pubs__badge--application {
+    border-color: #efb7b3;
     background: var(--topic-application-100);
-    border-color: #f2c8c3;
     color: var(--topic-application-800);
 }
 
 .home-pubs__badge--multi-modal {
+    border-color: #d9e1ea;
     background: var(--topic-multi-modal-100);
-    border-color: #d3dce6;
     color: var(--topic-multi-modal-800);
 }
 
@@ -433,14 +432,22 @@
 .home-pubs__title-link {
     color: inherit;
     text-decoration: none;
+    font-weight: 700;
 }
 
-.home-pubs__meta p {
+.home-pubs__meta > p:not(.home-pubs__badge):not(.home-pubs__title) {
     margin: 0;
     font-size: var(--type-support-size);
     font-weight: var(--type-support-weight);
     color: var(--text-muted);
     line-height: var(--type-support-line-height);
+}
+
+.home-pubs__meta .home-pubs__title {
+    color: var(--text-primary);
+    font-size: var(--card-title-size);
+    font-weight: var(--card-title-weight);
+    line-height: var(--card-title-line-height);
 }
 
 .home-news__list {
@@ -1111,7 +1118,7 @@
     }
 
     .home-pubs__title-link:hover {
-        color: var(--link-hover);
+        color: var(--tab-publication-accent, var(--link-hover));
     }
 
     .home-news__row--link:hover {

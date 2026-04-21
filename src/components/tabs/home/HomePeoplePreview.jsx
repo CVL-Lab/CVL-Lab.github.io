@@ -35,40 +35,6 @@ export default function HomePeoplePreview() {
                 </div>
             </div>
 
-            <section
-                data-reveal
-                data-reveal-load-delay="140"
-                className="home-people__culture"
-                aria-label="Recent lab culture photos">
-                <div
-                    className="home-people__culture-track"
-                    aria-label="Recent lab photos">
-                    {latestPhotos.map((photoItem) => (
-                        <figure
-                            key={photoItem.id}
-                            className="home-people__culture-photo">
-                            <img
-                                src={withBasePath(
-                                    photoItem.thumbnail || photoItem.full,
-                                )}
-                                alt={photoItem.alt || photoItem.title}
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <figcaption>{photoItem.title}</figcaption>
-                        </figure>
-                    ))}
-
-                    <div className="home-people__culture-more-wrap">
-                        <Link
-                            to="/photo"
-                            className="home-people__culture-more btn btn--secondary btn--sm interactive-button">
-                            More
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
             <div className="home-people__grid">
                 {members.map((member, index) => (
                     <article
@@ -181,6 +147,40 @@ export default function HomePeoplePreview() {
                     </article>
                 ))}
             </div>
+
+            <section
+                data-reveal
+                data-reveal-load-delay="140"
+                className="home-people__culture"
+                aria-label="Recent lab culture photos">
+                <div
+                    className="home-people__culture-track"
+                    aria-label="Recent lab photos">
+                    {latestPhotos.map((photoItem) => (
+                        <figure
+                            key={photoItem.id}
+                            className="home-people__culture-photo">
+                            <img
+                                src={withBasePath(
+                                    photoItem.thumbnail || photoItem.full,
+                                )}
+                                alt={photoItem.alt || photoItem.title}
+                                loading="lazy"
+                                decoding="async"
+                            />
+                            <figcaption>{photoItem.title}</figcaption>
+                        </figure>
+                    ))}
+
+                    <div className="home-people__culture-more-wrap">
+                        <Link
+                            to="/photo"
+                            className="home-people__culture-more btn btn--secondary btn--sm interactive-button">
+                            More
+                        </Link>
+                    </div>
+                </div>
+            </section>
 
             <div className="home-block__section-footer">
                 <Link

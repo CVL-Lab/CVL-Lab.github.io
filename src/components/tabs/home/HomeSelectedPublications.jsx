@@ -63,9 +63,6 @@ export default function HomeSelectedPublications() {
                             className={`home-pubs__badge home-pubs__badge--${featuredPublication.category}`}>
                             {featuredCategoryLabel}
                         </p>
-                        <p className="home-pubs__featured-venue">
-                            {formatPublicationVenue(featuredPublication)}
-                        </p>
                     </div>
                     {featuredPublication.research_meta.keywords?.length ? (
                         <div
@@ -102,6 +99,9 @@ export default function HomeSelectedPublications() {
                     </h3>
                     <p className="home-pubs__featured-authors">
                         {featuredPublication.research_meta.author}
+                    </p>
+                    <p className="home-pubs__featured-venue">
+                        {formatPublicationVenue(featuredPublication)}
                     </p>
                 </div>
                 <div className="home-pubs__featured-actions">
