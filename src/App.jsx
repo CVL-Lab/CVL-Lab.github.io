@@ -15,15 +15,13 @@ const CvlLab = lazy(() => import("./components/tabs/CvlLab"));
 function InteractiveBackdrop() {
     const backdropRef = useRef(null);
     const gridRef = useRef(null);
-    const bandRef = useRef(null);
     const cursorRef = useRef(null);
 
     useEffect(() => {
         const node = backdropRef.current;
         const grid = gridRef.current;
-        const band = bandRef.current;
         const cursor = cursorRef.current;
-        if (!node || !grid || !band || !cursor || typeof window === "undefined") {
+        if (!node || !grid || !cursor || typeof window === "undefined") {
             return undefined;
         }
 
@@ -43,10 +41,10 @@ function InteractiveBackdrop() {
                 navigator.deviceMemory < 4) ||
             (Number.isFinite(navigator.hardwareConcurrency) &&
                 navigator.hardwareConcurrency < 4);
-        const scanInitialDelay = 320;
-        const scanRestDuration = 4800;
+        const gridShiftInitialDelay = 420;
+        const gridShiftRestDuration = 5100;
         let frameId = 0;
-        let scanTimerId = 0;
+        let gridShiftTimerId = 0;
         let isListening = false;
         let latestPointer = {
             x: window.innerWidth * 0.5,
@@ -104,37 +102,37 @@ function InteractiveBackdrop() {
             return { mode: "interactive", reason: "pointer" };
         };
 
-        const stopScan = () => {
-            if (scanTimerId) {
-                window.clearTimeout(scanTimerId);
-                scanTimerId = 0;
+        const stopGridShift = () => {
+            if (gridShiftTimerId) {
+                window.clearTimeout(gridShiftTimerId);
+                gridShiftTimerId = 0;
             }
-            band.classList.remove("is-scanning");
+            grid.classList.remove("is-shifting");
         };
 
-        const scheduleScan = (delay) => {
+        const scheduleGridShift = (delay) => {
             if (
-                scanTimerId ||
-                band.classList.contains("is-scanning") ||
+                gridShiftTimerId ||
+                grid.classList.contains("is-shifting") ||
                 getMotionState().mode !== "interactive"
             ) {
                 return;
             }
 
-            scanTimerId = window.setTimeout(() => {
-                scanTimerId = 0;
+            gridShiftTimerId = window.setTimeout(() => {
+                gridShiftTimerId = 0;
                 if (getMotionState().mode === "interactive") {
-                    band.classList.add("is-scanning");
+                    grid.classList.add("is-shifting");
                 }
             }, delay);
         };
 
-        const handleScanEnd = (event) => {
-            if (event.animationName !== "backdrop-band-scan") {
+        const handleGridShiftEnd = (event) => {
+            if (event.animationName !== "backdrop-grid-shift") {
                 return;
             }
-            band.classList.remove("is-scanning");
-            scheduleScan(scanRestDuration);
+            grid.classList.remove("is-shifting");
+            scheduleGridShift(gridShiftRestDuration);
         };
 
         const syncInteraction = () => {
@@ -144,9 +142,9 @@ function InteractiveBackdrop() {
             node.dataset.motionReason = motionState.reason;
 
             if (shouldListen) {
-                scheduleScan(scanInitialDelay);
+                scheduleGridShift(gridShiftInitialDelay);
             } else {
-                stopScan();
+                stopGridShift();
             }
 
             if (shouldListen === isListening) {
@@ -177,7 +175,7 @@ function InteractiveBackdrop() {
         );
         connection?.addEventListener?.("change", syncInteraction);
         document.addEventListener("visibilitychange", syncInteraction);
-        band.addEventListener("animationend", handleScanEnd);
+        grid.addEventListener("animationend", handleGridShiftEnd);
         syncInteraction();
 
         return () => {
@@ -186,8 +184,8 @@ function InteractiveBackdrop() {
             );
             connection?.removeEventListener?.("change", syncInteraction);
             document.removeEventListener("visibilitychange", syncInteraction);
-            band.removeEventListener("animationend", handleScanEnd);
-            stopScan();
+            grid.removeEventListener("animationend", handleGridShiftEnd);
+            stopGridShift();
             if (isListening) {
                 window.removeEventListener("pointermove", handlePointerMove);
             }
@@ -205,7 +203,6 @@ function InteractiveBackdrop() {
             data-motion-reason="initializing"
             aria-hidden="true">
             <div className="app-backdrop__grid" ref={gridRef} />
-            <div className="app-backdrop__band" ref={bandRef} />
             <div className="app-backdrop__cursor" ref={cursorRef} />
         </div>
     );

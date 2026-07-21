@@ -58,16 +58,6 @@
         var(--tab-home-accent) 15%,
         transparent
     );
-    --backdrop-line-strong: color-mix(
-        in srgb,
-        var(--tab-home-accent) 25%,
-        transparent
-    );
-    --backdrop-band: color-mix(
-        in srgb,
-        var(--tab-home-accent) 11%,
-        transparent
-    );
     --backdrop-cursor: color-mix(
         in srgb,
         var(--tab-home-accent) 36%,
@@ -129,75 +119,42 @@
 }
 
 .app-backdrop__grid,
-.app-backdrop__band,
 .app-backdrop__cursor {
     position: absolute;
     pointer-events: none;
 }
 
 .app-backdrop__grid {
+    --backdrop-grid-step: 42px;
+    --backdrop-grid-origin: -42px;
+
     inset: -3rem;
     opacity: 0.62;
     background-image:
         linear-gradient(var(--backdrop-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--backdrop-line) 1px, transparent 1px),
-        linear-gradient(
-            135deg,
-            transparent 0 49.55%,
-            var(--backdrop-line-strong) 49.55% 50%,
-            transparent 50% 100%
-        );
+        linear-gradient(90deg, var(--backdrop-line) 1px, transparent 1px);
     background-position:
-        0 0,
         0 0,
         0 0;
     background-size:
-        42px 42px,
-        42px 42px,
-        190px 190px;
+        var(--backdrop-grid-step) var(--backdrop-grid-step),
+        var(--backdrop-grid-step) var(--backdrop-grid-step);
     backface-visibility: hidden;
+    translate: var(--backdrop-grid-origin) var(--backdrop-grid-origin);
 }
 
-.app-backdrop__band {
-    left: -10vw;
-    top: -7rem;
-    width: 120vw;
-    height: clamp(4rem, 8vh, 5.5rem);
-    opacity: 0.52;
-    background:
-        linear-gradient(
-            180deg,
-            transparent 0%,
-            color-mix(in srgb, var(--app-accent) 10%, transparent) 30%,
-            var(--backdrop-band) 49.4%,
-            color-mix(in srgb, var(--app-accent) 42%, transparent) 49.7% 50.3%,
-            var(--backdrop-band) 50.6%,
-            color-mix(in srgb, var(--app-accent) 9%, transparent) 70%,
-            transparent 100%
-        ),
-        repeating-linear-gradient(
-            112deg,
-            transparent 0 38px,
-            color-mix(in srgb, var(--app-border) 24%, transparent) 39px 40px,
-            transparent 41px 84px
-    );
-    backface-visibility: hidden;
-    rotate: -4deg;
-    translate: 0 -2rem;
+.app-backdrop[data-motion="interactive"] .app-backdrop__grid.is-shifting {
+    will-change: transform, translate;
+    animation: backdrop-grid-shift 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.app-backdrop[data-motion="interactive"] .app-backdrop__band.is-scanning {
-    will-change: translate;
-    animation: backdrop-band-scan 1.8s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-@keyframes backdrop-band-scan {
+@keyframes backdrop-grid-shift {
     from {
-        translate: 0 -2rem;
+        translate: var(--backdrop-grid-origin) var(--backdrop-grid-origin);
     }
 
     to {
-        translate: 0 calc(100vh + 10rem);
+        translate: 0 0;
     }
 }
 
@@ -217,7 +174,6 @@
 }
 
 .app-backdrop[data-motion="static"] .app-backdrop__grid,
-.app-backdrop[data-motion="static"] .app-backdrop__band,
 .app-backdrop[data-motion="static"] .app-backdrop__cursor {
     animation: none;
     transition: none;
@@ -397,16 +353,14 @@
 
 @media (max-width: 52rem) {
     .app-backdrop__grid {
+        --backdrop-grid-step: 34px;
+        --backdrop-grid-origin: -34px;
+
         inset: -2rem;
         opacity: 0.54;
         background-size:
             34px 34px,
-            34px 34px,
-            160px 160px;
-    }
-
-    .app-backdrop__band {
-        opacity: 0.48;
+            34px 34px;
     }
 
     .app--home .app-backdrop::before {
@@ -421,13 +375,11 @@
 
 @media (prefers-reduced-motion: reduce) {
     .app-backdrop__grid,
-    .app-backdrop__band,
     .app__hero-loading {
         animation: none !important;
     }
 
     .app-backdrop__grid,
-    .app-backdrop__band,
     .app-backdrop__cursor {
         transition: none !important;
         transform: none !important;
