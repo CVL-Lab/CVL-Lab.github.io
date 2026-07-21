@@ -8,7 +8,11 @@
       }
 
       .st1 {
-        fill: #666;
+        fill: #9fb0c7;
+      }
+
+      path {
+        fill: #f8fafc;
       }
     </style>
   </defs>

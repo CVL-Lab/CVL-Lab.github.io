@@ -41,6 +41,15 @@ const TOPIC_PATH_BY_KEY = Object.fromEntries(
 
 const TOPIC_KEYS = Object.keys(TOPIC_PATH_BY_KEY);
 const TOPIC_KEY_SET = new Set(TOPIC_KEYS);
+const RESEARCH_IMAGE_ALT_BY_TOPIC = {
+    core: "Infographic showing the progression from visual input to transferable features and robust adaptation.",
+    "multi-modal":
+        "Infographic showing large-model compression, runtime optimization, and practical language-model deployment.",
+    application:
+        "Infographic showing a robot learning pipeline from 3D-aware perception through vision-language reasoning to action.",
+    biomedical:
+        "Infographic connecting industrial fault analytics, medical image intelligence, and deployment validation.",
+};
 
 const getSegmentFromPath = (path = "") =>
     path.split("/").filter(Boolean).at(1) || "";
@@ -140,7 +149,17 @@ export const getResearchAreas = () =>
             explaination: base.explaination || "",
             tags: normalizeTags(base),
             image: RESEARCH_IMAGES[`${contentKey}_img`] ?? null,
-            imageAlt: `${base.title || "Research"} visual`,
+            imageLandscape:
+                RESEARCH_IMAGES[`${contentKey}_landscape_img`] ??
+                RESEARCH_IMAGES[`${contentKey}_img`] ??
+                null,
+            imageWide:
+                RESEARCH_IMAGES[`${contentKey}_wide_img`] ??
+                RESEARCH_IMAGES[`${contentKey}_img`] ??
+                null,
+            imageAlt:
+                RESEARCH_IMAGE_ALT_BY_TOPIC[topicKey] ??
+                `${base.title || "Research"} infographic`,
             details: {
                 headline: details.headline || "",
                 abstract: details.abstract || "",

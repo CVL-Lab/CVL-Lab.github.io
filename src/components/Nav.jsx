@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavButton from "./Nav.Button";
 import { resolveTabFromPath } from "../routes/routeUtils";
 import {
@@ -9,35 +9,46 @@ import {
     resolvePreferredTheme,
     THEME_CHANGE_EVENT,
 } from "../utils/themeMode";
+import {
+    PROGRAMMATIC_SCROLL_EVENT,
+    scrollWindowTo,
+} from "../utils/scrollMotion";
 import "./Nav.css";
 import CVL_LAB_LOGO_LIGHT from "../assets/logo-light.svg";
 import CVL_LAB_LOGO_DARK from "../assets/logo-dark.svg";
 
 const MOBILE_NAV_QUERY = "(max-width: 57rem)";
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const NAV_SHOW_AT_TOP_Y = 72;
 const NAV_SCROLL_DELTA_THRESHOLD = 4;
-
-const getScrollBehavior = () => {
-    if (
-        typeof window === "undefined" ||
-        typeof window.matchMedia !== "function"
-    ) {
-        return "auto";
-    }
-    return window.matchMedia(REDUCED_MOTION_QUERY).matches ? "auto" : "smooth";
-};
+const NAV_RETURN_ANIMATION_MS = 430;
+const PROGRAMMATIC_SCROLL_GUARD_MS = 520;
 
 const isPrimaryPlainClick = (event) =>
-    event.button === 0 &&
+    (event.button === undefined || event.button === 0) &&
     !event.metaKey &&
     !event.altKey &&
     !event.ctrlKey &&
     !event.shiftKey;
 
+const getSectionScrollState = (target) => {
+    const hashStart = target.indexOf("#");
+    if (hashStart < 0) {
+        return undefined;
+    }
+
+    return {
+        scroll: {
+            mode: "selector",
+            selector: target.slice(hashStart),
+            block: "start",
+        },
+    };
+};
+
 export default function Nav() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isNavVisible, setIsNavVisible] = useState(true);
+    const [isNavReturning, setIsNavReturning] = useState(false);
     const [isMobileNav, setIsMobileNav] = useState(() => {
         if (
             typeof window === "undefined" ||
@@ -48,9 +59,51 @@ export default function Nav() {
         return window.matchMedia(MOBILE_NAV_QUERY).matches;
     });
     const [themeMode, setThemeMode] = useState(() => resolvePreferredTheme());
-    const [isSubmenuSuppressed, setIsSubmenuSuppressed] = useState(false);
+    const isNavVisibleRef = useRef(true);
+    const navReturnTimeoutRef = useRef(null);
+    const programmaticScrollUntilRef = useRef(0);
     const location = useLocation();
+    const navigate = useNavigate();
     const selectedTab = resolveTabFromPath(location.pathname);
+
+    const clearNavReturnTimer = useCallback(() => {
+        if (navReturnTimeoutRef.current === null) {
+            return;
+        }
+
+        window.clearTimeout(navReturnTimeoutRef.current);
+        navReturnTimeoutRef.current = null;
+    }, []);
+
+    const showNav = useCallback(({ animate = false } = {}) => {
+        const wasHidden = !isNavVisibleRef.current;
+
+        isNavVisibleRef.current = true;
+        setIsNavVisible(true);
+
+        if (!animate || !wasHidden) {
+            clearNavReturnTimer();
+            setIsNavReturning(false);
+            return;
+        }
+
+        clearNavReturnTimer();
+        setIsNavReturning(false);
+        window.requestAnimationFrame(() => {
+            setIsNavReturning(true);
+            navReturnTimeoutRef.current = window.setTimeout(() => {
+                setIsNavReturning(false);
+                navReturnTimeoutRef.current = null;
+            }, NAV_RETURN_ANIMATION_MS);
+        });
+    }, [clearNavReturnTimer]);
+
+    const hideNav = useCallback(() => {
+        isNavVisibleRef.current = false;
+        clearNavReturnTimer();
+        setIsNavReturning(false);
+        setIsNavVisible(false);
+    }, [clearNavReturnTimer]);
 
     useEffect(() => {
         const handleThemeChange = (event) => {
@@ -80,9 +133,14 @@ export default function Nav() {
 
     useEffect(() => {
         setIsMenuOpen(false);
-        setIsNavVisible(true);
-        setIsSubmenuSuppressed(false);
-    }, [selectedTab]);
+        showNav({ animate: false });
+    }, [location.pathname, location.hash, showNav]);
+
+    useEffect(() => {
+        return () => {
+            clearNavReturnTimer();
+        };
+    }, [clearNavReturnTimer]);
 
     useEffect(() => {
         if (
@@ -146,6 +204,14 @@ export default function Nav() {
             return undefined;
         }
 
+        const handleProgrammaticScroll = (event) => {
+            const duration = Number(event?.detail?.duration);
+            programmaticScrollUntilRef.current =
+                window.performance.now() +
+                (Number.isFinite(duration) ? duration : 700) +
+                PROGRAMMATIC_SCROLL_GUARD_MS;
+            showNav({ animate: false });
+        };
         let previousScrollY = window.scrollY;
         let ticking = false;
 
@@ -154,14 +220,20 @@ export default function Nav() {
             const nextScrollY = window.scrollY;
             const deltaY = nextScrollY - previousScrollY;
 
+            if (window.performance.now() < programmaticScrollUntilRef.current) {
+                showNav({ animate: false });
+                previousScrollY = nextScrollY;
+                return;
+            }
+
             if (isMenuOpen) {
-                setIsNavVisible(true);
+                showNav({ animate: false });
                 previousScrollY = nextScrollY;
                 return;
             }
 
             if (nextScrollY <= NAV_SHOW_AT_TOP_Y) {
-                setIsNavVisible(true);
+                showNav({ animate: false });
                 previousScrollY = nextScrollY;
                 return;
             }
@@ -171,7 +243,11 @@ export default function Nav() {
                 return;
             }
 
-            setIsNavVisible(deltaY < 0);
+            if (deltaY < 0) {
+                showNav({ animate: true });
+            } else {
+                hideNav();
+            }
             previousScrollY = nextScrollY;
         };
 
@@ -183,18 +259,26 @@ export default function Nav() {
             window.requestAnimationFrame(updateVisibility);
         };
 
+        window.addEventListener(
+            PROGRAMMATIC_SCROLL_EVENT,
+            handleProgrammaticScroll,
+        );
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => {
+            window.removeEventListener(
+                PROGRAMMATIC_SCROLL_EVENT,
+                handleProgrammaticScroll,
+            );
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [isMenuOpen]);
+    }, [hideNav, isMenuOpen, showNav]);
 
     const toggleMenu = () => {
         if (!isMobileNav) {
             return;
         }
         setIsMenuOpen((prev) => !prev);
-        setIsNavVisible(true);
+        showNav({ animate: false });
     };
 
     const handleSelectTab = (event) => {
@@ -202,12 +286,8 @@ export default function Nav() {
             event.currentTarget.blur();
         }
 
-        if (!isMobileNav && Number(event?.detail || 0) > 0) {
-            setIsSubmenuSuppressed(true);
-        }
-
         setIsMenuOpen(false);
-        setIsNavVisible(true);
+        showNav({ animate: false });
     };
 
     const handleLogoClick = (event) => {
@@ -217,7 +297,19 @@ export default function Nav() {
         }
 
         event.preventDefault();
-        window.scrollTo({ top: 0, behavior: getScrollBehavior() });
+        scrollWindowTo({ top: 0 });
+    };
+
+    const handleSectionSelect = (event, target) => {
+        handleSelectTab(event);
+        if (!isPrimaryPlainClick(event)) {
+            return;
+        }
+
+        event.preventDefault();
+        navigate(target, {
+            state: getSectionScrollState(target),
+        });
     };
 
     const navLogoSrc =
@@ -294,7 +386,7 @@ export default function Nav() {
                     onClick={toggleMenu}></div>
             ) : null}
             <div
-                className={`nav animated-surface ${isMenuOpen ? "is-menu-open" : ""} ${
+                className={`nav animated-surface ${isMenuOpen ? "is-menu-open" : ""} ${isNavReturning ? "is-nav-returning" : ""} ${
                     isNavVisible ? "is-nav-visible" : "is-nav-hidden"
                 }`}>
                 <div className="nav__header">
@@ -304,7 +396,12 @@ export default function Nav() {
                         className="nav__logo"
                         onClick={handleLogoClick}
                         aria-label="Go to Home">
-                        <img src={navLogoSrc} alt="CVL-Lab logo" />
+                        <img
+                            src={navLogoSrc}
+                            alt="CVL-Lab logo"
+                            decoding="async"
+                            fetchPriority="high"
+                        />
                     </Link>
                     {isMobileNav ? (
                         <div className="nav__header-actions">
@@ -330,8 +427,7 @@ export default function Nav() {
                 </div>
                 <div
                     id="nav-links"
-                    className={`nav__links animated-surface ${isMobileNav && !isMenuOpen ? "is-hidden" : ""} ${isSubmenuSuppressed ? "is-submenu-suppressed" : ""}`}
-                    onMouseLeave={() => setIsSubmenuSuppressed(false)}>
+                    className={`nav__links animated-surface ${isMobileNav && !isMenuOpen ? "is-hidden" : ""}`}>
                     {tabs.map((tabItem, i) => (
                         <div
                             key={tabItem.key + i}
@@ -352,9 +448,17 @@ export default function Nav() {
                                         <Link
                                             key={sectionItem.to}
                                             to={sectionItem.to}
+                                            state={getSectionScrollState(
+                                                sectionItem.to,
+                                            )}
                                             className="nav__submenu-link"
                                             role="menuitem"
-                                            onClick={handleSelectTab}>
+                                            onClick={(event) =>
+                                                handleSectionSelect(
+                                                    event,
+                                                    sectionItem.to,
+                                                )
+                                            }>
                                             <span>{sectionItem.label}</span>
                                             <span aria-hidden="true">→</span>
                                         </Link>

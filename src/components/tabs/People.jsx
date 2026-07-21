@@ -42,8 +42,8 @@ function People() {
                                         profile={person.image}
                                         name={person.name}
                                         email={person.email}
-                                        homepage={person.homepage}
                                         position={person.position}
+                                        homepage={person.homepage}
                                         links={person.links}
                                         profileDetails={person.profile_details}
                                         revealDelay={`${Math.min(i, 5) * 60}ms`}
@@ -55,6 +55,7 @@ function People() {
                                         profile={person.image}
                                         name={person.name}
                                         email={person.email}
+                                        position={person.position}
                                         homepage={person.homepage}
                                         links={person.links}
                                         revealDelay={`${Math.min(i, 5) * 60}ms`}

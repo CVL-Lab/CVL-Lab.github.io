@@ -1,11 +1,245 @@
 .app {
+    --app-tint: var(--tab-home-tint);
+    --app-border: var(--tab-home-border);
+    --app-accent: var(--tab-home-accent);
+
     width: 100%;
     min-width: 20rem;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: var(--bg);
     position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+}
+
+.app--news {
+    --app-tint: var(--tab-news-tint);
+    --app-border: var(--tab-news-border);
+    --app-accent: var(--tab-news-accent);
+}
+
+.app--research {
+    --app-tint: var(--tab-research-tint);
+    --app-border: var(--tab-research-border);
+    --app-accent: var(--tab-research-accent);
+}
+
+.app--publication {
+    --app-tint: var(--tab-publication-tint);
+    --app-border: var(--tab-publication-border);
+    --app-accent: var(--tab-publication-accent);
+}
+
+.app--people {
+    --app-tint: var(--tab-people-tint);
+    --app-border: var(--tab-people-border);
+    --app-accent: var(--tab-people-accent);
+}
+
+.app--photo {
+    --app-tint: var(--tab-photo-tint);
+    --app-border: var(--tab-photo-border);
+    --app-accent: var(--tab-photo-accent);
+}
+
+.app--contact,
+.app--join {
+    --app-tint: var(--tab-contact-tint);
+    --app-border: var(--tab-contact-border);
+    --app-accent: var(--tab-contact-accent);
+}
+
+.app--home {
+    --backdrop-line: color-mix(
+        in srgb,
+        var(--tab-home-accent) 15%,
+        transparent
+    );
+    --backdrop-line-strong: color-mix(
+        in srgb,
+        var(--tab-home-accent) 25%,
+        transparent
+    );
+    --backdrop-band: color-mix(
+        in srgb,
+        var(--tab-home-accent) 11%,
+        transparent
+    );
+    --backdrop-cursor: color-mix(
+        in srgb,
+        var(--tab-home-accent) 36%,
+        transparent
+    );
+}
+
+.app-backdrop {
+    --backdrop-left: 50%;
+    --backdrop-top: 42%;
+    --backdrop-shift-x: 0px;
+    --backdrop-shift-y: 0px;
+    --backdrop-band-shift-x: 0px;
+    --backdrop-band-shift-y: 0px;
+    --backdrop-scroll: 0px;
+    --backdrop-scroll-shift: 0px;
+
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    contain: layout paint;
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--app-tint) 36%, var(--bg)) 0%,
+            var(--bg) 42%,
+            color-mix(in srgb, var(--app-tint) 18%, var(--bg)) 100%
+        );
+}
+
+.app--home .app-backdrop {
+    background:
+        linear-gradient(
+            160deg,
+            color-mix(in srgb, var(--tab-home-tint) 78%, var(--bg)) 0%,
+            var(--bg) 46%,
+            color-mix(in srgb, var(--tab-home-accent) 11%, var(--bg)) 100%
+        );
+}
+
+.app--home .app-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: -18% -14%;
+    pointer-events: none;
+    opacity: 0.68;
+    background:
+        linear-gradient(
+            118deg,
+            transparent 0 21%,
+            color-mix(in srgb, var(--tab-home-accent) 8%, transparent) 36%,
+            transparent 52% 100%
+        ),
+        repeating-linear-gradient(
+            118deg,
+            transparent 0 72px,
+            color-mix(in srgb, var(--tab-home-border) 30%, transparent) 73px 74px,
+            transparent 75px 148px
+        );
+    transform: translate3d(var(--backdrop-scroll-shift), 0, 0);
+    animation: home-backdrop-current 24s var(--ease-standard) infinite alternate;
+}
+
+.app-backdrop__grid,
+.app-backdrop__band,
+.app-backdrop__cursor {
+    position: absolute;
+    pointer-events: none;
+}
+
+.app-backdrop__grid {
+    inset: -18%;
+    opacity: 0.78;
+    background-image:
+        linear-gradient(var(--backdrop-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--backdrop-line) 1px, transparent 1px),
+        linear-gradient(
+            135deg,
+            transparent 0 49.55%,
+            var(--backdrop-line-strong) 49.55% 50%,
+            transparent 50% 100%
+        );
+    background-position:
+        0 0,
+        0 0,
+        0 0;
+    background-size:
+        42px 42px,
+        42px 42px,
+        190px 190px;
+    transform: translate3d(
+        var(--backdrop-shift-x),
+        calc(var(--backdrop-shift-y) + var(--backdrop-scroll-shift)),
+        0
+    );
+    transition:
+        transform var(--dur-backdrop) var(--ease-standard),
+        opacity var(--dur-base) var(--ease-soft);
+    animation: backdrop-grid-drift 26s linear infinite;
+}
+
+.app-backdrop__band {
+    inset: -8% -18%;
+    opacity: 0.78;
+    background:
+        linear-gradient(
+            112deg,
+            transparent 0 23%,
+            color-mix(in srgb, var(--app-accent) 9%, transparent) 42%,
+            var(--backdrop-band) 50%,
+            transparent 69% 100%
+        ),
+        repeating-linear-gradient(
+            112deg,
+            transparent 0 38px,
+            color-mix(in srgb, var(--app-border) 24%, transparent) 39px 40px,
+            transparent 41px 84px
+        );
+    transform: translate3d(
+            var(--backdrop-band-shift-x),
+            var(--backdrop-band-shift-y),
+            0
+        )
+        rotate(0.001deg);
+    transition:
+        transform var(--dur-backdrop) var(--ease-standard),
+        opacity var(--dur-base) var(--ease-soft);
+    animation: backdrop-band-sweep 18s var(--ease-standard) infinite alternate;
+}
+
+.app-backdrop__cursor {
+    left: var(--backdrop-left);
+    top: var(--backdrop-top);
+    width: min(22rem, 42vw);
+    height: min(22rem, 42vw);
+    opacity: 0.48;
+    transform: translate(-50%, -50%);
+    transition:
+        left var(--dur-backdrop) var(--ease-standard),
+        top var(--dur-backdrop) var(--ease-standard),
+        opacity var(--dur-base) var(--ease-soft);
+}
+
+.app-backdrop__cursor::before,
+.app-backdrop__cursor::after {
+    content: "";
+    position: absolute;
+    background: var(--backdrop-cursor);
+}
+
+.app-backdrop__cursor::before {
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.app-backdrop__cursor::after {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+.app__content,
+.footer {
+    position: relative;
+    z-index: 1;
 }
 
 .scroll-progress {
@@ -48,6 +282,7 @@
         var(--surface) 66%
     );
     box-shadow: var(--shadow-elev-1);
+    animation: panel-pulse 1.7s var(--ease-standard) infinite alternate;
 }
 
 .fab {
@@ -56,7 +291,7 @@
     bottom: clamp(1rem, 2.5vw, 1.8rem);
     display: flex;
     flex-direction: column;
-    gap: 0.42rem;
+    gap: var(--control-gap);
     opacity: 0;
     visibility: hidden;
     transform: translateY(7px);
@@ -66,6 +301,84 @@
         opacity var(--dur-base) var(--ease-standard),
         transform var(--dur-base) var(--ease-standard),
         visibility 0s linear var(--dur-base);
+}
+
+@keyframes backdrop-grid-drift {
+    from {
+        background-position:
+            0 0,
+            0 0,
+            0 0;
+    }
+
+    to {
+        background-position:
+            42px 42px,
+            42px 42px,
+            190px 190px;
+    }
+}
+
+@keyframes backdrop-band-sweep {
+    from {
+        opacity: 0.52;
+        background-position:
+            0% 0%,
+            0 0;
+        transform: translate3d(
+                var(--backdrop-band-shift-x),
+                var(--backdrop-band-shift-y),
+                0
+            )
+            rotate(0.001deg);
+    }
+
+    to {
+        opacity: 0.82;
+        background-position:
+            100% 0%,
+            84px 0;
+        transform: translate3d(
+                calc(var(--backdrop-band-shift-x) + 14px),
+                calc(var(--backdrop-band-shift-y) - 8px),
+                0
+            )
+            rotate(0.001deg);
+    }
+}
+
+@keyframes home-backdrop-current {
+    from {
+        background-position:
+            0% 0%,
+            0 0;
+        transform: translate3d(var(--backdrop-scroll-shift), 0, 0);
+    }
+
+    to {
+        background-position:
+            100% 0%,
+            148px 0;
+        transform: translate3d(
+            calc(var(--backdrop-scroll-shift) + 18px),
+            -10px,
+            0
+        );
+    }
+}
+
+@keyframes panel-pulse {
+    from {
+        border-color: var(--tab-home-border);
+    }
+
+    to {
+        border-color: color-mix(
+            in srgb,
+            var(--tab-home-accent) 46%,
+            var(--tab-home-border)
+        );
+    }
 }
 
 .fab.is-visible {
@@ -81,7 +394,7 @@
     --btn-border: var(--outline-color);
     --btn-shadow: var(--shadow-elev-1);
 
-    font-size: 1rem;
+    font-size: var(--control-icon-glyph-size);
     font-weight: 700;
 }
 
@@ -89,7 +402,7 @@
     width: 0.95rem;
     height: 0.95rem;
     display: block;
-    line-height: 1;
+    line-height: var(--control-icon-line-height);
     flex-shrink: 0;
 }
 
@@ -125,9 +438,9 @@
 
 @media (max-width: 52rem) {
     .app__content {
-        padding-top: var(--space-3);
-        padding-bottom: var(--space-3);
-        gap: var(--space-3);
+        padding-top: var(--layout-shell-pad-y);
+        padding-bottom: var(--layout-shell-pad-y);
+        gap: var(--layout-shell-gap);
     }
 
     .fab {
@@ -136,6 +449,67 @@
     }
 
     .fab__btn {
-        --btn-icon-size: 2.35rem;
+        --btn-icon-size: var(--target-min);
+    }
+}
+
+@media (max-width: 52rem) {
+    .app-backdrop__grid {
+        inset: -26%;
+        opacity: 0.54;
+        background-size:
+            34px 34px,
+            34px 34px,
+            160px 160px;
+    }
+
+    .app-backdrop__band {
+        opacity: 0.48;
+    }
+
+    .app--home .app-backdrop::before {
+        inset: -24%;
+        opacity: 0.44;
+    }
+
+    .app-backdrop__cursor {
+        display: none;
+    }
+}
+
+@keyframes home-backdrop-soft-pulse {
+    from {
+        opacity: 0.38;
+    }
+
+    to {
+        opacity: 0.52;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-backdrop__grid,
+    .app-backdrop__band,
+    .app__hero-loading {
+        animation: none !important;
+    }
+
+    .app-backdrop__grid,
+    .app-backdrop__band,
+    .app-backdrop__cursor {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .app--home .app-backdrop::before {
+        opacity: 0.38;
+        transform: none !important;
+        transition: opacity var(--dur-slow) var(--ease-soft) !important;
+        animation: home-backdrop-soft-pulse 10s var(--ease-soft) infinite
+            alternate !important;
+    }
+
+    .app-backdrop__cursor {
+        opacity: 0;
     }
 }

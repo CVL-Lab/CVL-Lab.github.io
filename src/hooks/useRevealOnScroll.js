@@ -1,10 +1,12 @@
 import { useEffect, useLayoutEffect } from "react";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const DEFAULT_LOAD_DELAY = 80;
+const DEFAULT_LOAD_DELAY = 120;
 const IN_VIEW_REVEAL_THRESHOLD = 1.08;
 const IN_VIEW_TOP_EXIT_THRESHOLD = -0.12;
 const OBSERVER_ROOT_MARGIN = "0px 0px 14% 0px";
+const REVEAL_STAGGER_MS = 58;
+const REVEAL_STAGGER_LIMIT_MS = 290;
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -18,6 +20,7 @@ function useRevealOnScroll(containerRef, dependency = null) {
     const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
     const timerIds = [];
     const trackedNodes = new Set();
+    let revealIndex = 0;
     let observer;
 
     const revealNode = (node) => {
@@ -57,13 +60,26 @@ function useRevealOnScroll(containerRef, dependency = null) {
       trackedNodes.add(node);
 
       if (prefersReducedMotion) {
-        revealNode(node);
+        node.classList.add("is-reveal-ready");
+        node.classList.remove("is-revealed");
+        delete node.dataset.revealed;
+        window.requestAnimationFrame(() => {
+          revealNode(node);
+        });
         return;
       }
 
       node.classList.add("is-reveal-ready");
       node.classList.remove("is-revealed");
       delete node.dataset.revealed;
+
+      if (!node.style.getPropertyValue("--reveal-delay")) {
+        node.style.setProperty(
+          "--reveal-delay",
+          `${Math.min(revealIndex * REVEAL_STAGGER_MS, REVEAL_STAGGER_LIMIT_MS)}ms`,
+        );
+      }
+      revealIndex += 1;
 
       const nodeRect = node.getBoundingClientRect();
       const shouldRevealImmediately =

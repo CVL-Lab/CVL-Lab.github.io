@@ -74,9 +74,11 @@ export default function HomeCTA() {
                 </div>
                 <Link
                     to="/contact"
-                    className="home-cta__btn home-cta__btn--primary btn btn--secondary interactive-button lift-on-hover">
+                    className="home-cta__info-btn home-cta__info-btn--primary btn btn--secondary interactive-button lift-on-hover">
                     <span>More Information</span>
-                    <span className="home-cta__btn-icon" aria-hidden="true">
+                    <span
+                        className="home-cta__info-btn-icon"
+                        aria-hidden="true">
                         <FontAwesomeIcon icon={faArrowRight} />
                     </span>
                 </Link>

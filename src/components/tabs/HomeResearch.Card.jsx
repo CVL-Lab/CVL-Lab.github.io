@@ -5,6 +5,7 @@ function HomeResearchCard({
     path,
     keywords = [],
     image,
+    imageWide,
     revealDelay,
     revealLoadDelay,
 }) {
@@ -22,7 +23,7 @@ function HomeResearchCard({
     };
 
     const mediaStyle = {
-        backgroundImage: `url(${image})`,
+        backgroundImage: `url(${imageWide || image})`,
     };
 
     return (

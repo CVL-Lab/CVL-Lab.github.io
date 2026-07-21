@@ -236,10 +236,23 @@ function Research({ selectedResearchTopic }) {
                         <div className="research__detail-hero">
                             <figure className="research__detail-media">
                                 {activeDetailArea.image ? (
-                                    <img
-                                        src={activeDetailArea.image}
-                                        alt={activeDetailArea.imageAlt}
-                                    />
+                                    <picture>
+                                        {activeDetailArea.imageLandscape ? (
+                                            <source
+                                                media="(max-width: 68rem)"
+                                                srcSet={
+                                                    activeDetailArea.imageLandscape
+                                                }
+                                            />
+                                        ) : null}
+                                        <img
+                                            src={activeDetailArea.image}
+                                            alt={activeDetailArea.imageAlt}
+                                            loading="lazy"
+                                            decoding="async"
+                                            sizes="(max-width: 68rem) 22rem, 15rem"
+                                        />
+                                    </picture>
                                 ) : (
                                     <div className="research__detail-media-placeholder">
                                         Image placeholder
@@ -360,6 +373,9 @@ function Research({ selectedResearchTopic }) {
                                         <img
                                             src={imageSrc}
                                             alt={`${resource.label} visual`}
+                                            loading="lazy"
+                                            decoding="async"
+                                            sizes="(max-width: 768px) 92vw, 18rem"
                                         />
                                     ) : (
                                         <div className="research__resource-media-placeholder">

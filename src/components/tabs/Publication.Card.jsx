@@ -1,7 +1,7 @@
-import RESEARCH_IMAGES from "../../assets/images/research_concepts/research_concepts_image_index";
 import PublicationLinkIcons, {
     getPublicationPrimaryLink,
 } from "./Publication.LinkIcons";
+import PublicationFigure from "./Publication.Figure";
 import { RESEARCH_CATEGORY_LABELS } from "../../utils/researchData";
 
 const CATEGORY_META = {
@@ -9,13 +9,6 @@ const CATEGORY_META = {
     biomedical: { label: RESEARCH_CATEGORY_LABELS.biomedical },
     core: { label: RESEARCH_CATEGORY_LABELS.core },
     "multi-modal": { label: RESEARCH_CATEGORY_LABELS["multi-modal"] },
-};
-
-const CATEGORY_IMAGE = {
-    application: RESEARCH_IMAGES.application_ai_img,
-    biomedical: RESEARCH_IMAGES.biomedical_ai_img,
-    core: RESEARCH_IMAGES.core_ai_img,
-    "multi-modal": RESEARCH_IMAGES["multi-modal_ai_img"],
 };
 
 const isValidHttpUrl = (url) => {
@@ -29,6 +22,7 @@ const isValidHttpUrl = (url) => {
 };
 
 function PublicationCard({
+    publicationId,
     category,
     meta,
     title,
@@ -39,8 +33,6 @@ function PublicationCard({
     const hasPaperLink = isValidHttpUrl(paperLink);
     const categoryMeta =
         CATEGORY_META[category] ?? CATEGORY_META["multi-modal"];
-    const categoryImage =
-        CATEGORY_IMAGE[category] ?? CATEGORY_IMAGE["multi-modal"];
     const authorText = meta.author?.trim() ?? "";
     const venueText = meta.published_place?.trim() ?? "";
     const dateText = meta.published_date?.trim() ?? "";
@@ -52,18 +44,11 @@ function PublicationCard({
             data-reveal-load-delay={revealLoadDelay}
             style={{ "--reveal-delay": revealDelay }}
             className="publication__card">
-            <div className="publication__card-media">
-                {categoryImage ? (
-                    <img
-                        src={categoryImage}
-                        alt={`${categoryMeta.label} publication visual`}
-                    />
-                ) : (
-                    <div className="publication__card-media-placeholder">
-                        Image placeholder
-                    </div>
-                )}
-            </div>
+            <PublicationFigure
+                publicationId={publicationId}
+                className="publication__card-media"
+                sizes="(max-width: 768px) 13rem, 11.2rem"
+            />
             <div className="publication__card-main">
                 <div className="publication__card-badges">
                     <p
@@ -118,7 +103,7 @@ function PublicationCard({
                     </p>
                 )}
             </div>
-            <div className="publication__card-side">
+            <div className="publication__card-links">
                 <PublicationLinkIcons meta={meta} />
             </div>
         </article>

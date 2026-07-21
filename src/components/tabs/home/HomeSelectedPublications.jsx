@@ -3,6 +3,7 @@ import { getLatestPublications, isValidHttpUrl } from "./homeData";
 import PublicationLinkIcons, {
     getPublicationPrimaryLink,
 } from "../Publication.LinkIcons";
+import PublicationFigure from "../Publication.Figure";
 import { RESEARCH_CATEGORY_LABELS } from "../../../utils/researchData";
 
 const CATEGORY_LABELS = {
@@ -34,7 +35,6 @@ export default function HomeSelectedPublications() {
     const featuredCategoryLabel =
         CATEGORY_LABELS[featuredPublication.category] ??
         featuredPublication.category;
-
     return (
         <section
             data-reveal
@@ -54,6 +54,11 @@ export default function HomeSelectedPublications() {
                 data-reveal
                 data-reveal-load-delay="160"
                 className="home-pubs__featured interactive-card">
+                <PublicationFigure
+                    publicationId={featuredPublication.id}
+                    className="home-pubs__featured-media"
+                    sizes="(max-width: 768px) 13rem, 11.2rem"
+                />
                 <div className="home-pubs__featured-main">
                     <p className="home-pubs__featured-kicker">
                         Featured publication
@@ -104,7 +109,7 @@ export default function HomeSelectedPublications() {
                         {formatPublicationVenue(featuredPublication)}
                     </p>
                 </div>
-                <div className="home-pubs__featured-actions">
+                <div className="home-pubs__featured-links">
                     <PublicationLinkIcons
                         meta={featuredPublication.research_meta}
                     />
@@ -116,6 +121,8 @@ export default function HomeSelectedPublications() {
                     const revealDelay = `${index * 60}ms`;
                     const revealLoadDelay = `${200 + index * 60}`;
                     const queryTarget = `/publication?q=${encodeURIComponent(item.title)}&scope=title-authors-venue`;
+                    const categoryLabel =
+                        CATEGORY_LABELS[item.category] || item.category;
                     return (
                         <article
                             key={item.key}
@@ -123,11 +130,15 @@ export default function HomeSelectedPublications() {
                             data-reveal-load-delay={revealLoadDelay}
                             style={{ "--reveal-delay": revealDelay }}
                             className="home-pubs__row interactive-row">
+                            <PublicationFigure
+                                publicationId={item.id}
+                                className="home-pubs__row-media"
+                                sizes="(max-width: 768px) 13rem, 11.2rem"
+                            />
                             <div className="home-pubs__meta">
                                 <p
                                     className={`home-pubs__badge home-pubs__badge--${item.category}`}>
-                                    {CATEGORY_LABELS[item.category] ||
-                                        item.category}
+                                    {categoryLabel}
                                 </p>
                                 {item.research_meta.keywords?.length ? (
                                     <div
@@ -153,7 +164,7 @@ export default function HomeSelectedPublications() {
                                 </p>
                                 <p>{formatPublicationVenue(item)}</p>
                             </div>
-                            <div className="home-pubs__actions">
+                            <div className="home-pubs__row-links">
                                 <PublicationLinkIcons
                                     meta={item.research_meta}
                                 />

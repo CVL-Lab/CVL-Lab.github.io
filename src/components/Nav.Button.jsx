@@ -1,19 +1,8 @@
 import { Link } from "react-router-dom";
-
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-
-const getScrollBehavior = () => {
-    if (
-        typeof window === "undefined" ||
-        typeof window.matchMedia !== "function"
-    ) {
-        return "auto";
-    }
-    return window.matchMedia(REDUCED_MOTION_QUERY).matches ? "auto" : "smooth";
-};
+import { scrollWindowTo } from "../utils/scrollMotion";
 
 const isPrimaryPlainClick = (event) =>
-    event.button === 0 &&
+    (event.button === undefined || event.button === 0) &&
     !event.metaKey &&
     !event.altKey &&
     !event.ctrlKey &&
@@ -29,7 +18,7 @@ export default function NavButton({ children, tabKey, isSelected, onSelect }) {
         }
 
         event.preventDefault();
-        window.scrollTo({ top: 0, behavior: getScrollBehavior() });
+        scrollWindowTo({ top: 0 });
     };
 
     return (

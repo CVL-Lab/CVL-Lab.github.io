@@ -3,13 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--stack-gap);
+    gap: var(--section-gap);
 }
 
 .people__section {
     width: 100%;
     display: grid;
-    gap: var(--space-2);
+    gap: var(--section-head-bottom);
 }
 
 .people__section + .people__section {
@@ -19,11 +19,11 @@
 .people__degree-header {
     width: 100%;
     margin: 0;
-    padding: 0 0 var(--space-2);
+    padding: 0 0 var(--section-head-bottom);
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: var(--space-2);
+    gap: var(--row-gap);
     border-bottom: 1px solid
         color-mix(
             in srgb,
@@ -37,7 +37,7 @@
     min-width: 0;
     display: flex;
     align-items: center;
-    gap: var(--space-1p5);
+    gap: var(--space-2);
 }
 
 .people__degree-header h2 {
@@ -46,10 +46,10 @@
     font-size: var(--group-title-size);
     font-weight: 700;
     line-height: var(--group-title-line-height);
-    letter-spacing: -0.008em;
+    letter-spacing: 0;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-1p5);
+    gap: var(--space-2);
 }
 
 .people__degree-header h2::before {
@@ -65,7 +65,7 @@
     align-items: center;
     justify-content: center;
     min-width: 1.85rem;
-    padding: 0.16rem 0.54rem;
+    padding: var(--chip-pad-y) var(--chip-pad-x);
     border: 1px solid
         color-mix(
             in srgb,
@@ -79,18 +79,18 @@
         var(--surface)
     );
     color: var(--text-muted);
-    font-size: var(--font-size-xs);
+    font-size: var(--meta-text-size);
     font-weight: 600;
 }
 
 .people__card-grid {
     width: 100%;
     padding: 0;
-    margin-top: var(--space-2);
+    margin-top: 0;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--grid-gap);
-    align-items: start;
+    align-items: stretch;
 }
 
 .people__card-grid--professor {
@@ -101,7 +101,7 @@
     margin: 0;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-1p5);
+    gap: var(--space-2);
     color: var(--text-secondary);
     font-size: var(--type-body-size);
     font-weight: var(--type-body-weight);
@@ -146,27 +146,21 @@
 .people__action-group {
     width: 100%;
     min-height: 0;
-    padding: 0.44rem 0.56rem;
-    border: 1px solid color-mix(in srgb, var(--outline-color) 84%, transparent);
-    border-radius: var(--radius-sm);
-    background: color-mix(
-        in srgb,
-        var(--tab-identity-tint, var(--surface-2)) 38%,
-        var(--surface)
-    );
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-content: center;
-    justify-items: flex-start;
-    gap: var(--space-1);
+    padding: var(--space-2) 0 0;
+    border: 0;
+    border-top: 1px solid
+        color-mix(in srgb, var(--outline-color) 86%, transparent);
+    border-radius: 0;
+    background: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--control-gap);
 }
 
 .people__action-group--professor {
-    background: color-mix(
-        in srgb,
-        var(--tab-people-tint, var(--surface-2)) 52%,
-        var(--surface)
-    );
+    background: transparent;
 }
 
 .people__action-icons {
@@ -196,45 +190,57 @@
 }
 
 .people__social-link {
-    --btn-icon-size: 1.62rem;
-    --btn-bg: transparent;
-    --btn-border: transparent;
+    --btn-icon-size: 2rem;
+    --btn-bg: var(--surface-2);
+    --btn-border: color-mix(
+        in srgb,
+        var(--tab-identity-border, var(--outline-color)) 78%,
+        var(--outline-color)
+    );
     --btn-ink: var(--text-secondary);
-    --surface-hover-bg: rgba(15, 23, 42, 0.06);
-    --surface-hover-border: var(--outline-color);
+    --surface-hover-bg: var(--surface-hover-medium);
+    --surface-hover-border: var(
+        --tab-identity-accent,
+        var(--line-strong)
+    );
     --surface-hover-shadow: none;
     --surface-hover-translate: 0px;
+    display: inline-grid;
+    place-items: center;
+    padding: 0;
+    border-radius: var(--radius-sm);
 }
 
 .people__social-link svg {
     width: 0.9rem;
     height: 0.9rem;
+    display: block;
 }
 
 .people__social-link--disabled {
-    color: #c5cfdb;
-    border-color: transparent;
-    background: transparent;
-    opacity: 0.95;
+    color: color-mix(in srgb, var(--text-muted) 76%, var(--surface));
+    border-color: color-mix(
+        in srgb,
+        var(--outline-color) 64%,
+        transparent
+    );
+    background: color-mix(in srgb, var(--surface-2) 72%, transparent);
+    opacity: 0.58;
     pointer-events: none;
     cursor: default;
 }
 
 .people__meta-action {
-    --btn-height-local: 1.74rem;
-    --btn-pad-x-local: 0.55rem;
-    --btn-bg: color-mix(
-        in srgb,
-        var(--tab-identity-tint, var(--surface-2)) 38%,
-        var(--surface)
-    );
+    --btn-height-local: 2rem;
+    --btn-pad-x-local: var(--space-3);
+    --btn-bg: var(--surface-2);
     --btn-border: color-mix(
         in srgb,
         var(--tab-identity-border, var(--outline-color)) 82%,
         var(--outline-color)
     );
     --btn-ink: var(--tab-identity-accent, var(--text-secondary));
-    --surface-hover-bg: rgba(15, 23, 42, 0.04);
+    --surface-hover-bg: var(--surface-hover-soft);
     --surface-hover-border: var(--tab-identity-accent, var(--line-strong));
     --surface-hover-shadow: var(--shadow-elev-1);
     --surface-hover-translate: 0px;
@@ -261,7 +267,7 @@
     margin: 0;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-1);
+    gap: var(--space-1p5);
     color: var(--text-muted);
     font-size: var(--meta-text-size);
     font-weight: var(--type-meta-weight);
@@ -278,13 +284,15 @@
 }
 
 .people__interest-list {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-1p5);
+    gap: var(--control-gap);
 }
 
 .people__interest-chip {
-    padding: 0.18rem 0.54rem;
+    max-width: 100%;
+    padding: var(--chip-pad-y) var(--chip-pad-x);
     border: 1px solid var(--tab-identity-border, #dbe3ee);
     border-radius: 999px;
     background: var(--tab-identity-tint, #f6f9fc);
@@ -300,8 +308,9 @@
     --surface-hover-border: #d1d5db;
 
     width: 100%;
+    height: 100%;
     min-height: 0;
-    padding: clamp(0.82rem, 1.55vw, 1.08rem);
+    padding: var(--panel-pad-sm);
     border: var(--outline-width) solid var(--outline-color);
     border-radius: var(--radius-lg);
     background: var(--surface);
@@ -328,9 +337,11 @@
 .people__member-main {
     width: 100%;
     display: grid;
-    grid-template-columns: minmax(8.7rem, 9.45rem) minmax(0, 1fr);
-    align-items: center;
-    gap: var(--space-2);
+    grid-template-columns: minmax(8.75rem, 9.75rem) minmax(0, 1fr);
+    align-items: stretch;
+    gap: var(--row-gap);
+    min-height: 11.8rem;
+    height: 100%;
 }
 
 .people__member-identity {
@@ -339,22 +350,26 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-1p5);
+    padding: 0;
 }
 
 .people__member-photo {
     width: 100%;
-    min-height: 10.8rem;
+    height: 100%;
+    min-height: 11.8rem;
     aspect-ratio: 4 / 5;
     border: 1px solid var(--outline-color);
     border-radius: var(--radius-md);
     overflow: hidden;
     background: var(--surface-2);
+    box-shadow: none;
 }
 
 .people__member-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     display: block;
 }
 
@@ -372,26 +387,28 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding-left: var(--space-2);
+    align-items: stretch;
+    justify-content: flex-start;
+    padding-left: var(--row-gap);
     border-left: 1px solid
         color-mix(in srgb, var(--outline-color) 86%, transparent);
-    gap: var(--space-1);
+    gap: var(--space-1p5);
     text-align: left;
 }
 
 .people__member-header {
     width: 100%;
-    display: flex;
-    align-items: center;
+    display: grid;
+    align-items: start;
+    gap: var(--space-0p5);
 }
 
-.people__member-header-divider {
-    width: 100%;
-    height: 1px;
-    margin: 0 0 var(--space-0p5);
-    background: color-mix(in srgb, var(--outline-color) 88%, transparent);
+.people__member-position {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--type-support-size);
+    font-weight: var(--type-support-weight);
+    line-height: var(--type-support-line-height);
 }
 
 .people__member-email {
@@ -405,47 +422,43 @@
     width: 100%;
     display: grid;
     gap: var(--space-0p5);
-    min-height: 1.4rem;
-}
-
-.people__member-email--placeholder,
-.people-professor-card__email--placeholder {
-    visibility: hidden;
-    pointer-events: none;
-    user-select: none;
-}
-
-.people__member-divider {
-    width: 100%;
-    height: 1px;
-    margin: var(--space-1) 0 var(--space-0p5);
-    background: var(--outline-color);
 }
 
 .people__member-info {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
-    padding-bottom: var(--space-0p5);
+    gap: var(--space-1p5);
+    min-height: 4.25rem;
+    margin-top: auto;
+    padding: var(--space-2) 0 0;
+    border: 0;
+    border-top: 1px solid
+        color-mix(in srgb, var(--outline-color) 86%, transparent);
+    border-radius: 0;
+    background: transparent;
 }
 
 .people__member-action-group {
-    width: fit-content;
+    width: 100%;
     max-width: 100%;
-    align-self: flex-start;
-    padding: var(--space-1) var(--space-1p5);
-    gap: var(--space-1);
-    justify-items: center;
+    align-self: stretch;
+    padding: var(--space-2) 0 0;
     margin-inline: 0;
 }
 
 .people__member-action-group .people__action-icons {
+    width: auto;
     flex-wrap: nowrap;
 }
 
 .people__member-action-group .people__action-row {
     width: auto;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.people__member-action-group .people__action-row--publication {
+    margin-left: auto;
 }
 
 .people__member-action-group
@@ -463,14 +476,10 @@
     padding: var(--panel-pad);
     border: 1px solid var(--tab-people-border, var(--outline-color));
     border-radius: var(--radius-lg);
-    background: linear-gradient(
-        180deg,
-        var(--tab-people-tint, var(--surface-2)) 0%,
-        var(--surface) 88%
-    );
+    background: var(--surface);
     box-shadow: var(--shadow-elev-1);
     display: grid;
-    grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.28fr);
+    grid-template-columns: minmax(20rem, 0.78fr) minmax(0, 1.42fr);
     gap: var(--grid-gap);
     align-items: stretch;
     position: relative;
@@ -495,14 +504,21 @@
 
 .people-professor-card__identity-column {
     min-height: 0;
-    padding-right: var(--space-1);
+    padding: 0 var(--grid-gap) 0 0;
+    border: 0;
     border-right: 1px solid
-        color-mix(in srgb, var(--outline-color) 86%, transparent);
+        color-mix(
+            in srgb,
+            var(--tab-people-border, var(--outline-color)) 74%,
+            transparent
+        );
+    border-radius: 0;
+    background: transparent;
     display: grid;
-    grid-template-columns: minmax(8.25rem, 9.1rem) minmax(0, 1fr);
-    align-items: center;
-    column-gap: var(--space-2);
-    row-gap: var(--space-1);
+    grid-template-columns: minmax(8.75rem, 9.75rem) minmax(0, 1fr);
+    align-items: start;
+    column-gap: var(--row-gap);
+    row-gap: var(--space-2);
 }
 
 .people-professor-card__identity-column > * {
@@ -511,13 +527,15 @@
 
 .people-professor-card__photo {
     width: 100%;
-    max-width: 9.1rem;
+    max-width: none;
+    height: auto;
     min-height: 0;
     aspect-ratio: 4 / 5;
     border: 1px solid var(--tab-people-border, var(--outline-color));
     border-radius: var(--radius-md);
     overflow: hidden;
     background: var(--surface);
+    box-shadow: none;
 }
 
 .people-professor-card__photo img {
@@ -541,24 +559,23 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding-left: var(--space-1p5);
-    border-left: 1px solid
-        color-mix(in srgb, var(--outline-color) 86%, transparent);
-    gap: var(--space-1);
+    align-items: stretch;
+    justify-content: flex-start;
+    padding-left: 0;
+    border-left: 0;
+    gap: var(--space-2);
     text-align: left;
 }
 
-.people-professor-card__identity-divider {
-    margin: 0 0 var(--space-0p5);
+.people-professor-card__identity-head {
+    display: grid;
+    gap: var(--space-0p5);
 }
 
 .people-professor-card__meta {
     width: 100%;
     display: grid;
     gap: var(--space-0p5);
-    min-height: 1.4rem;
 }
 
 .people-professor-card__position {
@@ -576,8 +593,9 @@
 }
 
 .people-professor-card__action-group {
-    margin-top: var(--space-0p5);
-    gap: var(--space-1);
+    width: 100%;
+    margin-top: 0;
+    gap: var(--control-gap);
 }
 
 .people-professor-card__action-group .people__action-row {
@@ -592,20 +610,20 @@
 .people-professor-card__details {
     width: 100%;
     min-height: 0;
-    padding: clamp(0.84rem, 1.45vw, 1.1rem);
-    border: 1px solid var(--tab-identity-border, var(--outline-color));
-    border-radius: var(--radius-md);
-    background: var(--surface);
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: var(--space-1p5);
     height: 100%;
 }
 
 .people-professor-card__details-head {
     display: grid;
     gap: var(--space-1);
-    padding-bottom: 0.4rem;
+    padding-bottom: var(--space-2);
     border-bottom: 1px solid
         color-mix(in srgb, var(--outline-color) 86%, transparent);
 }
@@ -613,11 +631,11 @@
 .people-professor-card__details h4 {
     margin: 0;
     color: var(--text-primary);
-    font-size: var(--type-body-size);
-    font-weight: 620;
-    line-height: 1.45;
+    font-size: var(--type-h3-size);
+    font-weight: var(--type-h3-weight);
+    line-height: var(--type-h3-line-height);
     text-transform: none;
-    letter-spacing: -0.005em;
+    letter-spacing: 0;
 }
 
 .people-professor-card__details-head p {
@@ -632,37 +650,51 @@
 .people-professor-card__details-grid {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: var(--space-1p5);
-    align-content: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    column-gap: var(--grid-gap);
+    row-gap: 0;
+    align-content: start;
 }
 
 .people-professor-card__detail-item--biography {
-    grid-column: span 7;
+    grid-column: span 1;
 }
 
 .people-professor-card__detail-item--research_overview {
-    grid-column: span 5;
+    grid-column: span 1;
 }
 
 .people-professor-card__detail-item--education,
 .people-professor-card__detail-item--affiliations {
-    grid-column: span 6;
+    grid-column: span 1;
 }
 
 .people-professor-card__detail-item--achievements {
     grid-column: 1 / -1;
 }
 
+.people-professor-card__detail-item--mentoring {
+    grid-column: span 1;
+}
+
+.people-professor-card__detail-item--lab_role {
+    grid-column: 1 / -1;
+}
+
 .people-professor-card__detail-item {
-    padding: 0.54rem 0.68rem;
-    border: 1px solid var(--outline-color);
-    border-radius: var(--radius-sm);
-    background: var(--surface-2);
+    padding: var(--space-2) 0;
+    border: 0;
+    border-top: 1px solid
+        color-mix(in srgb, var(--outline-color) 86%, transparent);
+    border-radius: 0;
+    background: transparent;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
-    height: 100%;
+    gap: var(--space-1p5);
+    justify-content: flex-start;
+    min-height: 0;
+    height: auto;
 }
 
 .people-professor-card__detail-item h5 {
@@ -670,7 +702,7 @@
     font-size: var(--meta-text-size);
     font-weight: 600;
     line-height: var(--type-meta-line-height);
-    letter-spacing: 0.005em;
+    letter-spacing: 0;
     color: var(--text-muted);
 }
 
@@ -685,10 +717,10 @@
 
 .people__empty {
     width: 100%;
-    padding: var(--space-4);
+    padding: var(--panel-pad);
     border: 1px dashed var(--outline-color);
     border-radius: var(--radius-md);
-    margin-top: var(--space-3);
+    margin-top: 0;
     background: var(--surface-2);
 }
 
@@ -703,60 +735,83 @@
     }
 
     .people-professor-card__identity-column {
-        grid-template-columns: minmax(7.25rem, 8.6rem) minmax(0, 1fr);
-        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(8rem, 9rem) minmax(0, 1fr);
+        align-items: start;
         column-gap: var(--space-2);
-        row-gap: var(--space-0p5);
+        row-gap: var(--space-2);
+        padding: 0 0 var(--grid-gap);
         border-right: 0;
-        padding-right: 0;
-        padding-bottom: var(--space-2);
-        border-bottom: 1px solid var(--outline-color);
+        border-bottom: 1px solid
+            color-mix(
+                in srgb,
+                var(--tab-people-border, var(--outline-color)) 74%,
+                transparent
+            );
     }
 
     .people-professor-card__photo {
         width: 100%;
-        max-width: 8.6rem;
+        max-width: none;
     }
 
     .people-professor-card__identity-main {
-        align-self: center;
-        padding-left: 0.56rem;
+        align-self: stretch;
+        padding-left: 0;
     }
 
     .people-professor-card__details {
-        border-left: 0;
-        padding-left: var(--panel-pad-sm);
+        align-self: auto;
+        padding: 0;
+        height: auto;
     }
 
     .people-professor-card__details-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: auto;
+        align-content: start;
     }
 
     .people-professor-card__detail-item--biography,
     .people-professor-card__detail-item--research_overview,
     .people-professor-card__detail-item--education,
     .people-professor-card__detail-item--affiliations,
-    .people-professor-card__detail-item--achievements {
+    .people-professor-card__detail-item--achievements,
+    .people-professor-card__detail-item--mentoring,
+    .people-professor-card__detail-item--lab_role {
         grid-column: auto;
     }
 }
 
 @media (max-width: 52rem) {
     .people {
-        gap: var(--space-3);
+        gap: var(--mobile-section-gap);
+    }
+
+    .people__social-link {
+        --btn-icon-size: var(--target-min);
+    }
+
+    .people__meta-action {
+        --btn-height-local: var(--target-min);
+        --btn-pad-x-local: 0.72rem;
+    }
+
+    .people__member-email,
+    .people-professor-card__email {
+        min-height: var(--target-min);
     }
 
     .people__degree-header {
-        padding-bottom: var(--space-1);
+        padding-bottom: var(--section-head-bottom);
     }
 
     .people__card-grid {
         gap: var(--space-2);
     }
 
-    .people__member-card,
     .people-professor-card {
-        padding: clamp(0.78rem, 2.7vw, 1.02rem);
+        padding: var(--panel-pad);
     }
 
     .people__member-card {
@@ -764,26 +819,31 @@
     }
 
     .people__member-main {
-        grid-template-columns: minmax(8.6rem, 9.25rem) minmax(0, 1fr);
-        gap: var(--space-2);
+        grid-template-columns: minmax(9rem, 9.85rem) minmax(0, 1fr);
+        gap: var(--row-gap);
+        min-height: 11.4rem;
     }
 
     .people__member-photo {
-        min-height: 10.5rem;
+        min-height: 11.4rem;
     }
 
     .people__member-content {
-        padding-left: 0.62rem;
+        padding-left: var(--row-gap);
     }
 
     .people-professor-card__photo {
         width: 100%;
-        max-width: 8.9rem;
+        max-width: none;
         min-height: 0;
     }
 
     .people-professor-card__details {
-        padding: var(--panel-pad-sm);
+        padding: 0;
+    }
+
+    .people-professor-card__details-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -795,7 +855,7 @@
 
 @media (max-width: 430px) {
     .people-professor-card {
-        padding: 0.74rem;
+        padding: var(--panel-pad);
     }
 
     .people__member-main {
@@ -810,8 +870,8 @@
     .people-professor-card__identity-column {
         width: 100%;
         grid-template-columns: minmax(5.9rem, 6.9rem) minmax(0, 1fr);
-        column-gap: var(--space-1p5);
-        row-gap: var(--space-1);
+        column-gap: var(--row-gap);
+        row-gap: var(--space-2);
         align-items: start;
     }
 
@@ -828,8 +888,8 @@
 
     .people-professor-card__identity-main {
         align-self: stretch;
-        padding-left: 0.46rem;
-        gap: var(--space-1);
+        padding-left: 0;
+        gap: var(--space-1p5);
     }
 
     .people-professor-card__meta {
@@ -839,23 +899,23 @@
     .people-professor-card__action-group {
         width: 100%;
         max-width: 100%;
-        padding: var(--space-1) var(--space-1);
-        margin-top: var(--space-0p5);
-        justify-items: flex-start;
+        padding: var(--space-2) 0 0;
+        margin-top: 0;
+        justify-content: flex-start;
     }
 
     .people-professor-card__action-group .people__action-row {
-        width: 100%;
+        width: auto;
         justify-content: flex-start;
     }
 
     .people-professor-card__action-group .people__action-icons {
         flex-wrap: wrap;
-        gap: var(--space-1);
+        gap: var(--control-gap);
     }
 
     .people-professor-card__details {
-        padding: 0.74rem;
+        padding: 0;
     }
 
     .people__member-content {
@@ -866,15 +926,19 @@
     }
 
     .people__member-action-group {
-        width: fit-content;
-        justify-items: center;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .people__member-action-group .people__action-row--publication {
+        margin-left: 0;
     }
 
     .people__member-action-group .people__action-row--icons,
     .people__member-action-group .people__action-row--publication,
     .people__member-action-group .people__social-links--inline,
     .people__member-action-group .people__action-icons {
-        justify-content: center;
+        justify-content: flex-start;
     }
 }
 

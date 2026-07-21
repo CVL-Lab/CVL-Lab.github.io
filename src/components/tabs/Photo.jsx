@@ -242,14 +242,27 @@ function Photo() {
       images[(activeIndex - 1 + totalCount) % totalCount],
     ];
 
-    preloadTargets.forEach((item) => {
-      const targetSrc = item?.fullSrc || item?.src;
-      if (!targetSrc) {
-        return;
-      }
-      const preload = new Image();
-      preload.src = targetSrc;
-    });
+    const preloadImages = () => {
+      preloadTargets.forEach((item) => {
+        const targetSrc = item?.fullSrc || item?.src;
+        if (!targetSrc) {
+          return;
+        }
+        const preload = new Image();
+        preload.decoding = "async";
+        preload.src = targetSrc;
+      });
+    };
+
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(preloadImages, {
+        timeout: 1200,
+      });
+      return () => window.cancelIdleCallback?.(idleId);
+    }
+
+    const timeoutId = window.setTimeout(preloadImages, 300);
+    return () => window.clearTimeout(timeoutId);
   }, [activeIndex, images, isLightboxOpen]);
 
   const lightbox = isLightboxOpen && activeImage && lightboxRoot

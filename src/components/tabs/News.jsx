@@ -194,6 +194,8 @@ function News() {
                                     !isPaperAccepted &&
                                     item.is_external &&
                                     isValidExternalUrl(item.external_url);
+                                const hasAction =
+                                    isPaperAccepted || hasExternalLink;
                                 const publicationQuery =
                                     getPublicationSearchQuery(item);
                                 const publicationTarget = publicationQuery
@@ -221,7 +223,7 @@ function News() {
                                         style={{
                                             "--reveal-delay": `${Math.min(index, 5) * 60}ms`,
                                         }}
-                                        className="news-page__item">
+                                        className={`news-page__item ${hasAction ? "news-page__item--with-action" : "news-page__item--plain"}`}>
                                         <p className="news-page__date">
                                             {formatNewsDate(item.date)}
                                         </p>
@@ -247,33 +249,33 @@ function News() {
                                                 </p>
                                             ) : null}
                                         </div>
-                                        <div className="news-page__action">
-                                            {isPaperAccepted ? (
-                                                <Link
-                                                    to={publicationTarget}
-                                                    className="news-page__action-link btn btn--tertiary animated-underline">
-                                                    <span>Publications</span>
-                                                    <span className="news-page__action-arrow">
-                                                        →
-                                                    </span>
-                                                </Link>
-                                            ) : hasExternalLink ? (
-                                                <a
-                                                    href={item.external_url}
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    className="news-page__action-link btn btn--tertiary animated-underline">
-                                                    <span>Open</span>
-                                                    <span className="news-page__action-arrow">
-                                                        ↗
-                                                    </span>
-                                                </a>
-                                            ) : (
-                                                <span
-                                                    className="news-page__action-placeholder"
-                                                    aria-hidden="true"></span>
-                                            )}
-                                        </div>
+                                        {hasAction ? (
+                                            <div className="news-page__action">
+                                                {isPaperAccepted ? (
+                                                    <Link
+                                                        to={publicationTarget}
+                                                        className="news-page__action-link btn btn--tertiary animated-underline">
+                                                        <span>
+                                                            Publications
+                                                        </span>
+                                                        <span className="news-page__action-arrow">
+                                                            →
+                                                        </span>
+                                                    </Link>
+                                                ) : (
+                                                    <a
+                                                        href={item.external_url}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="news-page__action-link btn btn--tertiary animated-underline">
+                                                        <span>Open</span>
+                                                        <span className="news-page__action-arrow">
+                                                            ↗
+                                                        </span>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        ) : null}
                                     </article>
                                 );
                             })}

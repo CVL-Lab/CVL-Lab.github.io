@@ -1,105 +1,120 @@
-# CVL-Lab 웹사이트
+# CVL-Lab 홈페이지
 
-CVL-Lab 정적 웹사이트를 위한 React + Vite public repository입니다.
+아주대학교 CVL-Lab 홈페이지입니다. React와 Vite로 만든 정적 사이트이며, GitHub Pages에 배포됩니다.
 
-## 운영 문서
+이 저장소에서 하는 일은 대략 이렇게 나뉩니다.
 
-Content Operations 문서는 `docs/`에 분리되어 있습니다.
+| 해야 할 일 | 주로 보는 곳 | 실행할 명령 |
+| --- | --- | --- |
+| 화면 디자인과 UI 수정 | `src/components`, `src/styles` | `npm run dev`, `npm run build` |
+| News, Publication, Photo 운영 | `content`, `docs` | `npm run content:sync`, `npm run build` |
+| 구성원 정보 수정 | `src/assets/dataset/people.json` | `npm run build` |
+| GitHub Pages 배포 확인 | `.github/workflows`, `dist` | GitHub Actions 확인 |
 
-- 총괄: `docs/README.md`
-- pipeline(전체 운영 흐름): `docs/pipeline/README.md`
-- News: `docs/news/README.md`
-- Publication: `docs/publications/README.md`
-- Photo: `docs/photos/README.md`
-- People: `docs/people/README.md`
-- deploy: `docs/deployment/README.md`
-- 문제 해결: `docs/troubleshooting/README.md`
-- template: `docs/templates/README.md`
-
-## 로컬 개발
+## 빠른 시작
 
 ```bash
 npm install
 npm run dev
 ```
 
-## 프로덕션 build
+프로덕션 빌드는 아래 명령으로 확인합니다. `build` 전에 콘텐츠 검증이 자동으로 먼저 실행됩니다.
 
 ```bash
 npm run build
 ```
 
-## Content Operations (GitHub Pages static workflow)
+## 폴더 구조
 
-이 project는 장기 운영을 위해 content와 UI 코드를 분리해 관리합니다.
+| 경로 | 설명 |
+| --- | --- |
+| `src/components` | 실제 화면 컴포넌트 |
+| `src/styles` | 디자인 토큰, 반응형 기준, 공통 스타일 |
+| `content/news` | News 원본 Markdown |
+| `content/publications` | Publication 원본 Markdown |
+| `content/photos/raw` | Photo 원본 이미지 |
+| `src/generated` | 동기화 스크립트가 만든 데이터 |
+| `public/uploads/photos` | 최적화된 Photo 출력물 |
+| `docs` | 콘텐츠 운영 문서 |
 
-- `content/news` (Markdown + frontmatter)
-- `content/publications` (Markdown + frontmatter)
-- `content/photos/raw` (raw originals)
-- `src/generated` (generated manifests consumed by React)
-- `public/uploads/photos` (optimized photo outputs)
+`src/generated/*`와 `public/uploads/photos/*`는 직접 고치지 않습니다. 원본을 수정한 뒤 스크립트로 다시 생성합니다.
 
-주요 명령어:
+## 콘텐츠 수정 흐름
 
-```bash
-npm run content:bootstrap   # one-time migration helper from legacy JSON/assets
-npm run content:sync        # regenerate news/publications/photos outputs
-npm run validate:content    # schema/date/link validation
-npm run photos:sync         # photo resize + manifest only
-npm run operator:verify     # operator-friendly check (sync + build)
-```
-
-`status: published` publication은 `content:sync` 시 `paper_accepted` news로 자동 생성되어
-`src/generated/news.generated.json`에 함께 반영됩니다.
-
-`npm run build`는 먼저 `validate:content`를 실행합니다.
-
-## Static prerender build
-
-client navigation과 hydration을 유지하면서 route 단위 HTML 파일(예: `/news/index.html`, `/research/index.html`)을 생성합니다.
+News, Publication, Photo를 수정할 때는 보통 이 순서로 작업합니다.
 
 ```bash
-npm run build:static
+npm run content:sync
+npm run validate:content
+npm run build
 ```
 
-prerender 대상 route 목록은 `src/routes/routeDefinitions.js`에 정의되어 있습니다.
-
-prerender output을 GitHub Pages로 deploy하려면:
+Photo만 다시 만들고 싶을 때는 아래 명령을 사용할 수 있습니다.
 
 ```bash
-npm run deploy:static
+npm run photos:sync
 ```
 
-## GitHub Pages deploy 참고 (SPA routing 대응)
+`status: published`인 Publication은 `content:sync` 과정에서 News 항목으로도 자동 반영됩니다.
 
-이 project에는 GitHub Pages용 SPA fallback이 포함되어 있습니다.
+## 운영 문서
 
-- `public/404.html` redirects unknown routes back to `index.html` using a query token.
-- `index.html` restores the original route before React bootstraps.
+자세한 운영 규칙은 `docs` 아래에 나누어 두었습니다.
 
-다음 문제가 해결됩니다:
+| 상황 | 문서 |
+| --- | --- |
+| 전체 운영 흐름을 처음 파악할 때 | `docs/README.md` |
+| News 추가/수정 | `docs/news/README.md` |
+| Publication 추가/수정 | `docs/publications/README.md` |
+| Photo 추가/최적화 | `docs/photos/README.md` |
+| People 정보 수정 | `docs/people/README.md` |
+| 배포와 반영 확인 | `docs/deployment/README.md` |
+| 오류 해결 | `docs/troubleshooting/README.md` |
+| 복사용 템플릿 | `docs/templates/README.md` |
 
-- nested route 직접 URL 접근
-- nested route 새로고침
-- 이전에 404가 발생하던 nested route에서 브라우저 뒤로/앞으로 이동
+## 배포
 
-### GitHub Pages base path 설정
+`main` 브랜치에 push되면 GitHub Actions가 빌드 후 GitHub Pages로 배포합니다.
 
-repository path(예: `https://<user>.github.io/<repo>/`)로 deploy하는 경우, build 시 base path를 지정하세요.
+관련 워크플로:
+
+- `Content Build Check`: 콘텐츠 동기화, 검증, 빌드 확인
+- `Deploy GitHub Pages`: `dist`를 `gh-pages` 브랜치로 배포
+
+일반적인 GitHub Pages 주소가 `https://<user>.github.io/<repo>/`처럼 저장소 이름을 포함한다면, 빌드 시 base path를 지정합니다.
 
 ```bash
 VITE_BASE_PATH=/<repo>/ npm run build
 ```
 
-Static prerender output의 경우:
+정적 HTML을 경로별로 미리 만들고 싶을 때는 아래 명령을 사용합니다.
 
 ```bash
+npm run build:static
 VITE_BASE_PATH=/<repo>/ npm run build:static
+npm run deploy:static
 ```
 
-`src/main.jsx`는 `import.meta.env.BASE_URL`을 읽어 `BrowserRouter`의 `basename`에 적용하므로, 해당 base path에서도 routing이 올바르게 동작합니다.
+## 라우팅 참고
 
-## GitHub Actions (Content + deploy)
+GitHub Pages는 새로고침하거나 직접 URL로 들어왔을 때 SPA 라우팅이 깨질 수 있습니다. 이 저장소는 그 문제를 막기 위해 `public/404.html`과 `index.html`에 fallback 처리를 넣어 두었습니다.
 
-- `Content Build Check`: validates content sync + build on push/PR
-- `Deploy GitHub Pages`: deploys `dist` to `gh-pages` on push to `main`
+덕분에 아래 경로를 직접 열거나 새로고침해도 앱이 정상적으로 복원됩니다.
+
+- `/news`
+- `/research`
+- `/publication`
+- `/people`
+- `/photo`
+- `/contact`
+
+## 용어 기준
+
+문서에서는 딱딱한 번역투를 피하고, 아래 표현을 우선 사용합니다.
+
+- `사이트`: CVL-Lab 홈페이지 전체
+- `앱`: 브라우저에서 동작하는 React 화면
+- `콘텐츠`: News, Publication, Photo처럼 운영자가 추가/수정하는 원본
+- `배포`: GitHub Pages에 반영하는 과정
+
+길고 딱딱한 외래어 표기는 특별한 이유가 없으면 쓰지 않습니다.

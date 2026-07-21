@@ -1,20 +1,24 @@
 import { useEffect } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
+import {
+    notifyProgrammaticScroll,
+    scrollWindowTo,
+} from "../utils/scrollMotion";
 
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const SCROLL_RETRY_LIMIT = 40;
 const SCROLL_RETRY_DELAY_MS = 50;
-const TOP_SCROLL_MARGIN = 8;
+const TOP_SCROLL_MARGIN = 16;
+const SCROLL_TARGET_CLASS = "scroll-target-highlight";
+const SCROLL_TARGET_CLEAR_DELAY_MS = 1600;
 
-const getScrollBehavior = () => {
-    if (
-        typeof window === "undefined" ||
-        typeof window.matchMedia !== "function"
-    ) {
-        return "auto";
-    }
+let activeScrollTarget = null;
+let scrollTargetTimeoutId = null;
 
-    return window.matchMedia(REDUCED_MOTION_QUERY).matches ? "auto" : "smooth";
+const getScrollBehavior = () => "smooth";
+
+const toPx = (value) => {
+    const parsed = Number.parseFloat(value || "0");
+    return Number.isFinite(parsed) ? parsed : 0;
 };
 
 const getTopOffset = () => {
@@ -28,9 +32,10 @@ const getTopOffset = () => {
     fixedNodes.forEach((node) => {
         const style = window.getComputedStyle(node);
         if (style.position === "fixed" || style.position === "sticky") {
+            const topInset = toPx(style.top);
             maxOffset = Math.max(
                 maxOffset,
-                node.getBoundingClientRect().height,
+                node.getBoundingClientRect().height + topInset,
             );
         }
     });
@@ -41,11 +46,56 @@ const getTopOffset = () => {
 const toAbsoluteTop = (element) =>
     window.scrollY + element.getBoundingClientRect().top;
 
+const getHighlightTarget = (target) =>
+    target.closest(
+        [
+            ".people__degree-header",
+            ".section-start-head",
+            ".publication__section-head",
+            ".research__section-head",
+            ".page-controls__intro",
+            ".news-page__year-head",
+        ].join(", "),
+    ) ?? target;
+
+const highlightScrollTarget = (target) => {
+    if (
+        typeof window === "undefined" ||
+        !target ||
+        !target.classList ||
+        typeof target.getBoundingClientRect !== "function"
+    ) {
+        return;
+    }
+
+    if (scrollTargetTimeoutId !== null) {
+        window.clearTimeout(scrollTargetTimeoutId);
+        scrollTargetTimeoutId = null;
+    }
+
+    if (activeScrollTarget && activeScrollTarget !== target) {
+        activeScrollTarget.classList.remove(SCROLL_TARGET_CLASS);
+    }
+
+    const highlightTarget = getHighlightTarget(target);
+
+    activeScrollTarget = highlightTarget;
+    highlightTarget.classList.remove(SCROLL_TARGET_CLASS);
+    highlightTarget.getBoundingClientRect();
+    highlightTarget.classList.add(SCROLL_TARGET_CLASS);
+
+    scrollTargetTimeoutId = window.setTimeout(() => {
+        highlightTarget.classList.remove(SCROLL_TARGET_CLASS);
+        if (activeScrollTarget === highlightTarget) {
+            activeScrollTarget = null;
+        }
+        scrollTargetTimeoutId = null;
+    }, SCROLL_TARGET_CLEAR_DELAY_MS);
+};
+
 const scrollToWindowTop = (behavior) => {
-    window.scrollTo({
-        top: 0,
-        behavior,
-    });
+    notifyProgrammaticScroll();
+    scrollWindowTo({ top: 0, behavior, notify: false });
     return true;
 };
 
@@ -59,10 +109,8 @@ const scrollToTopOfContent = (behavior) => {
 
     const topOffset = getTopOffset();
     const absoluteTop = toAbsoluteTop(pageRoot) - topOffset - TOP_SCROLL_MARGIN;
-    window.scrollTo({
-        top: Math.max(absoluteTop, 0),
-        behavior,
-    });
+    notifyProgrammaticScroll();
+    scrollWindowTo({ top: absoluteTop, behavior, notify: false });
 
     return true;
 };
@@ -77,11 +125,13 @@ const scrollToSelector = ({ selector, block = "start" }, behavior) => {
         return false;
     }
 
+    const highlightTarget = getHighlightTarget(target);
     const topOffset = getTopOffset();
-    const absoluteTop = toAbsoluteTop(target);
+    const absoluteTop = toAbsoluteTop(highlightTarget);
     const safeViewportHeight = Math.max(window.innerHeight - topOffset, 0);
     const centerOffset = Math.max(
-        (safeViewportHeight - target.getBoundingClientRect().height) / 2,
+        (safeViewportHeight - highlightTarget.getBoundingClientRect().height) /
+            2,
         0,
     );
     const nextTop =
@@ -89,10 +139,9 @@ const scrollToSelector = ({ selector, block = "start" }, behavior) => {
             ? absoluteTop - centerOffset - topOffset
             : absoluteTop - topOffset - TOP_SCROLL_MARGIN;
 
-    window.scrollTo({
-        top: Math.max(nextTop, 0),
-        behavior,
-    });
+    notifyProgrammaticScroll();
+    scrollWindowTo({ top: nextTop, behavior, notify: false });
+    highlightScrollTarget(target);
 
     return true;
 };

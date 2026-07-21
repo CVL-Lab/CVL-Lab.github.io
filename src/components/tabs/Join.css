@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--stack-gap);
+  gap: var(--section-gap);
 }
 
 .join__section {
@@ -14,14 +14,14 @@
 .join__form {
   width: 100%;
   min-height: 20rem;
-  padding: var(--space-5);
+  padding: var(--panel-pad);
   border: var(--outline-width) solid var(--tab-identity-border, var(--outline-color));
   border-radius: var(--radius-lg);
   background: linear-gradient(180deg, var(--tab-identity-tint, var(--surface-2)) 0%, var(--surface) 45%);
   box-shadow: var(--shadow-elev-1);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--row-gap);
 }
 
 .join-email,
@@ -43,10 +43,21 @@
 .join-email input,
 .join__message-field {
   width: 100%;
-  padding: 0.7rem 0.8rem;
+  padding: var(--control-pad-y) var(--control-pad-x);
   border: 1px solid var(--outline-color);
   border-radius: var(--radius-sm);
   background: var(--surface-2);
+}
+
+@media (max-width: 52rem) {
+  .join {
+    gap: var(--mobile-section-gap);
+  }
+
+  .join__form {
+    min-height: 0;
+    padding: var(--panel-pad);
+  }
 }
 
 .join__message-field {
@@ -59,4 +70,10 @@
   --btn-height-local: 2.35rem;
 
   width: fit-content;
+}
+
+@media (max-width: 52rem) {
+  .join-btn-wrapper .btn {
+    --btn-height-local: var(--target-min);
+  }
 }

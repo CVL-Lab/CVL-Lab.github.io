@@ -21,9 +21,9 @@
     --outline-width: 1px;
     --outline-w: 1px;
 
-    --radius-sm: 12px;
-    --radius-md: 14px;
-    --radius-lg: 16px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 8px;
 
     --space-1: 0.25rem;
     --space-0p5: 0.125rem;
@@ -40,29 +40,38 @@
     --viewport-max: 1440px;
     --layout-max: 80rem;
     --container-max: var(--layout-max);
-    --container-pad-x: clamp(1rem, 2.1vw, 2.2rem);
+    --container-pad-x: clamp(1rem, 2.4vw, 2.5rem);
     --content-measure: 68ch;
     --page-pad-x: var(--container-pad-x);
-    --section-pad-y: clamp(1.1rem, 2.05vw, 1.88rem);
-    --stack-gap: clamp(1.08rem, 2.05vw, 1.82rem);
+    --section-pad-y: clamp(1.1rem, 2.4vw, 2.05rem);
+    --stack-gap: clamp(1.05rem, 2.1vw, 1.65rem);
     --section-gap: var(--stack-gap);
-    --section-pad: clamp(1rem, 2vw, 1.58rem);
-    --grid-gap: clamp(0.96rem, 1.9vw, 1.48rem);
+    --section-pad: clamp(1rem, 1.9vw, 1.45rem);
+    --grid-gap: clamp(0.82rem, 1.5vw, 1.18rem);
     --layout-shell-max: var(--container-max);
     --layout-shell-pad-x: var(--container-pad-x);
     --layout-shell-pad-y: var(--section-pad-y);
     --layout-shell-gap: var(--stack-gap);
-    --panel-pad: clamp(0.92rem, 1.8vw, 1.24rem);
-    --panel-pad-sm: clamp(0.72rem, 1.45vw, 0.98rem);
+    --anchor-scroll-margin: 6.75rem;
+    --panel-pad: clamp(1.05rem, 1.8vw, 1.35rem);
+    --panel-pad-sm: clamp(0.78rem, 1.3vw, 0.96rem);
     --panel-radius: var(--radius-lg);
-    --heading-gap: clamp(0.5rem, 1.2vw, 0.75rem);
+    --heading-gap: clamp(0.46rem, 0.9vw, 0.68rem);
     --card-pad: var(--panel-pad);
-    --section-head-bottom: clamp(0.72rem, 1.4vw, 1.04rem);
-    --section-head-gap: clamp(0.22rem, 0.52vw, 0.36rem);
-    --section-head-copy-max: 82ch;
-    --row-pad-y: clamp(0.76rem, 1.35vw, 0.96rem);
-    --row-pad-x: clamp(0.86rem, 1.65vw, 1.18rem);
-    --row-gap: clamp(0.74rem, 1.45vw, 1.06rem);
+    --section-head-bottom: clamp(0.68rem, 1.1vw, 0.92rem);
+    --section-head-gap: clamp(0.28rem, 0.5vw, 0.42rem);
+    --section-head-copy-max: 76ch;
+    --row-pad-y: clamp(0.72rem, 1.08vw, 0.88rem);
+    --row-pad-x: clamp(0.8rem, 1.25vw, 1.05rem);
+    --row-gap: clamp(0.68rem, 1.1vw, 0.92rem);
+    --control-gap: 0.44rem;
+    --control-pad-y: 0.44rem;
+    --control-pad-x: 0.72rem;
+    --chip-pad-y: 0.16rem;
+    --chip-pad-x: 0.5rem;
+    --card-gap: var(--space-2);
+    --list-gap: var(--space-2);
+    --mobile-section-gap: var(--space-4);
 
     --shadow-elev-1:
         0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 20px rgba(15, 23, 42, 0.06);
@@ -79,6 +88,28 @@
     --focus-w: 2px;
     --focus-offset: 2px;
     --target-min: 24px;
+    --surface-hover-soft: rgba(15, 23, 42, 0.035);
+    --surface-hover-medium: rgba(15, 23, 42, 0.06);
+    --surface-hover-strong: rgba(15, 23, 42, 0.09);
+    --surface-press-bg: rgba(15, 23, 42, 0.1);
+    --motion-sheen: rgba(255, 255, 255, 0.48);
+    --motion-accent-soft: color-mix(
+        in srgb,
+        var(--accent-ui-500) 16%,
+        transparent
+    );
+    --backdrop-line: rgba(100, 129, 176, 0.12);
+    --backdrop-line-strong: rgba(100, 129, 176, 0.2);
+    --backdrop-band: color-mix(
+        in srgb,
+        var(--accent-ui-500) 8%,
+        transparent
+    );
+    --backdrop-cursor: color-mix(
+        in srgb,
+        var(--accent-ui-500) 34%,
+        transparent
+    );
 
     --blue-100: #e0e5fd;
     --blue-500: #546ef6;
@@ -126,9 +157,9 @@
     --identity-contact-soft: #fff0f5;
     --identity-contact-accent: #e3a0b8;
 
-    --tab-home-tint: #f4f6fb;
-    --tab-home-border: #dfe6f2;
-    --tab-home-accent: #6481b0;
+    --tab-home-tint: #edf8f4;
+    --tab-home-border: #cde9dd;
+    --tab-home-accent: #4d9a83;
 
     --tab-news-tint: var(--identity-news-soft);
     --tab-news-border: #cfdff7;
@@ -169,42 +200,54 @@
     --font-size-4xl: 2.25rem;
     --font-size-base: 16px;
     --line-height: 1.62;
-    --h1: clamp(2rem, 4.2vw, 3.2rem);
-    --h2: clamp(1.4rem, 2.6vw, 2rem);
-    --letter-spacing: -0.01em;
+    --h1: 3.75rem;
+    --h2: 1.45rem;
+    --letter-spacing: 0;
 
     /* Global type hierarchy */
-    --type-h1-size: clamp(1.94rem, 3.45vw, 2.62rem);
+    --type-display-size: 3.75rem;
+    --type-display-line-height: 0.98;
+    --type-feature-size: 2rem;
+    --type-feature-line-height: 1.15;
+    --type-h1-size: 2.5rem;
     --type-h1-weight: 700;
-    --type-h1-line-height: 1.14;
-    --type-h2-size: clamp(1.2rem, 2.05vw, 1.42rem);
+    --type-h1-line-height: 1.1;
+    --type-h2-size: 1.45rem;
     --type-h2-weight: 660;
-    --type-h2-line-height: 1.34;
-    --type-h3-size: clamp(0.98rem, 1.5vw, 1.1rem);
+    --type-h2-line-height: 1.26;
+    --type-h3-size: 1.05rem;
     --type-h3-weight: 640;
-    --type-h3-line-height: 1.42;
-    --type-group-size: clamp(1.12rem, 1.95vw, 1.32rem);
+    --type-h3-line-height: 1.34;
+    --type-group-size: 1.2rem;
     --type-group-weight: 690;
     --type-group-line-height: 1.36;
-    --type-page-support-size: clamp(0.96rem, 1.3vw, 1.04rem);
+    --type-page-support-size: 1rem;
     --type-page-support-weight: 420;
-    --type-page-support-line-height: 1.6;
-    --type-body-size: 0.97rem;
+    --type-page-support-line-height: 1.55;
+    --type-body-size: 0.96rem;
     --type-body-weight: 400;
-    --type-body-line-height: 1.64;
-    --type-support-size: 0.88rem;
+    --type-body-line-height: 1.6;
+    --type-support-size: 0.875rem;
     --type-support-weight: 500;
-    --type-support-line-height: 1.55;
-    --type-meta-size: 0.78rem;
+    --type-support-line-height: 1.48;
+    --type-meta-size: 0.76rem;
     --type-meta-weight: 600;
     --type-meta-line-height: 1.45;
     --type-badge-size: 0.74rem;
     --type-badge-weight: 700;
+    --type-badge-line-height: 1.2;
     --type-button-size: 0.87rem;
     --type-button-weight: 600;
     --type-button-line-height: 1.28;
+    --control-icon-glyph-size: 1rem;
+    --control-icon-glyph-size-lg: 1.2rem;
+    --control-icon-line-height: 1;
 
     /* Compatibility aliases used across existing components */
+    --display-title-size: var(--type-display-size);
+    --display-title-line-height: var(--type-display-line-height);
+    --feature-value-size: var(--type-feature-size);
+    --feature-value-line-height: var(--type-feature-line-height);
     --page-title-size: var(--type-h1-size);
     --page-support-size: var(--type-page-support-size);
     --page-support-weight: var(--type-page-support-weight);
@@ -227,11 +270,11 @@
 
     --btn-font-size: var(--type-button-size);
     --btn-font-weight: var(--type-button-weight);
-    --btn-height: 2.5rem;
-    --btn-height-sm: 2.15rem;
-    --btn-pad-x: 0.95rem;
-    --btn-pad-x-sm: 0.75rem;
-    --btn-gap: 0.42rem;
+    --btn-height: 2.38rem;
+    --btn-height-sm: 2.08rem;
+    --btn-pad-x: 0.9rem;
+    --btn-pad-x-sm: 0.72rem;
+    --btn-gap: var(--control-gap);
     --btn-radius: 999px;
     --btn-icon-size: 2.35rem;
     --btn-border-w: 1px;
@@ -239,10 +282,11 @@
     --dur-fast: 140ms;
     --dur-base: 220ms;
     --dur-slow: 320ms;
-    --dur-route: 220ms;
+    --dur-route: 620ms;
     --dur-menu: 260ms;
     --dur-carousel: 300ms;
-    --dur-reveal: 300ms;
+    --dur-reveal: 640ms;
+    --dur-backdrop: 700ms;
     --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-soft: cubic-bezier(0.25, 0.8, 0.25, 1);
     --ease: var(--ease-standard);
@@ -250,7 +294,7 @@
     --hover-lift: 3px;
     --hover-lift-sm: 2px;
     --press-shift: 1px;
-    --reveal-distance: 16px;
+    --reveal-distance: 30px;
     --hover-translate-y: calc(var(--hover-lift) * -1);
     --hover-translate-y-sm: calc(var(--hover-lift-sm) * -1);
     --press-translate-y: var(--press-shift);
@@ -303,6 +347,11 @@
     --link: #9ec5ff;
     --link-hover: #c6dcff;
     --focus-ring: rgba(147, 197, 253, 0.5);
+    --surface-hover-soft: rgba(148, 163, 184, 0.1);
+    --surface-hover-medium: rgba(148, 163, 184, 0.14);
+    --surface-hover-strong: rgba(147, 197, 253, 0.18);
+    --surface-press-bg: rgba(147, 197, 253, 0.16);
+    --motion-sheen: rgba(226, 232, 240, 0.24);
 
     --blue-100: #1a2642;
     --blue-500: #83a8ff;
@@ -337,9 +386,9 @@
     --identity-contact-soft: #3a1f30;
     --identity-contact-accent: #f0bdd1;
 
-    --tab-home-tint: #1a2943;
-    --tab-home-border: #31476a;
-    --tab-home-accent: #aac4e9;
+    --tab-home-tint: #142f2d;
+    --tab-home-border: #2f5f57;
+    --tab-home-accent: #8bd7c4;
 
     --tab-news-border: #36558c;
     --tab-research-border: #36594f;
@@ -347,38 +396,70 @@
     --tab-people-border: #544076;
     --tab-photo-border: #3d6166;
     --tab-contact-border: #6d4260;
+    --backdrop-line: rgba(154, 192, 255, 0.11);
+    --backdrop-line-strong: rgba(154, 192, 255, 0.2);
+    --backdrop-band: color-mix(
+        in srgb,
+        var(--accent-ui-500) 11%,
+        transparent
+    );
+    --backdrop-cursor: color-mix(
+        in srgb,
+        var(--accent-ui-500) 42%,
+        transparent
+    );
 }
 
 @media (max-width: 64rem) {
     :root {
-        --stack-gap: clamp(1rem, 2.35vw, 1.48rem);
-        --section-head-copy-max: 78ch;
-        --btn-height: 2.42rem;
-        --btn-height-sm: 2.05rem;
-        --row-pad-x: clamp(0.78rem, 2vw, 0.98rem);
+        --stack-gap: clamp(0.95rem, 2vw, 1.35rem);
+        --section-head-copy-max: 72ch;
+        --panel-pad: clamp(0.98rem, 2vw, 1.18rem);
+        --panel-pad-sm: clamp(0.74rem, 1.8vw, 0.9rem);
+        --btn-height: 2.34rem;
+        --btn-height-sm: 2.02rem;
+        --row-pad-x: clamp(0.76rem, 1.7vw, 0.94rem);
     }
 }
 
 @media (max-width: 52rem) {
     :root {
-        --container-pad-x: clamp(0.88rem, 3.7vw, 1.08rem);
-        --layout-shell-gap: var(--space-3);
-        --section-head-copy-max: 74ch;
-        --panel-pad: clamp(0.82rem, 2.45vw, 1rem);
-        --panel-pad-sm: clamp(0.68rem, 2.2vw, 0.9rem);
-        --row-pad-y: clamp(0.68rem, 2.2vw, 0.82rem);
-        --row-pad-x: clamp(0.72rem, 2.6vw, 0.92rem);
-        --row-gap: clamp(0.62rem, 2vw, 0.88rem);
-        --btn-icon-size: 2.25rem;
-        --btn-pad-x: 0.88rem;
+        --container-pad-x: clamp(0.82rem, 4.4vw, 1.08rem);
+        --stack-gap: var(--mobile-section-gap);
+        --layout-shell-gap: var(--mobile-section-gap);
+        --anchor-scroll-margin: 5.65rem;
+        --section-head-copy-max: 100%;
+        --panel-pad: clamp(0.86rem, 3.5vw, 1.04rem);
+        --panel-pad-sm: clamp(0.72rem, 3vw, 0.88rem);
+        --row-pad-y: clamp(0.7rem, 3vw, 0.84rem);
+        --row-pad-x: clamp(0.72rem, 3.5vw, 0.92rem);
+        --row-gap: clamp(0.58rem, 2.6vw, 0.78rem);
+        --grid-gap: var(--space-3);
+        --type-display-size: 2.6rem;
+        --type-feature-size: 1.75rem;
+        --type-h1-size: 2rem;
+        --type-h2-size: 1.25rem;
+        --type-h3-size: 1.02rem;
+        --type-group-size: 1.12rem;
+        --type-body-size: 0.94rem;
+        --type-support-size: 0.875rem;
+        --type-meta-size: 0.75rem;
+        --btn-height: 2.28rem;
+        --btn-height-sm: 2rem;
+        --btn-icon-size: 2.2rem;
+        --btn-pad-x: 0.84rem;
     }
 }
 
 @media (max-width: 26.875rem) {
     :root {
-        --container-pad-x: 0.76rem;
-        --btn-height-sm: 2rem;
-        --btn-pad-x-sm: 0.68rem;
-        --btn-icon-size: 2.08rem;
+        --type-display-size: 2.35rem;
+        --type-h1-size: 1.75rem;
+        --container-pad-x: 0.72rem;
+        --panel-pad: 0.78rem;
+        --panel-pad-sm: 0.68rem;
+        --btn-height-sm: 1.96rem;
+        --btn-pad-x-sm: 0.64rem;
+        --btn-icon-size: 2.04rem;
     }
 }

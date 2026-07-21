@@ -69,7 +69,10 @@ function HomeIntroduction() {
                 className="home-introduction__copy">
                 <div className="home-block__head home-introduction__head">
                     <div>
-                        <h2>Overview</h2>
+                        <p className="home-introduction__eyebrow">
+                            CVL-Lab · Ajou University
+                        </p>
+                        <h1>Computer Vision and Learning Lab</h1>
                         <p>
                             Computer vision and learning research for real-world
                             impact.
@@ -120,6 +123,10 @@ function HomeIntroduction() {
                                     alt={
                                         featuredMedia.alt || featuredMedia.title
                                     }
+                                    loading="eager"
+                                    fetchPriority="high"
+                                    decoding="async"
+                                    sizes="(max-width: 768px) 92vw, 42rem"
                                 />
                             ) : (
                                 <div className="home-introduction__placeholder">
@@ -139,6 +146,10 @@ function HomeIntroduction() {
                                     alt={
                                         featuredMedia.alt || featuredMedia.title
                                     }
+                                    loading="eager"
+                                    fetchPriority="high"
+                                    decoding="async"
+                                    sizes="(max-width: 768px) 92vw, 42rem"
                                 />
                             ) : (
                                 <div className="home-introduction__placeholder">
@@ -169,6 +180,9 @@ function HomeIntroduction() {
                                             supportingMedia.alt ||
                                             supportingMedia.title
                                         }
+                                        loading="lazy"
+                                        decoding="async"
+                                        sizes="(max-width: 768px) 44vw, 18rem"
                                     />
                                 ) : (
                                     <div className="home-introduction__placeholder">
@@ -192,6 +206,9 @@ function HomeIntroduction() {
                                             supportingMedia.alt ||
                                             supportingMedia.title
                                         }
+                                        loading="lazy"
+                                        decoding="async"
+                                        sizes="(max-width: 768px) 44vw, 18rem"
                                     />
                                 ) : (
                                     <div className="home-introduction__placeholder">

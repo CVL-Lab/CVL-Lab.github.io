@@ -1,36 +1,36 @@
 // professor
-import JongbinRyu from "./Jongbin Ryu.png";
+import JongbinRyu from "./optimized/Jongbin Ryu.webp";
 
 // integrated master and phd
-import SungeunKim from "./Sungeun Kim.jpg";
-import JunhyeongKo from "./Junhyeong Ko.jpg";
-import HankyulKang from "./Hankyul Kang.jpg";
-import SeongminOh from "./Seongmin Oh.png";
+import SungeunKim from "./optimized/Sungeun Kim.webp";
+import JunhyeongKo from "./optimized/Junhyeong Ko.webp";
+import HankyulKang from "./optimized/Hankyul Kang.webp";
+import SeongminOh from "./optimized/Seongmin Oh.webp";
 
 // master
-import SunkiJoo from "./Sunki Joo.png";
-import SoohyeonPyo from "./Soohyeon Pyo.jpg";
-import YuriKim from "./Yuri Kim.jpg";
-import GregorSeifer from "./Gregor Seifer.png";
-import SeunghunKang from "./Seunghun Kang.jpg";
-import DongkyuKim from "./Dongkyu Kim.png";
-import KyusungNam from "./Kyusung Nam.png";
-import DonghyunKim from "./Donghyun Kim.jpg";
-import DonggunLee from "./Donggun Lee.png";
-import EuihakHeo from "./Euihak Heo.png";
-import EunjuShin from "./Eunju Shin.png";
-import DuyeonNa from "./Duyeon Na.png";
-import MinjaeKim from "./Minjae Kim.jpg";
+import SunkiJoo from "./optimized/Sunki Joo.webp";
+import SoohyeonPyo from "./optimized/Soohyeon Pyo.webp";
+import YuriKim from "./optimized/Yuri Kim.webp";
+import GregorSeifer from "./optimized/Gregor Seifer.webp";
+import SeunghunKang from "./optimized/Seunghun Kang.webp";
+import DongkyuKim from "./optimized/Dongkyu Kim.webp";
+import KyusungNam from "./optimized/Kyusung Nam.webp";
+import DonghyunKim from "./optimized/Donghyun Kim.webp";
+import DonggunLee from "./optimized/Donggun Lee.webp";
+import EuihakHeo from "./optimized/Euihak Heo.webp";
+import EunjuShin from "./optimized/Eunju Shin.webp";
+import DuyeonNa from "./optimized/Duyeon Na.webp";
+import MinjaeKim from "./optimized/Minjae Kim.webp";
 
 // intern
-import GeunhyungPark from "./Geunhyung Park.png";
+import GeunhyungPark from "./optimized/Geunhyung Park.webp";
 
 //alumni
 
-import SeokjinJang from "./Seokjin Jang.png";
-import JihoonKim from "./Jihoon Kim.jpg";
-import HyunsooPark from "./Hyunsoo Park.jpg";
-import InhyukPark from "./Inhyuk Park.jpg";
+import SeokjinJang from "./optimized/Seokjin Jang.webp";
+import JihoonKim from "./optimized/Jihoon Kim.webp";
+import HyunsooPark from "./optimized/Hyunsoo Park.webp";
+import InhyukPark from "./optimized/Inhyuk Park.webp";
 
 const people_images = {
     professor: {

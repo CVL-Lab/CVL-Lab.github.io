@@ -12,8 +12,8 @@ import {
     resolvePreferredTheme,
     THEME_CHANGE_EVENT,
 } from "../utils/themeMode";
+import { scrollWindowTo } from "../utils/scrollMotion";
 
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const FAB_VISIBILITY_SCROLL_Y = 520;
 
 function BackToTopButton() {
@@ -21,12 +21,6 @@ function BackToTopButton() {
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const [themeMode, setThemeMode] = useState(() => resolvePreferredTheme());
-
-    const getScrollBehavior = () => {
-        const prefersReducedMotion =
-            window.matchMedia(REDUCED_MOTION_QUERY).matches;
-        return prefersReducedMotion ? "auto" : "smooth";
-    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -62,10 +56,7 @@ function BackToTopButton() {
     }, []);
 
     const handleBackToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: getScrollBehavior(),
-        });
+        scrollWindowTo({ top: 0 });
     };
 
     const handleContact = () => {

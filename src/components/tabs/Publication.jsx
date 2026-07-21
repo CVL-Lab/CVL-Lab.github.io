@@ -221,6 +221,7 @@ function Publication() {
                     {filteredPublications.map((tpub, index) => (
                         <PublicationCard
                             key={`${tpub.key}-${index}`}
+                            publicationId={tpub.id}
                             category={tpub.category}
                             meta={tpub.research_meta}
                             title={tpub.title}

@@ -17,8 +17,11 @@ function Join() {
 
   return (
     <div className="join">
-      <div data-reveal className="tab-header">
+      <div data-reveal className="tab-header page-head page-head--contact">
         <h1>Join</h1>
+        <p className="page-head__summary">
+          Introduce your research interests and contact CVL-Lab about available opportunities.
+        </p>
       </div>
       <section data-reveal className="join__section">
         <form data-reveal data-reveal-load-delay="80" className="join__form" onSubmit={handleSubmit}>

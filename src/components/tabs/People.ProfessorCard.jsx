@@ -1,24 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
-import {
-    PERSONAL_LINK_ITEMS,
-    getPersonalLinkUrl,
-    isValidExternalLink,
-} from "./peopleCardShared";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { getPersonalLinkItemsWithState } from "./peopleCardShared";
 
 const trimText = (value) => (typeof value === "string" ? value.trim() : "");
+const PLACEHOLDER_TEXT_PATTERN =
+    /lorem ipsum|will be added|will summarize|will be listed|will be updated/i;
+
+const getDisplayText = (value) => {
+    const text = trimText(value);
+    return PLACEHOLDER_TEXT_PATTERN.test(text) ? "" : text;
+};
 
 const PROFESSOR_DETAIL_FALLBACKS = {
-    biography:
-        "A concise biography will be added here to introduce the professor's academic background and current role.",
     research_overview:
-        "This section will summarize the lab's core research agenda and the professor's ongoing research direction.",
-    education:
-        "Education and academic background details will be listed here, including prior institutions and training.",
-    affiliations:
-        "Professional roles, committee memberships, and external collaborations will be summarized in this section.",
-    achievements:
-        "Representative awards, leadership responsibilities, and notable achievements will be added here.",
+        "Leads CVL-Lab research in computer vision and learning, connecting core AI methods with applied research projects.",
+    mentoring:
+        "Guides graduate researchers, interns, and alumni through publication-oriented lab work and project development.",
+    lab_role:
+        "Coordinates the lab's research direction, student supervision, and external research communication.",
 };
 
 function PeopleProfessorCard({
@@ -36,46 +35,59 @@ function PeopleProfessorCard({
     const emailText = email?.trim() ?? "";
     const positionText = position?.trim() ?? "Professor";
     const homepageText = homepage?.trim() ?? "";
-    const details = [
+    const verifiedDetails = [
         {
             key: "biography",
             title: "Short biography",
-            content:
-                trimText(profileDetails?.biography) ||
-                PROFESSOR_DETAIL_FALLBACKS.biography,
+            content: getDisplayText(profileDetails?.biography),
         },
         {
             key: "research_overview",
             title: "Research overview",
-            content:
-                trimText(profileDetails?.research_overview) ||
-                PROFESSOR_DETAIL_FALLBACKS.research_overview,
+            content: getDisplayText(profileDetails?.research_overview),
         },
         {
             key: "education",
             title: "Education & academic background",
             content:
-                trimText(profileDetails?.education) ||
-                trimText(profileDetails?.history) ||
-                PROFESSOR_DETAIL_FALLBACKS.education,
+                getDisplayText(profileDetails?.education) ||
+                getDisplayText(profileDetails?.history),
         },
         {
             key: "affiliations",
             title: "Professional roles & affiliations",
             content:
-                trimText(profileDetails?.affiliations) ||
-                trimText(profileDetails?.responsibilities) ||
-                PROFESSOR_DETAIL_FALLBACKS.affiliations,
+                getDisplayText(profileDetails?.affiliations) ||
+                getDisplayText(profileDetails?.responsibilities),
         },
         {
             key: "achievements",
             title: "Notable achievements",
-            content:
-                trimText(profileDetails?.achievements) ||
-                PROFESSOR_DETAIL_FALLBACKS.achievements,
+            content: getDisplayText(profileDetails?.achievements),
         },
-    ];
+    ].filter((item) => item.content);
+    const details =
+        verifiedDetails.length > 0
+            ? verifiedDetails
+            : [
+                  {
+                      key: "research_overview",
+                      title: "Research direction",
+                      content: PROFESSOR_DETAIL_FALLBACKS.research_overview,
+                  },
+                  {
+                      key: "mentoring",
+                      title: "Mentoring",
+                      content: PROFESSOR_DETAIL_FALLBACKS.mentoring,
+                  },
+                  {
+                      key: "lab_role",
+                      title: "Lab role",
+                      content: PROFESSOR_DETAIL_FALLBACKS.lab_role,
+                  },
+              ];
     const profileSummary = `${positionText} · Computer Vision and Learning Lab`;
+    const personalLinks = getPersonalLinkItemsWithState(homepageText, links);
 
     return (
         <article
@@ -88,24 +100,29 @@ function PeopleProfessorCard({
                 aria-label="Professor identity">
                 <div className="people-professor-card__photo">
                     {profile ? (
-                        <img src={profile} alt={nameText} />
+                        <img
+                            src={profile}
+                            alt={nameText}
+                            loading="eager"
+                            fetchPriority="high"
+                            decoding="async"
+                            sizes="(max-width: 430px) 7rem, 10rem"
+                        />
                     ) : (
                         <span>{nameText?.[0]}</span>
                     )}
                 </div>
 
                 <div className="people-professor-card__identity-main">
-                    <h3 className="people__meta-line people__meta-line--name">
-                        <span className="people__meta-icon" aria-hidden="true">
-                            <FontAwesomeIcon icon={faUser} />
-                        </span>
-                        <span>{nameText}</span>
-                    </h3>
-                    <div className="people__member-header-divider people-professor-card__identity-divider" />
-                    <div className="people-professor-card__meta">
+                    <header className="people-professor-card__identity-head">
+                        <h3 className="people__meta-line people__meta-line--name">
+                            {nameText}
+                        </h3>
                         <p className="people__meta-line people-professor-card__position">
                             {positionText}
                         </p>
+                    </header>
+                    <div className="people-professor-card__meta">
                         {emailText ? (
                             <a
                                 className="people__meta-line people-professor-card__email"
@@ -117,57 +134,34 @@ function PeopleProfessorCard({
                                 </span>
                                 <span>{emailText}</span>
                             </a>
-                        ) : (
-                            <p
-                                className="people__meta-line people-professor-card__email people-professor-card__email--placeholder"
-                                aria-hidden="true">
-                                <span
-                                    className="people__meta-icon"
-                                    aria-hidden="true">
-                                    <FontAwesomeIcon icon={faEnvelope} />
-                                </span>
-                                <span>Email not listed</span>
-                            </p>
-                        )}
+                        ) : null}
                     </div>
                     <div className="people__action-group people__member-action-group people__action-group--professor people-professor-card__action-group">
                         <div className="people__action-row people__action-row--icons">
                             <div
                                 className="people__social-links people__social-links--inline people__action-icons"
                                 aria-label={`${nameText} external profile links`}>
-                                {PERSONAL_LINK_ITEMS.map((item) => {
-                                    const url = getPersonalLinkUrl(
-                                        item.key,
-                                        homepageText,
-                                        links,
-                                    );
-                                    const isEnabled = isValidExternalLink(url);
-
-                                    if (!isEnabled) {
-                                        return (
-                                            <span
-                                                key={item.key}
-                                                className="people__social-link people__social-link--disabled btn btn--icon btn--sm is-disabled"
-                                                aria-hidden="true">
-                                                <FontAwesomeIcon
-                                                    icon={item.icon}
-                                                />
-                                            </span>
-                                        );
-                                    }
-
-                                    return (
+                                {personalLinks.map((item) =>
+                                    item.isEnabled ? (
                                         <a
                                             key={item.key}
-                                            href={url}
+                                            href={item.url}
                                             target="_blank"
                                             rel="noreferrer"
                                             className={`people__social-link people__social-link--${item.key} btn btn--icon btn--sm interactive-button`}
                                             aria-label={`${nameText} ${item.label}`}>
                                             <FontAwesomeIcon icon={item.icon} />
                                         </a>
-                                    );
-                                })}
+                                    ) : (
+                                        <span
+                                            key={item.key}
+                                            className={`people__social-link people__social-link--${item.key} people__social-link--disabled btn btn--icon btn--sm is-disabled`}
+                                            title={`${item.label} not listed`}
+                                            aria-hidden="true">
+                                            <FontAwesomeIcon icon={item.icon} />
+                                        </span>
+                                    ),
+                                )}
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CVL-Lab Research Infographic Renderer</title>
+        <style>
+            @font-face {
+                font-family: "Pretendard";
+                src: url("/src/assets/fonts/pretendard/Pretendard-Regular.woff")
+                    format("woff");
+                font-weight: 400;
+            }
+
+            @font-face {
+                font-family: "Pretendard";
+                src: url("/src/assets/fonts/pretendard/Pretendard-SemiBold.woff")
+                    format("woff");
+                font-weight: 600;
+            }
+
+            @font-face {
+                font-family: "Pretendard";
+                src: url("/src/assets/fonts/pretendard/Pretendard-Bold.woff")
+                    format("woff");
+                font-weight: 700;
+            }
+
+            :root {
+                --canvas: #f8fafc;
+                --paper: #ffffff;
+                --ink: #0f172a;
+                --ink-2: #334155;
+                --muted: #64748b;
+                --line: #cbd5e1;
+                --line-soft: #e2e8f0;
+                --dark: #111c2f;
+                --dark-2: #16233a;
+                --dark-line: #29405d;
+                --accent: #546ef6;
+                --accent-soft: #e0e5fd;
+                --accent-deep: #2a4dd0;
+                --radius: 8px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body,
+            #app {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            body {
+                background: var(--canvas);
+                color: var(--ink);
+                font-family:
+                    "Pretendard",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                letter-spacing: 0;
+            }
+
+            .canvas {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                display: grid;
+                grid-template-rows: auto minmax(0, 1fr) auto;
+                gap: 42px;
+                padding: 64px;
+                background:
+                    linear-gradient(var(--line-soft) 1px, transparent 1px),
+                    linear-gradient(
+                        90deg,
+                        var(--line-soft) 1px,
+                        transparent 1px
+                    ),
+                    var(--canvas);
+                background-size: 80px 80px;
+            }
+
+            .canvas::before {
+                content: "";
+                position: absolute;
+                inset: 24px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                pointer-events: none;
+            }
+
+            .canvas--wide {
+                grid-template-rows: auto minmax(0, 1fr);
+                gap: 18px;
+                padding: 34px 52px;
+                background-size: 70px 70px;
+            }
+
+            .canvas--wide::before {
+                inset: 14px;
+            }
+
+            .topic-core {
+                --accent: #546ef6;
+                --accent-soft: #e0e5fd;
+                --accent-deep: #2a4dd0;
+            }
+
+            .topic-multi-modal {
+                --accent: #64748b;
+                --accent-soft: #e2e8f0;
+                --accent-deep: #334155;
+            }
+
+            .topic-application {
+                --accent: #e97b77;
+                --accent-soft: #fcefed;
+                --accent-deep: #aa2d26;
+            }
+
+            .topic-biomedical {
+                --accent: #57b47d;
+                --accent-soft: #e9faee;
+                --accent-deep: #3e8d67;
+            }
+
+            .topbar {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 32px;
+                min-width: 0;
+            }
+
+            .identity,
+            .topic-label,
+            .stage__index,
+            .section-label,
+            .footer__label {
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 1;
+                text-transform: uppercase;
+            }
+
+            .identity {
+                display: inline-flex;
+                align-items: center;
+                gap: 16px;
+                color: var(--ink);
+            }
+
+            .identity::before {
+                content: "";
+                width: 18px;
+                height: 18px;
+                background: var(--accent);
+                border: 4px solid var(--paper);
+                outline: 1px solid var(--accent);
+            }
+
+            .topic-label {
+                min-width: 0;
+                padding: 14px 20px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: rgba(255, 255, 255, 0.9);
+                color: var(--ink-2);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .canvas--wide .identity,
+            .canvas--wide .topic-label {
+                font-size: 20px;
+            }
+
+            .canvas--wide .topic-label {
+                padding: 10px 16px;
+            }
+
+            .diagram {
+                position: relative;
+                z-index: 1;
+                min-height: 0;
+            }
+
+            .flow {
+                height: 100%;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr) 90px minmax(
+                        0,
+                        1fr
+                    );
+                align-items: stretch;
+            }
+
+            .canvas--wide .flow {
+                grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr) 72px minmax(
+                        0,
+                        1fr
+                    );
+            }
+
+            .stage {
+                min-width: 0;
+                padding: 34px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: rgba(255, 255, 255, 0.94);
+                display: grid;
+                grid-template-rows: auto minmax(0, 1fr) auto;
+                gap: 24px;
+            }
+
+            .stage--dark {
+                border-color: var(--dark-line);
+                background: var(--dark);
+                color: #e2e8f0;
+            }
+
+            .canvas--wide .stage {
+                padding: 22px 26px;
+                gap: 14px;
+            }
+
+            .stage__head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 18px;
+            }
+
+            .stage__index {
+                color: var(--accent-deep);
+            }
+
+            .stage--dark .stage__index {
+                color: #ffffff;
+            }
+
+            .stage__name {
+                color: var(--muted);
+                font-size: 22px;
+                font-weight: 600;
+                line-height: 1;
+                text-transform: uppercase;
+            }
+
+            .stage--dark .stage__name {
+                color: #9fb0c7;
+            }
+
+            .canvas--wide .stage__index {
+                font-size: 20px;
+            }
+
+            .canvas--wide .stage__name {
+                font-size: 18px;
+            }
+
+            .stage__caption {
+                color: var(--ink-2);
+                font-size: 22px;
+                font-weight: 600;
+                line-height: 1.2;
+            }
+
+            .stage--dark .stage__caption {
+                color: #c8d5e6;
+            }
+
+            .canvas--wide .stage__caption {
+                font-size: 18px;
+            }
+
+            .connector {
+                align-self: center;
+                height: 2px;
+                position: relative;
+                background: var(--accent);
+            }
+
+            .connector::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                right: 0;
+                width: 14px;
+                height: 14px;
+                border-top: 3px solid var(--accent);
+                border-right: 3px solid var(--accent);
+                transform: translateY(-50%) rotate(45deg);
+            }
+
+            .connector::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 14px;
+                height: 14px;
+                border: 3px solid var(--canvas);
+                background: var(--accent);
+                transform: translate(-50%, -50%);
+            }
+
+            .footer {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 28px;
+                padding: 22px 26px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--paper);
+            }
+
+            .canvas--wide .footer {
+                display: none;
+            }
+
+            .footer__label {
+                color: var(--muted);
+            }
+
+            .footer__tags {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 12px;
+                min-width: 0;
+            }
+
+            .footer__tag {
+                padding: 12px 18px;
+                border: 1px solid var(--line);
+                border-radius: 999px;
+                background: var(--accent-soft);
+                color: var(--accent-deep);
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 1;
+                white-space: nowrap;
+            }
+
+            .visual-frame {
+                min-height: 0;
+                position: relative;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                overflow: hidden;
+                background: var(--accent-soft);
+            }
+
+            .visual-frame::before,
+            .visual-frame::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    linear-gradient(
+                        transparent 49.5%,
+                        rgba(15, 23, 42, 0.16) 50%,
+                        transparent 50.5%
+                    ),
+                    linear-gradient(
+                        90deg,
+                        transparent 49.5%,
+                        rgba(15, 23, 42, 0.16) 50%,
+                        transparent 50.5%
+                    );
+            }
+
+            .visual-frame::after {
+                inset: 22% 19%;
+                border: 4px solid var(--accent-deep);
+                background: transparent;
+            }
+
+            .visual-object {
+                position: absolute;
+                z-index: 1;
+                left: 39%;
+                top: 32%;
+                width: 22%;
+                aspect-ratio: 1;
+                border: 4px solid var(--accent-deep);
+                border-radius: 50%;
+                background: var(--paper);
+            }
+
+            .visual-object::after {
+                content: "";
+                position: absolute;
+                right: -24%;
+                bottom: -19%;
+                width: 40%;
+                height: 6px;
+                background: var(--accent-deep);
+                transform: rotate(45deg);
+                transform-origin: left center;
+            }
+
+            .feature-map {
+                min-height: 0;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(5, 1fr);
+                gap: 10px;
+                padding: 24px;
+                border: 1px solid var(--dark-line);
+                border-radius: var(--radius);
+                background: var(--dark-2);
+            }
+
+            .feature-cell {
+                border: 1px solid var(--dark-line);
+                background: #223554;
+            }
+
+            .feature-cell:nth-child(3n + 1) {
+                background: var(--accent);
+            }
+
+            .feature-cell:nth-child(5n) {
+                background: #f8fafc;
+            }
+
+            .feature-cell:nth-child(7n) {
+                background: color-mix(in srgb, var(--accent) 55%, #ffffff);
+            }
+
+            .domain-stack {
+                min-height: 0;
+                display: grid;
+                grid-template-rows: repeat(3, 1fr);
+                gap: 14px;
+            }
+
+            .domain {
+                min-height: 0;
+                padding: 18px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--paper);
+                display: grid;
+                grid-template-columns: auto minmax(0, 1fr);
+                align-items: center;
+                gap: 18px;
+            }
+
+            .domain__mark {
+                width: 42px;
+                aspect-ratio: 1;
+                border: 8px solid var(--accent);
+                background: var(--accent-soft);
+            }
+
+            .domain:nth-child(2) .domain__mark {
+                border-radius: 50%;
+            }
+
+            .domain:nth-child(3) .domain__mark {
+                transform: rotate(45deg) scale(0.74);
+            }
+
+            .domain__lines {
+                display: grid;
+                gap: 9px;
+            }
+
+            .domain__line {
+                height: 8px;
+                background: var(--line-soft);
+            }
+
+            .domain__line:last-child {
+                width: 68%;
+                background: var(--accent-soft);
+            }
+
+            .model-stack {
+                min-height: 0;
+                display: grid;
+                align-content: center;
+                gap: 13px;
+            }
+
+            .model-layer {
+                height: 42px;
+                border: 1px solid var(--line);
+                border-radius: 4px;
+                background: var(--paper);
+            }
+
+            .model-layer:nth-child(2),
+            .model-layer:nth-child(5) {
+                background: var(--accent-soft);
+            }
+
+            .model-layer:nth-child(3) {
+                border-color: var(--accent);
+                background: var(--accent);
+            }
+
+            .compression {
+                min-height: 0;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto minmax(0, 0.58fr);
+                align-items: center;
+                gap: 20px;
+            }
+
+            .compression__stack {
+                display: grid;
+                gap: 10px;
+            }
+
+            .compression__bar {
+                height: 30px;
+                border: 1px solid var(--dark-line);
+                background: #29405d;
+            }
+
+            .compression__bar:nth-child(2n) {
+                background: var(--accent);
+            }
+
+            .compression__arrow {
+                color: #ffffff;
+                font-size: 46px;
+                font-weight: 700;
+                line-height: 1;
+            }
+
+            .deploy-grid {
+                min-height: 0;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .deploy-node {
+                min-height: 0;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--paper);
+                display: grid;
+                place-items: center;
+            }
+
+            .deploy-node::before {
+                content: "";
+                width: 38%;
+                aspect-ratio: 1;
+                border: 7px solid var(--accent);
+                background: var(--accent-soft);
+            }
+
+            .deploy-node:nth-child(2)::before {
+                border-radius: 50%;
+            }
+
+            .deploy-node:nth-child(3)::before {
+                width: 46%;
+                aspect-ratio: 1.5;
+            }
+
+            .deploy-node:nth-child(4)::before {
+                transform: rotate(45deg) scale(0.75);
+            }
+
+            .camera-view {
+                min-height: 0;
+                position: relative;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--accent-soft);
+                overflow: hidden;
+            }
+
+            .camera-view::before {
+                content: "";
+                position: absolute;
+                inset: 18%;
+                border: 4px solid var(--accent-deep);
+            }
+
+            .camera-view::after {
+                content: "";
+                position: absolute;
+                left: 38%;
+                top: 34%;
+                width: 24%;
+                aspect-ratio: 1;
+                border: 4px solid var(--accent-deep);
+                background: var(--paper);
+                transform: rotate(45deg);
+            }
+
+            .language-flow {
+                min-height: 0;
+                display: grid;
+                align-content: center;
+                gap: 18px;
+            }
+
+            .language-row {
+                display: grid;
+                grid-template-columns: auto minmax(0, 1fr);
+                align-items: center;
+                gap: 16px;
+            }
+
+            .language-token {
+                width: 42px;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                background: var(--accent);
+                color: var(--paper);
+                display: grid;
+                place-items: center;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .language-line {
+                height: 16px;
+                border: 1px solid var(--dark-line);
+                background: #29405d;
+            }
+
+            .language-row:nth-child(2) .language-line {
+                width: 82%;
+                background: var(--accent);
+            }
+
+            .language-row:nth-child(3) .language-line {
+                width: 64%;
+            }
+
+            .robot-scene {
+                min-height: 0;
+                position: relative;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background:
+                    linear-gradient(
+                        transparent 74%,
+                        var(--line-soft) 74%,
+                        var(--line-soft) 76%,
+                        transparent 76%
+                    ),
+                    var(--paper);
+                overflow: hidden;
+            }
+
+            .robot-arm {
+                position: absolute;
+                left: 18%;
+                top: 23%;
+                width: 38%;
+                height: 15px;
+                border-radius: 999px;
+                background: var(--accent);
+                transform: rotate(38deg);
+                transform-origin: left center;
+            }
+
+            .robot-arm::before {
+                content: "";
+                position: absolute;
+                left: -10px;
+                top: 50%;
+                width: 34px;
+                aspect-ratio: 1;
+                border: 8px solid var(--accent-deep);
+                border-radius: 50%;
+                background: var(--paper);
+                transform: translateY(-50%);
+            }
+
+            .robot-arm::after {
+                content: "";
+                position: absolute;
+                right: -44%;
+                top: -1px;
+                width: 48%;
+                height: 15px;
+                border-radius: 999px;
+                background: var(--accent-deep);
+                transform: rotate(-70deg);
+                transform-origin: left center;
+            }
+
+            .robot-object {
+                position: absolute;
+                right: 22%;
+                bottom: 24%;
+                width: 22%;
+                aspect-ratio: 1;
+                border: 5px solid var(--accent-deep);
+                background: var(--accent-soft);
+            }
+
+            .industry-panel,
+            .medical-panel {
+                min-height: 0;
+                display: grid;
+                grid-template-rows: minmax(0, 1fr) auto;
+                gap: 18px;
+            }
+
+            .battery-grid {
+                min-height: 0;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 14px;
+                align-items: center;
+            }
+
+            .battery {
+                height: 68%;
+                min-height: 110px;
+                position: relative;
+                border: 4px solid var(--accent-deep);
+                border-radius: 4px;
+                background: var(--paper);
+                overflow: hidden;
+            }
+
+            .battery::before {
+                content: "";
+                position: absolute;
+                left: 28%;
+                top: -14px;
+                width: 44%;
+                height: 14px;
+                background: var(--accent-deep);
+            }
+
+            .battery::after {
+                content: "";
+                position: absolute;
+                inset: 48% 0 0;
+                background: var(--accent);
+            }
+
+            .battery:nth-child(2)::after {
+                inset: 28% 0 0;
+            }
+
+            .battery:nth-child(3)::after {
+                inset: 64% 0 0;
+                background: var(--accent-deep);
+            }
+
+            .panel-status {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: var(--ink-2);
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 1;
+            }
+
+            .panel-status::before {
+                content: "";
+                width: 14px;
+                height: 14px;
+                background: var(--accent);
+            }
+
+            .scan {
+                min-height: 0;
+                position: relative;
+                border: 1px solid var(--dark-line);
+                border-radius: var(--radius);
+                background:
+                    linear-gradient(
+                        rgba(148, 163, 184, 0.12) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(148, 163, 184, 0.12) 1px,
+                        transparent 1px
+                    ),
+                    var(--dark-2);
+                background-size: 36px 36px;
+                overflow: hidden;
+            }
+
+            .scan::before {
+                content: "";
+                position: absolute;
+                left: 30%;
+                top: 18%;
+                width: 40%;
+                height: 64%;
+                border: 4px solid #e2e8f0;
+                border-radius: 48% 48% 42% 42%;
+            }
+
+            .scan::after {
+                content: "";
+                position: absolute;
+                left: 48%;
+                top: 26%;
+                width: 20%;
+                height: 26%;
+                border: 4px solid var(--accent);
+                background: rgba(87, 180, 125, 0.22);
+            }
+
+            .validation {
+                min-height: 0;
+                display: grid;
+                align-content: center;
+                gap: 18px;
+            }
+
+            .validation-row {
+                display: grid;
+                grid-template-columns: auto minmax(0, 1fr) auto;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .validation-check {
+                width: 30px;
+                aspect-ratio: 1;
+                border: 3px solid var(--accent);
+                background: var(--accent-soft);
+            }
+
+            .validation-line {
+                height: 10px;
+                background: var(--line-soft);
+            }
+
+            .validation-state {
+                color: var(--accent-deep);
+                font-size: 17px;
+                font-weight: 700;
+            }
+
+            .canvas--wide .visual-frame::after {
+                inset: 18% 14%;
+            }
+
+            .canvas--wide .feature-map {
+                padding: 15px;
+                gap: 7px;
+            }
+
+            .canvas--wide .domain-stack {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: 1fr;
+                gap: 10px;
+            }
+
+            .canvas--wide .domain {
+                padding: 12px;
+                grid-template-columns: 32px minmax(0, 1fr);
+                gap: 10px;
+            }
+
+            .canvas--wide .domain__mark {
+                width: 30px;
+                border-width: 6px;
+            }
+
+            .canvas--wide .domain__lines {
+                gap: 6px;
+            }
+
+            .canvas--wide .domain__line {
+                height: 6px;
+            }
+
+            .canvas--wide .model-stack {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 8px;
+            }
+
+            .canvas--wide .model-layer {
+                height: 100%;
+                min-height: 64px;
+            }
+
+            .canvas--wide .compression__bar {
+                height: 22px;
+            }
+
+            .canvas--wide .deploy-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: 1fr;
+            }
+
+            .canvas--wide .language-flow {
+                gap: 10px;
+            }
+
+            .canvas--wide .language-token {
+                width: 30px;
+                font-size: 14px;
+            }
+
+            .canvas--wide .robot-scene {
+                min-height: 0;
+            }
+
+            .canvas--wide .battery {
+                min-height: 62px;
+            }
+
+            .canvas--wide .panel-status {
+                font-size: 16px;
+            }
+
+            .canvas--wide .industry-panel,
+            .canvas--wide .medical-panel {
+                grid-template-rows: minmax(0, 1fr) auto;
+                gap: 10px;
+            }
+
+            .canvas--wide .validation {
+                gap: 10px;
+            }
+
+            .canvas--wide .validation-row {
+                gap: 10px;
+            }
+
+            .canvas--wide .validation-check {
+                width: 23px;
+                border-width: 2px;
+            }
+
+            .canvas--wide .validation-state {
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const topic = params.get("topic") || "core";
+            const variant =
+                params.get("variant") === "wide" ? "wide" : "detail";
+
+            const featureCells = Array.from(
+                { length: 25 },
+                () => '<span class="feature-cell"></span>',
+            ).join("");
+
+            const domainCards = Array.from(
+                { length: 3 },
+                () => `
+                    <div class="domain">
+                        <span class="domain__mark"></span>
+                        <span class="domain__lines">
+                            <span class="domain__line"></span>
+                            <span class="domain__line"></span>
+                        </span>
+                    </div>
+                `,
+            ).join("");
+
+            const deployNodes = Array.from(
+                { length: 4 },
+                () => '<span class="deploy-node"></span>',
+            ).join("");
+
+            const stage = ({
+                index,
+                name,
+                body,
+                caption,
+                dark = false,
+            }) => `
+                <section class="stage${dark ? " stage--dark" : ""}">
+                    <header class="stage__head">
+                        <span class="stage__index">${index}</span>
+                        <span class="stage__name">${name}</span>
+                    </header>
+                    ${body}
+                    <div class="stage__caption">${caption}</div>
+                </section>
+            `;
+
+            const flow = (stages) => `
+                <div class="flow">
+                    ${stages[0]}
+                    <span class="connector" aria-hidden="true"></span>
+                    ${stages[1]}
+                    <span class="connector" aria-hidden="true"></span>
+                    ${stages[2]}
+                </div>
+            `;
+
+            const topics = {
+                core: {
+                    className: "topic-core",
+                    label: "Computer Vision and Learning",
+                    tags: [
+                        "Visual Recognition",
+                        "Representation",
+                        "Adaptation",
+                    ],
+                    diagram: flow([
+                        stage({
+                            index: "01",
+                            name: "See",
+                            body: `
+                                <div class="visual-frame">
+                                    <span class="visual-object"></span>
+                                </div>
+                            `,
+                            caption: "Visual input",
+                        }),
+                        stage({
+                            index: "02",
+                            name: "Represent",
+                            body: `<div class="feature-map">${featureCells}</div>`,
+                            caption: "Transferable features",
+                            dark: true,
+                        }),
+                        stage({
+                            index: "03",
+                            name: "Adapt",
+                            body: `<div class="domain-stack">${domainCards}</div>`,
+                            caption: "Robust generalization",
+                        }),
+                    ]),
+                },
+                "multi-modal": {
+                    className: "topic-multi-modal",
+                    label: "Efficient Learning for LLMs",
+                    tags: [
+                        "Model Compression",
+                        "Efficient Learning",
+                        "System Optimization",
+                    ],
+                    diagram: flow([
+                        stage({
+                            index: "01",
+                            name: "Model",
+                            body: `
+                                <div class="model-stack">
+                                    ${Array.from(
+                                        { length: 6 },
+                                        () =>
+                                            '<span class="model-layer"></span>',
+                                    ).join("")}
+                                </div>
+                            `,
+                            caption: "Large model",
+                        }),
+                        stage({
+                            index: "02",
+                            name: "Optimize",
+                            body: `
+                                <div class="compression">
+                                    <div class="compression__stack">
+                                        <span class="compression__bar"></span>
+                                        <span class="compression__bar"></span>
+                                        <span class="compression__bar"></span>
+                                        <span class="compression__bar"></span>
+                                    </div>
+                                    <span class="compression__arrow">→</span>
+                                    <div class="compression__stack">
+                                        <span class="compression__bar"></span>
+                                        <span class="compression__bar"></span>
+                                    </div>
+                                </div>
+                            `,
+                            caption: "Compact runtime",
+                            dark: true,
+                        }),
+                        stage({
+                            index: "03",
+                            name: "Deploy",
+                            body: `<div class="deploy-grid">${deployNodes}</div>`,
+                            caption: "Practical inference",
+                        }),
+                    ]),
+                },
+                application: {
+                    className: "topic-application",
+                    label: "Robot Learning",
+                    tags: [
+                        "Perception",
+                        "Vision-Language-Action",
+                        "Control",
+                    ],
+                    diagram: flow([
+                        stage({
+                            index: "01",
+                            name: "Perceive",
+                            body: `<div class="camera-view"></div>`,
+                            caption: "3D-aware scene",
+                        }),
+                        stage({
+                            index: "02",
+                            name: "Reason",
+                            body: `
+                                <div class="language-flow">
+                                    ${["V", "L", "A"]
+                                        .map(
+                                            (token) => `
+                                                <div class="language-row">
+                                                    <span class="language-token">${token}</span>
+                                                    <span class="language-line"></span>
+                                                </div>
+                                            `,
+                                        )
+                                        .join("")}
+                                </div>
+                            `,
+                            caption: "Instruction policy",
+                            dark: true,
+                        }),
+                        stage({
+                            index: "03",
+                            name: "Act",
+                            body: `
+                                <div class="robot-scene">
+                                    <span class="robot-arm"></span>
+                                    <span class="robot-object"></span>
+                                </div>
+                            `,
+                            caption: "Reliable behavior",
+                        }),
+                    ]),
+                },
+                biomedical: {
+                    className: "topic-biomedical",
+                    label: "Industrial and Medical AI",
+                    tags: [
+                        "Reliability",
+                        "Interpretability",
+                        "Validation",
+                    ],
+                    diagram: flow([
+                        stage({
+                            index: "01",
+                            name: "Industry",
+                            body: `
+                                <div class="industry-panel">
+                                    <div class="battery-grid">
+                                        <span class="battery"></span>
+                                        <span class="battery"></span>
+                                        <span class="battery"></span>
+                                    </div>
+                                    <span class="panel-status">Fault analytics</span>
+                                </div>
+                            `,
+                            caption: "System health",
+                        }),
+                        stage({
+                            index: "02",
+                            name: "Medical",
+                            body: `
+                                <div class="medical-panel">
+                                    <div class="scan"></div>
+                                    <span class="panel-status">Image intelligence</span>
+                                </div>
+                            `,
+                            caption: "Interpretable evidence",
+                            dark: true,
+                        }),
+                        stage({
+                            index: "03",
+                            name: "Validate",
+                            body: `
+                                <div class="validation">
+                                    ${["ROBUST", "CLEAR", "READY"]
+                                        .map(
+                                            (state) => `
+                                                <div class="validation-row">
+                                                    <span class="validation-check"></span>
+                                                    <span class="validation-line"></span>
+                                                    <span class="validation-state">${state}</span>
+                                                </div>
+                                            `,
+                                        )
+                                        .join("")}
+                                </div>
+                            `,
+                            caption: "Deployment protocol",
+                        }),
+                    ]),
+                },
+            };
+
+            const selected = topics[topic] || topics.core;
+            const footer = `
+                <footer class="footer">
+                    <span class="footer__label">Research focus</span>
+                    <div class="footer__tags">
+                        ${selected.tags
+                            .map(
+                                (tag) =>
+                                    `<span class="footer__tag">${tag}</span>`,
+                            )
+                            .join("")}
+                    </div>
+                </footer>
+            `;
+
+            document.getElementById("app").innerHTML = `
+                <main class="canvas canvas--${variant} ${selected.className}">
+                    <header class="topbar">
+                        <span class="identity">CVL-Lab / Research map</span>
+                        <span class="topic-label">${selected.label}</span>
+                    </header>
+                    <div class="diagram">${selected.diagram}</div>
+                    ${footer}
+                </main>
+            `;
+        </script>
+    </body>
+</html>

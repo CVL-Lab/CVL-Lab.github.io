@@ -3,13 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--stack-gap);
+    gap: var(--section-gap);
 }
 
 .contact__body {
     width: 100%;
     display: grid;
-    gap: var(--grid-gap);
+    gap: var(--section-head-bottom);
 }
 
 .contact__header {
@@ -26,7 +26,7 @@
     font-size: var(--meta-text-size);
     font-weight: var(--type-meta-weight);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0;
 }
 
 .contact__header h2 {
@@ -47,7 +47,7 @@
 }
 
 .contact__panel {
-    --surface-hover-bg: rgba(15, 23, 42, 0.025);
+    --surface-hover-bg: var(--surface-hover-soft);
     --surface-hover-shadow: var(--shadow-elev-1);
     --surface-hover-translate: var(--hover-translate-y-sm);
     --surface-hover-border: var(--tab-identity-border, var(--line-strong));
@@ -59,7 +59,7 @@
     border-radius: var(--radius-md);
     background: var(--surface);
     display: grid;
-    gap: var(--space-1p5);
+    gap: var(--space-2);
     transition: var(--transition-interactive);
 }
 
@@ -71,7 +71,7 @@
     );
     font-size: var(--meta-text-size);
     font-weight: var(--type-meta-weight);
-    letter-spacing: 0.045em;
+    letter-spacing: 0;
     text-transform: uppercase;
 }
 
@@ -84,12 +84,12 @@
 }
 
 .contact__location {
-    gap: var(--space-2);
+    gap: var(--section-head-bottom);
 }
 
 .contact__location-intro {
     display: grid;
-    gap: var(--space-1);
+    gap: var(--section-head-gap);
 }
 
 .contact__location-title {
@@ -112,7 +112,7 @@
 .contact__location-media {
     display: grid;
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: var(--space-2);
+    gap: var(--grid-gap);
     align-items: stretch;
     padding: var(--panel-pad-sm);
     border: 1px solid var(--tab-identity-border, var(--outline-color));
@@ -144,7 +144,7 @@
 
 .contact__map-media figcaption {
     margin: 0;
-    padding: 0.56rem 0.72rem;
+    padding: var(--space-2);
     border-top: 1px solid var(--tab-identity-border, var(--outline-color));
     color: var(--text-muted);
     font-size: var(--type-support-size);
@@ -199,7 +199,7 @@
 
 .contact__email-cta {
     width: 100%;
-    margin-top: var(--space-2);
+    margin-top: var(--section-head-bottom);
     display: flex;
     align-items: center;
 }
@@ -230,12 +230,18 @@
     font-weight: 700;
 }
 
+:root[data-theme="dark"] .contact__email-button {
+    --btn-bg: var(--tab-contact-accent, var(--accent-ui-500));
+    --btn-border: var(--tab-contact-accent, var(--accent-ui-500));
+    --btn-ink: var(--black);
+}
+
 .contact__email-icon {
     width: 1.1rem;
     height: 1.1rem;
     display: grid;
     place-items: center;
-    line-height: 1;
+    line-height: var(--control-icon-line-height);
     flex-shrink: 0;
 }
 
@@ -262,11 +268,11 @@
 
 @media (max-width: 52rem) {
     .contact {
-        gap: var(--space-3);
+        gap: var(--mobile-section-gap);
     }
 
     .contact__body {
-        gap: var(--space-2);
+        gap: var(--section-head-bottom);
     }
 
     .contact__panel {
@@ -274,7 +280,7 @@
     }
 
     .contact__location-media {
-        gap: var(--space-2);
+        gap: var(--grid-gap);
         padding: var(--panel-pad-sm);
     }
 

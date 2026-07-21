@@ -1,3 +1,12 @@
+@media (max-width: 52rem) {
+    :root {
+        --target-min: 2.5rem;
+        --btn-height: 2.5rem;
+        --btn-height-sm: 2.5rem;
+        --btn-icon-size: 2.5rem;
+    }
+}
+
 @media (max-width: 57rem) {
     .nav {
         align-items: center;
@@ -32,8 +41,8 @@
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
-        gap: var(--space-2);
-        padding: var(--space-3);
+        gap: var(--space-1);
+        padding: var(--panel-pad-sm);
         border: var(--outline-width) solid var(--outline-color);
         border-radius: var(--radius-lg);
         background: var(--surface);
@@ -60,15 +69,15 @@
 
     .nav__button {
         width: 100%;
-        min-height: 2.65rem;
+        min-height: var(--btn-height);
         justify-content: flex-start;
-        padding: 0.64rem 0.9rem;
+        padding: 0 var(--btn-pad-x);
     }
 }
 
 @media (max-width: 52rem) {
     .app__content {
-        gap: var(--space-3);
+        gap: var(--mobile-section-gap);
     }
 
     .tab-header {
@@ -76,7 +85,7 @@
     }
 
     .tab-header h1 {
-        font-size: clamp(1.45rem, 6vw, 1.9rem);
+        font-size: var(--page-title-size);
     }
 
     .tab-header h1::before {
@@ -108,7 +117,7 @@
 
     .nav__links {
         top: max(var(--space-2), env(safe-area-inset-top));
-        padding: var(--space-2);
+        padding: var(--panel-pad-sm);
     }
 
     .tab-header {

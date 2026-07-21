@@ -63,7 +63,13 @@ export default function HomeHighlights() {
             <>
               <div className="home-highlights__media">
                 {imageSrc ? (
-                  <img src={imageSrc} alt={item.alt || item.label} />
+                  <img
+                    src={imageSrc}
+                    alt={item.alt || item.label}
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(max-width: 768px) 45vw, 16rem"
+                  />
                 ) : (
                   <div className="home-highlights__media-placeholder">Image placeholder</div>
                 )}

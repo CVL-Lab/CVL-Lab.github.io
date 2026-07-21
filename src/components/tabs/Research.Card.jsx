@@ -49,6 +49,9 @@ function ResearchCard({
                         <img
                             src={image}
                             alt={`${title} representative visual`}
+                            loading="lazy"
+                            decoding="async"
+                            sizes="(max-width: 768px) 92vw, 20rem"
                         />
                     ) : (
                         <div className="research-card-media-placeholder">

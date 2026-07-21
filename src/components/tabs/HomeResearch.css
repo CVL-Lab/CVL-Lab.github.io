@@ -7,7 +7,7 @@
     box-shadow: none;
     display: flex;
     flex-direction: column;
-    gap: var(--grid-gap);
+    gap: var(--section-head-bottom);
 }
 
 .home-research__header {
@@ -16,7 +16,7 @@
     text-align: left;
     background: transparent;
     display: grid;
-    gap: var(--space-2);
+    gap: var(--section-head-gap);
 }
 
 .home-research__grid {
@@ -35,7 +35,7 @@
     --surface-hover-border: #cbd5e1;
 
     width: 100%;
-    min-height: 15.2rem;
+    min-height: 14.6rem;
     margin: 0;
     border: 1px solid var(--outline-color);
     border-radius: var(--radius-lg);
@@ -91,13 +91,13 @@
     font-size: var(--type-button-size);
     font-weight: 650;
     line-height: var(--type-button-line-height);
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
     text-shadow: 0 1px 8px rgba(15, 23, 42, 0.36);
 }
 
 .home-research__card-content {
     width: 100%;
-    padding: var(--space-2) var(--panel-pad) var(--panel-pad);
+    padding: var(--panel-pad-sm);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -150,7 +150,7 @@
 }
 
 .home-research__card-subtitle p {
-    padding: 0.14rem 0.5rem;
+    padding: var(--chip-pad-y) var(--chip-pad-x);
     border: 1px solid var(--outline-color);
     border-radius: 999px;
     background: var(--surface-2);
@@ -214,15 +214,15 @@
 
 @media (max-width: 52rem) {
     .home-research {
-        gap: var(--space-2);
+        gap: var(--section-head-bottom);
     }
 
     .home-research__header {
-        gap: var(--space-1);
+        gap: var(--section-head-gap);
     }
 
     .home-research__grid {
-        gap: var(--space-2);
+        gap: var(--grid-gap);
         padding: 0;
     }
 
@@ -235,8 +235,8 @@
     }
 
     .home-research__card-content {
-        padding: clamp(0.8rem, 3vw, 0.95rem);
-        gap: var(--space-1);
+        padding: var(--panel-pad-sm);
+        gap: var(--space-1p5);
     }
 
     .home-research__card-title {
@@ -244,7 +244,7 @@
     }
 
     .home-research__card-subtitle p {
-        padding: 0.12rem 0.46rem;
+        padding: var(--chip-pad-y) var(--chip-pad-x);
         font-size: var(--meta-text-size);
     }
 }
@@ -252,11 +252,11 @@
 @media (max-width: 47rem) {
     .home-research__grid {
         grid-template-columns: 1fr;
-        gap: var(--space-2);
+        gap: var(--grid-gap);
     }
 
     .home-research__card-content {
-        padding: clamp(0.82rem, 4vw, 0.98rem);
+        padding: var(--panel-pad-sm);
     }
 }
 

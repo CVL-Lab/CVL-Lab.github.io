@@ -44,7 +44,13 @@ function Contact() {
           <div className="contact__location-media">
             {mapMedia ? (
               <figure className="contact__map-media">
-                <img src={mapMedia} alt="CVL-Lab building and research environment at Ajou University" />
+                <img
+                  src={mapMedia}
+                  alt="CVL-Lab building and research environment at Ajou University"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 768px) 92vw, 34rem"
+                />
                 <figcaption>Ajou University campus and CVL-Lab environment</figcaption>
               </figure>
             ) : null}

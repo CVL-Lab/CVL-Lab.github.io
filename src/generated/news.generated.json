@@ -1,7 +1,7 @@
 {
   "meta": {
     "schema_version": "4.0",
-    "generated_at": "2026-04-20T08:29:55.609Z",
+    "generated_at": "2026-07-21T04:16:48.581Z",
     "default_sort": "date_desc",
     "source": "content/news + publications(published)",
     "type_labels": {

@@ -32,3 +32,14 @@ export const isValidExternalLink = (value) => {
     return false;
   }
 };
+
+export const getPersonalLinkItemsWithState = (homepage, links) =>
+  PERSONAL_LINK_ITEMS.map((item) => {
+    const url = getPersonalLinkUrl(item.key, homepage, links);
+
+    return {
+      ...item,
+      url,
+      isEnabled: isValidExternalLink(url),
+    };
+  });

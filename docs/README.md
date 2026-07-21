@@ -1,268 +1,64 @@
-# CVL-Lab 운영 문서 (GitHub Pages 정적 사이트)
+# CVL-Lab 운영 문서
 
-이 문서 세트는 **디자인/component 코드를 수정하지 않고**, 운영자가 content(News/Publication/Photo/People)를 지속적으로 업데이트할 수 있도록 만든 가이드입니다.  
-대상 독자는 **처음 project를 인수받은 운영자**이며, 개발 경험이 많지 않아도 바로 운영할 수 있게 구성했습니다.
+이 폴더는 CVL-Lab 홈페이지를 꾸준히 운영하기 위한 문서 모음입니다. 화면 코드를 고치지 않고도 News, Publication, Photo, People 정보를 안전하게 갱신하는 것을 목표로 합니다.
 
----
+## 먼저 볼 것
 
-## 1) 이 문서의 목적
+| 상황 | 이동할 문서 |
+| --- | --- |
+| 전체 운영 흐름을 알고 싶다 | `docs/pipeline/README.md` |
+| News를 추가하거나 수정한다 | `docs/news/README.md` |
+| 논문 정보를 추가하거나 수정한다 | `docs/publications/README.md` |
+| 사진을 추가하거나 정리한다 | `docs/photos/README.md` |
+| 구성원 정보를 수정한다 | `docs/people/README.md` |
+| 배포가 잘 됐는지 확인한다 | `docs/deployment/README.md` |
+| 오류가 났다 | `docs/troubleshooting/README.md` |
+| 예시 파일이 필요하다 | `docs/templates/README.md` |
 
-1. 운영자가 “어떤 파일을 수정해야 하는지”를 빠르게 파악한다.
-2. 코드(`src/components/...`)를 건드리지 않고 content만 변경한다.
-3. GitHub Pages 정적 deploy 흐름에서 안전하게 반영한다.
-4. 오류가 발생했을 때 점검 순서와 해결 방법을 즉시 찾는다.
+## 운영자가 자주 만지는 파일
 
----
+| 항목 | 원본 위치 | 사이트가 읽는 결과 |
+| --- | --- | --- |
+| News | `content/news/*.md` | `src/generated/news.generated.json` |
+| Publication | `content/publications/**/*.md` | `src/generated/publications.generated.json` |
+| Photo | `content/photos/raw/**` | `src/generated/photos.generated.json`, `public/uploads/photos/**` |
+| People | `src/assets/dataset/people.json` | React 화면에서 직접 사용 |
 
-## 2) 운영 대상 content (현재 기준)
+`src/generated/*`와 `public/uploads/photos/*`는 자동 생성 결과입니다. 직접 고치지 말고 원본을 수정한 뒤 스크립트를 다시 실행합니다.
 
-이번 구조에서 운영자가 직접 관리하는 대상은 아래 4개입니다.
+## 기본 작업 순서
 
-1. **News**: `content/news/*.md`
-2. **Publication**: `content/publications/**/*.md`
-3. **Photo 원본**: `content/photos/raw/**`  
-   (선택 metadata: `content/photos/metadata.json`)
-4. **People(구성원 정보)**: `src/assets/dataset/people.json` + `src/assets/images/people/people_image_index.js`
-
-사이트가 실제로 읽는 값은 사람이 직접 쓰는 원본이 아니라, 동기화 과정에서 생성되는 아래 파일입니다.
-
-- `src/generated/news.generated.json`
-- `src/generated/publications.generated.json`
-- `src/generated/photos.generated.json`
-
-참고: `status: published` publication은 sync 시 `paper_accepted` News로 자동 생성되어
-`src/generated/news.generated.json`에 함께 포함됩니다.
-
-Photo 최적화 출력물은 아래 경로에 생성됩니다.
-
-- `public/uploads/photos/...`
-
----
-
-## 3) 전체 운영 흐름 (한눈에 보기)
-
-### A. 로컬(내 PC)에서 운영할 때
-
-1. 원본 파일 추가/수정
-    - News/Publication/Photo: `content/...`
-    - People: `src/assets/dataset/people.json`
-2. `npm run content:sync` 실행 (생성 데이터 갱신)
-3. `npm run build` 실행 (검증 포함)
-4. 커밋/푸시
-5. GitHub Actions의 자동 deploy 성공 확인
-
-### B. GitHub 웹에서 바로 운영할 때
-
-1. GitHub 저장소에서 원본 파일 추가/수정
-    - News/Publication/Photo: `content/...`
-    - People: `src/assets/dataset/people.json` / `src/assets/images/people/people_image_index.js`
-2. Commit to `main`(또는 PR)
-3. Actions의 `Content Build Check` 성공 확인
-4. Actions의 `Deploy GitHub Pages` 성공 확인
-5. 사이트 반영 확인
-
-> 참고: 현재는 `.github/workflows/deploy-pages.yml`로 `main` push 시 자동 deploy됩니다.
-
----
-
-## 4) 어떤 문서를 언제 봐야 하는가
-
-- 전체 pipeline(처음 운영자 필독): `docs/pipeline/README.md`
-- News 추가/수정: `docs/news/README.md`
-- Publication 추가/수정: `docs/publications/README.md`
-- Photo 추가/최적화: `docs/photos/README.md`
-- People(교수/학생/인턴/졸업생) 관리: `docs/people/README.md`
-- deploy/반영 확인: `docs/deployment/README.md`
-- 오류 해결: `docs/troubleshooting/README.md`
-- 복사/붙여넣기용 template 모음: `docs/templates/README.md`
-
----
-
-## 5) 처음 운영을 맡았을 때 가장 먼저 할 일
-
-1. 아래 경로 존재 여부 확인
-    - `content/news`
-    - `content/publications`
-    - `content/photos/raw`
-    - `src/generated`
-2. 로컬 준비
-    - `npm install`
-3. 운영 pipeline 점검
-    - `npm run validate:content`
-    - `npm run content:sync`
-4. 생성 결과 확인
-    - `src/generated/*.generated.json`
-    - `public/uploads/photos/...`
-5. 테스트 반영 권장
-    - 브랜치에서 1건 샘플 추가 → PR → Actions 확인
-
-### 5-1. 인수인계 첫날(1일차) 권장 루틴
-
-1. 이 문서(`docs/README.md`)를 먼저 끝까지 읽습니다.
-2. 이어서 아래 순서로 읽습니다.
-    - `docs/pipeline/README.md`
-    - `docs/news/README.md`
-    - `docs/publications/README.md`
-    - `docs/photos/README.md`
-    - `docs/people/README.md`
-    - `docs/deployment/README.md`
-3. 로컬에서 아래 명령 1회 실행
-    ```bash
-    npm install
-    npm run validate:content
-    ```
-4. template을 이용해 “테스트용 News 1건”을 임시로 작성해보고(저장 전 취소 가능),
-   실제 입력 위치/필드 구조를 눈으로 확인합니다.
-5. 마지막으로 `docs/troubleshooting/README.md`를 읽고 자주 나는 오류를 숙지합니다.
-
----
-
-## 6) 공통 규칙 (중요)
-
-### 6-1. 날짜 형식
-
-- 반드시 `YYYY-MM-DD`
-- 올바른 예: `2026-03-16`
-- 잘못된 예: `2026/03/16`, `03-16-2026`, `2026.03.16`
-
-### 6-2. 링크 형식
-
-- 외부 링크는 `http://` 또는 `https://`로 시작
-- 링크가 없으면 `""` 또는 필드 미기입
-- News에서 `is_external: true`이면 `external_url` 필수
-
-### 6-3. 파일명/슬러그
-
-- 영문 소문자 + 숫자 + 하이픈(`-`) 권장
-- 공백 대신 하이픈 사용
-- 특수문자 최소화
-
-### 6-4. 절대 하지 말아야 할 것
-
-1. `src/generated/*.generated.json` 직접 수정
-2. `src/components/...`에 content 하드코딩
-3. 날짜 형식 임의 변경
-4. Photo 원본을 `src/assets/images/photo`에 직접 넣기  
-   (운영 입력 경로는 `content/photos/raw`로 통일)
-
----
-
-## 7) 운영 명령어 요약
+로컬에서 콘텐츠를 바꿀 때는 아래 순서를 기본으로 생각하면 됩니다.
 
 ```bash
-# (보통 1회) 기존 데이터에서 content 구조 초기 생성
-npm run content:bootstrap
-
-# News/Publication/Photo 전체 동기화 + generated 갱신
 npm run content:sync
-
-# Photo만 동기화(resize + manifest)
-npm run photos:sync
-
-# 형식/schema 검증
 npm run validate:content
-
-# build(자동으로 validate:content 선행)
 npm run build
-
-# 운영자 권장 1줄 검증(동기화 + build)
-npm run operator:verify
 ```
 
----
+Photo만 다시 만들 때는 `npm run photos:sync`를 사용할 수 있습니다.
 
-## 8) 운영자가 실제로 수정하는 파일 요약
+## GitHub에서 바로 수정할 때
 
-운영자는 기본적으로 아래만 수정하면 됩니다.
+1. `content/...` 또는 `src/assets/dataset/people.json`을 수정합니다.
+2. PR을 만들거나 `main`에 반영합니다.
+3. GitHub Actions에서 `Content Build Check`가 통과하는지 확인합니다.
+4. `Deploy GitHub Pages`가 끝난 뒤 실제 사이트를 확인합니다.
 
-1. News: `content/news/*.md`
-2. Publication: `content/publications/**/*.md`
-3. Photo: `content/photos/raw/**` (+ 필요 시 `content/photos/metadata.json`)
-4. People: `src/assets/dataset/people.json` (+ Photo 추가/교체 시 `src/assets/images/people/people_image_index.js`)
+## 기억할 규칙
 
-그 외 `src/generated/*`, `public/uploads/photos/*`는 자동 생성 결과물이므로 직접 편집하지 않습니다.
+- 날짜는 `YYYY-MM-DD` 형식을 사용합니다.
+- 외부 링크는 `https://...` 또는 `http://...`로 시작해야 합니다.
+- 파일명은 영문 소문자, 숫자, 하이픈 조합을 권장합니다.
+- Publication의 `status: published` 항목은 News에도 자동 반영됩니다.
+- 오류가 나면 먼저 `docs/troubleshooting/README.md`를 확인합니다.
 
----
+## 배포 전 체크
 
-## 9) 운영자 시나리오 점검 결과 (실검증)
+```bash
+npm run content:sync
+npm run validate:content
+npm run build
+```
 
-다음 4개 시나리오를 기준으로 실제 동작을 점검했습니다.
-
-1. 새 News 1개 추가
-2. 새 Publication 1개 추가
-3. 새 행사 Photo 여러 장 추가(샘플 1장으로 흐름 검증)
-4. GitHub push 후 deploy 확인
-
-검증 결과 요약:
-
-- 임시 content를 추가한 상태에서 `npm run validate:content` 통과 확인
-    - News: 10 -> 11
-    - Publication: 6 -> 7
-    - Photo: 13 -> 14
-- 임시 content 제거 후 재검증
-    - News: 10
-    - Publication: 6
-    - Photo: 13
-- 즉, 현재 content schema/자동화 script는 운영 시나리오 기준으로 정상 작동합니다.
-
----
-
-## 10) 최종 운영 체크리스트
-
-### 10-1. News 추가 체크리스트
-
-1. `content/news/`에 새 `.md` 파일 생성
-2. 필수 필드 입력 (`id`, `type`, `title`, `summary`, `date`)
-3. 날짜 형식 `YYYY-MM-DD` 확인
-4. 외부 News면 `is_external: true` + `external_url` 입력
-5. `npm run content:sync`
-6. `npm run validate:content`
-7. Home 최신 News + `/news` page 확인
-
-### 10-2. Publication 추가 체크리스트
-
-1. `content/publications/<category>/`에 새 `.md` 파일 생성
-2. 필수 필드 입력 (`id`, `category`, `status`, `title`, `date`, `authors`, `venue`)
-3. `category` 값 확인 (`application`, `biomedical`, `core`, `multi-modal`)
-4. `pdf_url`, `arxiv_url`, `github_url`, `project_url` 입력 여부 점검
-5. `npm run content:sync`
-6. `npm run validate:content`
-7. `/publication` + Home preview 확인
-
-### 10-3. Photo 추가 체크리스트
-
-1. 원본 파일을 `content/photos/raw/<category>/<YYYY-MM-DD>__<slug>/`에 추가
-2. 필요 시 `content/photos/metadata.json`에 제목/설명/순서 보정
-3. `npm run photos:sync` 또는 `npm run content:sync`
-4. `npm run validate:content`
-5. `public/uploads/photos/...` 생성 여부 확인
-6. `/photo`에서 썸네일/확대보기 확인
-
-### 10-4. deploy 확인 체크리스트
-
-1. 변경사항 push
-2. GitHub Actions에서 `Content Build Check` 성공 확인
-3. GitHub Actions에서 `Deploy GitHub Pages` 성공 확인
-4. 실제 사이트에서 아래 경로 확인
-    - `/news`
-    - `/publication`
-    - `/photo`
-    - Home 최신 미리보기
-5. 반영이 안 보이면 강력 새로고침 후 재확인
-
-### 10-5. People 업데이트 체크리스트
-
-1. `src/assets/dataset/people.json`에서 올바른 section에 수정했는지 확인
-2. 인원 이동 시 원본 section에서 삭제했는지 확인 (중복 방지)
-3. Photo 변경 시 `src/assets/images/people/people_image_index.js` 매핑 확인
-4. 링크 URL 형식(`https://...`) 확인
-5. 로컬에서 `npm run build` 확인
-6. 상세 규칙은 `docs/people/README.md` 참고
-
----
-
-## 11) 문서 업데이트 원칙
-
-- 운영 구조가 바뀌면 코드보다 먼저 `docs/`를 갱신합니다.
-- “실제 경로/실제 명령/실제 오류 메시지” 기준으로 작성합니다.
-- 추측성 문장 대신 검증된 동작만 문서화합니다.
+위 세 명령이 통과하면 운영 데이터와 빌드 상태는 기본적으로 안전합니다.

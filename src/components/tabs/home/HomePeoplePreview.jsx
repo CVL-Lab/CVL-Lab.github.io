@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
 import { getLatestPhotoItems, getPeopleSpotlight } from "./homeData";
 import {
-    PERSONAL_LINK_ITEMS,
-    getPersonalLinkUrl,
-    isValidExternalLink,
+    getPersonalLinkItemsWithState,
 } from "../peopleCardShared";
 
 const withBasePath = (relativePath) => {
@@ -36,116 +34,104 @@ export default function HomePeoplePreview() {
             </div>
 
             <div className="home-people__grid">
-                {members.map((member, index) => (
-                    <article
-                        key={member.id}
-                        data-reveal
-                        data-reveal-load-delay={`${120 + index * 60}`}
-                        style={{ "--reveal-delay": `${index * 60}ms` }}
-                        className="home-people__member-card interactive-card">
-                        <div className="home-people__member-main">
-                            <div className="home-people__member-identity">
-                                <div className="home-people__member-photo">
-                                    {member.image ? (
-                                        <img
-                                            src={member.image}
-                                            alt={member.name}
-                                        />
-                                    ) : (
-                                        <span>{member.name?.[0]}</span>
-                                    )}
+                {members.map((member, index) => {
+                    const personalLinks = getPersonalLinkItemsWithState(
+                        member.homepage,
+                        member.links,
+                    );
+
+                    return (
+                        <article
+                            key={member.id}
+                            data-reveal
+                            data-reveal-load-delay={`${120 + index * 60}`}
+                            style={{ "--reveal-delay": `${index * 60}ms` }}
+                            className="home-people__member-card interactive-card">
+                            <div className="home-people__member-main">
+                                <div className="home-people__member-identity">
+                                    <div className="home-people__member-photo">
+                                        {member.image ? (
+                                            <img
+                                                src={member.image}
+                                                alt={member.name}
+                                                loading="lazy"
+                                                decoding="async"
+                                                sizes="(max-width: 768px) 40vw, 10rem"
+                                            />
+                                        ) : (
+                                            <span>{member.name?.[0]}</span>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="home-people__member-content">
-                                <h3 className="home-people__meta-line home-people__meta-line--name">
-                                    <span
-                                        className="home-people__meta-icon"
-                                        aria-hidden="true">
-                                        <FontAwesomeIcon icon={faUser} />
-                                    </span>
-                                    <span>{member.name}</span>
-                                </h3>
+                                <div className="home-people__member-content">
+                                    <h3 className="home-people__meta-line home-people__meta-line--name">
+                                        <span
+                                            className="home-people__meta-icon"
+                                            aria-hidden="true">
+                                            <FontAwesomeIcon icon={faUser} />
+                                        </span>
+                                        <span>{member.name}</span>
+                                    </h3>
 
-                                <div className="home-people__member-header-divider" />
+                                    <div className="home-people__member-header-divider" />
 
-                                <div className="home-people__member-meta">
-                                    <p className="home-people__meta-line home-people__member-position">
-                                        <span>{member.position}</span>
-                                    </p>
-                                    {member.email ? (
-                                        <a
-                                            className="home-people__meta-line home-people__member-email"
-                                            href={`mailto:${member.email}`}>
-                                            <span
-                                                className="home-people__meta-icon"
-                                                aria-hidden="true">
-                                                <FontAwesomeIcon
-                                                    icon={faEnvelope}
-                                                />
-                                            </span>
-                                            <span>{member.email}</span>
-                                        </a>
-                                    ) : (
-                                        <p className="home-people__meta-line home-people__member-email home-people__member-email--placeholder">
-                                            <span
-                                                className="home-people__meta-icon"
-                                                aria-hidden="true">
-                                                <FontAwesomeIcon
-                                                    icon={faEnvelope}
-                                                />
-                                            </span>
-                                            <span>Email not listed</span>
+                                    <div className="home-people__member-meta">
+                                        <p className="home-people__meta-line home-people__member-position">
+                                            <span>{member.position}</span>
                                         </p>
-                                    )}
-                                </div>
+                                        {member.email ? (
+                                            <a
+                                                className="home-people__meta-line home-people__member-email"
+                                                href={`mailto:${member.email}`}>
+                                                <span
+                                                    className="home-people__meta-icon"
+                                                    aria-hidden="true">
+                                                    <FontAwesomeIcon
+                                                        icon={faEnvelope}
+                                                    />
+                                                </span>
+                                                <span>{member.email}</span>
+                                            </a>
+                                        ) : null}
+                                    </div>
 
-                                <div
-                                    className="home-people__action-group"
-                                    aria-label={`${member.name} external profile links`}>
-                                    <div className="home-people__social-links">
-                                        {PERSONAL_LINK_ITEMS.map((item) => {
-                                            const url = getPersonalLinkUrl(
-                                                item.key,
-                                                member.homepage,
-                                                member.links,
-                                            );
-                                            const isEnabled =
-                                                isValidExternalLink(url);
-
-                                            if (!isEnabled) {
-                                                return (
+                                    <div
+                                        className="home-people__action-group"
+                                        aria-label={`${member.name} external profile links`}>
+                                        <div className="home-people__social-links">
+                                            {personalLinks.map((item) =>
+                                                item.isEnabled ? (
+                                                    <a
+                                                        key={item.key}
+                                                        href={item.url}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="home-people__social-link btn btn--icon btn--sm interactive-button"
+                                                        aria-label={`${member.name} ${item.label}`}>
+                                                        <FontAwesomeIcon
+                                                            icon={item.icon}
+                                                        />
+                                                    </a>
+                                                ) : (
                                                     <span
                                                         key={item.key}
                                                         className="home-people__social-link home-people__social-link--disabled btn btn--icon btn--sm is-disabled"
+                                                        title={`${item.label} not listed`}
                                                         aria-hidden="true">
                                                         <FontAwesomeIcon
                                                             icon={item.icon}
                                                         />
                                                     </span>
-                                                );
-                                            }
-
-                                            return (
-                                                <a
-                                                    key={item.key}
-                                                    href={url}
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    className="home-people__social-link btn btn--icon btn--sm interactive-button"
-                                                    aria-label={`${member.name} ${item.label}`}>
-                                                    <FontAwesomeIcon
-                                                        icon={item.icon}
-                                                    />
-                                                </a>
-                                            );
-                                        })}
+                                                ),
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </article>
-                ))}
+                        </article>
+                    );
+                })}
             </div>
 
             <section
