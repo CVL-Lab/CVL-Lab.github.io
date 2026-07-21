@@ -129,6 +129,8 @@ export const getPeopleSpotlight = () =>
                 homepage: person.homepage,
                 links: person.links,
                 image: person.image,
+                research_interests: person.research_interests,
+                current_position: person.current_position,
             },
         ];
     });

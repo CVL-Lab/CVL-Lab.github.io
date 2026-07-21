@@ -66,20 +66,11 @@
     width: min(22rem, 58%);
     height: 0.36rem;
     border-radius: 999px;
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            var(--motion-sheen) 46%,
-            transparent 76%
-        ),
-        color-mix(
-            in srgb,
-            var(--tab-identity-accent, var(--line-strong)) 34%,
-            transparent
-        );
-    background-size: 220% 100%, 100% 100%;
-    animation: loading-line-sweep 1.15s var(--ease-standard) infinite;
+    background: color-mix(
+        in srgb,
+        var(--tab-identity-accent, var(--line-strong)) 34%,
+        transparent
+    );
 }
 
 .main-content__body--home {
@@ -582,15 +573,5 @@
     to {
         opacity: 1;
         transform: scaleX(1);
-    }
-}
-
-@keyframes loading-line-sweep {
-    from {
-        background-position: 120% 0, 0 0;
-    }
-
-    to {
-        background-position: -120% 0, 0 0;
     }
 }

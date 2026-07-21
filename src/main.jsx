@@ -22,8 +22,23 @@ if (!container) {
     throw new Error("Root container not found");
 }
 
-if (container.hasChildNodes()) {
+const normalizeRoutePath = (pathname = "/") => {
+    const normalized = pathname.replace(/\/+$/, "");
+    return normalized || "/";
+};
+
+const renderedRoute = container.firstElementChild?.getAttribute(
+    "data-rendered-route",
+);
+const canHydrate =
+    container.hasChildNodes() &&
+    renderedRoute &&
+    normalizeRoutePath(renderedRoute) ===
+        normalizeRoutePath(window.location.pathname);
+
+if (canHydrate) {
     hydrateRoot(container, appTree);
 } else {
+    container.replaceChildren();
     createRoot(container).render(appTree);
 }

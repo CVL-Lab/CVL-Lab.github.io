@@ -9,7 +9,6 @@ import {
     getDocumentTheme,
     LIGHT_THEME,
     persistTheme,
-    resolvePreferredTheme,
     THEME_CHANGE_EVENT,
 } from "../utils/themeMode";
 import { scrollWindowTo } from "../utils/scrollMotion";
@@ -20,11 +19,19 @@ function BackToTopButton() {
     const location = useLocation();
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
-    const [themeMode, setThemeMode] = useState(() => resolvePreferredTheme());
+    const [themeMode, setThemeMode] = useState(LIGHT_THEME);
 
     useEffect(() => {
+        let wasVisible = false;
+
         const handleScroll = () => {
-            setIsVisible(window.scrollY > FAB_VISIBILITY_SCROLL_Y);
+            const nextVisible = window.scrollY > FAB_VISIBILITY_SCROLL_Y;
+            if (nextVisible === wasVisible) {
+                return;
+            }
+
+            wasVisible = nextVisible;
+            setIsVisible(nextVisible);
         };
 
         handleScroll();

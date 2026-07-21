@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
+  const barRef = useRef(null);
 
   useEffect(() => {
-    let ticking = false;
+    let frameId = 0;
 
     const updateProgress = () => {
       const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
       const scrollRange = scrollHeight - clientHeight;
       const nextProgress = scrollRange > 0 ? Math.min(scrollTop / scrollRange, 1) : 0;
-      setProgress(nextProgress);
-      ticking = false;
+      barRef.current?.style.setProperty("transform", `scaleX(${nextProgress})`);
+      frameId = 0;
     };
 
     const handleScroll = () => {
-      if (ticking) {
+      if (frameId) {
         return;
       }
 
-      ticking = true;
-      window.requestAnimationFrame(updateProgress);
+      frameId = window.requestAnimationFrame(updateProgress);
     };
 
     updateProgress();
@@ -30,17 +29,15 @@ function ScrollProgress() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
     };
   }, []);
 
   return (
     <div className="scroll-progress" aria-hidden="true">
-      <span
-        className="scroll-progress__bar"
-        style={{
-          transform: `scaleX(${progress})`,
-        }}
-      />
+      <span className="scroll-progress__bar" ref={barRef} />
     </div>
   );
 }

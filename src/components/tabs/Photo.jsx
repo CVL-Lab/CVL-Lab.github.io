@@ -77,7 +77,7 @@ const lockBodyScroll = () => {
 };
 
 function Photo() {
-  const [rowHeight, setRowHeight] = useState(getResponsiveRowHeight);
+  const [rowHeight, setRowHeight] = useState(DESKTOP_ROW_HEIGHT);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [galleryWidth, setGalleryWidth] = useState(0);
   const galleryRef = useRef(null);

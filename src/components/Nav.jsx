@@ -6,7 +6,6 @@ import {
     DARK_THEME,
     getDocumentTheme,
     LIGHT_THEME,
-    resolvePreferredTheme,
     THEME_CHANGE_EVENT,
 } from "../utils/themeMode";
 import {
@@ -49,16 +48,8 @@ export default function Nav() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isNavVisible, setIsNavVisible] = useState(true);
     const [isNavReturning, setIsNavReturning] = useState(false);
-    const [isMobileNav, setIsMobileNav] = useState(() => {
-        if (
-            typeof window === "undefined" ||
-            typeof window.matchMedia !== "function"
-        ) {
-            return false;
-        }
-        return window.matchMedia(MOBILE_NAV_QUERY).matches;
-    });
-    const [themeMode, setThemeMode] = useState(() => resolvePreferredTheme());
+    const [isMobileNav, setIsMobileNav] = useState(false);
+    const [themeMode, setThemeMode] = useState(LIGHT_THEME);
     const isNavVisibleRef = useRef(true);
     const navReturnTimeoutRef = useRef(null);
     const programmaticScrollUntilRef = useRef(0);

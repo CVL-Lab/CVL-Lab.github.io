@@ -14,10 +14,16 @@ const CvlLab = lazy(() => import("./components/tabs/CvlLab"));
 
 function InteractiveBackdrop() {
     const backdropRef = useRef(null);
+    const gridRef = useRef(null);
+    const bandRef = useRef(null);
+    const cursorRef = useRef(null);
 
     useEffect(() => {
         const node = backdropRef.current;
-        if (!node || typeof window === "undefined") {
+        const grid = gridRef.current;
+        const band = bandRef.current;
+        const cursor = cursorRef.current;
+        if (!node || !grid || !band || !cursor || typeof window === "undefined") {
             return undefined;
         }
 
@@ -27,145 +33,221 @@ function InteractiveBackdrop() {
         const pointerQuery = window.matchMedia?.(
             "(hover: hover) and (pointer: fine)",
         );
+        const slowUpdateQuery = window.matchMedia?.("(update: slow)");
+        const connection =
+            navigator.connection ||
+            navigator.mozConnection ||
+            navigator.webkitConnection;
+        const isConstrainedDevice =
+            (Number.isFinite(navigator.deviceMemory) &&
+                navigator.deviceMemory < 4) ||
+            (Number.isFinite(navigator.hardwareConcurrency) &&
+                navigator.hardwareConcurrency < 4);
+        const scanInitialDelay = 320;
+        const scanRestDuration = 4800;
         let frameId = 0;
-        let scrollFrameId = 0;
-        let latestPointer = null;
-        let latestScrollY = window.scrollY;
+        let scanTimerId = 0;
+        let isListening = false;
+        let latestPointer = {
+            x: window.innerWidth * 0.5,
+            y: window.innerHeight * 0.42,
+        };
+
+        const resetTransforms = () => {
+            grid.style.removeProperty("transform");
+            cursor.style.removeProperty("transform");
+        };
 
         const writePointer = () => {
             frameId = 0;
-            if (!latestPointer) {
-                return;
-            }
-
             const x = Math.min(
                 1,
-                Math.max(0, latestPointer.clientX / window.innerWidth),
+                Math.max(0, latestPointer.x / window.innerWidth),
             );
             const y = Math.min(
                 1,
-                Math.max(0, latestPointer.clientY / window.innerHeight),
+                Math.max(0, latestPointer.y / window.innerHeight),
             );
+            const gridX = (x - 0.5) * -14;
+            const gridY = (y - 0.5) * -10;
 
-            node.style.setProperty("--backdrop-x", x.toFixed(4));
-            node.style.setProperty("--backdrop-y", y.toFixed(4));
-            node.style.setProperty(
-                "--backdrop-left",
-                `${(x * 100).toFixed(2)}%`,
-            );
-            node.style.setProperty(
-                "--backdrop-top",
-                `${(y * 100).toFixed(2)}%`,
-            );
-            node.style.setProperty(
-                "--backdrop-shift-x",
-                `${((x - 0.5) * -28).toFixed(2)}px`,
-            );
-            node.style.setProperty(
-                "--backdrop-shift-y",
-                `${((y - 0.5) * -20).toFixed(2)}px`,
-            );
-            node.style.setProperty(
-                "--backdrop-band-shift-x",
-                `${((x - 0.5) * 15).toFixed(2)}px`,
-            );
-            node.style.setProperty(
-                "--backdrop-band-shift-y",
-                `${((y - 0.5) * 7).toFixed(2)}px`,
-            );
+            grid.style.transform = `translate3d(${gridX.toFixed(2)}px, ${gridY.toFixed(2)}px, 0)`;
+            cursor.style.transform = `translate3d(${latestPointer.x.toFixed(2)}px, ${latestPointer.y.toFixed(2)}px, 0) translate(-50%, -50%)`;
         };
 
         const handlePointerMove = (event) => {
-            latestPointer = event;
+            latestPointer = { x: event.clientX, y: event.clientY };
             if (!frameId) {
                 frameId = window.requestAnimationFrame(writePointer);
             }
         };
 
-        const writeScroll = () => {
-            scrollFrameId = 0;
-            node.style.setProperty(
-                "--backdrop-scroll",
-                `${Math.round(latestScrollY % 180)}px`,
-            );
-            node.style.setProperty(
-                "--backdrop-scroll-shift",
-                `${Math.round((latestScrollY % 180) * -0.08)}px`,
-            );
-        };
-
-        const handleScroll = () => {
-            latestScrollY = window.scrollY;
-            if (!scrollFrameId) {
-                scrollFrameId = window.requestAnimationFrame(writeScroll);
+        const getMotionState = () => {
+            if (document.hidden) {
+                return { mode: "static", reason: "document-hidden" };
             }
+            if (motionQuery?.matches) {
+                return { mode: "static", reason: "reduced-motion" };
+            }
+            if (slowUpdateQuery?.matches) {
+                return { mode: "static", reason: "slow-update" };
+            }
+            if (connection?.saveData) {
+                return { mode: "static", reason: "save-data" };
+            }
+            if (isConstrainedDevice) {
+                return { mode: "static", reason: "constrained-device" };
+            }
+            if (!(pointerQuery?.matches ?? true)) {
+                return { mode: "static", reason: "coarse-pointer" };
+            }
+            return { mode: "interactive", reason: "pointer" };
         };
 
-        const canAnimate =
-            !motionQuery?.matches && (pointerQuery?.matches ?? true);
-        if (!canAnimate) {
-            writeScroll();
-            return undefined;
-        }
+        const stopScan = () => {
+            if (scanTimerId) {
+                window.clearTimeout(scanTimerId);
+                scanTimerId = 0;
+            }
+            band.classList.remove("is-scanning");
+        };
 
-        window.addEventListener("pointermove", handlePointerMove, {
-            passive: true,
-        });
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        handleScroll();
+        const scheduleScan = (delay) => {
+            if (
+                scanTimerId ||
+                band.classList.contains("is-scanning") ||
+                getMotionState().mode !== "interactive"
+            ) {
+                return;
+            }
 
-        return () => {
+            scanTimerId = window.setTimeout(() => {
+                scanTimerId = 0;
+                if (getMotionState().mode === "interactive") {
+                    band.classList.add("is-scanning");
+                }
+            }, delay);
+        };
+
+        const handleScanEnd = (event) => {
+            if (event.animationName !== "backdrop-band-scan") {
+                return;
+            }
+            band.classList.remove("is-scanning");
+            scheduleScan(scanRestDuration);
+        };
+
+        const syncInteraction = () => {
+            const motionState = getMotionState();
+            const shouldListen = motionState.mode === "interactive";
+            node.dataset.motion = motionState.mode;
+            node.dataset.motionReason = motionState.reason;
+
+            if (shouldListen) {
+                scheduleScan(scanInitialDelay);
+            } else {
+                stopScan();
+            }
+
+            if (shouldListen === isListening) {
+                return;
+            }
+
+            isListening = shouldListen;
+            if (shouldListen) {
+                window.addEventListener("pointermove", handlePointerMove, {
+                    passive: true,
+                });
+                return;
+            }
+
             window.removeEventListener("pointermove", handlePointerMove);
-            window.removeEventListener("scroll", handleScroll);
             if (frameId) {
                 window.cancelAnimationFrame(frameId);
+                frameId = 0;
             }
-            if (scrollFrameId) {
-                window.cancelAnimationFrame(scrollFrameId);
+            resetTransforms();
+        };
+
+        const mediaQueries = [motionQuery, pointerQuery, slowUpdateQuery].filter(
+            Boolean,
+        );
+        mediaQueries.forEach((query) =>
+            query.addEventListener?.("change", syncInteraction),
+        );
+        connection?.addEventListener?.("change", syncInteraction);
+        document.addEventListener("visibilitychange", syncInteraction);
+        band.addEventListener("animationend", handleScanEnd);
+        syncInteraction();
+
+        return () => {
+            mediaQueries.forEach((query) =>
+                query.removeEventListener?.("change", syncInteraction),
+            );
+            connection?.removeEventListener?.("change", syncInteraction);
+            document.removeEventListener("visibilitychange", syncInteraction);
+            band.removeEventListener("animationend", handleScanEnd);
+            stopScan();
+            if (isListening) {
+                window.removeEventListener("pointermove", handlePointerMove);
+            }
+            if (frameId) {
+                window.cancelAnimationFrame(frameId);
             }
         };
     }, []);
 
     return (
-        <div className="app-backdrop" ref={backdropRef} aria-hidden="true">
-            <div className="app-backdrop__grid" />
-            <div className="app-backdrop__band" />
-            <div className="app-backdrop__cursor" />
+        <div
+            className="app-backdrop"
+            ref={backdropRef}
+            data-motion="static"
+            data-motion-reason="initializing"
+            aria-hidden="true">
+            <div className="app-backdrop__grid" ref={gridRef} />
+            <div className="app-backdrop__band" ref={bandRef} />
+            <div className="app-backdrop__cursor" ref={cursorRef} />
         </div>
     );
 }
 
-function App() {
-    const location = useLocation();
-    const selectedTab = resolveTabFromPath(location.pathname);
-    const appClassName = `app app--${selectedTab || "home"}`;
+// The factory keeps the lazy client tree and eager SSG tree structurally identical.
+// eslint-disable-next-line react-refresh/only-export-components
+export function createAppShell(HeroComponent, RoutesComponent) {
+    return function AppShell() {
+        const location = useLocation();
+        const selectedTab = resolveTabFromPath(location.pathname);
+        const appClassName = `app app--${selectedTab || "home"}`;
 
-    return (
-        <div className={appClassName}>
-            <InteractiveBackdrop />
-            <ScrollProgress />
-            <RouteScrollManager />
-            <div className="app__content site-shell">
-                <Nav />
-                {selectedTab === "home" ? (
-                    <Suspense
-                        fallback={
-                            <div
-                                className="app__hero-loading"
-                                aria-hidden="true"
-                            />
-                        }>
-                        <CvlLab isHome />
-                    </Suspense>
-                ) : null}
-                <MainContent selectedTab={selectedTab}>
-                    <AppRoutes />
-                </MainContent>
+        return (
+            <div className={appClassName} data-rendered-route={location.pathname}>
+                <InteractiveBackdrop />
+                <ScrollProgress />
+                <RouteScrollManager />
+                <div className="app__content site-shell">
+                    <Nav />
+                    {selectedTab === "home" ? (
+                        <Suspense
+                            fallback={
+                                <div
+                                    className="app__hero-loading"
+                                    aria-hidden="true"
+                                />
+                            }>
+                            <HeroComponent isHome />
+                        </Suspense>
+                    ) : null}
+                    <MainContent selectedTab={selectedTab}>
+                        <RoutesComponent />
+                    </MainContent>
+                </div>
+                <BackToTopButton />
+                <Footer />
             </div>
-            <BackToTopButton />
-            <Footer />
-        </div>
-    );
+        );
+    };
 }
+
+const App = createAppShell(CvlLab, AppRoutes);
 
 export default App;
