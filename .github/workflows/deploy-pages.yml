@@ -46,7 +46,7 @@ jobs:
         run: npm run validate:content
 
       - name: Build Site
-        run: npm run build
+        run: npm run build:static
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
