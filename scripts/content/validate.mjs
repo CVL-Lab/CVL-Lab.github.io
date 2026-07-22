@@ -1,4 +1,5 @@
 import { syncNewsContent } from "./news.mjs";
+import { syncPeopleImages } from "./people.mjs";
 import { syncPublicationContent } from "./publications.mjs";
 import { syncPhotoContent } from "./photos.mjs";
 
@@ -8,6 +9,7 @@ const run = async () => {
     });
     await syncNewsContent({ validateOnly: true, publicationItems });
     await syncPhotoContent({ validateOnly: true });
+    await syncPeopleImages({ validateOnly: true });
     console.log("[content] validation completed");
 };
 

@@ -22,9 +22,9 @@
 | News | `content/news/*.md` | `src/generated/news.generated.json` |
 | Publication | `content/publications/**/*.md` | `src/generated/publications.generated.json` |
 | Photo | `content/photos/raw/**` | `src/generated/photos.generated.json`, `public/uploads/photos/**` |
-| People | `src/assets/dataset/people.json` | React 화면에서 직접 사용 |
+| People | `src/assets/dataset/people.json`, `src/assets/images/people/*` | 최적화된 WebP와 자동 생성 이미지 index |
 
-`src/generated/*`와 `public/uploads/photos/*`는 자동 생성 결과입니다. 직접 고치지 말고 원본을 수정한 뒤 스크립트를 다시 실행합니다.
+`src/generated/*`, `public/uploads/photos/*`, People의 `optimized/*`와 이미지 index는 자동 생성 결과입니다. 직접 고치지 말고 원본을 수정한 뒤 스크립트를 다시 실행합니다.
 
 ## 기본 작업 순서
 
@@ -37,10 +37,11 @@ npm run build
 ```
 
 Photo만 다시 만들 때는 `npm run photos:sync`를 사용할 수 있습니다.
+People 이미지만 다시 만들 때는 `npm run people:sync`를 사용할 수 있습니다.
 
 ## GitHub에서 바로 수정할 때
 
-1. `content/...` 또는 `src/assets/dataset/people.json`을 수정합니다.
+1. `content/...`, `src/assets/dataset/people.json` 또는 People 프로필 원본을 수정합니다.
 2. PR을 만들거나 `main`에 반영합니다.
 3. GitHub Actions에서 `Content Build Check`가 통과하는지 확인합니다.
 4. `Deploy GitHub Pages`가 끝난 뒤 실제 사이트를 확인합니다.

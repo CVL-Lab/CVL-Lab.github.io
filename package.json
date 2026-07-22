@@ -8,6 +8,8 @@
         "content:bootstrap": "node scripts/content/bootstrap-from-legacy.mjs",
         "content:sync": "node scripts/content/sync.mjs",
         "photos:sync": "node scripts/content/photos.mjs",
+        "people:sync": "node scripts/content/people.mjs",
+        "people:validate": "node scripts/content/people.mjs --validate-only",
         "validate:content": "node scripts/content/validate.mjs",
         "operator:verify": "npm run content:sync && npm run build",
         "prebuild": "npm run validate:content",

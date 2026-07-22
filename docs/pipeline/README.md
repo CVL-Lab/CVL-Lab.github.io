@@ -36,7 +36,7 @@
     - `content/photos/metadata.json` (선택)
 4. People 데이터
     - `src/assets/dataset/people.json`
-    - `src/assets/images/people/people_image_index.js` (사람 Photo 연결 시)
+    - `src/assets/images/people/*.{jpg,jpeg,png,webp}` (프로필 원본)
 
 ## 2-2. 자동 생성되는 경로 (Auto-generated)
 
@@ -46,16 +46,20 @@
     - `src/generated/photos.generated.json`
 2. Photo 최적화 결과
     - `public/uploads/photos/...`
-3. build 산출물
+3. People 최적화 결과
+    - `src/assets/images/people/optimized/*.webp`
+    - `src/assets/images/people/optimized/manifest.generated.json`
+4. build 산출물
     - `dist/...`
 
 ## 2-3. 직접 수정 금지 경로
 
 - `src/generated/*`
 - `public/uploads/photos/*`
+- `src/assets/images/people/optimized/*`
 - `dist/*`
 
-이 경로들은 직접 고치는 대신, `content:sync` / `photos:sync` / `build`로 재생성해야 합니다.
+이 경로들은 직접 고치는 대신, `content:sync` / `photos:sync` / `people:sync` / `build`로 재생성해야 합니다.
 
 ---
 
@@ -71,7 +75,7 @@
     - `content/photos/raw/<category>/<YYYY-MM-DD>__<slug>/...`
 4. People 정보 수정
     - `src/assets/dataset/people.json`
-    - 필요 시 `src/assets/images/people/people_image_index.js`
+    - 필요 시 `src/assets/images/people/`에 프로필 원본 추가
 5. content 동기화
     ```bash
     npm run content:sync
@@ -103,11 +107,17 @@
 # (초기 1회 권장) 레거시 데이터에서 content 구조 생성 보조
 npm run content:bootstrap
 
-# News/Publication/Photo 전체 동기화 (generated JSON 갱신)
+# News/Publication/Photo/People 전체 동기화
 npm run content:sync
 
 # Photo만 동기화(resize/최적화/manifest)
 npm run photos:sync
+
+# People 프로필만 동기화(WebP 생성/자동 연결)
+npm run people:sync
+
+# People 데이터와 이미지 매칭만 검증
+npm run people:validate
 
 # schema/형식 검증
 npm run validate:content
@@ -115,7 +125,7 @@ npm run validate:content
 # 로컬 개발 server 실행
 npm run dev
 
-# 프로덕션 build (prebuild에서 validate:content 자동 실행)
+# 프로덕션 build (prebuild에서 People를 포함한 validate:content 자동 실행)
 npm run build
 
 # build 결과 로컬 preview
@@ -248,9 +258,10 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 
 1. `src/assets/dataset/people.json` 수정
 2. section 이동 시 기존 section에서 제거(중복 방지)
-3. Photo 교체 시 `people_image_index.js` 매핑 확인
-4. 링크 URL 형식 확인
-5. `npm run build`로 JSON/렌더링 오류 확인
+3. Photo 추가/교체 시 `src/assets/images/people/`에 원본 저장
+4. `npm run people:sync` 실행
+5. 링크 URL 형식 확인
+6. `npm run build`로 JSON/렌더링 오류 확인
 
 ## 9-5. deploy 전 체크리스트
 

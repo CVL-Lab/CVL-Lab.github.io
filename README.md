@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | 화면 디자인과 UI 수정 | `src/components`, `src/styles` | `npm run dev`, `npm run build` |
 | News, Publication, Photo 운영 | `content`, `docs` | `npm run content:sync`, `npm run build` |
-| 구성원 정보 수정 | `src/assets/dataset/people.json` | `npm run build` |
+| 구성원 정보/사진 수정 | `src/assets/dataset/people.json`, `src/assets/images/people` | `npm run people:sync`, `npm run build` |
 | GitHub Pages 배포 확인 | `.github/workflows`, `dist` | GitHub Actions 확인 |
 
 ## 빠른 시작
@@ -33,15 +33,17 @@ npm run build
 | `content/news` | News 원본 Markdown |
 | `content/publications` | Publication 원본 Markdown |
 | `content/photos/raw` | Photo 원본 이미지 |
+| `src/assets/images/people` | People 프로필 원본 이미지 |
+| `src/assets/images/people/optimized` | 자동 생성된 People WebP 이미지 |
 | `src/generated` | 동기화 스크립트가 만든 데이터 |
 | `public/uploads/photos` | 최적화된 Photo 출력물 |
 | `docs` | 콘텐츠 운영 문서 |
 
-`src/generated/*`와 `public/uploads/photos/*`는 직접 고치지 않습니다. 원본을 수정한 뒤 스크립트로 다시 생성합니다.
+`src/generated/*`, `public/uploads/photos/*`, People의 `optimized/*`와 이미지 manifest는 직접 고치지 않습니다. 원본을 수정한 뒤 스크립트로 다시 생성합니다.
 
 ## 콘텐츠 수정 흐름
 
-News, Publication, Photo를 수정할 때는 보통 이 순서로 작업합니다.
+News, Publication, Photo, People를 수정할 때는 보통 이 순서로 작업합니다.
 
 ```bash
 npm run content:sync
@@ -53,6 +55,12 @@ Photo만 다시 만들고 싶을 때는 아래 명령을 사용할 수 있습니
 
 ```bash
 npm run photos:sync
+```
+
+People 프로필 이미지만 다시 만들고 싶을 때는 아래 명령을 사용합니다.
+
+```bash
+npm run people:sync
 ```
 
 `status: published`인 Publication은 `content:sync` 과정에서 News 항목으로도 자동 반영됩니다.
@@ -114,7 +122,7 @@ GitHub Pages는 새로고침하거나 직접 URL로 들어왔을 때 SPA 라우�
 
 - `사이트`: CVL-Lab 홈페이지 전체
 - `앱`: 브라우저에서 동작하는 React 화면
-- `콘텐츠`: News, Publication, Photo처럼 운영자가 추가/수정하는 원본
+- `콘텐츠`: News, Publication, Photo, People처럼 운영자가 추가/수정하는 원본
 - `배포`: GitHub Pages에 반영하는 과정
 
 길고 딱딱한 외래어 표기는 특별한 이유가 없으면 쓰지 않습니다.

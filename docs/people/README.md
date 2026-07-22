@@ -11,18 +11,23 @@ People는 현재 `content/` 폴더가 아니라 아래 파일을 직접 읽어 �
 
 1. 구성원 데이터(텍스트):
     - `src/assets/dataset/people.json`
-2. 프로필 이미지 매핑(파일 연결):
-    - `src/assets/images/people/people_image_index.js`
-3. 실제 카드 렌더링 component:
+2. 프로필 원본 이미지:
+    - `src/assets/images/people/*.{jpg,jpeg,png,webp}`
+3. 자동 생성된 WebP 이미지:
+    - `src/assets/images/people/optimized/*.webp`
+    - `src/assets/images/people/optimized/manifest.generated.json` (원본 변경 감지용)
+4. 실제 카드 렌더링 component:
     - `src/components/tabs/People.jsx`
     - `src/components/tabs/People.Card.jsx`
     - `src/components/tabs/People.ProfessorCard.jsx`
     - `src/utils/peopleData.js`
 
-즉, 보통 운영자는 다음 2개만 수정하면 됩니다.
+즉, 보통 운영자는 다음 2곳만 수정하면 됩니다.
 
 - `people.json` (이름/이메일/소속/링크/관심분야/상태)
-- `people_image_index.js` (이미지 파일 연결)
+- `src/assets/images/people/` (프로필 원본 이미지)
+
+`people_image_index.js`는 `people:sync`가 참조되는 WebP만 자동 연결하므로 직접 수정하지 않습니다.
 
 ---
 
@@ -97,6 +102,9 @@ People는 현재 `content/` 폴더가 아니라 아래 파일을 직접 읽어 �
     - 작은 숫자가 먼저 노출
 - `name`
     - 카드 제목(이름)
+- `image` (선택)
+    - 원본 파일명이 `name`과 다를 때만 파일명 또는 확장자를 제외한 이름 지정
+    - 프로필 사진을 사용하지 않을 때는 `null`
 - `position`
     - 직책/과정 (교수 카드에서는 보이고, 일반 카드에서는 section 맥락에 따라 비중이 낮음)
 - `email`
@@ -128,9 +136,11 @@ People는 현재 `content/` 폴더가 아니라 아래 파일을 직접 읽어 �
 
 ## 4) 카드가 데이터에서 화면으로 만들어지는 방식
 
-1. `people.json`을 `src/utils/peopleData.js`가 읽음
-2. section별로 정렬(`order`) 후 카드 데이터 생성
-3. `People.jsx`가 section별 렌더링
+1. `npm run people:sync`가 원본 이미지를 최대 520px, 품질 80의 WebP로 변환
+2. `people:sync`가 `people_image_index.js`에 참조되는 WebP만 자동 연결
+3. `people.json`을 `src/utils/peopleData.js`가 읽음
+4. section별로 정렬(`order`) 후 카드 데이터 생성
+5. `People.jsx`가 section별 렌더링
     - `professor`는 `PeopleProfessorCard`
     - 나머지는 `PeopleCard`
 4. 링크 아이콘은 아래 순서로 렌더링
@@ -146,31 +156,51 @@ People는 현재 `content/` 폴더가 아니라 아래 파일을 직접 읽어 �
 
 ## 5) 프로필 Photo 추가/교체 방법
 
-### 5-1. Photo 교체(가장 쉬운 방법)
+### 5-1. 새 Photo 추가
 
-1. 기존 파일명 확인 (예: `Sunki Joo.png`)
-2. 같은 파일명으로 새 이미지를 업로드/덮어쓰기
-3. `people_image_index.js` 수정 없이 반영됨
+1. `people.json`에 구성원을 추가합니다.
+2. `name`과 같은 이름의 원본 이미지를 `src/assets/images/people/`에 넣습니다.
+    - 예: `"name": "Hong Gildong"` → `Hong Gildong.jpg` 또는 `Hong Gildong.png`
+3. 아래 명령을 실행합니다.
 
-### 5-2. 새 파일명으로 교체/신규 추가
-
-1. 이미지 파일을 `src/assets/images/people/`에 업로드
-2. `src/assets/images/people/people_image_index.js`에서 import 추가
-3. 해당 section 객체에 `id: 이미지변수` 매핑 추가
-
-예:
-
-```js
-import HongGildong from "./Hong Gildong.jpg";
-
-const people_images = {
-    master: {
-        hong_gildong: HongGildong,
-    },
-};
+```bash
+npm run people:sync
 ```
 
-> 중요: `people.json`의 entry 키(`hong_gildong`)와 이미지 매핑 키가 정확히 같아야 합니다.
+명령이 다음 작업을 자동으로 수행합니다.
+
+- `people.json`의 모든 구성원과 원본 이미지 매칭
+- `src/assets/images/people/optimized/<이름>.webp` 생성
+- 원본이 변경된 이미지만 다시 생성
+- 중복 ID, 중복 이미지, 누락 이미지, 확장자와 대소문자 오류 검증
+- 사용하지 않는 원본 이미지는 warning으로 표시
+
+### 5-2. 원본 파일명이 이름과 다른 경우
+
+구성원의 `image` 필드에 실제 파일명을 지정합니다.
+
+```json
+{
+  "name": "Hong Gildong",
+  "image": "profile-hong.png"
+}
+```
+
+확장자를 생략해 `"image": "profile-hong"`처럼 쓸 수도 있습니다. 같은 이름의 JPG와 PNG가 함께 있으면 어느 파일인지 결정할 수 없으므로 확장자를 포함해야 합니다.
+
+프로필 사진이 필요 없는 구성원은 `"image": null`로 명시합니다.
+
+### 5-3. 기존 Photo 교체
+
+1. 기존 원본 파일을 같은 파일명으로 덮어씁니다.
+2. `npm run people:sync`를 실행합니다.
+3. manifest의 SHA-256과 비교해 원본 내용이 달라진 경우에만 자동으로 다시 생성됩니다.
+
+모든 WebP를 강제로 다시 만들려면 다음 명령을 사용합니다.
+
+```bash
+npm run people:sync -- --force
+```
 
 ---
 
@@ -210,7 +240,7 @@ const people_images = {
 2. `sections.master.entries`에 동일 인물 항목 추가
 3. `position`을 `M.S Student`로 변경
 4. `order` 재정렬
-5. 이미지 매핑 키가 유지되는지 확인
+5. `npm run people:sync` 실행
 
 ---
 
@@ -275,7 +305,7 @@ const people_images = {
 - `position`, `email`, `homepage`
 - `links.*`
 - `profile_details.*` (약력/연구개요/학력/소속/성과)
-- 교수 Photo은 `people_image_index.js`의 `professor` 매핑에서 관리
+- 교수 Photo도 다른 구성원과 동일하게 원본 이미지와 `people:sync`로 관리
 
 ---
 
@@ -286,7 +316,7 @@ const people_images = {
 1. `people.json` → `sections.intern.entries`에 새 키 추가
 2. `order` 마지막 번호 부여
 3. `name`, `email`, `research_interests`, `links` 입력
-4. Photo 파일 추가 후 `people_image_index.js` `intern` section에 매핑 추가
+4. 이름과 같은 Photo 원본 추가 후 `npm run people:sync` 실행
 
 ---
 
@@ -319,8 +349,8 @@ const people_images = {
 
 ### 예시 E) 프로필 Photo 교체하기
 
-방법 1(권장): 기존 파일명 그대로 덮어쓰기  
-방법 2: 새 파일 추가 + `people_image_index.js` import/매핑 수정
+방법 1(권장): 기존 원본 파일명 그대로 덮어쓴 뒤 `npm run people:sync`
+방법 2: 새 파일 추가 + `people.json`의 `image` 수정 후 `npm run people:sync`
 
 ---
 
@@ -337,22 +367,27 @@ const people_images = {
 ### 9-1. 로컬에서 수정
 
 1. 파일 수정
-2. 개발 server 확인
+2. People 이미지 추가/교체 시 동기화
+    ```bash
+    npm run people:sync
+    ```
+3. 개발 server 확인
     ```bash
     npm run dev
     ```
-3. build 확인
+4. build 확인
     ```bash
     npm run build
     ```
-4. 커밋/푸시
+5. 커밋/푸시
 
 ### 9-2. GitHub 웹에서 바로 수정
 
 1. `src/assets/dataset/people.json` 편집
-2. 필요 시 `src/assets/images/people/` 업로드 + `people_image_index.js` 편집
+2. 필요 시 `src/assets/images/people/`에 원본 업로드
 3. Commit
-4. Actions deploy 완료 확인 후 사이트 확인
+4. GitHub Actions가 `content:sync` 과정에서 WebP를 자동 생성
+5. Actions deploy 완료 확인 후 사이트 확인
 
 ---
 
@@ -362,9 +397,10 @@ const people_images = {
 
 점검 순서:
 
-1. `people_image_index.js`에 import가 있는지
-2. section 매핑 키와 사람 id가 같은지
-3. 파일명/확장자 오타가 없는지 (`.jpg`, `.png` 등)
+1. `npm run people:sync`가 성공했는지
+2. 기본 규칙대로 원본 파일명과 `people.json`의 `name`이 정확히 같은지
+3. 이름이 다르면 `image`에 실제 파일명이 있는지
+4. `optimized/`에 해당 WebP가 생성됐는지
 
 ### 10-2. 사람이 잘못된 section에 나옴
 
@@ -396,8 +432,9 @@ const people_images = {
 
 1. 대상 사람을 올바른 section에 넣었는가?
 2. `order`가 중복/누락 없이 정렬됐는가?
-3. Photo 매핑(`people_image_index.js`)이 정확한가?
+3. Photo 원본 파일명과 `name` 또는 `image`가 일치하는가?
 4. 링크 URL 형식이 올바른가?
 5. 인턴→석사 / 졸업→alumni 전환 규칙을 지켰는가?
-6. `npm run build` 후 오류 없이 완료되는가?
-7. 실제 People page에서 카드/아이콘/section이 의도대로 보이는가?
+6. `npm run people:sync`가 성공하는가?
+7. `npm run build` 후 오류 없이 완료되는가?
+8. 실제 People page에서 카드/아이콘/section이 의도대로 보이는가?
