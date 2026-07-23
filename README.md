@@ -7,6 +7,7 @@
 | 해야 할 일 | 주로 보는 곳 | 실행할 명령 |
 | --- | --- | --- |
 | 화면 디자인과 UI 수정 | `src/components`, `src/styles` | `npm run dev`, `npm run build` |
+| Research 영역·상세·리소스 관리 | `src/assets/dataset/research_*.json` | `npm run research:validate`, `npm run build` |
 | News, Publication, Photo 운영 | `content`, `docs` | `npm run content:sync`, `npm run build` |
 | 구성원 정보/사진 수정 | `src/assets/dataset/people.json`, `src/assets/images/people` | `npm run people:sync`, `npm run build` |
 | 의존성·보안 점검 | `package.json`, `package-lock.json` | `npm run audit:dependencies`, `npm run build` |
@@ -40,6 +41,9 @@ npm run audit:dependencies
 | `content/news` | News 원본 Markdown |
 | `content/publications` | Publication 원본 Markdown |
 | `content/photos/raw` | Photo 원본 이미지 |
+| `src/assets/dataset/research_areas.json` | Research 영역, 순서, route와 이미지 매핑 |
+| `src/assets/dataset/research_area_details.json` | Research Area Details |
+| `src/assets/dataset/research_resources.json` | Lab Resources & Infrastructure |
 | `src/assets/images/people` | People 프로필 원본 이미지 |
 | `src/assets/images/people/optimized` | 자동 생성된 People WebP 이미지 |
 | `src/generated` | 동기화 스크립트가 만든 데이터 |
@@ -50,12 +54,18 @@ npm run audit:dependencies
 
 ## 콘텐츠 수정 흐름
 
-News, Publication, Photo, People를 수정할 때는 보통 이 순서로 작업합니다.
+Research, News, Publication, Photo, People를 수정할 때는 보통 이 순서로 작업합니다.
 
 ```bash
 npm run content:sync
 npm run validate:content
 npm run build
+```
+
+Research만 먼저 점검하려면 아래 명령을 사용합니다.
+
+```bash
+npm run research:validate
 ```
 
 Photo만 다시 만들고 싶을 때는 아래 명령을 사용할 수 있습니다.
@@ -79,6 +89,7 @@ npm run people:sync
 | 상황 | 문서 |
 | --- | --- |
 | 전체 운영 흐름을 처음 파악할 때 | `docs/README.md` |
+| Research 영역·상세·리소스 수정 | `docs/research/README.md` |
 | News 추가/수정 | `docs/news/README.md` |
 | Publication 추가/수정 | `docs/publications/README.md` |
 | Photo 추가/최적화 | `docs/photos/README.md` |

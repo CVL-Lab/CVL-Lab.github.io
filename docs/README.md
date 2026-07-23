@@ -1,12 +1,13 @@
 # CVL-Lab 운영 문서
 
-이 폴더는 CVL-Lab 홈페이지를 꾸준히 운영하기 위한 문서 모음입니다. 화면 코드를 고치지 않고도 News, Publication, Photo, People 정보를 안전하게 갱신하는 것을 목표로 합니다.
+이 폴더는 CVL-Lab 홈페이지를 꾸준히 운영하기 위한 문서 모음입니다. 화면 코드를 고치지 않고도 Research, News, Publication, Photo, People 정보를 안전하게 갱신하는 것을 목표로 합니다.
 
 ## 먼저 볼 것
 
 | 상황 | 이동할 문서 |
 | --- | --- |
 | 전체 운영 흐름을 알고 싶다 | `docs/pipeline/README.md` |
+| Research 영역, 상세 정보 또는 Lab Resources를 수정한다 | `docs/research/README.md` |
 | News를 추가하거나 수정한다 | `docs/news/README.md` |
 | 논문 정보를 추가하거나 수정한다 | `docs/publications/README.md` |
 | 사진을 추가하거나 정리한다 | `docs/photos/README.md` |
@@ -20,6 +21,7 @@
 
 | 항목 | 원본 위치 | 사이트가 읽는 결과 |
 | --- | --- | --- |
+| Research | `src/assets/dataset/research_*.json`, Research WebP | 영역별 route, 상세 탭, Resource 카드 |
 | News | `content/news/*.md` | `src/generated/news.generated.json` |
 | Publication | `content/publications/**/*.md` | `src/generated/publications.generated.json` |
 | Photo | `content/photos/raw/**` | `src/generated/photos.generated.json`, `public/uploads/photos/**` |
@@ -38,6 +40,7 @@ npm run validate:content
 npm run build
 ```
 
+Research 구조만 점검할 때는 `npm run research:validate`를 사용합니다.
 Photo만 다시 만들 때는 `npm run photos:sync`를 사용할 수 있습니다.
 People 이미지만 다시 만들 때는 `npm run people:sync`를 사용할 수 있습니다.
 

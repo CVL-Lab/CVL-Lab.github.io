@@ -1,7 +1,7 @@
 import HOME_MEDIA from "../../../assets/dataset/home_media.json";
 import HOME_MEDIA_IMAGES from "../../../assets/images/home/home_media_index";
 import PHOTO_DATA from "../../../generated/photos.generated.json";
-import RESEARCH from "../../../assets/dataset/performance_management.json";
+import { getResearchAreas } from "../../../utils/researchData";
 import {
     countPeopleMembers,
     getPeopleEntriesBySection,
@@ -62,7 +62,7 @@ export const computeCounts = () => {
     const members = countPeopleMembers(MEMBER_COUNT_GROUPS);
 
     return {
-        researchAreas: Object.keys(RESEARCH.contents).length,
+        researchAreas: getResearchAreas().length,
         publications: publications.length,
         members,
         latestNews: getAllNewsItems().length,

@@ -7,6 +7,7 @@
 - Publication 원본 template: `content/publications/_template.md`
 - Photo metadata template: `content/photos/metadata.template.json`
 - People 데이터 template(운영 참고): `docs/templates/people.entry.template.json`
+- Research 영역과 Resource 예시: `docs/research/README.md`
 
 ---
 

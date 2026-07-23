@@ -1,38 +1,11 @@
 import { useCallback, useMemo, useRef } from "react";
 import "./Research.css";
-import HOME_MEDIA_IMAGES from "../../assets/images/home/home_media_index";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     getResearchAreas,
+    getResearchResources,
     resolveResearchTopic,
 } from "../../utils/researchData";
-
-const LAB_RESOURCES = [
-    {
-        id: "gpu",
-        label: "GPU Nodes",
-        value: "8× RTX 3090",
-        description:
-            "Dedicated training nodes for large-scale vision and learning experiments.",
-        imageKey: "research_environment",
-    },
-    {
-        id: "server",
-        label: "Research Servers",
-        value: "4 Shared Servers",
-        description:
-            "Managed compute and storage infrastructure for collaborative model development.",
-        imageKey: "intro_meeting_room",
-    },
-    {
-        id: "robotics",
-        label: "Robotics Platform",
-        value: "UR5e + Vision Setup",
-        description:
-            "Real-world testbed for embodied perception, control, and deployment workflows.",
-        imageKey: "culture_discussion",
-    },
-];
 
 const TAB_KEYS = new Set(["ArrowRight", "ArrowLeft", "Home", "End"]);
 
@@ -45,7 +18,7 @@ const buildDetailDescription = (area) => {
     }
 
     const segments = [
-        area.explaination,
+        area.explanation,
         area.details?.abstract,
         area.details?.headline,
     ]
@@ -60,6 +33,7 @@ function Research({ selectedResearchTopic }) {
     const location = useLocation();
     const tabRefs = useRef({});
     const researchContents = useMemo(() => getResearchAreas(), []);
+    const labResources = useMemo(() => getResearchResources(), []);
 
     const activeDetailTopic = useMemo(() => {
         const fromProps = resolveResearchTopic(selectedResearchTopic);
@@ -339,27 +313,24 @@ function Research({ selectedResearchTopic }) {
                 </div>
             </section>
 
-            <section
-                data-reveal
-                className="research__resources page-panel"
-                aria-labelledby="research-resources-title">
-                <div className="research__section-head">
-                    <div>
-                        <h2 id="research-resources-title">
-                            Lab Resources & Infrastructure
-                        </h2>
-                        <p>
-                            Core infrastructure that supports training,
-                            experimentation, and deployment.
-                        </p>
+            {labResources.length ? (
+                <section
+                    data-reveal
+                    className="research__resources page-panel"
+                    aria-labelledby="research-resources-title">
+                    <div className="research__section-head">
+                        <div>
+                            <h2 id="research-resources-title">
+                                Lab Resources & Infrastructure
+                            </h2>
+                            <p>
+                                Core infrastructure that supports training,
+                                experimentation, and deployment.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="research__resources-grid">
-                    {LAB_RESOURCES.map((resource, index) => {
-                        const imageSrc =
-                            HOME_MEDIA_IMAGES[resource.imageKey] ?? null;
-
-                        return (
+                    <div className="research__resources-grid">
+                        {labResources.map((resource, index) => (
                             <article
                                 key={resource.id}
                                 data-reveal
@@ -369,10 +340,10 @@ function Research({ selectedResearchTopic }) {
                                 }}
                                 className="research__resource-card interactive-card">
                                 <div className="research__resource-media">
-                                    {imageSrc ? (
+                                    {resource.image ? (
                                         <img
-                                            src={imageSrc}
-                                            alt={`${resource.label} visual`}
+                                            src={resource.image}
+                                            alt={resource.imageAlt}
                                             loading="lazy"
                                             decoding="async"
                                             sizes="(max-width: 768px) 92vw, 18rem"
@@ -395,10 +366,10 @@ function Research({ selectedResearchTopic }) {
                                     </p>
                                 </div>
                             </article>
-                        );
-                    })}
-                </div>
-            </section>
+                        ))}
+                    </div>
+                </section>
+            ) : null}
         </div>
     );
 }

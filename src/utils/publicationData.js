@@ -34,7 +34,9 @@ export const getAllPublications = () =>
     (PUBLICATION_DATA?.items ?? [])
         .map((item, index) => {
             const id = normalizeText(item?.id) || `publication-${index + 1}`;
-            const category = normalizeText(item?.category) || "core";
+            const category =
+                normalizeText(item?.category) ||
+                "computer_vision_and_learning_algorithms";
             const title = normalizeText(item?.title) || "Untitled publication";
             const researchMeta = item?.research_meta ?? {};
             const publishedDate =

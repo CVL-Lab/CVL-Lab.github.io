@@ -1,6 +1,6 @@
 ---
 id: biomedical-bapub3-analyzing-to-discover-origins-of-cnns-and
-category: biomedical
+category: industrial_and_medical_ai
 status: published
 title: "Analyzing to Discover Origins of CNNs and ViT Architectures in Medical Images"
 date: 2024-04-16

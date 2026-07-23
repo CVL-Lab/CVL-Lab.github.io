@@ -32,7 +32,7 @@
 
 ### 2-1. 로컬에서 수정할 때
 
-1. content 업데이트 (`content/...`)
+1. Research/content 업데이트 (`src/assets/dataset/research_*.json`, `content/...`)
 2. 아래 명령 실행
     ```bash
     npm run operator:verify
@@ -65,7 +65,7 @@
 
 ### 수동(운영자)
 
-- content 원본(`content/...`) 입력/수정
+- Research 원본(`src/assets/dataset/research_*.json`)과 content 원본(`content/...`) 입력/수정
 - deploy 결과 확인
 - 오타/링크/날짜 오류 수정
 
@@ -75,9 +75,11 @@
 
 1. 사이트 메인 접속
 2. 아래 page 순서대로 확인
+    - `/research`
     - `/news`
     - `/publication`
     - `/photo`
+    - `/people`
 3. Home preview(최신 News/Publication/Photo) 반영 확인
 4. 외부/내부 링크 동작 확인
 
@@ -100,7 +102,7 @@
 
 ## 6) 반영이 안 될 때 우선 점검
 
-1. content 파일이 `content/...`에 들어갔는지
+1. Research/content 원본이 정해진 source of truth 경로에 들어갔는지
 2. 날짜/타입/category 형식이 맞는지
 3. Photo 폴더명이 규칙을 따르는지
 4. dependency audit가 실패했는지
@@ -112,8 +114,8 @@
 
 ## 7) deploy 확인 체크리스트 (운영자용)
 
-1. 변경 파일이 `content/...`에만 있는지 확인
+1. 변경 파일이 해당 운영 문서의 source of truth 경로에 있는지 확인
 2. push 후 Actions 2개가 모두 성공인지 확인
-3. 사이트에서 News/Publication/Photo/Home preview 확인
+3. 사이트에서 Research/News/Publication/Photo/People/Home preview 확인
 4. 링크 클릭(외부 링크 포함) 확인
 5. 문제 있으면 `docs/troubleshooting/README.md` 순서대로 점검

@@ -7,7 +7,10 @@ import {
     getPublicationCategories,
 } from "./home/homeData";
 import { useLocation } from "react-router-dom";
-import { RESEARCH_CATEGORY_LABELS } from "../../utils/researchData";
+import {
+    RESEARCH_CATEGORY_LABELS,
+    resolveResearchAreaKey,
+} from "../../utils/researchData";
 
 const areaCategory = getPublicationCategories();
 const publications = aggregatePublications();
@@ -37,11 +40,15 @@ function Publication() {
         const queryFromParams = params.get("q")?.trim() ?? "";
         const scopeFromParams = params.get("scope")?.trim() ?? "";
         const areaFromParams = params.get("area")?.trim() ?? "";
+        const normalizedAreaFromParams =
+            areaFromParams === "all"
+                ? "all"
+                : resolveResearchAreaKey(areaFromParams);
 
         const hasValidScope = SEARCH_SCOPES.some(
             (item) => item.key === scopeFromParams,
         );
-        const hasValidArea = areaCategory.includes(areaFromParams);
+        const hasValidArea = areaCategory.includes(normalizedAreaFromParams);
 
         setSearchQuery(queryFromParams);
         setSearchScope(
@@ -51,7 +58,7 @@ function Publication() {
                   ? "title-authors"
                   : "title",
         );
-        setSelectedArea(hasValidArea ? areaFromParams : "all");
+        setSelectedArea(hasValidArea ? normalizedAreaFromParams : "all");
     }, [location.search]);
 
     const filteredPublications = useMemo(() => {

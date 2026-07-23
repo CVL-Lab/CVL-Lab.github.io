@@ -1,11 +1,11 @@
 {
   "meta": {
     "schema_version": "1.1",
-    "generated_at": "2026-07-21T04:16:48.574Z",
+    "generated_at": "2026-07-23T08:57:01.622Z",
     "source": "content/publications",
     "categories": [
-      "biomedical",
-      "core"
+      "industrial_and_medical_ai",
+      "computer_vision_and_learning_algorithms"
     ],
     "statuses": [
       "published",
@@ -17,7 +17,7 @@
     {
       "id": "biomedical-bapub4-style-kd-class-imbalanced-medical-image",
       "key": "biomedical-bapub4-style-kd-class-imbalanced-medical-image",
-      "category": "biomedical",
+      "category": "industrial_and_medical_ai",
       "status": "published",
       "title": "Style-KD : Class-Imbalanced Medical Image Classification via Style Knowledge Distillation",
       "summary": "",
@@ -47,7 +47,7 @@
     {
       "id": "core-capub0-spatial-bias-for-attention-free-non-local",
       "key": "core-capub0-spatial-bias-for-attention-free-non-local",
-      "category": "core",
+      "category": "computer_vision_and_learning_algorithms",
       "status": "published",
       "title": "Spatial Bias for Attention-free Non-local Neural Networks",
       "summary": "",
@@ -77,7 +77,7 @@
     {
       "id": "biomedical-bapub2-attentional-decoder-networks-for-chest-x-r",
       "key": "biomedical-bapub2-attentional-decoder-networks-for-chest-x-r",
-      "category": "biomedical",
+      "category": "industrial_and_medical_ai",
       "status": "published",
       "title": "Attentional Decoder Networks for Chest X-ray Image Recognition on High-resolution Features",
       "summary": "",
@@ -107,7 +107,7 @@
     {
       "id": "biomedical-bapub3-analyzing-to-discover-origins-of-cnns-and",
       "key": "biomedical-bapub3-analyzing-to-discover-origins-of-cnns-and",
-      "category": "biomedical",
+      "category": "industrial_and_medical_ai",
       "status": "published",
       "title": "Analyzing to Discover Origins of CNNs and ViT Architectures in Medical Images",
       "summary": "",
@@ -137,7 +137,7 @@
     {
       "id": "biomedical-bapub0-deep-learning-using-computed-tomography-to",
       "key": "biomedical-bapub0-deep-learning-using-computed-tomography-to",
-      "category": "biomedical",
+      "category": "industrial_and_medical_ai",
       "status": "published",
       "title": "Deep Learning Using Computed Tomography to Identify High-Risk Patients for Acute Small Bowel Obstruction: Development and Validation of a Prediction Model: A Retrospective Cohort Study",
       "summary": "",
@@ -167,7 +167,7 @@
     {
       "id": "biomedical-bapub1-robust-asymmetric-loss-for-multi-label-lon",
       "key": "biomedical-bapub1-robust-asymmetric-loss-for-multi-label-lon",
-      "category": "biomedical",
+      "category": "industrial_and_medical_ai",
       "status": "published",
       "title": "Robust Asymmetric Loss for Multi-Label Long-Tailed Learning",
       "summary": "",

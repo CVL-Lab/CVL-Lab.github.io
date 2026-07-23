@@ -11,12 +11,12 @@
 - template: `content/publications/_template.md`
 - 복사/붙여넣기용 template: `docs/templates/publication.template.md`
 
-`<category>`는 아래 4개 중 하나입니다.
+`<category>`는 현재 Research canonical key 중 하나입니다.
 
-- `application`
-- `biomedical`
-- `core`
-- `multi-modal`
+- `computer_vision_and_learning_algorithms`
+- `efficient_learning_for_llms`
+- `robot_learning`
+- `industrial_and_medical_ai`
 
 ---
 
@@ -24,15 +24,15 @@
 
 ### 1단계. category 폴더 선택
 
-예: core 연구 Publication이면
+예: Computer Vision and Learning Algorithms 영역 Publication이면
 
-- `content/publications/core/`
+- `content/publications/computer_vision_and_learning_algorithms/`
 
 ### 2단계. 파일명 생성
 
 예:
 
-- `core-2026-efficient-vlm-attention.md`
+- `computer-vision-2026-efficient-vlm-attention.md`
 
 ### 3단계. frontmatter 작성
 
@@ -84,7 +84,7 @@ npm run validate:content
 ## 3) GitHub 웹에서 바로 수정하는 방법
 
 1. 저장소에서 `content/publications` 이동
-2. category 폴더 진입 (예: `core`)
+2. category 폴더 진입 (예: `computer_vision_and_learning_algorithms`)
 3. **Add file → Create new file**
 4. template을 복사해 붙여넣은 뒤 값 수정
 5. Commit
@@ -97,8 +97,8 @@ npm run validate:content
 
 ```md
 ---
-id: core-2026-efficient-vlm-attention
-category: core
+id: computer-vision-2026-efficient-vlm-attention
+category: computer_vision_and_learning_algorithms
 status: published
 title: Efficient Attention Routing for Vision-Language Models
 date: 2026-03-16
@@ -122,7 +122,9 @@ summary: 비용을 줄이면서 멀티모달 성능을 유지하는 attention ro
 
 ### category (필수)
 
-- `application`, `biomedical`, `core`, `multi-modal`만 허용됩니다.
+- `computer_vision_and_learning_algorithms`, `efficient_learning_for_llms`, `robot_learning`, `industrial_and_medical_ai`를 사용합니다.
+- 허용 값은 `research_areas.json`의 `meta.area_order`에서 관리합니다.
+- `core`, `biomedical`, `application`, `multi-modal` 같은 과거 category는 새 파일에 사용하지 않습니다.
 - 오타가 있으면 검증 단계에서 실패합니다.
 
 ### status (필수)
@@ -164,7 +166,7 @@ summary: 비용을 줄이면서 멀티모달 성능을 유지하는 attention ro
 3. 필수 필드 입력 확인
     - `id`, `category`, `status`, `title`, `date`, `authors`, `venue`
 4. `category` 값이 허용 값인지 확인
-    - `application`, `biomedical`, `core`, `multi-modal`
+    - `research_areas.json`의 `meta.area_order`에 있는 canonical key
 5. `date` 형식 확인 (`YYYY-MM-DD`)
 6. 아래 명령 실행
     ```bash

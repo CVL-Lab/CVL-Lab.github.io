@@ -1,0 +1,97 @@
+{
+    "meta": {
+        "schema_version": "2.0",
+        "area_order": [
+            "computer_vision_and_learning_algorithms",
+            "efficient_learning_for_llms",
+            "robot_learning",
+            "industrial_and_medical_ai"
+        ]
+    },
+    "areas": {
+        "computer_vision_and_learning_algorithms": {
+            "slug": "computer-vision-and-learning-algorithms",
+            "title": "Computer Vision and Learning Algorithms",
+            "subtitle": [
+                "Visual Recognition",
+                "Large-scale Model",
+                "Meta Learning"
+            ],
+            "explanation": "We study robust vision and learning algorithms for recognition, representation, and adaptation at scale.",
+            "tags": [
+                "Visual Recognition",
+                "Large-scale Model",
+                "Meta Learning"
+            ],
+            "legacy_aliases": ["core", "core-ai", "core_ai"],
+            "images": {
+                "default": "core.webp",
+                "landscape": "core-landscape.webp",
+                "wide": "core-wide.webp",
+                "alt": "Infographic showing the progression from visual input to transferable features and robust adaptation."
+            }
+        },
+        "efficient_learning_for_llms": {
+            "slug": "efficient-learning-for-llms",
+            "title": "Efficient Learning for LLMs",
+            "subtitle": [
+                "Model Compression",
+                "Efficient Learning",
+                "System-level Optimization"
+            ],
+            "explanation": "We develop practical methods for making large language models lighter, faster, and more efficient to deploy.",
+            "tags": [
+                "Model Compression",
+                "Efficient Learning",
+                "System-level Optimization"
+            ],
+            "legacy_aliases": [
+                "multi-modal",
+                "multi-modal-ai",
+                "multi-modal_ai"
+            ],
+            "images": {
+                "default": "multi-modal.webp",
+                "landscape": "multi-modal-landscape.webp",
+                "wide": "multi-modal-wide.webp",
+                "alt": "Infographic showing large-model compression, runtime optimization, and practical language-model deployment."
+            }
+        },
+        "robot_learning": {
+            "slug": "robot-learning",
+            "title": "Robot Learning",
+            "subtitle": ["VLA", "Efficient Robotics", "3D Recognition"],
+            "explanation": "We build robot learning pipelines that connect visual understanding to efficient and reliable robotic behavior.",
+            "tags": ["VLA", "Efficient Robotics", "3D Recognition"],
+            "legacy_aliases": [
+                "application",
+                "application-ai",
+                "application_ai"
+            ],
+            "images": {
+                "default": "application.webp",
+                "landscape": "application-landscape.webp",
+                "wide": "application-wide.webp",
+                "alt": "Infographic showing a robot learning pipeline from 3D-aware perception through vision-language reasoning to action."
+            }
+        },
+        "industrial_and_medical_ai": {
+            "slug": "industrial-and-medical-ai",
+            "title": "Industrial and Medical AI",
+            "subtitle": ["Battery AI", "Fault Detection", "Medical AI"],
+            "explanation": "We apply AI methods to industrial reliability and medical analysis, with a focus on high-impact real-world use cases.",
+            "tags": ["Battery AI", "Fault Detection", "Medical AI"],
+            "legacy_aliases": [
+                "biomedical",
+                "biomedical-ai",
+                "biomedical_ai"
+            ],
+            "images": {
+                "default": "biomedical.webp",
+                "landscape": "biomedical-landscape.webp",
+                "wide": "biomedical-wide.webp",
+                "alt": "Infographic connecting industrial fault analytics, medical image intelligence, and deployment validation."
+            }
+        }
+    }
+}

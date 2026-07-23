@@ -123,21 +123,21 @@
     --red-500: #e97b77;
     --red-800: #aa2d26;
 
-    --topic-core-100: var(--blue-100);
-    --topic-core-500: var(--blue-500);
-    --topic-core-800: var(--blue-800);
+    --topic-computer-vision-and-learning-algorithms-100: var(--blue-100);
+    --topic-computer-vision-and-learning-algorithms-500: var(--blue-500);
+    --topic-computer-vision-and-learning-algorithms-800: var(--blue-800);
 
-    --topic-application-100: var(--red-100);
-    --topic-application-500: var(--red-500);
-    --topic-application-800: var(--red-800);
+    --topic-robot-learning-100: var(--red-100);
+    --topic-robot-learning-500: var(--red-500);
+    --topic-robot-learning-800: var(--red-800);
 
-    --topic-biomedical-100: var(--green-100);
-    --topic-biomedical-500: var(--green-500);
-    --topic-biomedical-800: var(--green-800);
+    --topic-industrial-and-medical-ai-100: var(--green-100);
+    --topic-industrial-and-medical-ai-500: var(--green-500);
+    --topic-industrial-and-medical-ai-800: var(--green-800);
 
-    --topic-multi-modal-100: #f1f5f9;
-    --topic-multi-modal-500: #64748b;
-    --topic-multi-modal-800: #334155;
+    --topic-efficient-learning-for-llms-100: #f1f5f9;
+    --topic-efficient-learning-for-llms-500: #64748b;
+    --topic-efficient-learning-for-llms-800: #334155;
 
     --accent-ui-100: #eff6ff;
     --accent-ui-500: #2563eb;
@@ -365,9 +365,9 @@
     --red-500: #f0a29d;
     --red-800: #ffd6d0;
 
-    --topic-multi-modal-100: #202e46;
-    --topic-multi-modal-500: #a5b9d4;
-    --topic-multi-modal-800: #d6e1f0;
+    --topic-efficient-learning-for-llms-100: #202e46;
+    --topic-efficient-learning-for-llms-500: #a5b9d4;
+    --topic-efficient-learning-for-llms-800: #d6e1f0;
 
     --accent-ui-100: #1b3256;
     --accent-ui-500: #74a7ff;

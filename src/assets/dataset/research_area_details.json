@@ -1,6 +1,9 @@
 {
+    "meta": {
+        "schema_version": "2.0"
+    },
     "topics": {
-        "core": {
+        "computer_vision_and_learning_algorithms": {
             "headline": "Foundational vision and learning methods for robust generalization",
             "abstract": "This area investigates scalable visual representations and adaptation strategies that remain reliable across data shifts, label scarcity, and long-tail conditions.",
             "workstreams": [
@@ -28,7 +31,7 @@
                 "Reproducibility package for open experiments"
             ]
         },
-        "multi-modal": {
+        "efficient_learning_for_llms": {
             "headline": "Efficient and practical multimodal intelligence for deployment",
             "abstract": "This area focuses on making large language and multimodal models lighter, faster, and easier to deploy while preserving reasoning quality.",
             "workstreams": [
@@ -56,7 +59,7 @@
                 "Pilot deployment validation with partners"
             ]
         },
-        "application": {
+        "robot_learning": {
             "headline": "Embodied AI from perception to reliable robot behavior",
             "abstract": "This area connects visual-language understanding to robot policies for practical perception-to-action pipelines in real environments.",
             "workstreams": [
@@ -84,7 +87,7 @@
                 "Reusable integration testbed"
             ]
         },
-        "biomedical": {
+        "industrial_and_medical_ai": {
             "headline": "Trustworthy AI for industrial reliability and medical analysis",
             "abstract": "This area applies machine learning to industry and healthcare with emphasis on reliability, interpretability, and robust validation in real use cases.",
             "workstreams": [

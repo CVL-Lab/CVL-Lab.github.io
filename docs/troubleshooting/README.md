@@ -225,9 +225,31 @@
 
 ---
 
-## 11) 운영자가 꼭 기억할 원칙
+## 11) “Research 영역·상세·Resource가 안 보입니다”
 
-1. 원본 content, People 원본과 `package.json`만 직접 편집
+### 점검 순서
+
+1. `research_areas.json`의 `area_order`와 `areas`에 같은 key가 있는지 확인
+2. `research_area_details.json`의 `topics`에 같은 key가 있는지 확인
+3. key가 `snake_case`이고 slug가 같은 단어의 `kebab-case`인지 확인
+4. `images`에 기록된 WebP 세 파일이 실제로 존재하는지 확인
+5. Resource의 `image_key`가 `home_media.json`에 존재하는지 확인
+6. 아래 명령의 첫 번째 `[research]` 오류를 수정
+
+    ```bash
+    npm run research:validate
+    npm run build:static
+    ```
+
+Publication에서 `unsupported category`가 나오면 해당 frontmatter의 `category`를 `research_areas.json`의 canonical key로 변경합니다.
+
+자세한 변경 시나리오는 `docs/research/README.md`를 참고합니다.
+
+---
+
+## 12) 운영자가 꼭 기억할 원칙
+
+1. Research 원본, content, People 원본과 `package.json`만 직접 편집
 2. `src/generated/...`, `node_modules/...`는 자동 생성 결과물
 3. lockfile은 package manager로 갱신하고 손으로 고치지 않음
 4. “오류가 나면 template으로 되돌려 비교”가 가장 빠름

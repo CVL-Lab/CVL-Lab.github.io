@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { PAGE_MANIFEST } from "./pageManifest";
+import { RESEARCH_LEGACY_ROUTES } from "../utils/researchData";
 
 function AppRoutes() {
     return (
@@ -14,37 +15,13 @@ function AppRoutes() {
                     />
                 );
             })}
-            <Route
-                path="/research/core"
-                element={
-                    <Navigate
-                        to="/research/computer-vision-and-learning-algorithms"
-                        replace
-                    />
-                }
-            />
-            <Route
-                path="/research/multi-modal"
-                element={
-                    <Navigate
-                        to="/research/efficient-learning-for-llms"
-                        replace
-                    />
-                }
-            />
-            <Route
-                path="/research/application"
-                element={<Navigate to="/research/robot-learning" replace />}
-            />
-            <Route
-                path="/research/biomedical"
-                element={
-                    <Navigate
-                        to="/research/industrial-and-medical-ai"
-                        replace
-                    />
-                }
-            />
+            {RESEARCH_LEGACY_ROUTES.map((route) => (
+                <Route
+                    key={`research-legacy-${route.from}`}
+                    path={route.from}
+                    element={<Navigate to={route.to} replace />}
+                />
+            ))}
             <Route
                 path="/research/*"
                 element={<Navigate to="/research" replace />}

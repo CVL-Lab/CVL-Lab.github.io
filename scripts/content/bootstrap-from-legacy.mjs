@@ -17,13 +17,19 @@ import {
 const ROOT_DIR = process.cwd();
 const LEGACY_NEWS_FILE = path.resolve(ROOT_DIR, "src/assets/dataset/news.json");
 const LEGACY_PUBLICATION_FILES = {
-    application: path.resolve(
+    robot_learning: path.resolve(
         ROOT_DIR,
         "src/assets/dataset/application_ai.json",
     ),
-    biomedical: path.resolve(ROOT_DIR, "src/assets/dataset/biomedical_ai.json"),
-    core: path.resolve(ROOT_DIR, "src/assets/dataset/core_ai.json"),
-    "multi-modal": path.resolve(
+    industrial_and_medical_ai: path.resolve(
+        ROOT_DIR,
+        "src/assets/dataset/biomedical_ai.json",
+    ),
+    computer_vision_and_learning_algorithms: path.resolve(
+        ROOT_DIR,
+        "src/assets/dataset/core_ai.json",
+    ),
+    efficient_learning_for_llms: path.resolve(
         ROOT_DIR,
         "src/assets/dataset/multi-modal_ai.json",
     ),

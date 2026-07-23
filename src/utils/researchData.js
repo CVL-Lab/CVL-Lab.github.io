@@ -1,36 +1,51 @@
-import RESEARCH_BASE from "../assets/dataset/performance_management.json";
+import RESEARCH_CATALOG from "../assets/dataset/research_areas.json";
 import RESEARCH_DETAILS from "../assets/dataset/research_area_details.json";
-import RESEARCH_IMAGES from "../assets/images/research_concepts/research_concepts_image_index";
+import RESEARCH_RESOURCES from "../assets/dataset/research_resources.json";
+import HOME_MEDIA from "../assets/dataset/home_media.json";
+import HOME_MEDIA_IMAGES from "../assets/images/home/home_media_index";
+
+const RESEARCH_IMAGE_MODULES = import.meta.glob(
+    "../assets/images/research_concepts/optimized/*.webp",
+    {
+        eager: true,
+        import: "default",
+    },
+);
+
+const normalizeAlias = (value = "") =>
+    String(value)
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/_/g, "-");
+
+const getResearchImage = (fileName = "") =>
+    RESEARCH_IMAGE_MODULES[
+        `../assets/images/research_concepts/optimized/${fileName}`
+    ] ?? null;
 
 export const RESEARCH_AREA_ORDER = [
-    "core_ai",
-    "multi-modal_ai",
-    "application_ai",
-    "biomedical_ai",
+    ...(RESEARCH_CATALOG.meta?.area_order ?? []),
 ];
 
-const TOPIC_META_BY_KEY = {
-    core: {
-        contentKey: "core_ai",
-        path: "/research/computer-vision-and-learning-algorithms",
-        legacySegments: ["core"],
-    },
-    "multi-modal": {
-        contentKey: "multi-modal_ai",
-        path: "/research/efficient-learning-for-llms",
-        legacySegments: ["multi-modal"],
-    },
-    application: {
-        contentKey: "application_ai",
-        path: "/research/robot-learning",
-        legacySegments: ["application"],
-    },
-    biomedical: {
-        contentKey: "biomedical_ai",
-        path: "/research/industrial-and-medical-ai",
-        legacySegments: ["biomedical"],
-    },
-};
+const TOPIC_META_BY_KEY = Object.fromEntries(
+    RESEARCH_AREA_ORDER.map((contentKey) => {
+        const area = RESEARCH_CATALOG.areas?.[contentKey] ?? {};
+        const topicKey = normalizeAlias(area.slug || contentKey);
+
+        return [
+            topicKey,
+            {
+                contentKey,
+                topicKey,
+                path: `/research/${topicKey}`,
+                legacyAliases: Array.isArray(area.legacy_aliases)
+                    ? area.legacy_aliases
+                    : [],
+            },
+        ];
+    }),
+);
 
 const TOPIC_PATH_BY_KEY = Object.fromEntries(
     Object.entries(TOPIC_META_BY_KEY).map(([topicKey, meta]) => [
@@ -39,28 +54,17 @@ const TOPIC_PATH_BY_KEY = Object.fromEntries(
     ]),
 );
 
-const TOPIC_KEYS = Object.keys(TOPIC_PATH_BY_KEY);
-const TOPIC_KEY_SET = new Set(TOPIC_KEYS);
-const RESEARCH_IMAGE_ALT_BY_TOPIC = {
-    core: "Infographic showing the progression from visual input to transferable features and robust adaptation.",
-    "multi-modal":
-        "Infographic showing large-model compression, runtime optimization, and practical language-model deployment.",
-    application:
-        "Infographic showing a robot learning pipeline from 3D-aware perception through vision-language reasoning to action.",
-    biomedical:
-        "Infographic connecting industrial fault analytics, medical image intelligence, and deployment validation.",
-};
-
-const getSegmentFromPath = (path = "") =>
-    path.split("/").filter(Boolean).at(1) || "";
-
-const TOPIC_ALIAS_TO_KEY = Object.entries(TOPIC_META_BY_KEY).reduce(
-    (acc, [topicKey, meta]) => {
-        acc[topicKey] = topicKey;
-        acc[getSegmentFromPath(meta.path)] = topicKey;
-
-        (meta.legacySegments || []).forEach((segment) => {
-            acc[segment] = topicKey;
+const TOPIC_ALIAS_TO_KEY = Object.values(TOPIC_META_BY_KEY).reduce(
+    (acc, meta) => {
+        [
+            meta.topicKey,
+            meta.contentKey,
+            ...(meta.legacyAliases ?? []),
+        ].forEach((alias) => {
+            const normalized = normalizeAlias(alias);
+            if (normalized) {
+                acc[normalized] = meta.topicKey;
+            }
         });
 
         return acc;
@@ -68,8 +72,12 @@ const TOPIC_ALIAS_TO_KEY = Object.entries(TOPIC_META_BY_KEY).reduce(
     {},
 );
 
-const toTopicKey = (contentKey = "") =>
-    contentKey.replace(/_ai$/i, "").replace(/_/g, "-").toLowerCase();
+const CONTENT_KEY_BY_TOPIC = Object.fromEntries(
+    Object.values(TOPIC_META_BY_KEY).map((meta) => [
+        meta.topicKey,
+        meta.contentKey,
+    ]),
+);
 
 const normalizeTags = (contentItem = {}) => {
     if (Array.isArray(contentItem.tags) && contentItem.tags.length) {
@@ -86,18 +94,12 @@ export const resolveResearchTopic = (value) => {
         return null;
     }
 
-    const normalized = value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/_/g, "-");
+    return TOPIC_ALIAS_TO_KEY[normalizeAlias(value)] ?? null;
+};
 
-    const canonical = normalized.replace(/-ai$/i, "");
-    if (TOPIC_KEY_SET.has(canonical)) {
-        return canonical;
-    }
-
-    return TOPIC_ALIAS_TO_KEY[canonical] ?? null;
+export const resolveResearchAreaKey = (value) => {
+    const topicKey = resolveResearchTopic(value);
+    return topicKey ? CONTENT_KEY_BY_TOPIC[topicKey] ?? null : null;
 };
 
 export const resolveResearchTopicFromPath = (pathname = "") => {
@@ -110,56 +112,70 @@ export const resolveResearchTopicFromPath = (pathname = "") => {
         return null;
     }
 
-    const segment = (segments[1] ?? "").trim().toLowerCase();
-    return TOPIC_ALIAS_TO_KEY[segment] ?? resolveResearchTopic(segment);
+    return resolveResearchTopic(segments[1] ?? "");
 };
 
-export const getResearchPath = (topicKey) => {
-    const normalized = resolveResearchTopic(topicKey);
-    if (!normalized) {
-        return "/research";
-    }
-
-    return TOPIC_PATH_BY_KEY[normalized];
+export const getResearchPath = (topicOrAreaKey) => {
+    const topicKey = resolveResearchTopic(topicOrAreaKey);
+    return topicKey ? TOPIC_PATH_BY_KEY[topicKey] : "/research";
 };
 
-export const RESEARCH_CATEGORY_LABELS = {
-    all: "All",
-    core: RESEARCH_BASE.contents?.core_ai?.title || "Core",
-    "multi-modal":
-        RESEARCH_BASE.contents?.["multi-modal_ai"]?.title || "Multi-modal",
-    application: RESEARCH_BASE.contents?.application_ai?.title || "Application",
-    biomedical: RESEARCH_BASE.contents?.biomedical_ai?.title || "Biomedical",
-};
+export const RESEARCH_ROUTE_PATHS = RESEARCH_AREA_ORDER.map((contentKey) =>
+    getResearchPath(contentKey),
+);
+
+export const RESEARCH_LEGACY_ROUTES = Object.values(TOPIC_META_BY_KEY).flatMap(
+    (meta) =>
+        Array.from(
+            new Set(
+                (meta.legacyAliases ?? [])
+                    .map((alias) => normalizeAlias(alias))
+                    .filter(
+                        (alias) => alias && alias !== meta.topicKey,
+                    ),
+            ),
+        ).map((alias) => ({
+            from: `/research/${alias}`,
+            to: meta.path,
+        })),
+);
+
+export const RESEARCH_CATEGORY_LABELS = RESEARCH_AREA_ORDER.reduce(
+    (labels, contentKey) => {
+        const area = RESEARCH_CATALOG.areas?.[contentKey] ?? {};
+        labels[contentKey] = area.title || contentKey;
+        return labels;
+    },
+    { all: "All" },
+);
 
 export const getResearchAreas = () =>
     RESEARCH_AREA_ORDER.filter(
-        (contentKey) => RESEARCH_BASE.contents[contentKey],
+        (contentKey) => RESEARCH_CATALOG.areas?.[contentKey],
     ).map((contentKey, index) => {
-        const base = RESEARCH_BASE.contents[contentKey] ?? {};
-        const topicKey = toTopicKey(contentKey);
-        const details = RESEARCH_DETAILS.topics[topicKey] ?? {};
+        const base = RESEARCH_CATALOG.areas[contentKey];
+        const topicKey = normalizeAlias(base.slug || contentKey);
+        const details = RESEARCH_DETAILS.topics?.[contentKey] ?? {};
+        const images = base.images ?? {};
 
         return {
             id: contentKey,
             order: index,
+            contentKey,
             topicKey,
             path: TOPIC_PATH_BY_KEY[topicKey] || "/research",
             title: base.title || "Untitled Area",
-            explaination: base.explaination || "",
+            explanation: base.explanation || "",
             tags: normalizeTags(base),
-            image: RESEARCH_IMAGES[`${contentKey}_img`] ?? null,
+            image: getResearchImage(images.default),
             imageLandscape:
-                RESEARCH_IMAGES[`${contentKey}_landscape_img`] ??
-                RESEARCH_IMAGES[`${contentKey}_img`] ??
-                null,
+                getResearchImage(images.landscape) ??
+                getResearchImage(images.default),
             imageWide:
-                RESEARCH_IMAGES[`${contentKey}_wide_img`] ??
-                RESEARCH_IMAGES[`${contentKey}_img`] ??
-                null,
+                getResearchImage(images.wide) ??
+                getResearchImage(images.default),
             imageAlt:
-                RESEARCH_IMAGE_ALT_BY_TOPIC[topicKey] ??
-                `${base.title || "Research"} infographic`,
+                images.alt || `${base.title || "Research"} infographic`,
             details: {
                 headline: details.headline || "",
                 abstract: details.abstract || "",
@@ -175,3 +191,19 @@ export const getResearchAreas = () =>
             },
         };
     });
+
+export const getResearchResources = () =>
+    (RESEARCH_RESOURCES.items ?? []).map((resource) => ({
+        id: resource.id,
+        label: resource.label,
+        value: resource.value,
+        description: resource.description,
+        imageKey: resource.image_key,
+        image: HOME_MEDIA_IMAGES[resource.image_key] ?? null,
+        imageAlt:
+            HOME_MEDIA.items?.[resource.image_key]?.alt ||
+            `${resource.label} visual`,
+    }));
+
+export const getResearchResourceSummary = () =>
+    RESEARCH_RESOURCES.meta?.home_summary || "";

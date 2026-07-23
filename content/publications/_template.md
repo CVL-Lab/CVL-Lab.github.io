@@ -1,6 +1,6 @@
 ---
 id: publication-2026-example
-category: core
+category: computer_vision_and_learning_algorithms
 status: published
 title: Example Publication Title
 date: 2026-03-16

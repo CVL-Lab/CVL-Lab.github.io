@@ -1,6 +1,6 @@
 ---
 id: biomedical-bapub0-deep-learning-using-computed-tomography-to
-category: biomedical
+category: industrial_and_medical_ai
 status: published
 title: "Deep Learning Using Computed Tomography to Identify High-Risk Patients for Acute Small Bowel Obstruction: Development and Validation of a Prediction Model: A Retrospective Cohort Study"
 date: 2023-12-01

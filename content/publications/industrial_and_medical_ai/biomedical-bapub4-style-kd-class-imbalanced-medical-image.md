@@ -1,6 +1,6 @@
 ---
 id: biomedical-bapub4-style-kd-class-imbalanced-medical-image
-category: biomedical
+category: industrial_and_medical_ai
 status: published
 title: "Style-KD : Class-Imbalanced Medical Image Classification via Style Knowledge Distillation"
 date: 2024-12-29

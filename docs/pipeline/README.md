@@ -9,16 +9,17 @@
 
 ## 1) 먼저 이해할 운영 구조
 
-운영 대상은 크게 4개입니다.
+운영 대상은 크게 5개입니다.
 
-1. News
-2. Publication
-3. Photo
-4. People(교수/학생/인턴/졸업생)
+1. Research
+2. News
+3. Publication
+4. Photo
+5. People(교수/학생/인턴/졸업생)
 
 주요 원칙:
 
-- 운영자는 **원본 content 파일만 수정**합니다.
+- 운영자는 **원본 data/content 파일만 수정**합니다.
 - 생성 파일은 script가 다시 만들기 때문에 직접 수정하지 않습니다.
 
 ---
@@ -27,14 +28,19 @@
 
 ## 2-1. 운영자가 직접 수정하는 경로 (Hand-edited)
 
-1. News 원본
+1. Research 원본
+    - `src/assets/dataset/research_areas.json`
+    - `src/assets/dataset/research_area_details.json`
+    - `src/assets/dataset/research_resources.json`
+    - `src/assets/images/research_concepts/optimized/*.webp`
+2. News 원본
     - `content/news/*.md`
-2. Publication 원본
+3. Publication 원본
     - `content/publications/**/*.md`
-3. Photo 원본 + 선택 metadata
+4. Photo 원본 + 선택 metadata
     - `content/photos/raw/**`
     - `content/photos/metadata.json` (선택)
-4. People 데이터
+5. People 데이터
     - `src/assets/dataset/people.json`
     - `src/assets/images/people/*.{jpg,jpeg,png,webp}` (프로필 원본)
 
@@ -51,6 +57,8 @@
     - `src/assets/images/people/optimized/manifest.generated.json`
 4. build 산출물
     - `dist/...`
+5. Research route와 Publication category label
+    - `research_areas.json`을 기준으로 build 시 구성
 
 ## 2-3. 직접 수정 금지 경로
 
@@ -60,6 +68,7 @@
 - `dist/*`
 
 이 경로들은 직접 고치는 대신, `content:sync` / `photos:sync` / `people:sync` / `build`로 재생성해야 합니다.
+Research route 목록과 category label도 component에 중복 입력하지 않고 Research catalog에서 파생합니다.
 
 ---
 
@@ -67,33 +76,37 @@
 
 아래 순서대로 진행하면 안전합니다.
 
-1. News 추가/수정
+1. Research 영역·상세·리소스 수정
+    - `src/assets/dataset/research_*.json`
+    - 필요 시 Research WebP 추가/교체
+2. News 추가/수정
     - `content/news/*.md`
-2. Publication 추가/수정
+3. Publication 추가/수정
     - `content/publications/**/*.md`
-3. Photo 원본 추가
+4. Photo 원본 추가
     - `content/photos/raw/<category>/<YYYY-MM-DD>__<slug>/...`
-4. People 정보 수정
+5. People 정보 수정
     - `src/assets/dataset/people.json`
     - 필요 시 `src/assets/images/people/`에 프로필 원본 추가
-5. content 동기화
+6. Research 구조와 content 동기화
     ```bash
+    npm run research:validate
     npm run content:sync
     ```
-6. content 검증
+7. content 검증
     ```bash
     npm run validate:content
     ```
-7. 로컬 확인(개발 server)
+8. 로컬 확인(개발 server)
     ```bash
     npm run dev
     ```
-8. build 확인
+9. build 확인
     ```bash
     npm run build
     ```
-9. Git commit / push
-10. GitHub Actions deploy 확인
+10. Git commit / push
+11. GitHub Actions deploy 확인
     - `Content Build Check`
     - `Deploy GitHub Pages`
 
@@ -107,8 +120,11 @@
 # (초기 1회 권장) 레거시 데이터에서 content 구조 생성 보조
 npm run content:bootstrap
 
-# News/Publication/Photo/People 전체 동기화
+# Research 검증 + News/Publication/Photo/People 전체 동기화
 npm run content:sync
+
+# Research 영역·상세·리소스 관계 검증
+npm run research:validate
 
 # Photo만 동기화(resize/최적화/manifest)
 npm run photos:sync
@@ -162,10 +178,11 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 
 `npm run validate:content`는 다음을 점검합니다.
 
-1. 필수 필드 누락 여부
-2. 날짜 형식(`YYYY-MM-DD`)
-3. 링크 형식(`http://`, `https://`)
-4. content 구조 schema 오류
+1. Research key/slug/detail/image/resource 관계
+2. 필수 필드 누락 여부
+3. 날짜 형식(`YYYY-MM-DD`)
+4. 링크 형식(`http://`, `https://`)
+5. content 구조 schema 오류
 
 검증에서 실패하면 deploy 전에 반드시 수정해야 합니다.
 
@@ -202,7 +219,7 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
     - `Deploy GitHub Pages`
 3. 사이트에서 변경된 내용 확인
     - Home 미리보기
-    - `/news`, `/publication`, `/photo`, `/people`
+    - `/research`, `/news`, `/publication`, `/photo`, `/people`
 
 ## 7-4. 오래된 내용이 계속 보일 때
 
@@ -232,7 +249,16 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 
 ## 9) 점검 체크리스트
 
-## 9-1. News 추가 체크리스트
+## 9-1. Research 수정 체크리스트
+
+1. canonical key가 화면 제목의 의미와 일치하는지 확인
+2. `area_order`, `areas`, `topics`의 key 일치
+3. slug가 key의 `_`를 `-`로 바꾼 값인지 확인
+4. 이미지 세 variant와 Resource image key 확인
+5. `npm run research:validate`
+6. `/research`와 각 상세 route 확인
+
+## 9-2. News 추가 체크리스트
 
 1. `content/news/*.md`에 파일 추가
 2. 필수 필드(`id/type/title/summary/date`) 입력
@@ -241,7 +267,7 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 5. `npm run content:sync`
 6. `npm run validate:content`
 
-## 9-2. Publication 추가 체크리스트
+## 9-3. Publication 추가 체크리스트
 
 1. `content/publications/<category>/*.md` 추가
 2. `category` 허용값 확인
@@ -249,7 +275,7 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 4. `npm run content:sync`
 5. `npm run validate:content`
 
-## 9-3. Photo 추가 체크리스트
+## 9-4. Photo 추가 체크리스트
 
 1. `content/photos/raw/...`에 원본 추가
 2. 필요 시 `content/photos/metadata.json` 수정
@@ -257,7 +283,7 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 4. `npm run validate:content`
 5. `/photo` page에서 썸네일/확대보기 확인
 
-## 9-4. People 수정 체크리스트
+## 9-5. People 수정 체크리스트
 
 1. `src/assets/dataset/people.json` 수정
 2. section 이동 시 기존 section에서 제거(중복 방지)
@@ -266,20 +292,21 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 5. 링크 URL 형식 확인
 6. `npm run build`로 JSON/렌더링 오류 확인
 
-## 9-5. deploy 전 체크리스트
+## 9-6. deploy 전 체크리스트
 
-1. `npm run content:sync`
-2. `npm run validate:content`
-3. `npm run build`
-4. 필요 시 `npm run preview`
-5. 변경사항 커밋/푸시
+1. `npm run research:validate`
+2. `npm run content:sync`
+3. `npm run validate:content`
+4. `npm run build`
+5. 필요 시 `npm run preview`
+6. 변경사항 커밋/푸시
 
-## 9-6. deploy 후 확인 체크리스트
+## 9-7. deploy 후 확인 체크리스트
 
 1. Actions 2개 성공 여부 확인
 2. 실제 사이트 반영 확인
 3. 주요 경로 확인
-    - `/news`, `/publication`, `/photo`, `/people`
+    - `/research`, `/news`, `/publication`, `/photo`, `/people`
 4. 캐시 문제 시 강력 새로고침
 
 ---
@@ -287,6 +314,7 @@ Photo은 원본만 넣으면 자동으로 파생 산출물이 생성됩니다.
 ## 10) 관련 문서 바로가기
 
 - 운영 총괄: `docs/README.md`
+- Research: `docs/research/README.md`
 - News: `docs/news/README.md`
 - Publication: `docs/publications/README.md`
 - Photo: `docs/photos/README.md`

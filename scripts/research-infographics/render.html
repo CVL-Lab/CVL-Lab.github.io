@@ -107,25 +107,25 @@
                 inset: 14px;
             }
 
-            .topic-core {
+            .topic-computer-vision-and-learning-algorithms {
                 --accent: #546ef6;
                 --accent-soft: #e0e5fd;
                 --accent-deep: #2a4dd0;
             }
 
-            .topic-multi-modal {
+            .topic-efficient-learning-for-llms {
                 --accent: #64748b;
                 --accent-soft: #e2e8f0;
                 --accent-deep: #334155;
             }
 
-            .topic-application {
+            .topic-robot-learning {
                 --accent: #e97b77;
                 --accent-soft: #fcefed;
                 --accent-deep: #aa2d26;
             }
 
-            .topic-biomedical {
+            .topic-industrial-and-medical-ai {
                 --accent: #57b47d;
                 --accent-soft: #e9faee;
                 --accent-deep: #3e8d67;
@@ -962,7 +962,20 @@
         <div id="app"></div>
         <script>
             const params = new URLSearchParams(window.location.search);
-            const topic = params.get("topic") || "core";
+            const legacyTopicAliases = {
+                core: "computer-vision-and-learning-algorithms",
+                "core-ai": "computer-vision-and-learning-algorithms",
+                "multi-modal": "efficient-learning-for-llms",
+                "multi-modal-ai": "efficient-learning-for-llms",
+                application: "robot-learning",
+                "application-ai": "robot-learning",
+                biomedical: "industrial-and-medical-ai",
+                "biomedical-ai": "industrial-and-medical-ai",
+            };
+            const requestedTopic =
+                params.get("topic") ||
+                "computer-vision-and-learning-algorithms";
+            const topic = legacyTopicAliases[requestedTopic] || requestedTopic;
             const variant =
                 params.get("variant") === "wide" ? "wide" : "detail";
 
@@ -1017,8 +1030,9 @@
             `;
 
             const topics = {
-                core: {
-                    className: "topic-core",
+                "computer-vision-and-learning-algorithms": {
+                    className:
+                        "topic-computer-vision-and-learning-algorithms",
                     label: "Computer Vision and Learning",
                     tags: [
                         "Visual Recognition",
@@ -1051,8 +1065,8 @@
                         }),
                     ]),
                 },
-                "multi-modal": {
-                    className: "topic-multi-modal",
+                "efficient-learning-for-llms": {
+                    className: "topic-efficient-learning-for-llms",
                     label: "Efficient Learning for LLMs",
                     tags: [
                         "Model Compression",
@@ -1103,8 +1117,8 @@
                         }),
                     ]),
                 },
-                application: {
-                    className: "topic-application",
+                "robot-learning": {
+                    className: "topic-robot-learning",
                     label: "Robot Learning",
                     tags: [
                         "Perception",
@@ -1151,8 +1165,8 @@
                         }),
                     ]),
                 },
-                biomedical: {
-                    className: "topic-biomedical",
+                "industrial-and-medical-ai": {
+                    className: "topic-industrial-and-medical-ai",
                     label: "Industrial and Medical AI",
                     tags: [
                         "Reliability",
@@ -1211,7 +1225,9 @@
                 },
             };
 
-            const selected = topics[topic] || topics.core;
+            const selected =
+                topics[topic] ||
+                topics["computer-vision-and-learning-algorithms"];
             const footer = `
                 <footer class="footer">
                     <span class="footer__label">Research focus</span>

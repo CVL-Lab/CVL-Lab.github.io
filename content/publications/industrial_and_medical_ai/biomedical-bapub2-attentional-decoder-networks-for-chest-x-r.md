@@ -1,6 +1,6 @@
 ---
 id: biomedical-bapub2-attentional-decoder-networks-for-chest-x-r
-category: biomedical
+category: industrial_and_medical_ai
 status: published
 title: "Attentional Decoder Networks for Chest X-ray Image Recognition on High-resolution Features"
 date: 2024-04-21

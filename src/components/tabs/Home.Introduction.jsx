@@ -2,6 +2,7 @@ import "./Home.Introduction.css";
 import { Link } from "react-router-dom";
 import { getHomeMediaBySection } from "./home/homeData";
 import { getPeopleEntriesBySection } from "../../utils/peopleData";
+import { getResearchResourceSummary } from "../../utils/researchData";
 
 const RESEARCH_FOCUS = [
     "Computer Vision",
@@ -11,11 +12,6 @@ const RESEARCH_FOCUS = [
     "Industrial AI",
 ];
 
-const RESOURCE_COUNTS = {
-    gpus: 8,
-    robots: 1,
-};
-
 const buildIntroductionMediaMap = () => {
     const professorCount = getPeopleEntriesBySection("professor").length;
     const integratedPhdCount =
@@ -24,6 +20,7 @@ const buildIntroductionMediaMap = () => {
     const masterCount = getPeopleEntriesBySection("master").length;
     const internCount = getPeopleEntriesBySection("intern").length;
     const totalPhdCount = integratedPhdCount + phdCount;
+    const resourceSummary = getResearchResourceSummary();
 
     return {
         intro_group_photo: {
@@ -33,7 +30,7 @@ const buildIntroductionMediaMap = () => {
         },
         intro_meeting_room: {
             title: "Lab Resources",
-            description: `${RESOURCE_COUNTS.gpus} GPUs, ${RESOURCE_COUNTS.robots} Robots`,
+            description: resourceSummary,
             to: "/research",
             state: {
                 scroll: {

@@ -6,13 +6,6 @@ import PublicationLinkIcons, {
 import PublicationFigure from "../Publication.Figure";
 import { RESEARCH_CATEGORY_LABELS } from "../../../utils/researchData";
 
-const CATEGORY_LABELS = {
-    application: RESEARCH_CATEGORY_LABELS.application,
-    biomedical: RESEARCH_CATEGORY_LABELS.biomedical,
-    core: RESEARCH_CATEGORY_LABELS.core,
-    "multi-modal": RESEARCH_CATEGORY_LABELS["multi-modal"],
-};
-
 const formatPublicationVenue = (item) => {
     const venue = item.research_meta.published_place?.trim();
     const date = item.research_meta.published_date?.trim();
@@ -33,7 +26,7 @@ export default function HomeSelectedPublications() {
     const hasFeaturedExternalLink = isValidHttpUrl(featuredPaperLink);
     const featuredQueryTarget = `/publication?q=${encodeURIComponent(featuredPublication.title)}&scope=title-authors-venue`;
     const featuredCategoryLabel =
-        CATEGORY_LABELS[featuredPublication.category] ??
+        RESEARCH_CATEGORY_LABELS[featuredPublication.category] ??
         featuredPublication.category;
     return (
         <section
@@ -122,7 +115,8 @@ export default function HomeSelectedPublications() {
                     const revealLoadDelay = `${200 + index * 60}`;
                     const queryTarget = `/publication?q=${encodeURIComponent(item.title)}&scope=title-authors-venue`;
                     const categoryLabel =
-                        CATEGORY_LABELS[item.category] || item.category;
+                        RESEARCH_CATEGORY_LABELS[item.category] ||
+                        item.category;
                     return (
                         <article
                             key={item.key}

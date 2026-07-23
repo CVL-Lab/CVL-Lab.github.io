@@ -9,16 +9,14 @@ import {
     normalizeHttpUrl,
     normalizeSlug,
     parseMarkdownFrontmatter,
+    readJsonFile,
     relativeFromRoot,
     writeJsonFile,
 } from "./lib.mjs";
 
-const PUBLICATION_CATEGORIES = new Set([
-    "application",
-    "biomedical",
-    "core",
-    "multi-modal",
-]);
+const RESEARCH_AREAS_FILE = path.resolve(
+    "src/assets/dataset/research_areas.json",
+);
 const PUBLICATION_STATUSES = new Set(["published", "working", "project"]);
 
 const normalizeText = (value) => String(value ?? "").trim();
@@ -41,7 +39,7 @@ const normalizeStringList = (value) => {
 const requiredError = (filePath, fieldName, message = "is required") =>
     `[publications] ${relativeFromRoot(filePath)}: "${fieldName}" ${message}`;
 
-const parsePublicationFile = async (filePath) => {
+const parsePublicationFile = async (filePath, publicationCategories) => {
     const raw = await fs.readFile(filePath, "utf8");
     const { data, body } = parseMarkdownFrontmatter(raw, filePath);
 
@@ -73,9 +71,9 @@ const parsePublicationFile = async (filePath) => {
     if (!category) {
         throw new Error(requiredError(filePath, "category"));
     }
-    if (!PUBLICATION_CATEGORIES.has(category)) {
+    if (!publicationCategories.has(category)) {
         throw new Error(
-            `[publications] ${relativeFromRoot(filePath)}: unsupported category "${category}". Allowed: ${Array.from(PUBLICATION_CATEGORIES).join(", ")}`,
+            `[publications] ${relativeFromRoot(filePath)}: unsupported category "${category}". Allowed: ${Array.from(publicationCategories).join(", ")}`,
         );
     }
     if (!PUBLICATION_STATUSES.has(status)) {
@@ -127,6 +125,17 @@ const parsePublicationFile = async (filePath) => {
 };
 
 export const syncPublicationContent = async ({ validateOnly = false } = {}) => {
+    const researchCatalog = await readJsonFile(RESEARCH_AREAS_FILE, {});
+    const publicationCategories = new Set(
+        researchCatalog.meta?.area_order ?? [],
+    );
+
+    if (publicationCategories.size === 0) {
+        throw new Error(
+            `[publications] No research area categories found in ${relativeFromRoot(RESEARCH_AREAS_FILE)}.`,
+        );
+    }
+
     const markdownFiles = (
         await listMarkdownFiles(PUBLICATIONS_CONTENT_DIR)
     ).filter((filePath) => !path.basename(filePath).startsWith("_"));
@@ -141,7 +150,10 @@ export const syncPublicationContent = async ({ validateOnly = false } = {}) => {
     const seenIds = new Set();
 
     for (const filePath of markdownFiles) {
-        const item = await parsePublicationFile(filePath);
+        const item = await parsePublicationFile(
+            filePath,
+            publicationCategories,
+        );
         if (seenIds.has(item.id)) {
             throw new Error(
                 `[publications] Duplicate id "${item.id}" in ${relativeFromRoot(filePath)}`,

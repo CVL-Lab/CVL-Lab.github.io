@@ -1,0 +1,29 @@
+{
+    "meta": {
+        "schema_version": "1.0",
+        "home_summary": "8 GPUs, 1 Robot"
+    },
+    "items": [
+        {
+            "id": "gpu",
+            "label": "GPU Nodes",
+            "value": "8× RTX 3090",
+            "description": "Dedicated training nodes for large-scale vision and learning experiments.",
+            "image_key": "research_environment"
+        },
+        {
+            "id": "server",
+            "label": "Research Servers",
+            "value": "4 Shared Servers",
+            "description": "Managed compute and storage infrastructure for collaborative model development.",
+            "image_key": "intro_meeting_room"
+        },
+        {
+            "id": "robotics",
+            "label": "Robotics Platform",
+            "value": "UR5e + Vision Setup",
+            "description": "Real-world testbed for embodied perception, control, and deployment workflows.",
+            "image_key": "culture_discussion"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 ---
 id: biomedical-bapub1-robust-asymmetric-loss-for-multi-label-lon
-category: biomedical
+category: industrial_and_medical_ai
 status: published
 title: "Robust Asymmetric Loss for Multi-Label Long-Tailed Learning"
 date: 2023-08-10

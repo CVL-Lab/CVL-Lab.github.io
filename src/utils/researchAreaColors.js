@@ -12,10 +12,14 @@ const BASE_PASTEL_POOL = [
 ];
 
 const PRESET_AREA_INDEX = {
-  core: 0,
-  biomedical: 1,
-  application: 2,
-  "multi-modal": 3,
+  computer_vision_and_learning_algorithms: 0,
+  "computer-vision-and-learning-algorithms": 0,
+  industrial_and_medical_ai: 1,
+  "industrial-and-medical-ai": 1,
+  robot_learning: 2,
+  "robot-learning": 2,
+  efficient_learning_for_llms: 3,
+  "efficient-learning-for-llms": 3,
 };
 
 const hashString = (value) => {

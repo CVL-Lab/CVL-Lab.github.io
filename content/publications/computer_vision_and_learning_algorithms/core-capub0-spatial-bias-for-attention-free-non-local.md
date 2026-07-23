@@ -1,6 +1,6 @@
 ---
 id: core-capub0-spatial-bias-for-attention-free-non-local
-category: core
+category: computer_vision_and_learning_algorithms
 status: published
 title: "Spatial Bias for Attention-free Non-local Neural Networks"
 date: 2024-10-04

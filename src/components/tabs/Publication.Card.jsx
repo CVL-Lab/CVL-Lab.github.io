@@ -4,13 +4,6 @@ import PublicationLinkIcons, {
 import PublicationFigure from "./Publication.Figure";
 import { RESEARCH_CATEGORY_LABELS } from "../../utils/researchData";
 
-const CATEGORY_META = {
-    application: { label: RESEARCH_CATEGORY_LABELS.application },
-    biomedical: { label: RESEARCH_CATEGORY_LABELS.biomedical },
-    core: { label: RESEARCH_CATEGORY_LABELS.core },
-    "multi-modal": { label: RESEARCH_CATEGORY_LABELS["multi-modal"] },
-};
-
 const isValidHttpUrl = (url) => {
     if (!url) return false;
     try {
@@ -31,8 +24,7 @@ function PublicationCard({
 }) {
     const paperLink = getPublicationPrimaryLink(meta);
     const hasPaperLink = isValidHttpUrl(paperLink);
-    const categoryMeta =
-        CATEGORY_META[category] ?? CATEGORY_META["multi-modal"];
+    const categoryLabel = RESEARCH_CATEGORY_LABELS[category] ?? category;
     const authorText = meta.author?.trim() ?? "";
     const venueText = meta.published_place?.trim() ?? "";
     const dateText = meta.published_date?.trim() ?? "";
@@ -53,7 +45,7 @@ function PublicationCard({
                 <div className="publication__card-badges">
                     <p
                         className={`publication__card-badge publication__card-badge--${category}`}>
-                        {categoryMeta.label}
+                        {categoryLabel}
                     </p>
                 </div>
                 {keywordList.length ? (

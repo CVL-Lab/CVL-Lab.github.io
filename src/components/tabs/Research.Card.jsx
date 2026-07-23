@@ -5,7 +5,7 @@ import "./Research.Card.css";
 function ResearchCard({
     title,
     subtitle = [],
-    explaination,
+    explanation,
     tags = [],
     topicKey,
     publicationCategory,
@@ -73,7 +73,7 @@ function ResearchCard({
                     <h2 className="research-card-title">{title}</h2>
                 </div>
 
-                <p className="research-card-description">{explaination}</p>
+                <p className="research-card-description">{explanation}</p>
 
                 {keywords.length > 0 ? (
                     <div className="research-card-metadata">

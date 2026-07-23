@@ -434,28 +434,28 @@
     text-transform: none;
 }
 
-.home-pubs__badge--core {
+.home-pubs__badge--computer_vision_and_learning_algorithms {
     border-color: #bdd0fa;
-    background: var(--topic-core-100);
-    color: var(--topic-core-800);
+    background: var(--topic-computer-vision-and-learning-algorithms-100);
+    color: var(--topic-computer-vision-and-learning-algorithms-800);
 }
 
-.home-pubs__badge--biomedical {
+.home-pubs__badge--industrial_and_medical_ai {
     border-color: #c3e0ce;
-    background: var(--topic-biomedical-100);
-    color: var(--topic-biomedical-800);
+    background: var(--topic-industrial-and-medical-ai-100);
+    color: var(--topic-industrial-and-medical-ai-800);
 }
 
-.home-pubs__badge--application {
+.home-pubs__badge--robot_learning {
     border-color: #efb7b3;
-    background: var(--topic-application-100);
-    color: var(--topic-application-800);
+    background: var(--topic-robot-learning-100);
+    color: var(--topic-robot-learning-800);
 }
 
-.home-pubs__badge--multi-modal {
+.home-pubs__badge--efficient_learning_for_llms {
     border-color: #d9e1ea;
-    background: var(--topic-multi-modal-100);
-    color: var(--topic-multi-modal-800);
+    background: var(--topic-efficient-learning-for-llms-100);
+    color: var(--topic-efficient-learning-for-llms-800);
 }
 
 .home-pubs__meta {
