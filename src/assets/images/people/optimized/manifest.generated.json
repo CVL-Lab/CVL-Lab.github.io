@@ -103,6 +103,13 @@
       "source_sha256": "fb109215a9108bc80cf862a422f677025887dc8b848d6321f7f1115b79124565",
       "output_sha256": "7315c4d99c46ca3fd121d79266daebfbc4f0374badaeb4607827b5206614502c"
     },
+    "ahream_lee": {
+      "section": "intern",
+      "source": "AhReam Lee.jpg",
+      "output": "AhReam Lee.webp",
+      "source_sha256": "263a57516a4ffac98469f9ba1fd10fea3cda95f828dc9cd4464a2ba844dd516e",
+      "output_sha256": "e9b6cffd9f23debdbf67992b362dc8bfc4dd9689c8381435e651dda71213e6e6"
+    },
     "seungwon_lee": {
       "section": "intern",
       "source": "Seungwon Lee.jpg",
@@ -116,6 +123,20 @@
       "output": "Junwon Bae.webp",
       "source_sha256": "17e53ca71cd9b25731f4c5730bf729042de1035163c11acd40581cb2ebfd0f43",
       "output_sha256": "93ab00924d60c3565cafea1e7f34440c2329348832826dd8df296ef54392dd69"
+    },
+    "jihoon_park": {
+      "section": "intern",
+      "source": "Jihoon Park.png",
+      "output": "Jihoon Park.webp",
+      "source_sha256": "ad80b2272585d7982963aff5d0f7ee90e9a2a552a1b937ec50fbcaddac7b0c06",
+      "output_sha256": "edd067419bb2b5fdc864b0fbcb1d676e310eb536944410ce909c781353c553f6"
+    },
+    "bonghyun_jang": {
+      "section": "intern",
+      "source": "Bonghyun Jang.jpg",
+      "output": "Bonghyun Jang.webp",
+      "source_sha256": "61e5b8218f551578c59118a12a6ebb7ac54663d73bc8a4fd2003a527cedb828c",
+      "output_sha256": "65bb4316a2b6711f0dd8e5c4d336a44ad793b512ddc7e96374f134b835c1471d"
     },
     "seokjin_jang": {
       "section": "alumni",

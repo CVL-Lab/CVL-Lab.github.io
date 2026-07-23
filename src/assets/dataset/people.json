@@ -259,8 +259,24 @@
         "intern": {
             "title": "Intern",
             "entries": {
-                "seungwon_lee": {
+                "ahream_lee": {
                     "order": 0,
+                    "name": "AhReam Lee",
+                    "position": "Intern",
+                    "email": "aleum433@gmail.com",
+                    "homepage": null,
+                    "research_interests": [
+                        "Deep-Learning"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "seungwon_lee": {
+                    "order": 1,
                     "name": "Seungwon Lee",
                     "position": "Intern",
                     "email": "tmddnjs5155@ajou.ac.kr",
@@ -276,10 +292,42 @@
                     }
                 },
                 "junwon_bae": {
-                    "order": 1,
+                    "order": 2,
                     "name": "Junwon Bae",
                     "position": "Intern",
                     "email": "baegom3@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Deep-Learning"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "jihoon_park": {
+                    "order": 3,
+                    "name": "Jihoon Park",
+                    "position": "Intern",
+                    "email": "jihoonpark22@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Deep-Learning"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "bonghyun_jang": {
+                    "order": 4,
+                    "name": "Bonghyun Jang",
+                    "position": "Intern",
+                    "email": "jbh3924@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Deep-Learning"
@@ -359,7 +407,7 @@
                     "position": "Alumni",
                     "email": "dollyin@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Computer Vision"],
+                    "research_interests": [],
                     "current_position": [],
                     "links": {
                         "github": "https://github.com/sunkijoo",
@@ -373,7 +421,7 @@
                     "position": "Alumni",
                     "email": "pyosh11@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Computer Vision"],
+                    "research_interests": [],
                     "current_position": [],
                     "links": {
                         "github": null,
@@ -387,10 +435,7 @@
                     "position": "Alumni",
                     "email": "gregorseifer@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": [
-                        "Long-tailed Learning",
-                        "Computer Vision"
-                    ],
+                    "research_interests": [],
                     "current_position": [],
                     "links": {
                         "github": null,
@@ -404,11 +449,7 @@
                     "position": "Alumni",
                     "email": "eaststst123@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": [
-                        "Deep Learning",
-                        "Network Calibration",
-                        "Generative Model"
-                    ],
+                    "research_interests": [],
                     "current_position": [],
                     "links": {
                         "github": null,
@@ -422,7 +463,7 @@
                     "position": "Alumni",
                     "email": "euihakeg@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Deep Learning", "Computer Vision"],
+                    "research_interests": [],
                     "current_position": [],
                     "links": {
                         "github": null,
@@ -436,10 +477,7 @@
                     "position": "Alumni",
                     "email": "scott9601@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": [
-                        "Multi-modal task",
-                        "Few-show Learning"
-                    ],
+                    "research_interests": [],
                     "current_position": [],
                     "links": {
                         "github": null,
