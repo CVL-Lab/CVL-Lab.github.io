@@ -103,48 +103,11 @@
                         "linkedin": null,
                         "google_scholar": null
                     }
-                }
-            }
-        },
-        "phd": {
-            "title": "Ph.D",
-            "entries": {}
-        },
-        "master": {
-            "title": "M.S",
-            "entries": {
-                "sunki_joo": {
-                    "order": 0,
-                    "name": "Sunki Joo",
-                    "position": "M.S Student",
-                    "email": "dollyin@ajou.ac.kr",
-                    "homepage": null,
-                    "research_interests": ["Computer Vision"],
-                    "current_position": [],
-                    "links": {
-                        "github": "https://github.com/sunkijoo",
-                        "linkedin": null,
-                        "google_scholar": null
-                    }
-                },
-                "soohyeon_pyo": {
-                    "order": 1,
-                    "name": "Soohyeon Pyo",
-                    "position": "M.S Student",
-                    "email": "pyosh11@ajou.ac.kr",
-                    "homepage": null,
-                    "research_interests": ["Computer Vision"],
-                    "current_position": [],
-                    "links": {
-                        "github": null,
-                        "linkedin": null,
-                        "google_scholar": null
-                    }
                 },
                 "yuri_kim": {
-                    "order": 2,
+                    "order": 4,
                     "name": "Yuri Kim",
-                    "position": "M.S Student",
+                    "position": "Integrated M.S./Ph.D Studen",
                     "email": "kimuri02@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
@@ -158,27 +121,10 @@
                         "google_scholar": null
                     }
                 },
-                "gregor_seifer": {
-                    "order": 3,
-                    "name": "Gregor Seifer",
-                    "position": "M.S Student",
-                    "email": "gregorseifer@ajou.ac.kr",
-                    "homepage": null,
-                    "research_interests": [
-                        "Long-tailed Learning",
-                        "Computer Vision"
-                    ],
-                    "current_position": [],
-                    "links": {
-                        "github": null,
-                        "linkedin": "https://www.linkedin.com/in/gregor-seifer/",
-                        "google_scholar": null
-                    }
-                },
                 "seunghun_kang": {
-                    "order": 4,
+                    "order": 5,
                     "name": "Seunghun Kang",
-                    "position": "M.S Student",
+                    "position": "Integrated M.S./Ph.D Studen",
                     "email": "xldi28@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": ["Computer Vision", "Deep Learning"],
@@ -189,45 +135,10 @@
                         "google_scholar": null
                     }
                 },
-                "dongkyu_kim": {
-                    "order": 5,
-                    "name": "Dongkyu Kim",
-                    "position": "M.S Student",
-                    "email": "eaststst123@ajou.ac.kr",
-                    "homepage": null,
-                    "research_interests": [
-                        "Deep Learning",
-                        "Network Calibration",
-                        "Generative Model"
-                    ],
-                    "current_position": [],
-                    "links": {
-                        "github": null,
-                        "linkedin": null,
-                        "google_scholar": null
-                    }
-                },
-                "kyusung_nam": {
-                    "order": 6,
-                    "name": "Kyusung Nam",
-                    "position": "M.S Student",
-                    "email": "scott9601@ajou.ac.kr",
-                    "homepage": null,
-                    "research_interests": [
-                        "Multi-modal task",
-                        "Few-show Learning"
-                    ],
-                    "current_position": [],
-                    "links": {
-                        "github": null,
-                        "linkedin": null,
-                        "google_scholar": null
-                    }
-                },
                 "donghyun_kim": {
-                    "order": 7,
+                    "order": 6,
                     "name": "Donghyun Kim",
-                    "position": "M.S Student",
+                    "position": "Integrated M.S./Ph.D Studen",
                     "email": "dk58319@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
@@ -242,9 +153,9 @@
                     }
                 },
                 "donggun_lee": {
-                    "order": 8,
+                    "order": 7,
                     "name": "Donggun Lee",
-                    "position": "M.S Student",
+                    "position": "Integrated M.S./Ph.D Studen",
                     "email": "edg1113@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": ["Vision-Language model"],
@@ -254,23 +165,18 @@
                         "linkedin": null,
                         "google_scholar": null
                     }
-                },
-                "euihak_heo": {
-                    "order": 9,
-                    "name": "Euihak Heo",
-                    "position": "M.S Student",
-                    "email": "euihakeg@ajou.ac.kr",
-                    "homepage": null,
-                    "research_interests": ["Deep Learning", "Computer Vision"],
-                    "current_position": [],
-                    "links": {
-                        "github": null,
-                        "linkedin": null,
-                        "google_scholar": null
-                    }
-                },
+                }
+            }
+        },
+        "phd": {
+            "title": "Ph.D",
+            "entries": {}
+        },
+        "master": {
+            "title": "M.S",
+            "entries": {
                 "eunju_shin": {
-                    "order": 10,
+                    "order": 0,
                     "name": "Eunju Shin",
                     "position": "M.S Student",
                     "email": "sinssinej7@ajou.ac.kr",
@@ -284,7 +190,7 @@
                     }
                 },
                 "duyeon_na": {
-                    "order": 11,
+                    "order": 1,
                     "name": "Duyeon Na",
                     "position": "M.S Student",
                     "email": "ndy10101@gmail.com",
@@ -299,21 +205,33 @@
                         "linkedin": null,
                         "google_scholar": null
                     }
-                }
-            }
-        },
-        "intern": {
-            "title": "Intern",
-            "entries": {
-                "geunhyung_park": {
-                    "order": 1,
-                    "name": "Geunhyung Park",
-                    "position": "Intern",
-                    "email": "gorilla35@ajou.ac.kr",
+                },
+                "mingyu_jeong": {
+                    "order": 2,
+                    "name": "Mingyu Jeong",
+                    "position": "M.S Student",
+                    "email": "green3438@ajou.ac.kr ",
                     "homepage": null,
                     "research_interests": [
-                        "Vision-Language Model",
-                        "Deep-Learning"
+                        "Deep Learning",
+                        "Image Classification"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "chaeyun_eom": {
+                    "order": 3,
+                    "name": "Chaeyun Eom",
+                    "position": "M.S Student",
+                    "email": "ucy0303@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Deep Learning",
+                        "Image Classification"
                     ],
                     "current_position": [],
                     "links": {
@@ -323,12 +241,49 @@
                     }
                 },
                 "minjae_kim": {
-                    "order": 2,
+                    "order": 4,
                     "name": "Minjae Kim",
-                    "position": "Intern",
+                    "position": "M.S Student",
                     "email": "meansash@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": ["Computer Vision", "Medical Image"],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                }
+            }
+        },
+        "intern": {
+            "title": "Intern",
+            "entries": {
+                "seungwon_lee": {
+                    "order": 0,
+                    "name": "Seungwon Lee",
+                    "position": "Intern",
+                    "email": "tmddnjs5155@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Deep-Learning"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "junwon_bae": {
+                    "order": 1,
+                    "name": "Junwon Bae",
+                    "position": "Intern",
+                    "email": "baegom3@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Deep-Learning"
+                    ],
                     "current_position": [],
                     "links": {
                         "github": null,
@@ -396,8 +351,104 @@
                         "linkedin": null,
                         "google_scholar": null
                     }
+                
+                },
+                "sunki_joo": {
+                    "order": 4,
+                    "name": "Sunki Joo",
+                    "position": "Alumni",
+                    "email": "dollyin@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": ["Computer Vision"],
+                    "current_position": [],
+                    "links": {
+                        "github": "https://github.com/sunkijoo",
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "soohyeon_pyo": {
+                    "order": 5,
+                    "name": "Soohyeon Pyo",
+                    "position": "Alumni",
+                    "email": "pyosh11@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": ["Computer Vision"],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "gregor_seifer": {
+                    "order": 6,
+                    "name": "Gregor Seifer",
+                    "position": "Alumni",
+                    "email": "gregorseifer@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Long-tailed Learning",
+                        "Computer Vision"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": "https://www.linkedin.com/in/gregor-seifer/",
+                        "google_scholar": null
+                    }
+                },
+                "dongkyu_kim": {
+                    "order": 7,
+                    "name": "Dongkyu Kim",
+                    "position": "Alumni",
+                    "email": "eaststst123@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Deep Learning",
+                        "Network Calibration",
+                        "Generative Model"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "euihak_heo": {
+                    "order": 8,
+                    "name": "Euihak Heo",
+                    "position": "Alumni",
+                    "email": "euihakeg@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": ["Deep Learning", "Computer Vision"],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "kyusung_nam": {
+                    "order": 9,
+                    "name": "Kyusung Nam",
+                    "position": "Alumni",
+                    "email": "scott9601@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Multi-modal task",
+                        "Few-show Learning"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
                 }
             }
         }
     }
 }
+

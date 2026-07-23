@@ -40,75 +40,33 @@
       "source_sha256": "491b8aacfad1e4600235a3413c958e5b960fb23d3f88c539cab06581d02082dc",
       "output_sha256": "520e2e361dbcc4e6a211829cd6262078d7e4e9122af3563430cb812b544980ed"
     },
-    "sunki_joo": {
-      "section": "master",
-      "source": "Sunki Joo.png",
-      "output": "Sunki Joo.webp",
-      "source_sha256": "ac5113a5d7272ce3eae0387830b265908da0140870030b0fabc913356d143913",
-      "output_sha256": "016e482b6704fbbc9fb17ef3076f5642aeb340079b25ac9eb0c9cfce8e762aa8"
-    },
-    "soohyeon_pyo": {
-      "section": "master",
-      "source": "Soohyeon Pyo.jpg",
-      "output": "Soohyeon Pyo.webp",
-      "source_sha256": "ab5cb41a09c660d127104a131828ed66f1657b75529e7c2daeb160fe8917690b",
-      "output_sha256": "a6f3ab34cc41ad857a3c9571b505e1e5f5e807267b95bb3009d91f1db37fdd94"
-    },
     "yuri_kim": {
-      "section": "master",
+      "section": "integrated_mp",
       "source": "Yuri Kim.jpg",
       "output": "Yuri Kim.webp",
       "source_sha256": "c74cc8fa7f34ad58628c04c0000079e84e8f8d728ca206020e753a07af1d099c",
       "output_sha256": "99e3b36e66a8c397451b2b637a14a6387a56ba37b2f5c85263997b3954758ad3"
     },
-    "gregor_seifer": {
-      "section": "master",
-      "source": "Gregor Seifer.png",
-      "output": "Gregor Seifer.webp",
-      "source_sha256": "4e7a837903d8b12d448da0583c416338765155fcfe87a2a2cbbdc3ae255a8c97",
-      "output_sha256": "df0e8aba64b78a5fcc462462851bb6857fa3d0a017725ccdcfe19fe94a75909e"
-    },
     "seunghun_kang": {
-      "section": "master",
+      "section": "integrated_mp",
       "source": "Seunghun Kang.jpg",
       "output": "Seunghun Kang.webp",
       "source_sha256": "ead0a066c6354b4524868d55738fb26dba2651588f93075ab26d444f0091752b",
       "output_sha256": "399b9531110d34a027fc1e933182d7ad53e310cc6f04742e7aee5213222d8b1c"
     },
-    "dongkyu_kim": {
-      "section": "master",
-      "source": "Dongkyu Kim.png",
-      "output": "Dongkyu Kim.webp",
-      "source_sha256": "aab4f88573dd904eb79626af16b52215c0c550404259e34f774fbf6a0ea2e297",
-      "output_sha256": "7aaeaf36cc26e81d3ee7ae89672ce89b1cc3ea0a70af97319cb4f4b75578910a"
-    },
-    "kyusung_nam": {
-      "section": "master",
-      "source": "Kyusung Nam.png",
-      "output": "Kyusung Nam.webp",
-      "source_sha256": "3bb442e200eb4377ee48d512c69f43b74b3ddaf111f0437e87289880d05ea125",
-      "output_sha256": "e4580b7bace556d301cc99500b820ea049e3e6e5c63f68a8b175e1e938420f19"
-    },
     "donghyun_kim": {
-      "section": "master",
+      "section": "integrated_mp",
       "source": "Donghyun Kim.jpg",
       "output": "Donghyun Kim.webp",
       "source_sha256": "1c99579d731a3e076f3514b61fad94c359e4924262f220bb7608a8f0114ebfa7",
       "output_sha256": "d64af66ff4f696be234e3cbe74061b19fefdc7c20ed7480cb101c5e888317290"
     },
     "donggun_lee": {
-      "section": "master",
+      "section": "integrated_mp",
       "source": "Donggun Lee.png",
       "output": "Donggun Lee.webp",
       "source_sha256": "bb0be81803091fa69c68604a5558edeb9ac4e0e355ca61ab669e1f3290b6b1d6",
       "output_sha256": "ff328ce63dd7cbaeb3b88a5ae1f9ffcbb2d7be7552b8d93a24cd84b3657514c7"
-    },
-    "euihak_heo": {
-      "section": "master",
-      "source": "Euihak Heo.png",
-      "output": "Euihak Heo.webp",
-      "source_sha256": "557a3fa01a6471866897610dabf27085f17824f04890ac576c6168e6672febab",
-      "output_sha256": "31108f9707403e3d10d2c953539187720d791072a1d71695ec1bdb8203e1e303"
     },
     "eunju_shin": {
       "section": "master",
@@ -124,19 +82,40 @@
       "source_sha256": "986728cac44b2e2a04f7629e7d16c36becc08222c753d2871fd92361b5f43990",
       "output_sha256": "020d39244cfc7d87e5b462f458a917aaee561c1ca2c38d70a2781361e5f739ca"
     },
-    "geunhyung_park": {
-      "section": "intern",
-      "source": "Geunhyung Park.png",
-      "output": "Geunhyung Park.webp",
-      "source_sha256": "0ffef0e5097e2147728979ca4e12dcb8b51e447b7d3a3df6aa11579f5d57af21",
-      "output_sha256": "9cb6ecca66078c56ad5f1ae477e9316acc28d1da74d5684aa0d454f9332a54dd"
+    "mingyu_jeong": {
+      "section": "master",
+      "source": "Mingyu Jeong.png",
+      "output": "Mingyu Jeong.webp",
+      "source_sha256": "561c098b8a359e6ab4b410fc0d778127c15c1a4d34ca101502efd2a63b82ab89",
+      "output_sha256": "eb7bdf6d626b34006f67da7d0db38a066bcd785514bd48072a0ec9b37a40451f"
+    },
+    "chaeyun_eom": {
+      "section": "master",
+      "source": "Chaeyun Eom.png",
+      "output": "Chaeyun Eom.webp",
+      "source_sha256": "9e3821deb311de1447b5df1da7a20193aed77de6a46a0436b82e38d6073ce52e",
+      "output_sha256": "ae7572e54eb7d1fb66fa1b11c48e7e7701dc7efcb274ec32765c5f4377a8f794"
     },
     "minjae_kim": {
-      "section": "intern",
+      "section": "master",
       "source": "Minjae Kim.jpg",
       "output": "Minjae Kim.webp",
       "source_sha256": "fb109215a9108bc80cf862a422f677025887dc8b848d6321f7f1115b79124565",
       "output_sha256": "7315c4d99c46ca3fd121d79266daebfbc4f0374badaeb4607827b5206614502c"
+    },
+    "seungwon_lee": {
+      "section": "intern",
+      "source": "Seungwon Lee.jpg",
+      "output": "Seungwon Lee.webp",
+      "source_sha256": "cf6862a7bc252fecf79fd6495d3abfaad09a7136c8aefc4e2b148daf6835ca7f",
+      "output_sha256": "7663294767a0340620ea8564366b5a07bd4e004216ef8619a46a7fb4e3557ef4"
+    },
+    "junwon_bae": {
+      "section": "intern",
+      "source": "Junwon Bae.jpg",
+      "output": "Junwon Bae.webp",
+      "source_sha256": "17e53ca71cd9b25731f4c5730bf729042de1035163c11acd40581cb2ebfd0f43",
+      "output_sha256": "93ab00924d60c3565cafea1e7f34440c2329348832826dd8df296ef54392dd69"
     },
     "seokjin_jang": {
       "section": "alumni",
@@ -165,6 +144,48 @@
       "output": "Inhyuk Park.webp",
       "source_sha256": "cb14f73a9dfb278ce81d24c93de0e67b9a6a2d5bcd4ca31222df99604c5e29d2",
       "output_sha256": "6be62048dd7e5946f8ebf4bcd24cd7208b070839b59e32cf3af9807cad608b17"
+    },
+    "sunki_joo": {
+      "section": "alumni",
+      "source": "Sunki Joo.png",
+      "output": "Sunki Joo.webp",
+      "source_sha256": "ac5113a5d7272ce3eae0387830b265908da0140870030b0fabc913356d143913",
+      "output_sha256": "016e482b6704fbbc9fb17ef3076f5642aeb340079b25ac9eb0c9cfce8e762aa8"
+    },
+    "soohyeon_pyo": {
+      "section": "alumni",
+      "source": "Soohyeon Pyo.jpg",
+      "output": "Soohyeon Pyo.webp",
+      "source_sha256": "ab5cb41a09c660d127104a131828ed66f1657b75529e7c2daeb160fe8917690b",
+      "output_sha256": "a6f3ab34cc41ad857a3c9571b505e1e5f5e807267b95bb3009d91f1db37fdd94"
+    },
+    "gregor_seifer": {
+      "section": "alumni",
+      "source": "Gregor Seifer.png",
+      "output": "Gregor Seifer.webp",
+      "source_sha256": "4e7a837903d8b12d448da0583c416338765155fcfe87a2a2cbbdc3ae255a8c97",
+      "output_sha256": "df0e8aba64b78a5fcc462462851bb6857fa3d0a017725ccdcfe19fe94a75909e"
+    },
+    "dongkyu_kim": {
+      "section": "alumni",
+      "source": "Dongkyu Kim.png",
+      "output": "Dongkyu Kim.webp",
+      "source_sha256": "aab4f88573dd904eb79626af16b52215c0c550404259e34f774fbf6a0ea2e297",
+      "output_sha256": "7aaeaf36cc26e81d3ee7ae89672ce89b1cc3ea0a70af97319cb4f4b75578910a"
+    },
+    "euihak_heo": {
+      "section": "alumni",
+      "source": "Euihak Heo.png",
+      "output": "Euihak Heo.webp",
+      "source_sha256": "557a3fa01a6471866897610dabf27085f17824f04890ac576c6168e6672febab",
+      "output_sha256": "31108f9707403e3d10d2c953539187720d791072a1d71695ec1bdb8203e1e303"
+    },
+    "kyusung_nam": {
+      "section": "alumni",
+      "source": "Kyusung Nam.png",
+      "output": "Kyusung Nam.webp",
+      "source_sha256": "3bb442e200eb4377ee48d512c69f43b74b3ddaf111f0437e87289880d05ea125",
+      "output_sha256": "e4580b7bace556d301cc99500b820ea049e3e6e5c63f68a8b175e1e938420f19"
     }
   }
 }
