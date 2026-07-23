@@ -122,6 +122,9 @@ npm run people:validate
 # schema/형식 검증
 npm run validate:content
 
+# npm 의존성 취약점 검증
+npm run audit:dependencies
+
 # 로컬 개발 server 실행
 npm run dev
 
@@ -131,7 +134,7 @@ npm run build
 # build 결과 로컬 preview
 npm run preview
 
-# 운영자용 종합 점검(동기화 + build)
+# 운영자용 종합 점검(dependency audit + 동기화 + build)
 npm run operator:verify
 ```
 

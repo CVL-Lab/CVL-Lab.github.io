@@ -191,9 +191,44 @@
 
 ---
 
-## 10) 운영자가 꼭 기억할 원칙
+## 10) dependency audit 실패
 
-1. 편집 대상은 `content/...`만
-2. `src/generated/...`는 자동 생성 결과물
-3. “오류가 나면 template으로 되돌려 비교”가 가장 빠름
-4. 반영 확인은 항상 Home + 개별 tab(`/news`, `/publication`, `/photo`)까지 확인
+### 증상
+
+- `npm run audit:dependencies`가 실패
+- GitHub Actions가 `Audit Dependencies` 단계에서 중단
+- GitHub Dependabot alert가 열림
+
+### 해결 절차
+
+1. committed lockfile 기준으로 다시 설치합니다.
+    ```bash
+    npm ci
+    npm run audit:dependencies
+    ```
+2. 취약 package의 유입 경로를 확인합니다.
+    ```bash
+    npm explain <package-name>
+    ```
+3. 직접 의존성이면 현재 major의 patched version으로 최소 버전을 올립니다.
+4. 전이 의존성이면 `npm audit fix`를 실행하고 lockfile diff를 검토합니다.
+5. `npm audit fix --force`로 우회하지 않습니다.
+6. audit와 build를 다시 실행합니다.
+    ```bash
+    npm run audit:dependencies
+    npm run build
+    ```
+
+로컬 audit가 0인데 GitHub alert가 남아 있다면 새 `package-lock.json`이 push됐는지 확인하고 GitHub 재검사를 기다립니다. 근거 없이 alert를 dismiss하지 않습니다.
+
+자세한 policy와 rollback 절차는 `docs/dependencies/README.md`를 참고합니다.
+
+---
+
+## 11) 운영자가 꼭 기억할 원칙
+
+1. 원본 content, People 원본과 `package.json`만 직접 편집
+2. `src/generated/...`, `node_modules/...`는 자동 생성 결과물
+3. lockfile은 package manager로 갱신하고 손으로 고치지 않음
+4. “오류가 나면 template으로 되돌려 비교”가 가장 빠름
+5. 반영 확인은 항상 Home + 개별 tab(`/news`, `/publication`, `/photo`)까지 확인

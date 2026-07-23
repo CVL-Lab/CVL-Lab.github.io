@@ -9,12 +9,13 @@
 | 화면 디자인과 UI 수정 | `src/components`, `src/styles` | `npm run dev`, `npm run build` |
 | News, Publication, Photo 운영 | `content`, `docs` | `npm run content:sync`, `npm run build` |
 | 구성원 정보/사진 수정 | `src/assets/dataset/people.json`, `src/assets/images/people` | `npm run people:sync`, `npm run build` |
+| 의존성·보안 점검 | `package.json`, `package-lock.json` | `npm run audit:dependencies`, `npm run build` |
 | GitHub Pages 배포 확인 | `.github/workflows`, `dist` | GitHub Actions 확인 |
 
 ## 빠른 시작
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -22,6 +23,12 @@ npm run dev
 
 ```bash
 npm run build
+```
+
+의존성 보안 점검은 아래 명령으로 실행합니다.
+
+```bash
+npm run audit:dependencies
 ```
 
 ## 폴더 구조
@@ -76,6 +83,7 @@ npm run people:sync
 | Publication 추가/수정 | `docs/publications/README.md` |
 | Photo 추가/최적화 | `docs/photos/README.md` |
 | People 정보 수정 | `docs/people/README.md` |
+| 의존성·보안 업데이트 | `docs/dependencies/README.md` |
 | 배포와 반영 확인 | `docs/deployment/README.md` |
 | 오류 해결 | `docs/troubleshooting/README.md` |
 | 복사용 템플릿 | `docs/templates/README.md` |

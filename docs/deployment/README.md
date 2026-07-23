@@ -14,7 +14,8 @@
 - `npm run deploy` (`gh-pages -d dist`)
 - `npm run build:static`
 - `npm run deploy:static`
-- `npm run operator:verify` (운영자 점검용)
+- `npm run audit:dependencies`
+- `npm run operator:verify` (dependency audit + content sync + build)
 
 ### 1-2. GitHub Actions workflow
 
@@ -56,6 +57,7 @@
 
 ### 자동(workflow)
 
+- dependency audit
 - content 동기화
 - schema/형식 검증
 - build
@@ -88,6 +90,7 @@
     - `Content Build Check`
     - `Deploy GitHub Pages`
 3. 실패 시 로그에서 실패 단계 확인
+    - Audit Dependencies
     - Sync Content
     - Validate Content
     - Build Site
@@ -100,9 +103,10 @@
 1. content 파일이 `content/...`에 들어갔는지
 2. 날짜/타입/category 형식이 맞는지
 3. Photo 폴더명이 규칙을 따르는지
-4. Actions 실패가 있었는지
-5. `Deploy GitHub Pages` 권한 오류가 있는지
-6. 브라우저 강력 새로고침(`Cmd + Shift + R` / `Ctrl + F5`) 했는지
+4. dependency audit가 실패했는지
+5. Actions 실패가 있었는지
+6. `Deploy GitHub Pages` 권한 오류가 있는지
+7. 브라우저 강력 새로고침(`Cmd + Shift + R` / `Ctrl + F5`) 했는지
 
 ---
 
