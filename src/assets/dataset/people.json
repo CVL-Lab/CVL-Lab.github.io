@@ -107,7 +107,7 @@
                 "yuri_kim": {
                     "order": 4,
                     "name": "Yuri Kim",
-                    "position": "Integrated M.S./Ph.D Studen",
+                    "position": "Integrated M.S./Ph.D Student",
                     "email": "kimuri02@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
@@ -124,7 +124,7 @@
                 "seunghun_kang": {
                     "order": 5,
                     "name": "Seunghun Kang",
-                    "position": "Integrated M.S./Ph.D Studen",
+                    "position": "Integrated M.S./Ph.D Student",
                     "email": "xldi28@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": ["Computer Vision", "Deep Learning"],
@@ -138,7 +138,7 @@
                 "donghyun_kim": {
                     "order": 6,
                     "name": "Donghyun Kim",
-                    "position": "Integrated M.S./Ph.D Studen",
+                    "position": "Integrated M.S./Ph.D Student",
                     "email": "dk58319@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
@@ -155,7 +155,7 @@
                 "donggun_lee": {
                     "order": 7,
                     "name": "Donggun Lee",
-                    "position": "Integrated M.S./Ph.D Studen",
+                    "position": "Integrated M.S./Ph.D Student",
                     "email": "edg1113@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": ["Vision-Language model"],
@@ -451,4 +451,3 @@
         }
     }
 }
-
