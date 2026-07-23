@@ -1,4 +1,4 @@
-import{h as c}from"./home_media_index-YBbnYFGs.js";import{j as e,a,M as l}from"./index-Bc-CvEEf.js";function r(){const n="jongbinryu@ajou.ac.kr",i=encodeURIComponent("CVL-Lab Inquiry"),o=encodeURIComponent(`Hello CVL-Lab,
+import{h as c}from"./home_media_index-YBbnYFGs.js";import{j as e,a,M as l}from"./index-CQiMAZcL.js";function r(){const n="jongbinryu@ajou.ac.kr",i=encodeURIComponent("CVL-Lab Inquiry"),o=encodeURIComponent(`Hello CVL-Lab,
 
 I would like to ask about...
 
