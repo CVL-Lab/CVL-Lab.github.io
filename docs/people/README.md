@@ -313,10 +313,28 @@ npm run people:sync -- --force
 
 ### 예시 A) 새 인턴 추가하기
 
-1. `people.json` → `sections.intern.entries`에 새 키 추가
-2. `order` 마지막 번호 부여
-3. `name`, `email`, `research_interests`, `links` 입력
-4. 이름과 같은 Photo 원본 추가 후 `npm run people:sync` 실행
+1. `people.json` → `sections.intern.entries`에 새 키를 추가합니다.
+2. `order`는 기존 인턴의 최댓값보다 1 크게 지정합니다.
+
+```json
+"hong_gildong": {
+  "order": 3,
+  "name": "Hong Gildong",
+  "position": "Intern",
+  "email": "hong@ajou.ac.kr",
+  "homepage": null,
+  "research_interests": ["Computer Vision"],
+  "current_position": [],
+  "links": {
+    "github": null,
+    "linkedin": null,
+    "google_scholar": null
+  }
+}
+```
+
+3. `src/assets/images/people/Hong Gildong.jpg`처럼 `name`과 같은 이름의 Photo 원본을 추가합니다.
+4. 아래의 [로컬에서 새 인턴 추가 및 배포](#9-1-로컬에서-새-인턴-추가-및-배포) 절차를 실행합니다.
 
 ---
 
@@ -364,22 +382,68 @@ npm run people:sync -- --force
 
 ## 9) 로컬/깃허브 웹 작업 절차
 
-### 9-1. 로컬에서 수정
+### 9-1. 로컬에서 새 인턴 추가 및 배포
 
-1. 파일 수정
-2. People 이미지 추가/교체 시 동기화
+최초 한 번, Node.js 20 이상과 ImageMagick이 필요합니다. macOS에서 ImageMagick이 없다면 설치합니다.
+
+```bash
+brew install imagemagick
+```
+
+1. 최신 `main`과 lockfile 기준 의존성을 준비합니다.
+
+    ```bash
+    git switch main
+    git pull --ff-only
+    npm ci
+    ```
+
+2. `src/assets/dataset/people.json`의 `sections.intern.entries`에 인턴을 추가하고, 이름과 같은 원본 이미지를 `src/assets/images/people/`에 넣습니다.
+3. WebP와 참조 파일을 자동 생성하고 검증합니다.
+
     ```bash
     npm run people:sync
+    npm run people:validate
+    npm run audit:dependencies
+    npm run build:static
     ```
-3. 개발 server 확인
+
+4. 로컬 화면을 확인합니다.
+
     ```bash
     npm run dev
     ```
-4. build 확인
+
+    터미널에 표시된 URL의 `/people`에서 Intern section, Photo, 이메일과 링크를 확인합니다.
+
+5. 변경 범위를 확인합니다.
+
     ```bash
-    npm run build
+    git status --short
+    git diff --check
     ```
-5. 커밋/푸시
+
+    일반적으로 커밋할 파일은 다음과 같습니다.
+
+    - `src/assets/dataset/people.json`
+    - `src/assets/images/people/<Name>.<원본 확장자>`
+    - `src/assets/images/people/optimized/<Name>.webp`
+    - `src/assets/images/people/optimized/manifest.generated.json`
+    - `src/assets/images/people/people_image_index.js`
+
+6. 위 파일만 명시적으로 stage하고 커밋·push합니다.
+
+    ```bash
+    git add src/assets/dataset/people.json \
+      "src/assets/images/people/Hong Gildong.jpg" \
+      "src/assets/images/people/optimized/Hong Gildong.webp" \
+      src/assets/images/people/optimized/manifest.generated.json \
+      src/assets/images/people/people_image_index.js
+    git commit -m "feat: add Hong Gildong as intern"
+    git push origin main
+    ```
+
+7. GitHub Actions에서 `Content Build Check`와 `Deploy GitHub Pages`가 모두 성공했는지 확인한 뒤, `https://cvl-lab.github.io/people/`에서 배포 결과를 확인합니다.
 
 ### 9-2. GitHub 웹에서 바로 수정
 
