@@ -131,7 +131,23 @@ audit가 실패하면 build와 deploy를 진행하지 않습니다. 검증 단�
 
 ---
 
-## 7) Rollback
+## 7) GitHub Actions 의존성
+
+`.github/workflows/*.yml`의 `uses:` 항목도 실행 의존성으로 관리합니다.
+
+1. GitHub 공식 action은 공식 release에서 현재 안정 major와 runner 요구사항을 확인합니다.
+2. major alias(예: `actions/checkout@v7`)를 사용하되, major 변경 시 workflow 전체를 실제 실행해 검증합니다.
+3. action이 사용하는 Node runtime의 지원 종료 경고를 방치하지 않습니다.
+4. third-party action은 저장소·release 상태와 권한 범위를 확인한 뒤 갱신합니다.
+
+현재 GitHub 공식 action baseline:
+
+- `actions/checkout@v7`
+- `actions/setup-node@v7`
+
+---
+
+## 8) Rollback
 
 기능 회귀가 생기면 dependency 변경 commit을 `git revert`하고 `npm ci`로 이전 graph를 재현합니다.
 
@@ -139,7 +155,7 @@ audit가 실패하면 build와 deploy를 진행하지 않습니다. 검증 단�
 
 ---
 
-## 8) 2026-07-23 보안 baseline
+## 9) 2026-07-23 보안 baseline
 
 이번 정리에서는 GitHub와 npm이 보고한 12건(High 9, Moderate 2, Low 1)을 현재 major 범위 안에서 해소했습니다.
 
