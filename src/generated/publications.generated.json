@@ -1,11 +1,11 @@
 {
   "meta": {
     "schema_version": "1.1",
-    "generated_at": "2026-07-23T11:38:12.442Z",
+    "generated_at": "2026-08-05T10:47:45.034Z",
     "source": "content/publications",
     "categories": [
-      "industrial_and_medical_ai",
-      "computer_vision_and_learning_algorithms"
+      "computer_vision_and_learning_algorithms",
+      "industrial_and_medical_ai"
     ],
     "statuses": [
       "published",
@@ -14,6 +14,96 @@
     ]
   },
   "items": [
+    {
+      "id": "core-capub1-do-your-best-and-get-enough-rest-for-continual",
+      "key": "core-capub1-do-your-best-and-get-enough-rest-for-continual",
+      "category": "computer_vision_and_learning_algorithms",
+      "status": "published",
+      "title": "Do Your Best and Get Enough Rest for Continual Learning",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Hankyul Kang, Gregor Seifer, Donghyun Lee, Jongbin Ryu",
+        "published_place": "Computer Vision and Pattern Recognition (CVPR)",
+        "published_date": "2025-06-01",
+        "keywords": [
+          "Continual Learning",
+          "Self-Supervised Learning",
+          "Replay Methods"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "https://github.com/hankyul2/ViewBatchModel",
+        "project_link": "https://openaccess.thecvf.com/content/CVPR2025/html/Kang_Do_Your_Best_and_Get_Enough_Rest_for_Continual_Learning_CVPR_2025_paper.html",
+        "source_code_link": "https://github.com/hankyul2/ViewBatchModel",
+        "paper_link": "https://openaccess.thecvf.com/content/CVPR2025/html/Kang_Do_Your_Best_and_Get_Enough_Rest_for_Continual_Learning_CVPR_2025_paper.html"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "core-capub2-channel-propagation-networks-for-refreshable",
+      "key": "core-capub2-channel-propagation-networks-for-refreshable",
+      "category": "computer_vision_and_learning_algorithms",
+      "status": "published",
+      "title": "Channel Propagation Networks for Refreshable Vision Transformer",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Junhyung Ko, Jongbin Ryu",
+        "published_place": "Winter Conference on Applications of Computer Vision (WACV)",
+        "published_date": "2025-01-01",
+        "keywords": [
+          "Vision Transformer",
+          "Channel Propagation",
+          "Over-smoothing"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "https://openaccess.thecvf.com/content/WACV2025/papers/Go_Channel_Propagation_Networks_for_Refreshable_Vision_Transformer_WACV_2025_paper.pdf",
+        "source_code_link": "",
+        "paper_link": "https://openaccess.thecvf.com/content/WACV2025/papers/Go_Channel_Propagation_Networks_for_Refreshable_Vision_Transformer_WACV_2025_paper.pdf"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "core-capub3-enriching-local-patterns-with-multi-token",
+      "key": "core-capub3-enriching-local-patterns-with-multi-token",
+      "category": "computer_vision_and_learning_algorithms",
+      "status": "published",
+      "title": "Enriching Local Patterns with Multi-Token Attention for Broad-Sight Neural Networks",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Hankyul Kang, Jongbin Ryu",
+        "published_place": "Winter Conference on Applications of Computer Vision (WACV)",
+        "published_date": "2025-01-01",
+        "keywords": [
+          "Attention Pooling",
+          "Local Patterns",
+          "Feature Representation"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "https://github.com/hankyul2/MAP",
+        "project_link": "https://openaccess.thecvf.com/content/WACV2025/papers/Kang_Enriching_Local_Patterns_with_Multi-Token_Attention_for_Broad-Sight_Neural_Networks_WACV_2025_paper.pdf",
+        "source_code_link": "https://github.com/hankyul2/MAP",
+        "paper_link": "https://openaccess.thecvf.com/content/WACV2025/papers/Kang_Enriching_Local_Patterns_with_Multi-Token_Attention_for_Broad-Sight_Neural_Networks_WACV_2025_paper.pdf"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
     {
       "id": "biomedical-bapub4-style-kd-class-imbalanced-medical-image",
       "key": "biomedical-bapub4-style-kd-class-imbalanced-medical-image",
@@ -37,6 +127,96 @@
         "project_link": "https://www.sciencedirect.com/science/article/pii/S1746809423013617",
         "source_code_link": "",
         "paper_link": "https://www.sciencedirect.com/science/article/pii/S1746809423013617"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "biomedical-bapub5-generative-self-supervised-learning-for",
+      "key": "biomedical-bapub5-generative-self-supervised-learning-for",
+      "category": "industrial_and_medical_ai",
+      "status": "published",
+      "title": "Generative Self-Supervised Learning for Medical Image Classification",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Inhyuk Park, Sungeun Kim, Jongbin Ryu",
+        "published_place": "Asian Conference on Computer Vision (ACCV)",
+        "published_date": "2024-12-01",
+        "keywords": [
+          "Generative Self-Supervised Learning",
+          "Medical Image Classification",
+          "Diffusion Model"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "https://github.com/inhyukpark2/gen-ssl",
+        "project_link": "https://openaccess.thecvf.com/content/ACCV2024/html/Park_Generative_Self-Supervised_Learning_for_Medical_Image_Classification_ACCV_2024_paper.html",
+        "source_code_link": "https://github.com/inhyukpark2/gen-ssl",
+        "paper_link": "https://openaccess.thecvf.com/content/ACCV2024/html/Park_Generative_Self-Supervised_Learning_for_Medical_Image_Classification_ACCV_2024_paper.html"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "core-capub4-neural-substitution-for-branch-level-network",
+      "key": "core-capub4-neural-substitution-for-branch-level-network",
+      "category": "computer_vision_and_learning_algorithms",
+      "status": "published",
+      "title": "Neural Substitution for Branch-level Network Re-parameterization",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Seungmin Oh, Jongbin Ryu",
+        "published_place": "Asian Conference on Computer Vision (ACCV)",
+        "published_date": "2024-12-01",
+        "keywords": [
+          "Network Re-parameterization",
+          "Branch-level Connectivity",
+          "Model Efficiency"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "https://openaccess.thecvf.com/content/ACCV2024/papers/Oh_Neural_Substitution_for_Branch-level_Network_Re-parameterization_ACCV_2024_paper.pdf",
+        "source_code_link": "",
+        "paper_link": "https://openaccess.thecvf.com/content/ACCV2024/papers/Oh_Neural_Substitution_for_Branch-level_Network_Re-parameterization_ACCV_2024_paper.pdf"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "core-capub5-unsupervised-hashing-network-with-hyper",
+      "key": "core-capub5-unsupervised-hashing-network-with-hyper",
+      "category": "computer_vision_and_learning_algorithms",
+      "status": "published",
+      "title": "Unsupervised Hashing Network with Hyper Quantization Tree",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Sungeun Kim, Jongbin Ryu",
+        "published_place": "British Machine Vision Conference (BMVC)",
+        "published_date": "2024-11-25",
+        "keywords": [
+          "Unsupervised Hashing",
+          "Image Retrieval",
+          "Quantization"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "https://github.com/Lab-LVM/HQT",
+        "project_link": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_482/paper.pdf",
+        "source_code_link": "https://github.com/Lab-LVM/HQT",
+        "paper_link": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_482/paper.pdf"
       },
       "content": {
         "problem": "",
@@ -127,6 +307,66 @@
         "project_link": "https://www.nature.com/articles/s41598-024-58382-3",
         "source_code_link": "",
         "paper_link": "https://www.nature.com/articles/s41598-024-58382-3"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "biomedical-bapub6-towards-long-tailed-multi-label-disease",
+      "key": "biomedical-bapub6-towards-long-tailed-multi-label-disease",
+      "category": "industrial_and_medical_ai",
+      "status": "published",
+      "title": "Towards long-tailed, multi-label disease classification from chest X-ray: Overview of the CXR-LT challenge",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "CVAMD participants including Jongbin Ryu",
+        "published_place": "Medical Image Analysis (MedIA)",
+        "published_date": "2024-01-01",
+        "keywords": [
+          "Long-tailed Learning",
+          "Multi-label Classification",
+          "Chest X-ray"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "https://www.sciencedirect.com/science/article/abs/pii/S136184152400149X",
+        "source_code_link": "",
+        "paper_link": "https://www.sciencedirect.com/science/article/abs/pii/S136184152400149X"
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "biomedical-bapub7-fine-grained-self-supervised-learning-with",
+      "key": "biomedical-bapub7-fine-grained-self-supervised-learning-with",
+      "category": "industrial_and_medical_ai",
+      "status": "published",
+      "title": "Fine-Grained Self-Supervised Learning with Jigsaw puzzles for medical image classification",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Wongi Park, Jongbin Ryu",
+        "published_place": "Computers in Biology and Medicine",
+        "published_date": "2024-01-01",
+        "keywords": [
+          "Fine-Grained Classification",
+          "Self-Supervised Learning",
+          "Jigsaw Puzzle"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "https://github.com/kalelpark/FG-SSL",
+        "project_link": "https://www.sciencedirect.com/science/article/abs/pii/S0010482524005444",
+        "source_code_link": "https://github.com/kalelpark/FG-SSL",
+        "paper_link": "https://www.sciencedirect.com/science/article/abs/pii/S0010482524005444"
       },
       "content": {
         "problem": "",
