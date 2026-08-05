@@ -353,8 +353,8 @@ export default function Nav() {
             sections: [
                 { label: "Professor", to: "/people#people-section-professor" },
                 {
-                    label: "Integrated M.S./Ph.D.",
-                    to: "/people#people-section-integrated_mp",
+                    label: "Ph.D.",
+                    to: "/people#people-section-phd",
                 },
                 { label: "Alumni", to: "/people#people-section-alumni" },
             ],

@@ -5,7 +5,7 @@ import { getPeopleSections } from "../../utils/peopleData";
 
 function People() {
     const sections = getPeopleSections();
-    const showResearch = new Set(["integrated_mp", "phd", "master", "intern"]);
+    const showResearch = new Set(["phd", "master", "intern"]);
     const showCurrentPosition = new Set(["alumni"]);
 
     return (

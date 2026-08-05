@@ -3,7 +3,6 @@
         "schema_version": "2.0",
         "section_order": [
             "professor",
-            "integrated_mp",
             "phd",
             "master",
             "intern",
@@ -36,44 +35,50 @@
                 }
             }
         },
-        "integrated_mp": {
-            "title": "Integrated M.S and Ph.D",
+        "phd": {
+            "title": "Ph.D",
             "entries": {
                 "sungeun_kim": {
                     "order": 0,
                     "name": "Sungeun Kim",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "kimsungeun@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Computer Vision", "Image Hashing"],
+                    "research_interests": [
+                        "Domain-specific AI",
+                        "Representation Learning",
+                        "Agentic RAG",
+                        "Computer Vision"
+                    ],
                     "current_position": [],
                     "links": {
-                        "github": "https://github.com/sungeunkim",
+                        "github": "https://github.com/kim-sungeun",
                         "linkedin": null,
-                        "google_scholar": null
+                        "google_scholar": "https://scholar.google.com/citations?user=6PVnKQcAAAAJ&hl=ko"
                     }
                 },
                 "junhyeong_ko": {
                     "order": 1,
                     "name": "Junhyeong Ko",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "threegopark@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
-                        "Computer Vision",
-                        "Continual Learning"
+                        "Robot Learning",
+                        "Deep Learning Architecture",
+                        "Representation Learning"
                     ],
                     "current_position": [],
                     "links": {
                         "github": null,
                         "linkedin": null,
-                        "google_scholar": null
+                        "google_scholar": "https://scholar.google.com/citations?user=mu33PyQAAAAJ&hl=ko"
                     }
                 },
                 "hankyul_kang": {
                     "order": 2,
                     "name": "Hankyul Kang",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "consistant1y@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
@@ -90,33 +95,34 @@
                 "seongmin_oh": {
                     "order": 3,
                     "name": "Seongmin Oh",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "mangusn1@ajou.ac.kr",
-                    "homepage": null,
+                    "homepage": "https://soonge.github.io/",
                     "research_interests": [
-                        "Meta Learning",
-                        "Vision-Language Model"
+                        "Efficient AI",
+                        "VLM",
+                        "LLM",
+                        "VLA"
                     ],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
-                        "google_scholar": null
+                        "github": "https://github.com/SoongE",
+                        "linkedin": "https://www.linkedin.com/in/soonge",
+                        "google_scholar": "https://scholar.google.com/citations?user=dwOJaW8AAAAJ&hl=ko"
                     }
                 },
                 "yuri_kim": {
                     "order": 4,
                     "name": "Yuri Kim",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "kimuri02@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
-                        "Deep Learning",
-                        "Fast deep architecture"
+                        "Material Science"
                     ],
                     "current_position": [],
                     "links": {
-                        "github": null,
+                        "github": "https://github.com/K-glass",
                         "linkedin": null,
                         "google_scholar": null
                     }
@@ -124,53 +130,59 @@
                 "seunghun_kang": {
                     "order": 5,
                     "name": "Seunghun Kang",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "xldi28@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Computer Vision", "Deep Learning"],
+                    "research_interests": [
+                        "Multimodal AI",
+                        "Robot Learning",
+                        "VLM",
+                        "VLA"
+                    ],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
+                        "github": "https://github.com/ddiyoung-x4",
+                        "linkedin": "https://www.linkedin.com/in/seunghun-kang-896800241",
                         "google_scholar": null
                     }
                 },
                 "donghyun_kim": {
                     "order": 6,
                     "name": "Donghyun Kim",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "dk58319@ajou.ac.kr",
-                    "homepage": null,
+                    "homepage": "https://dh58319.github.io/",
                     "research_interests": [
                         "Computer Vision",
-                        "Image Segmentation"
+                        "Robot Learning",
+                        "VLA",
+                        "Medical AI"
                     ],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
+                        "github": "https://github.com/dh58319",
+                        "linkedin": "https://www.linkedin.com/in/dh58319",
                         "google_scholar": null
                     }
                 },
                 "donggun_lee": {
                     "order": 7,
                     "name": "Donggun Lee",
-                    "position": "Integrated M.S./Ph.D Student",
+                    "position": "Ph.D Student",
                     "email": "edg1113@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Vision-Language model"],
+                    "research_interests": [
+                        "Efficient LLM",
+                        "Hyper-Dimensional Computing"
+                    ],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
+                        "github": "https://github.com/edg1113",
+                        "linkedin": "https://www.linkedin.com/in/edg1113",
                         "google_scholar": null
                     }
                 }
             }
-        },
-        "phd": {
-            "title": "Ph.D",
-            "entries": {}
         },
         "master": {
             "title": "M.S",
@@ -181,7 +193,10 @@
                     "position": "M.S Student",
                     "email": "sinssinej7@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Deep Learning", "Image Generation"],
+                    "research_interests": [
+                        "Efficient LLM",
+                        "Mixture-of-Experts (MoE)"
+                    ],
                     "current_position": [],
                     "links": {
                         "github": null,
@@ -196,13 +211,15 @@
                     "email": "ndy10101@gmail.com",
                     "homepage": null,
                     "research_interests": [
-                        "Deep Learning",
-                        "Image Classification"
+                        "Efficient AI",
+                        "Robot Learning",
+                        "LLM",
+                        "VLA"
                     ],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
+                        "github": "https://github.com/Dooyeoon/Dooyeoon",
+                        "linkedin": "https://www.linkedin.com/in/ndy10101/",
                         "google_scholar": null
                     }
                 },
@@ -230,13 +247,14 @@
                     "email": "ucy0303@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
-                        "Deep Learning",
-                        "Image Classification"
+                        "Material Science",
+                        "Robot Learning",
+                        "VLA"
                     ],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
+                        "github": "https://github.com/ChaeYoonUm",
+                        "linkedin": "https://www.linkedin.com/in/chaeyuneom/",
                         "google_scholar": null
                     }
                 },
@@ -246,11 +264,11 @@
                     "position": "M.S Student",
                     "email": "meansash@ajou.ac.kr",
                     "homepage": null,
-                    "research_interests": ["Computer Vision", "Medical Image"],
+                    "research_interests": ["Medical AI"],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
+                        "github": "https://github.com/meansash",
+                        "linkedin": "https://www.linkedin.com/in/meansash",
                         "google_scholar": null
                     }
                 }
@@ -266,7 +284,7 @@
                     "email": "aleum433@gmail.com",
                     "homepage": null,
                     "research_interests": [
-                        "Deep-Learning"
+                        "Deep Learning"
                     ],
                     "current_position": [],
                     "links": {
@@ -282,7 +300,8 @@
                     "email": "tmddnjs5155@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
-                        "Deep-Learning"
+                        "Robot Learning",
+                        "VLA"
                     ],
                     "current_position": [],
                     "links": {
@@ -298,7 +317,8 @@
                     "email": "baegom3@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
-                        "Deep-Learning"
+                        "Computer Vision",
+                        "Medical AI"
                     ],
                     "current_position": [],
                     "links": {
@@ -314,11 +334,13 @@
                     "email": "jihoonpark22@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
-                        "Deep-Learning"
+                        "Computer Vision",
+                        "Medical AI",
+                        "Image Segmentation"
                     ],
                     "current_position": [],
                     "links": {
-                        "github": null,
+                        "github": "https://github.com/whoonypark",
                         "linkedin": null,
                         "google_scholar": null
                     }
@@ -330,7 +352,8 @@
                     "email": "jbh3924@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
-                        "Deep-Learning"
+                        "Quantization",
+                        "Finance AI"
                     ],
                     "current_position": [],
                     "links": {
@@ -379,7 +402,7 @@
                     "email": "qkrgustnq@gmail.com",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": [],
+                    "current_position": ["Not listesd"],
                     "links": {
                         "github": null,
                         "linkedin": null,
@@ -408,7 +431,7 @@
                     "email": "dollyin@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": [],
+                    "current_position": ["Not listesd"],
                     "links": {
                         "github": "https://github.com/sunkijoo",
                         "linkedin": null,
@@ -422,7 +445,7 @@
                     "email": "pyosh11@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": [],
+                    "current_position": ["Not listesd"],
                     "links": {
                         "github": null,
                         "linkedin": null,
@@ -436,7 +459,7 @@
                     "email": "gregorseifer@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": [],
+                    "current_position": ["Not listesd"],
                     "links": {
                         "github": null,
                         "linkedin": "https://www.linkedin.com/in/gregor-seifer/",
@@ -450,7 +473,7 @@
                     "email": "eaststst123@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": [],
+                    "current_position": ["Not listesd"],
                     "links": {
                         "github": null,
                         "linkedin": null,
@@ -464,7 +487,7 @@
                     "email": "euihakeg@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": [],
+                    "current_position": ["Not listesd"],
                     "links": {
                         "github": null,
                         "linkedin": null,
@@ -478,7 +501,7 @@
                     "email": "scott9601@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": [],
+                    "current_position": ["Not listesd"],
                     "links": {
                         "github": null,
                         "linkedin": null,

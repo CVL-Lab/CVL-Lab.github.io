@@ -3,7 +3,6 @@ import PEOPLE_IMAGES from "../assets/images/people/people_image_index";
 
 const FALLBACK_TITLES = {
     professor: "Professor",
-    integrated_mp: "Integrated M.S and Ph.D",
     phd: "Ph.D",
     master: "M.S",
     intern: "Intern",

@@ -38,11 +38,10 @@ People는 현재 `content/` 폴더가 아니라 아래 파일을 직접 읽어 �
 현재 기본 키는 다음과 같습니다.
 
 1. `professor` → Professor
-2. `integrated_mp` → Integrated M.S. and Ph.D.
-3. `phd` → Ph.D
-4. `master` → M.S
-5. `intern` → Intern
-6. `alumni` → Alumni
+2. `phd` → Ph.D (통합과정 포함, position은 `Ph.D Student`로 표기)
+3. `master` → M.S
+4. `intern` → Intern
+5. `alumni` → Alumni
 
 ### Alumni 표시 여부 (중요)
 
@@ -62,7 +61,6 @@ People는 현재 `content/` 폴더가 아니라 아래 파일을 직접 읽어 �
         "schema_version": "2.0",
         "section_order": [
             "professor",
-            "integrated_mp",
             "phd",
             "master",
             "intern",
@@ -244,13 +242,13 @@ npm run people:sync -- --force
 
 ---
 
-### 7-2. 석사 → 통합과정(Integrated M.S. and Ph.D.) 전환
+### 7-2. 석사 → 박사(통합/일반 과정 포함, Ph.D) 전환
 
 원칙:
 
 1. `sections.master.entries`에서 삭제
-2. `sections.integrated_mp.entries`에 추가
-3. `position`을 `Integrated M.S./Ph.D Student`로 변경
+2. `sections.phd.entries`에 추가
+3. `position`을 `Ph.D Student`로 변경
 4. `order` 재정렬
 
 ---
@@ -259,7 +257,7 @@ npm run people:sync -- --force
 
 원칙:
 
-1. 기존 section(`master`, `integrated_mp`, `phd`)에서 항목 삭제
+1. 기존 section(`master`, `phd`)에서 항목 삭제
 2. `sections.alumni.entries`에 추가
 3. `position`을 `Alumni`로 설정
 4. `current_position`에 진로/소속 입력 (예: `["LG Energy Solution"]`)
@@ -357,9 +355,9 @@ npm run people:sync -- --force
 
 ---
 
-### 예시 D) 통합과정 학생 정보 수정하기
+### 예시 D) 박사과정 학생 정보 수정하기
 
-1. `integrated_mp.entries.<id>` 찾기
+1. `phd.entries.<id>` 찾기
 2. `email`, `research_interests`, `links`, `homepage` 등 필요한 필드만 수정
 3. 이름 변경 시 `View publications` 검색 연동을 위해 철자 오탈자 재확인
 

@@ -35,7 +35,7 @@ const people_images = {
     "professor": {
         "jonbin_ryu": PeopleImage001,
     },
-    "integrated_mp": {
+    "phd": {
         "sungeun_kim": PeopleImage002,
         "junhyeong_ko": PeopleImage003,
         "hankyul_kang": PeopleImage004,
@@ -44,8 +44,6 @@ const people_images = {
         "seunghun_kang": PeopleImage007,
         "donghyun_kim": PeopleImage008,
         "donggun_lee": PeopleImage009,
-    },
-    "phd": {
     },
     "master": {
         "eunju_shin": PeopleImage010,

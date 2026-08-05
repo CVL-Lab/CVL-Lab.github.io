@@ -14,18 +14,15 @@ const RESEARCH_FOCUS = [
 
 const buildIntroductionMediaMap = () => {
     const professorCount = getPeopleEntriesBySection("professor").length;
-    const integratedPhdCount =
-        getPeopleEntriesBySection("integrated_mp").length;
     const phdCount = getPeopleEntriesBySection("phd").length;
     const masterCount = getPeopleEntriesBySection("master").length;
     const internCount = getPeopleEntriesBySection("intern").length;
-    const totalPhdCount = integratedPhdCount + phdCount;
     const resourceSummary = getResearchResourceSummary();
 
     return {
         intro_group_photo: {
             title: "People",
-            description: `${professorCount} Professor, ${totalPhdCount} PhD, ${masterCount} MS, ${internCount} Interns`,
+            description: `${professorCount} Professor, ${phdCount} PhD, ${masterCount} MS, ${internCount} Interns`,
             to: "/people",
         },
         intro_meeting_room: {

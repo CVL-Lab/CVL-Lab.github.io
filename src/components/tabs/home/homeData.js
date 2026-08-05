@@ -21,14 +21,13 @@ import {
 
 const MEMBER_COUNT_GROUPS = [
     "professor",
-    "integrated_mp",
     "phd",
     "master",
     "intern",
     "alumni",
 ];
-const PREVIEW_GROUPS = ["integrated_mp", "phd", "master", "intern"];
-const SPOTLIGHT_GROUPS = ["professor", "integrated_mp", "master", "intern"];
+const PREVIEW_GROUPS = ["phd", "master", "intern"];
+const SPOTLIGHT_GROUPS = ["professor", "phd", "master", "intern"];
 
 const parseDateValue = (value) => {
     const normalized = typeof value === "string" ? value.trim() : "";
