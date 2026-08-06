@@ -4,6 +4,165 @@
     "description": ""
   },
   "items": {
+    "250220_somech1": {
+      "title": "SoMeCH Seminar",
+      "caption": "SoMeCH Seminar",
+      "date": "2025-02-20",
+      "category": "events",
+      "slug": "somech-seminar",
+      "order": 1,
+      "alt": "SoMeCH seminar photo"
+    },
+    "250220_somech2": {
+      "title": "SoMeCH Seminar",
+      "caption": "SoMeCH Seminar",
+      "date": "2025-02-20",
+      "category": "events",
+      "slug": "somech-seminar",
+      "order": 2,
+      "alt": "SoMeCH seminar photo"
+    },
+    "250220_somech3": {
+      "title": "SoMeCH Seminar",
+      "caption": "SoMeCH Seminar",
+      "date": "2025-02-20",
+      "category": "events",
+      "slug": "somech-seminar",
+      "order": 3,
+      "alt": "SoMeCH seminar photo"
+    },
+    "250220_somech4": {
+      "title": "SoMeCH Seminar",
+      "caption": "SoMeCH Seminar",
+      "date": "2025-02-20",
+      "category": "events",
+      "slug": "somech-seminar",
+      "order": 4,
+      "alt": "SoMeCH seminar photo"
+    },
+    "250226_graduate": {
+      "title": "February 2025 Graduation",
+      "caption": "February 2025 Graduation",
+      "date": "2025-02-26",
+      "category": "events",
+      "slug": "february-2025-graduation",
+      "order": 1,
+      "alt": "February 2025 graduation photo"
+    },
+    "250411_blossom": {
+      "title": "Spring Blossom Gathering",
+      "caption": "Spring Blossom Gathering",
+      "date": "2025-04-11",
+      "category": "events",
+      "slug": "spring-blossom-gathering",
+      "order": 1,
+      "alt": "Lab members at spring blossom gathering"
+    },
+    "250616_LPCVC": {
+      "title": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC)",
+      "caption": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC)",
+      "date": "2026-06-11",
+      "category": "events",
+      "slug": "lpcvc",
+      "order": 1,
+      "alt": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC) photo"
+    },
+    "250616_LPCVC2": {
+      "title": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC)",
+      "caption": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC)",
+      "date": "2026-06-11",
+      "category": "events",
+      "slug": "lpcvc",
+      "order": 2,
+      "alt": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC) photo"
+    },
+    "250616_LPCVC3": {
+      "title": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC)",
+      "caption": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC)",
+      "date": "2026-06-11",
+      "category": "events",
+      "slug": "lpcvc",
+      "order": 3,
+      "alt": "2025 IEEE Low-Power Computer Vision Challenge (LPCVC) photo"
+    },
+    "251110_dinner": {
+      "title": "November 2025 Lab Dinner",
+      "caption": "November 2025 Lab Dinner",
+      "date": "2025-11-10",
+      "category": "events",
+      "slug": "november-2025-lab-dinner",
+      "order": 1,
+      "alt": "Lab dinner photo"
+    },
+    "260220_graduate": {
+      "title": "February 2026 Graduation",
+      "caption": "February 2026 Graduation",
+      "date": "2026-02-20",
+      "category": "events",
+      "slug": "february-2026-graduation",
+      "order": 1,
+      "alt": "February 2026 graduation photo"
+    },
+    "260706_icml": {
+      "title": "ICML 2026",
+      "caption": "ICML 2026",
+      "description": "Conference tutorials",
+      "date": "2026-07-06",
+      "category": "events",
+      "slug": "icml-2026",
+      "order": 1,
+      "alt": "ICML 2026 conference photo"
+    },
+    "260301_wacv1": {
+      "title": "WACV 2026",
+      "caption": "WACV 2026",
+      "description": "Conference presentation",
+      "date": "2026-03-01",
+      "category": "events",
+      "slug": "wacv-2026",
+      "order": 1,
+      "alt": "WACV 2026 conference photo"
+    },
+    "260301_wacv2": {
+      "title": "WACV 2026",
+      "caption": "WACV 2026",
+      "description": "Conference presentation",
+      "date": "2026-03-01",
+      "category": "events",
+      "slug": "wacv-2026",
+      "order": 2,
+      "alt": "WACV 2026 conference photo"
+    },
+    "260301_wacv_oral": {
+      "title": "WACV 2026",
+      "caption": "WACV 2026 Oral Presentation",
+      "description": "Oral presentation",
+      "date": "2026-03-01",
+      "category": "events",
+      "slug": "wacv-2026",
+      "order": 3,
+      "alt": "WACV 2026 oral presentation photo"
+    },
+    "260612_cvpr1": {
+      "title": "CVPR 2026",
+      "caption": "CVPR 2026",
+      "description": "Conference presentation",
+      "date": "2026-06-12",
+      "category": "events",
+      "slug": "cvpr-2026",
+      "order": 2,
+      "alt": "CVPR 2026 conference photo"
+    },
+    "260612_cvpr2": {
+      "title": "CVPR 2026",
+      "caption": "CVPR 2026",
+      "description": "Conference presentation",
+      "date": "2026-06-12",
+      "category": "events",
+      "slug": "cvpr-2026",
+      "order": 1,
+      "alt": "CVPR 2026 conference photo"
+    },
     "20230609": {
       "title": "June Lab Dinner",
       "caption": "June Lab Dinner",
