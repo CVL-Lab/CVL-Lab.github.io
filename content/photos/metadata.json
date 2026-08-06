@@ -163,6 +163,24 @@
       "order": 1,
       "alt": "CVPR 2026 conference photo"
     },
+    "251130_furiosa": {
+      "title": "FuriosaAI Visit",
+      "caption": "FuriosaAI Visit",
+      "date": "2025-11-30",
+      "category": "events",
+      "slug": "furiosaai-visit",
+      "order": 2,
+      "alt": "FuriosaAI visit photo"
+    },
+    "251130_furiosa2": {
+      "title": "FuriosaAI Visit",
+      "caption": "FuriosaAI Visit",
+      "date": "2025-11-30",
+      "category": "events",
+      "slug": "furiosaai-visit",
+      "order": 1,
+      "alt": "FuriosaAI visit photo"
+    },
     "20230609": {
       "title": "June Lab Dinner",
       "caption": "June Lab Dinner",
