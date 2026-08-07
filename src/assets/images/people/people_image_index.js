@@ -5,7 +5,7 @@ import PeopleImage001 from "./optimized/Jongbin Ryu.webp";
 import PeopleImage002 from "./optimized/Sungeun Kim.webp";
 import PeopleImage003 from "./optimized/Junhyeong Ko.webp";
 import PeopleImage004 from "./optimized/Hankyul Kang.webp";
-import PeopleImage005 from "./optimized/Seongmin Oh.webp";
+import PeopleImage005 from "./optimized/Seungmin Oh.webp";
 import PeopleImage006 from "./optimized/Yuri Kim.webp";
 import PeopleImage007 from "./optimized/Seunghun Kang.webp";
 import PeopleImage008 from "./optimized/Donghyun Kim.webp";
@@ -39,7 +39,7 @@ const people_images = {
         "sungeun_kim": PeopleImage002,
         "junhyeong_ko": PeopleImage003,
         "hankyul_kang": PeopleImage004,
-        "seongmin_oh": PeopleImage005,
+        "seungmin_oh": PeopleImage005,
         "yuri_kim": PeopleImage006,
         "seunghun_kang": PeopleImage007,
         "donghyun_kim": PeopleImage008,

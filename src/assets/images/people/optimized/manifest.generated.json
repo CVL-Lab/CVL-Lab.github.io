@@ -33,12 +33,12 @@
       "source_sha256": "0540fee53f7c2f7c59ed1141867d2d268dbd5e00e5fed3702933ae3859f79c83",
       "output_sha256": "27d0b5bad10081d23bb625be09fb029fc4da4de4bdc0d209b8e5404b9acd0160"
     },
-    "seongmin_oh": {
+    "seungmin_oh": {
       "section": "phd",
-      "source": "Seongmin Oh.png",
-      "output": "Seongmin Oh.webp",
+      "source": "Seungmin Oh.png",
+      "output": "Seungmin Oh.webp",
       "source_sha256": "491b8aacfad1e4600235a3413c958e5b960fb23d3f88c539cab06581d02082dc",
-      "output_sha256": "520e2e361dbcc4e6a211829cd6262078d7e4e9122af3563430cb812b544980ed"
+      "output_sha256": "ffc23568c110e8e87efe855ca066a1905f1ae79520839e19926cc4229a1a8d87"
     },
     "yuri_kim": {
       "section": "phd",
