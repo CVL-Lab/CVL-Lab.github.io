@@ -334,6 +334,10 @@ export default function Nav() {
             ],
         },
         {
+            key: "deadlines",
+            label: "Deadlines",
+        },
+        {
             key: "publication",
             label: "Publication",
             sections: [

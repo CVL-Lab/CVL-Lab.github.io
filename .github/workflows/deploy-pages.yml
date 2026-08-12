@@ -3,6 +3,8 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: ["main"]
+  schedule:
+    - cron: "17 2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -44,6 +46,10 @@ jobs:
 
       - name: Sync Content
         run: npm run content:sync
+
+      - name: Check official conference sources
+        if: github.event_name != 'push'
+        run: npm run deadlines:refresh
 
       - name: Validate Content
         run: npm run validate:content

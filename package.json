@@ -10,6 +10,9 @@
         "photos:sync": "node scripts/content/photos.mjs",
         "people:sync": "node scripts/content/people.mjs",
         "people:validate": "node scripts/content/people.mjs --validate-only",
+        "deadlines:sync": "node scripts/content/deadlines.mjs",
+        "deadlines:refresh": "node scripts/content/deadlines.mjs --refresh-sources",
+        "deadlines:validate": "node scripts/content/deadlines.mjs --validate-only",
         "research:validate": "node scripts/content/research.mjs",
         "validate:content": "node scripts/content/validate.mjs",
         "audit:dependencies": "better-npm-audit audit --level low --exclude GHSA-qwww-vcr4-c8h2",
@@ -28,7 +31,8 @@
         "deploy:static": "gh-pages -d dist"
     },
     "overrides": {
-        "js-yaml": "^4.3.1"
+        "js-yaml": "^4.3.1",
+        "nanoid": "^3.3.17"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.6.0",

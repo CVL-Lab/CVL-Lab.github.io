@@ -27,6 +27,12 @@
     --app-accent: var(--tab-research-accent);
 }
 
+.app--deadlines {
+    --app-tint: var(--tab-deadlines-tint);
+    --app-border: var(--tab-deadlines-border);
+    --app-accent: var(--tab-deadlines-accent);
+}
+
 .app--publication {
     --app-tint: var(--tab-publication-tint);
     --app-border: var(--tab-publication-border);
