@@ -103,31 +103,25 @@ const validateDetails = (areaKey, details) => {
     requireString(details.headline, `topics.${areaKey}.headline`);
     requireString(details.abstract, `topics.${areaKey}.abstract`);
 
-    if (!Array.isArray(details.workstreams) || !details.workstreams.length) {
+    if (!Array.isArray(details.focus_areas) || !details.focus_areas.length) {
         throw new Error(
-            `[research] topics.${areaKey}.workstreams must be a non-empty array.`,
+            `[research] topics.${areaKey}.focus_areas must be a non-empty array.`,
         );
     }
 
-    const workstreamTitles = [];
-    details.workstreams.forEach((workstream, index) => {
+    const focusAreaTitles = [];
+    details.focus_areas.forEach((focusArea, index) => {
         requireString(
-            workstream?.title,
-            `topics.${areaKey}.workstreams[${index}].title`,
+            focusArea?.title,
+            `topics.${areaKey}.focus_areas[${index}].title`,
         );
         requireString(
-            workstream?.description,
-            `topics.${areaKey}.workstreams[${index}].description`,
+            focusArea?.description,
+            `topics.${areaKey}.focus_areas[${index}].description`,
         );
-        workstreamTitles.push(workstream.title);
+        focusAreaTitles.push(focusArea.title);
     });
-    requireUnique(workstreamTitles, `topics.${areaKey}.workstream titles`);
-
-    requireStringList(
-        details.applications,
-        `topics.${areaKey}.applications`,
-    );
-    requireStringList(details.milestones, `topics.${areaKey}.milestones`);
+    requireUnique(focusAreaTitles, `topics.${areaKey}.focus_areas titles`);
 };
 
 export const validateResearchContent = async () => {

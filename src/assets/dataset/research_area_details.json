@@ -1,118 +1,78 @@
 {
     "meta": {
-        "schema_version": "2.0"
+        "schema_version": "4.0"
     },
     "topics": {
         "computer_vision_and_learning_algorithms": {
             "headline": "Foundational vision and learning methods for robust generalization",
             "abstract": "This area investigates scalable visual representations and adaptation strategies that remain reliable across data shifts, label scarcity, and long-tail conditions.",
-            "workstreams": [
+            "focus_areas": [
                 {
-                    "title": "Representation and Adaptation",
-                    "description": "Learn transferable visual features that can be reused across tasks and domains with minimal fine-tuning cost."
+                    "title": "Core Architecture",
+                    "description": "Designing efficient SOTA architectures with manageable computational cost"
                 },
                 {
-                    "title": "Generalization Protocols",
-                    "description": "Build consistent evaluation protocols for robustness under domain shift, class imbalance, and noisy supervision."
+                    "title": "Representation Learning",
+                    "description": "Reinforcing feature representation through token pooling, hashing, and continual learning"
                 },
                 {
-                    "title": "Efficient Training Recipes",
-                    "description": "Improve pretraining and adaptation loops with compute-aware recipes and reproducible experiment baselines."
+                    "title": "Vision-Language Model",
+                    "description": "Adapting large VLM to new tasks and domains through parameter-efficient transfer learning"
                 }
-            ],
-            "applications": [
-                "Robust recognition in changing environments",
-                "Reusable backbones for multimodal pipelines",
-                "Low-supervision model adaptation workflows"
-            ],
-            "milestones": [
-                "Benchmark updates with controlled robustness settings",
-                "Cross-domain adaptation analysis report",
-                "Reproducibility package for open experiments"
             ]
         },
         "efficient_learning_for_llms": {
             "headline": "Efficient and practical multimodal intelligence for deployment",
             "abstract": "This area focuses on making large language and multimodal models lighter, faster, and easier to deploy while preserving reasoning quality.",
-            "workstreams": [
+            "focus_areas": [
                 {
-                    "title": "Compression and Distillation",
-                    "description": "Study compression methods that minimize quality loss under strict latency and memory constraints."
+                    "title": "Pruning & Quantization",
+                    "description": "Compressing through layer pruning and low-bit quantization to reduce memory and latency"
                 },
                 {
-                    "title": "System-level Optimization",
-                    "description": "Optimize inference kernels, scheduling, and batching policies for stable production serving."
+                    "title": "Efficient Transfer Learning",
+                    "description": "Transferring knowledge across tasks efficiently using Mixture-of-Experts with LoRA"
                 },
                 {
-                    "title": "Task-aware Fine-tuning",
-                    "description": "Design lightweight adaptation pipelines for downstream multimodal tasks with limited domain data."
+                    "title": "Vector Symbolic Architecture",
+                    "description": "Encoding compact, hardware-efficient symbolic vector representations in LLMs"
                 }
-            ],
-            "applications": [
-                "Multimodal assistants for enterprise workflows",
-                "Document and visual question-answering systems",
-                "Edge-oriented language model deployment"
-            ],
-            "milestones": [
-                "Latency-quality tradeoff benchmark release",
-                "Inference optimization checklist",
-                "Pilot deployment validation with partners"
             ]
         },
         "robot_learning": {
             "headline": "Embodied AI from perception to reliable robot behavior",
             "abstract": "This area connects visual-language understanding to robot policies for practical perception-to-action pipelines in real environments.",
-            "workstreams": [
+            "focus_areas": [
                 {
-                    "title": "Vision-Language-Action Integration",
-                    "description": "Align multimodal understanding modules with robot policies for instruction-following and task execution."
+                    "title": "Multimodal World Model",
+                    "description": "Learning world dynamics to understand causality and dynamics in physical environments"
                 },
                 {
-                    "title": "3D-aware Perception",
-                    "description": "Improve object and scene understanding using geometry-aware representations for manipulation tasks."
+                    "title": "Robust & Generalizable VLA",
+                    "description": "Improving robustness and generalization across diverse tasks, environments, and embodiments"
                 },
                 {
-                    "title": "Efficient Robotics Runtime",
-                    "description": "Reduce latency and improve control stability for real-time deployment in physical systems."
+                    "title": "Speech & Sound VLA",
+                    "description": "Grounding speech instructions and sound for reactive robot control instead of relying on text"
                 }
-            ],
-            "applications": [
-                "Vision-guided robotic manipulation",
-                "Instruction-driven robotic task automation",
-                "Human-in-the-loop robot operations"
-            ],
-            "milestones": [
-                "Closed-loop demo protocol with safety gates",
-                "Real-world task benchmark package",
-                "Reusable integration testbed"
             ]
         },
         "industrial_and_medical_ai": {
             "headline": "Trustworthy AI for industrial reliability and medical analysis",
             "abstract": "This area applies machine learning to industry and healthcare with emphasis on reliability, interpretability, and robust validation in real use cases.",
-            "workstreams": [
+            "focus_areas": [
                 {
-                    "title": "Battery and Fault Analytics",
-                    "description": "Model degradation and detect anomalies to support predictive maintenance and reliability planning."
+                    "title": "Medical Image Diagnosis",
+                    "description": "Building diagnostic models robust to long-tail distributions and domain shift problem"
                 },
                 {
-                    "title": "Medical Image Intelligence",
-                    "description": "Develop robust and calibrated diagnostic support pipelines for clinical imaging tasks."
+                    "title": "Real-World Visual Tracking",
+                    "description": "Applying vision systems to tracking, recognition, and defect detection in real-world environments"
                 },
                 {
-                    "title": "Deployment and Validation",
-                    "description": "Define practical validation protocols and interpretable outputs for stakeholders in regulated domains."
+                    "title": "Battery Prognostics",
+                    "description": "Predicting battery degradation and remaining useful life by fusing heterogeneous signals"
                 }
-            ],
-            "applications": [
-                "Industrial anomaly monitoring",
-                "Clinical decision support for imaging",
-                "Risk-aware deployment in regulated environments"
-            ],
-            "milestones": [
-                "Domain validation report with partner feedback",
-                "Interpretability-first model card templates",
-                "Readiness checklist for field pilots"
             ]
         }
     }

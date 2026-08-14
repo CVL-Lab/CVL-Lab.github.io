@@ -98,27 +98,21 @@
     "new_research_area": {
       "headline": "영역의 핵심 목표",
       "abstract": "연구 범위와 문제의식을 설명하는 문단",
-      "workstreams": [
+      "focus_areas": [
         {
-          "title": "Current Workstream",
-          "description": "현재 수행하는 연구와 방법"
+          "title": "Focus Area Title",
+          "description": "이 세부 연구 주제를 한 문장으로 설명"
         }
-      ],
-      "applications": [
-        "대표 적용 방향"
-      ],
-      "milestones": [
-        "검증 가능한 단기 목표"
       ]
     }
   }
 }
 ```
 
-- `headline`, `abstract`: 상세 영역의 소개
-- `workstreams`: Current Workstreams 카드
-- `applications`: Application Directions 목록
-- `milestones`: Near-term Milestones 목록
+- `headline`, `abstract`: Abstract 영역(이미지 5 : 텍스트 5 비율)에 표시되는 소개
+- `focus_areas`: 세부 연구 주제 카드 배열. 각 카드는 위에서부터 이미지(현재는 공용 샘플 이미지 `focus-sample.svg`), `title`, `description` 순으로 표시됨
+- 화면은 `focus_areas`를 3컬럼 그리드로 표시하며(좁은 화면은 2컬럼 → 1컬럼으로 자동 축소), 현재 각 영역당 3개를 유지 중
+- `title`은 영역 내에서 중복될 수 없음 (`npm run research:validate`가 검사)
 
 빈 placeholder를 만들지 말고, 실제로 공개 가능한 내용이 있을 때 추가합니다.
 
@@ -143,8 +137,8 @@ key/slug 변경은 공개 URL과 Publication category에 영향을 주므로 시
 ### B. Research Area Detail 내용 수정
 
 1. `research_area_details.json`에서 동일한 canonical key를 찾습니다.
-2. `headline`, `abstract`, `workstreams`, `applications`, `milestones`를 수정합니다.
-3. 같은 workstream title을 중복해서 넣지 않습니다.
+2. `headline`, `abstract`, `focus_areas`(각 `title`+`description`)를 수정합니다.
+3. 같은 `focus_areas[].title`을 중복해서 넣지 않습니다.
 4. 실제 Research tab에서 탭 전환과 모바일 줄바꿈을 확인합니다.
 
 ```bash
@@ -309,7 +303,7 @@ npm run dev
 - `Missing image`: `images`에 기록한 WebP 파일이 없음
 - `image_key ... is not defined`: Resource가 존재하지 않는 Home media key를 참조
 - `unsupported category`: Publication category가 현재 Research area key가 아님
-- `duplicate values`: order, resource id 또는 workstream title 중복
+- `duplicate values`: order, resource id 또는 focus area title 중복
 
 ---
 
