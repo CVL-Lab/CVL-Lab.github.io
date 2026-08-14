@@ -51,8 +51,8 @@
       "section": "phd",
       "source": "Seunghun Kang.jpg",
       "output": "Seunghun Kang.webp",
-      "source_sha256": "ead0a066c6354b4524868d55738fb26dba2651588f93075ab26d444f0091752b",
-      "output_sha256": "399b9531110d34a027fc1e933182d7ad53e310cc6f04742e7aee5213222d8b1c"
+      "source_sha256": "68bec7bc25472862901b15424d0c35fdd640d805f7f6c10fadc0747515a45300",
+      "output_sha256": "03174e2804a72cb41b4fb2bc11c5b586c35e692f3c5609eadd5a831884321c28"
     },
     "donghyun_kim": {
       "section": "phd",
@@ -77,10 +77,10 @@
     },
     "duyeon_na": {
       "section": "master",
-      "source": "Duyeon Na.png",
+      "source": "Duyeon Na.jpg",
       "output": "Duyeon Na.webp",
-      "source_sha256": "986728cac44b2e2a04f7629e7d16c36becc08222c753d2871fd92361b5f43990",
-      "output_sha256": "020d39244cfc7d87e5b462f458a917aaee561c1ca2c38d70a2781361e5f739ca"
+      "source_sha256": "34ee87f92b0ad10c2529c1f80bb0d3fd13d508d661c868ecd5d638a6387f6404",
+      "output_sha256": "167cbfdcd05d2d2d96eb91ae805ca42f01693dae43052a4d49318407396f456d"
     },
     "mingyu_jeong": {
       "section": "master",
@@ -100,8 +100,8 @@
       "section": "master",
       "source": "Minjae Kim.jpg",
       "output": "Minjae Kim.webp",
-      "source_sha256": "fb109215a9108bc80cf862a422f677025887dc8b848d6321f7f1115b79124565",
-      "output_sha256": "7315c4d99c46ca3fd121d79266daebfbc4f0374badaeb4607827b5206614502c"
+      "source_sha256": "326b1991651d593324729b3e107f8fdc3229c2b7c2f07b4207cebb97fa321573",
+      "output_sha256": "6516a6bd6f4a0378178b7a67047b652efe9052f26df3d6415f5f74ca55db1358"
     },
     "ahream_lee": {
       "section": "intern",
@@ -121,8 +121,8 @@
       "section": "intern",
       "source": "Junwon Bae.jpg",
       "output": "Junwon Bae.webp",
-      "source_sha256": "17e53ca71cd9b25731f4c5730bf729042de1035163c11acd40581cb2ebfd0f43",
-      "output_sha256": "93ab00924d60c3565cafea1e7f34440c2329348832826dd8df296ef54392dd69"
+      "source_sha256": "151356d814ae91da0a5830489791d395fec2d7ffeee4d74371fb6ec20b019fa9",
+      "output_sha256": "ddbcd2b6296d20296898a53f7683cf70264554508df32440df22ec2d137304f9"
     },
     "jihoon_park": {
       "section": "intern",
@@ -137,6 +137,41 @@
       "output": "Bonghyun Jang.webp",
       "source_sha256": "61e5b8218f551578c59118a12a6ebb7ac54663d73bc8a4fd2003a527cedb828c",
       "output_sha256": "65bb4316a2b6711f0dd8e5c4d336a44ad793b512ddc7e96374f134b835c1471d"
+    },
+    "myungkwon_shin": {
+      "section": "intern",
+      "source": "Myungkwon Shin.jpg",
+      "output": "Myungkwon Shin.webp",
+      "source_sha256": "8d0ca632e428850453f78d9cb13bedd4dea1cb4c6a89d77794749c7ace514b90",
+      "output_sha256": "78183f1f8df358255ac7146e4e041089467390e3fb807dac22b163d3b6217a02"
+    },
+    "hohyeon_han": {
+      "section": "intern",
+      "source": "HoHyeon Han.jpg",
+      "output": "HoHyeon Han.webp",
+      "source_sha256": "4a174d2d7efb1fb1cf7146e432c7b063fd2d7b60cc4c2ccd32934d3f15482170",
+      "output_sha256": "526c84d3ca7f9164c831208ab3d9c829e4f30591540bdf92ea7cd0ace61b605c"
+    },
+    "hyeongwoo_kim": {
+      "section": "intern",
+      "source": "Hyeongwoo Kim.jpg",
+      "output": "Hyeongwoo Kim.webp",
+      "source_sha256": "36e585d3d0861932e133217f71753722db24f3ae67f356a27a46793c386359c2",
+      "output_sha256": "a68a34b52887e805fb23bde390c95e3013b8269490e1ebb93e10842c4abdca84"
+    },
+    "hyeonbin_kim": {
+      "section": "intern",
+      "source": "Hyeonbin Kim.png",
+      "output": "Hyeonbin Kim.webp",
+      "source_sha256": "618ea433f69203fb2d5af242d4aa5a5e4c3353864f5db78cbd6c7340a21ee575",
+      "output_sha256": "5812762d51132b23782b20847c5b2cf843870a856db06ab1a609819d136276a8"
+    },
+    "yoonsoo_park": {
+      "section": "intern",
+      "source": "Yoonsoo Park.png",
+      "output": "Yoonsoo Park.webp",
+      "source_sha256": "4c479cee3b312486bf87b80d5252cbcc00431f447c3af20a1faa630898848a2e",
+      "output_sha256": "63c7983953f3c712bc96c740ea5aa91dbbf049938829f938c48c554f14cacc31"
     },
     "seokjin_jang": {
       "section": "alumni",

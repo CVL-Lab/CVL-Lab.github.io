@@ -1,4 +1,7 @@
 import IntroGroupPhoto from "./optimized/cvl-lab-home-bg.webp";
+import ResourceGpuNodes from "./optimized/resource-gpu-nodes.webp";
+import ResourceResearchServers from "./optimized/resource-research-servers.webp";
+import ResourceRoboticsPlatform from "./optimized/resource-robotics-platform.webp";
 
 const withBasePath = (relativePath) => {
     const basePath = import.meta.env.BASE_URL || "/";
@@ -21,6 +24,9 @@ const home_media_images = {
     culture_discussion: withBasePath(
         "uploads/photos/events/2023-12-27__legacy-archive/20231227-2-05--thumb.jpg",
     ),
+    resource_gpu_nodes: ResourceGpuNodes,
+    resource_research_servers: ResourceResearchServers,
+    resource_robotics_platform: ResourceRoboticsPlatform,
 };
 
 export default home_media_images;

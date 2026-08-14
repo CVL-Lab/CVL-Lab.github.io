@@ -179,14 +179,11 @@ export const getResearchAreas = () =>
             details: {
                 headline: details.headline || "",
                 abstract: details.abstract || "",
-                workstreams: Array.isArray(details.workstreams)
-                    ? details.workstreams
-                    : [],
-                applications: Array.isArray(details.applications)
-                    ? details.applications
-                    : [],
-                milestones: Array.isArray(details.milestones)
-                    ? details.milestones
+                focusAreas: Array.isArray(details.focus_areas)
+                    ? details.focus_areas.map((focusArea) => ({
+                          title: focusArea.title || "",
+                          description: focusArea.description || "",
+                      }))
                     : [],
             },
         };

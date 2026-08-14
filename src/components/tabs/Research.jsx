@@ -6,6 +6,7 @@ import {
     getResearchResources,
     resolveResearchTopic,
 } from "../../utils/researchData";
+import focusAreaSampleImage from "../../assets/images/research_concepts/optimized/focus-sample.svg";
 
 const TAB_KEYS = new Set(["ArrowRight", "ArrowLeft", "Home", "End"]);
 
@@ -262,44 +263,28 @@ function Research({ selectedResearchTopic }) {
                             </header>
                         </div>
 
-                        <div className="research__detail-body">
-                            <section className="research__detail-block">
-                                <h4>Current Workstreams</h4>
-                                <div className="research__detail-workstreams">
-                                    {activeDetailArea.details.workstreams.map(
-                                        (workstream) => (
-                                            <article
-                                                key={workstream.title}
-                                                className="research__detail-workstream-card interactive-card">
-                                                <h5>{workstream.title}</h5>
-                                                <p>{workstream.description}</p>
-                                            </article>
-                                        ),
-                                    )}
-                                </div>
-                            </section>
-
-                            <section className="research__detail-block">
-                                <h4>Application Directions</h4>
-                                <ul className="research__detail-list">
-                                    {activeDetailArea.details.applications.map(
-                                        (item) => (
-                                            <li key={item}>{item}</li>
-                                        ),
-                                    )}
-                                </ul>
-                            </section>
-
-                            <section className="research__detail-block">
-                                <h4>Near-term Milestones</h4>
-                                <ol className="research__detail-list research__detail-list--ordered">
-                                    {activeDetailArea.details.milestones.map(
-                                        (item) => (
-                                            <li key={item}>{item}</li>
-                                        ),
-                                    )}
-                                </ol>
-                            </section>
+                        <div className="research__detail-focus-areas">
+                            {activeDetailArea.details.focusAreas.map(
+                                (focusArea) => (
+                                    <section
+                                        key={focusArea.title}
+                                        className="research__detail-focus-area interactive-card">
+                                        <figure className="research__detail-focus-media">
+                                            <img
+                                                src={focusAreaSampleImage}
+                                                alt=""
+                                                aria-hidden="true"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        </figure>
+                                        <div className="research__detail-focus-copy">
+                                            <h4>{focusArea.title}</h4>
+                                            <p>{focusArea.description}</p>
+                                        </div>
+                                    </section>
+                                ),
+                            )}
                         </div>
                     </article>
                 ) : null}

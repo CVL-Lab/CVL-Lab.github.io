@@ -48,6 +48,33 @@
             "image_key": "culture_discussion",
             "alt": "Researchers discussing progress around a shared workspace.",
             "priority": 2
+        },
+        "resource_gpu_nodes": {
+            "id": "resource_gpu_nodes",
+            "title": "GPU Nodes",
+            "description": "NVIDIA GPU training nodes used for lab experiments.",
+            "section": "resources",
+            "image_key": "resource_gpu_nodes",
+            "alt": "NVIDIA GPU hardware used in the lab's training nodes.",
+            "priority": 1
+        },
+        "resource_research_servers": {
+            "id": "resource_research_servers",
+            "title": "Research Servers",
+            "description": "Shared servers supporting collaborative model development.",
+            "section": "resources",
+            "image_key": "resource_research_servers",
+            "alt": "Server rack used for shared lab compute infrastructure.",
+            "priority": 2
+        },
+        "resource_robotics_platform": {
+            "id": "resource_robotics_platform",
+            "title": "Robotics Platform",
+            "description": "UR5e robotic arm used for embodied learning research.",
+            "section": "resources",
+            "image_key": "resource_robotics_platform",
+            "alt": "UR5e robotic arm used in the lab's robotics testbed.",
+            "priority": 3
         }
     }
 }
