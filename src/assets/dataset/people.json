@@ -227,7 +227,7 @@
                     "order": 2,
                     "name": "Mingyu Jeong",
                     "position": "M.S Student",
-                    "email": "green3438@ajou.ac.kr ",
+                    "email": "green3438@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Deep Learning",
@@ -278,7 +278,7 @@
             "title": "Intern",
             "entries": {
                 "ahream_lee": {
-                    "order": 0,
+                    "order": 2,
                     "name": "AhReam Lee",
                     "position": "Intern",
                     "email": "aleum433@gmail.com",
@@ -294,7 +294,7 @@
                     }
                 },
                 "seungwon_lee": {
-                    "order": 1,
+                    "order": 3,
                     "name": "Seungwon Lee",
                     "position": "Intern",
                     "email": "tmddnjs5155@ajou.ac.kr",
@@ -311,7 +311,7 @@
                     }
                 },
                 "junwon_bae": {
-                    "order": 2,
+                    "order": 4,
                     "name": "Junwon Bae",
                     "position": "Intern",
                     "email": "baegom3@ajou.ac.kr",
@@ -328,7 +328,7 @@
                     }
                 },
                 "jihoon_park": {
-                    "order": 3,
+                    "order": 5,
                     "name": "Jihoon Park",
                     "position": "Intern",
                     "email": "jihoonpark22@ajou.ac.kr",
@@ -346,7 +346,7 @@
                     }
                 },
                 "bonghyun_jang": {
-                    "order": 4,
+                    "order": 6,
                     "name": "Bonghyun Jang",
                     "position": "Intern",
                     "email": "jbh3924@ajou.ac.kr",
@@ -359,6 +359,90 @@
                     "links": {
                         "github": null,
                         "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "myungkwon_shin": {
+                    "order": 7,
+                    "name": "Myungkwon Shin",
+                    "position": "Intern",
+                    "email": "dnu8894@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Robot Learning",
+                        "VLA"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": "https://github.com/SHIN-MK",
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "hohyeon_han": {
+                    "order": 0,
+                    "name": "HoHyeon Han",
+                    "position": "Intern",
+                    "email": "zadachi@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Quantization",
+                        "LLM"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": "https://github.com/HoHyeon-28",
+                        "linkedin": null,
+                        "google_scholar": null
+                    }
+                },
+                "hyeongwoo_kim": {
+                    "order": 8,
+                    "name": "Hyeongwoo Kim",
+                    "position": "Intern",
+                    "email": "helloguddn@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "Efficient LLM",
+                        "VLA"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": "https://github.com/guddn",
+                        "linkedin": "https://www.linkedin.com/in/%ED%98%95%EC%9A%B0-%EA%B9%80-22bb613b2",
+                        "google_scholar": null
+                    }
+                },
+                "hyeonbin_kim": {
+                    "order": 9,
+                    "name": "Hyeonbin Kim",
+                    "position": "Intern",
+                    "email": "jaerim3236@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "VLA"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": "https://github.com/declr",
+                        "linkedin": "https://www.linkedin.com/in/hyeonbin-kim-5aaa1a426",
+                        "google_scholar": null
+                    }
+                },
+                "yoonsoo_park": {
+                    "order": 1,
+                    "name": "Yoonsoo Park",
+                    "position": "Intern",
+                    "email": "pingku0223@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [
+                        "LLM",
+                        "Agentic RAG"
+                    ],
+                    "current_position": [],
+                    "links": {
+                        "github": "https://github.com/YSNationalPark",
+                        "linkedin": "https://www.linkedin.com/in/%EC%9C%A4%EC%88%98-%EB%B0%95-386158426/",
                         "google_scholar": null
                     }
                 }
@@ -431,7 +515,7 @@
                     "email": "dollyin@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": ["Not listesd"],
+                    "current_position": ["무한정보통신"],
                     "links": {
                         "github": "https://github.com/sunkijoo",
                         "linkedin": null,
@@ -445,7 +529,7 @@
                     "email": "pyosh11@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": ["Not listesd"],
+                    "current_position": ["KIST"],
                     "links": {
                         "github": null,
                         "linkedin": null,
@@ -459,7 +543,7 @@
                     "email": "gregorseifer@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": ["Not listesd"],
+                    "current_position": ["Neonto"],
                     "links": {
                         "github": null,
                         "linkedin": "https://www.linkedin.com/in/gregor-seifer/",
@@ -473,7 +557,7 @@
                     "email": "eaststst123@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [],
-                    "current_position": ["Not listesd"],
+                    "current_position": ["GNewSoft"],
                     "links": {
                         "github": null,
                         "linkedin": null,
