@@ -297,7 +297,12 @@
     background: var(--surface);
     overflow: hidden;
     display: grid;
-    grid-template-rows: 8rem auto;
+    grid-template-rows: auto auto;
+}
+
+.research__resource-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
 
 .research__resource-media img,
