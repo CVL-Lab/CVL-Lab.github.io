@@ -247,6 +247,12 @@
     --page-head-accent: var(--tab-research-accent);
 }
 
+.page-head--resources {
+    --page-head-tint: var(--tab-resources-tint);
+    --page-head-border: var(--tab-resources-border);
+    --page-head-accent: var(--tab-resources-accent);
+}
+
 .page-head--publication {
     --page-head-tint: var(--tab-publication-tint);
     --page-head-border: var(--tab-publication-border);

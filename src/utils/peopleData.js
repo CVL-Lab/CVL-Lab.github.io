@@ -47,6 +47,7 @@ export const getPeopleEntriesBySection = (sectionKey) => {
             homepage: normalizeText(person?.homepage),
             research_interests: normalizeStringList(person?.research_interests),
             current_position: normalizeStringList(person?.current_position),
+            note: normalizeText(person?.note),
             links: normalizeLinks(person?.links),
             profile_details:
                 person?.profile_details &&

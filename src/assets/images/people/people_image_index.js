@@ -15,30 +15,33 @@ import PeopleImage011 from "./optimized/Duyeon Na.webp";
 import PeopleImage012 from "./optimized/Mingyu Jeong.webp";
 import PeopleImage013 from "./optimized/Chaeyun Eom.webp";
 import PeopleImage014 from "./optimized/Minjae Kim.webp";
-import PeopleImage015 from "./optimized/AhReam Lee.webp";
-import PeopleImage016 from "./optimized/Seungwon Lee.webp";
-import PeopleImage017 from "./optimized/Junwon Bae.webp";
-import PeopleImage018 from "./optimized/Jihoon Park.webp";
-import PeopleImage019 from "./optimized/Bonghyun Jang.webp";
-import PeopleImage020 from "./optimized/Myungkwon Shin.webp";
-import PeopleImage021 from "./optimized/HoHyeon Han.webp";
-import PeopleImage022 from "./optimized/Hyeongwoo Kim.webp";
-import PeopleImage023 from "./optimized/Hyeonbin Kim.webp";
-import PeopleImage024 from "./optimized/Yoonsoo Park.webp";
-import PeopleImage025 from "./optimized/Seokjin Jang.webp";
-import PeopleImage026 from "./optimized/Jihoon Kim.webp";
-import PeopleImage027 from "./optimized/Hyunsoo Park.webp";
-import PeopleImage028 from "./optimized/Inhyuk Park.webp";
-import PeopleImage029 from "./optimized/Sunki Joo.webp";
-import PeopleImage030 from "./optimized/Soohyeon Pyo.webp";
-import PeopleImage031 from "./optimized/Gregor Seifer.webp";
-import PeopleImage032 from "./optimized/Dongkyu Kim.webp";
-import PeopleImage033 from "./optimized/Euihak Heo.webp";
-import PeopleImage034 from "./optimized/Kyusung Nam.webp";
+import PeopleImage015 from "./optimized/Byung Jee Hwang.webp";
+import PeopleImage016 from "./optimized/AhReam Lee.webp";
+import PeopleImage017 from "./optimized/Seungwon Lee.webp";
+import PeopleImage018 from "./optimized/Junwon Bae.webp";
+import PeopleImage019 from "./optimized/Jihoon Park.webp";
+import PeopleImage020 from "./optimized/Bonghyun Jang.webp";
+import PeopleImage021 from "./optimized/Myungkwon Shin.webp";
+import PeopleImage022 from "./optimized/HoHyeon Han.webp";
+import PeopleImage023 from "./optimized/Hyeongwoo Kim.webp";
+import PeopleImage024 from "./optimized/Hyeonbin Kim.webp";
+import PeopleImage025 from "./optimized/Yoonsoo Park.webp";
+import PeopleImage026 from "./optimized/Seokjin Jang.webp";
+import PeopleImage027 from "./optimized/Jihoon Kim.webp";
+import PeopleImage028 from "./optimized/Hyunsoo Park.webp";
+import PeopleImage029 from "./optimized/Inhyuk Park.webp";
+import PeopleImage030 from "./optimized/Sunki Joo.webp";
+import PeopleImage031 from "./optimized/Soohyeon Pyo.webp";
+import PeopleImage032 from "./optimized/Gregor Seifer.webp";
+import PeopleImage033 from "./optimized/Dongkyu Kim.webp";
+import PeopleImage034 from "./optimized/Euihak Heo.webp";
+import PeopleImage035 from "./optimized/Kyusung Nam.webp";
 
 const people_images = {
     "professor": {
-        "jonbin_ryu": PeopleImage001,
+        "jongbin_ryu": PeopleImage001,
+    },
+    "administrative_staff": {
     },
     "phd": {
         "sungeun_kim": PeopleImage002,
@@ -56,30 +59,31 @@ const people_images = {
         "mingyu_jeong": PeopleImage012,
         "chaeyun_eom": PeopleImage013,
         "minjae_kim": PeopleImage014,
+        "byungjee_hwang": PeopleImage015,
     },
     "intern": {
-        "ahream_lee": PeopleImage015,
-        "seungwon_lee": PeopleImage016,
-        "junwon_bae": PeopleImage017,
-        "jihoon_park": PeopleImage018,
-        "bonghyun_jang": PeopleImage019,
-        "myungkwon_shin": PeopleImage020,
-        "hohyeon_han": PeopleImage021,
-        "hyeongwoo_kim": PeopleImage022,
-        "hyeonbin_kim": PeopleImage023,
-        "yoonsoo_park": PeopleImage024,
+        "ahream_lee": PeopleImage016,
+        "seungwon_lee": PeopleImage017,
+        "junwon_bae": PeopleImage018,
+        "jihoon_park": PeopleImage019,
+        "bonghyun_jang": PeopleImage020,
+        "myungkwon_shin": PeopleImage021,
+        "hohyeon_han": PeopleImage022,
+        "hyeongwoo_kim": PeopleImage023,
+        "hyeonbin_kim": PeopleImage024,
+        "yoonsoo_park": PeopleImage025,
     },
     "alumni": {
-        "seokjin_jang": PeopleImage025,
-        "jihoon_kim": PeopleImage026,
-        "hyunsoo_park": PeopleImage027,
-        "inhyuk_park": PeopleImage028,
-        "sunki_joo": PeopleImage029,
-        "soohyeon_pyo": PeopleImage030,
-        "gregor_seifer": PeopleImage031,
-        "dongkyu_kim": PeopleImage032,
-        "euihak_heo": PeopleImage033,
-        "kyusung_nam": PeopleImage034,
+        "seokjin_jang": PeopleImage026,
+        "jihoon_kim": PeopleImage027,
+        "hyunsoo_park": PeopleImage028,
+        "inhyuk_park": PeopleImage029,
+        "sunki_joo": PeopleImage030,
+        "soohyeon_pyo": PeopleImage031,
+        "gregor_seifer": PeopleImage032,
+        "dongkyu_kim": PeopleImage033,
+        "euihak_heo": PeopleImage034,
+        "kyusung_nam": PeopleImage035,
     },
 };
 

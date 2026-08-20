@@ -5,12 +5,12 @@
     "quality": 80
   },
   "items": {
-    "jonbin_ryu": {
+    "jongbin_ryu": {
       "section": "professor",
       "source": "Jongbin Ryu.png",
       "output": "Jongbin Ryu.webp",
       "source_sha256": "8e9f3e96b6cf9a1a5b7531f112cb2082ee56d8ba67012d7329836a66e86a39dc",
-      "output_sha256": "1b868dda579c712561e5b2f9883e0dfbb4eba8091eb60e31be8d1a93b1c90a4a"
+      "output_sha256": "ca502a4a5a01f03be88a6788649ec8ce7f845c0e62e69e67542eb5c7bc1f6e79"
     },
     "sungeun_kim": {
       "section": "phd",
@@ -102,6 +102,13 @@
       "output": "Minjae Kim.webp",
       "source_sha256": "326b1991651d593324729b3e107f8fdc3229c2b7c2f07b4207cebb97fa321573",
       "output_sha256": "6516a6bd6f4a0378178b7a67047b652efe9052f26df3d6415f5f74ca55db1358"
+    },
+    "byungjee_hwang": {
+      "section": "master",
+      "source": "Byung Jee Hwang.jpg",
+      "output": "Byung Jee Hwang.webp",
+      "source_sha256": "5bf62eb16b842a635046db497ded16ed24149fc57f612b18029f1639f5ab324f",
+      "output_sha256": "a7130e82845a332f0d348f38b889f2dcca384d9ac47d720eb50d3c12fa9e32cb"
     },
     "ahream_lee": {
       "section": "intern",

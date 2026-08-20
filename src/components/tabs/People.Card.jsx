@@ -16,6 +16,9 @@ function PeopleCard({
     links = {},
     research_interest = null,
     current_position = null,
+    hideInfoIfEmpty = false,
+    noteText = "",
+    hidePublicationLink = false,
     revealDelay = "0ms",
     revealLoadDelay = "80",
 }) {
@@ -23,6 +26,7 @@ function PeopleCard({
     const emailText = email?.trim() ?? "";
     const positionText = position?.trim() ?? "";
     const homepageText = homepage?.trim() ?? "";
+    const noteTextTrimmed = noteText?.trim() ?? "";
     const publicationSearchLink = nameText
         ? `/publication?q=${encodeURIComponent(nameText)}&scope=title-authors`
         : "/publication";
@@ -35,11 +39,13 @@ function PeopleCard({
     const infoLabel = hasCurrentPosition
         ? "Current position"
         : "Research interests";
+    const hasInfo = hasCurrentPosition || hasResearchInterests;
     const infoItems = hasCurrentPosition
         ? current_position
         : hasResearchInterests
           ? research_interest
           : ["Not listed"];
+    const showInfoBlock = hasInfo || !hideInfoIfEmpty;
 
     return (
         <article
@@ -126,38 +132,58 @@ function PeopleCard({
                             </div>
                         </div>
 
-                        <div className="people__action-row people__action-row--publication">
-                            <Link
-                                to={publicationSearchLink}
-                                className="people__meta-action people__meta-action--publication btn btn--secondary btn--sm interactive-button"
-                                aria-label={`Search publications by ${nameText}`}>
-                                <span
-                                    className="people__meta-action-icon"
-                                    aria-hidden="true">
-                                    <FontAwesomeIcon icon={faBookOpen} />
-                                </span>
-                                <span>View publications</span>
-                            </Link>
-                        </div>
+                        {hidePublicationLink ? null : (
+                            <div className="people__action-row people__action-row--publication">
+                                <Link
+                                    to={publicationSearchLink}
+                                    className="people__meta-action people__meta-action--publication btn btn--secondary btn--sm interactive-button"
+                                    aria-label={`Search publications by ${nameText}`}>
+                                    <span
+                                        className="people__meta-action-icon"
+                                        aria-hidden="true">
+                                        <FontAwesomeIcon icon={faBookOpen} />
+                                    </span>
+                                    <span>View publications</span>
+                                </Link>
+                            </div>
+                        )}
                     </div>
 
-                    <div className="people__member-info">
-                        <h4 className="people__card-subheading">
-                            <span
-                                className="people__card-subheading-icon"
-                                aria-hidden="true">
-                                <FontAwesomeIcon icon={faLightbulb} />
-                            </span>
-                            <span>{infoLabel}</span>
-                        </h4>
-                        <div className="people__interest-list">
-                            {infoItems.map((item, i) => (
-                                <span key={i} className="people__interest-chip">
-                                    {item}
+                    {noteTextTrimmed ? (
+                        <div className="people__member-info">
+                            <h4 className="people__card-subheading">
+                                <span
+                                    className="people__card-subheading-icon"
+                                    aria-hidden="true">
+                                    <FontAwesomeIcon icon={faLightbulb} />
                                 </span>
-                            ))}
+                                <span>Contact</span>
+                            </h4>
+                            <p className="people__member-info-text">
+                                {noteTextTrimmed}
+                            </p>
                         </div>
-                    </div>
+                    ) : showInfoBlock ? (
+                        <div className="people__member-info">
+                            <h4 className="people__card-subheading">
+                                <span
+                                    className="people__card-subheading-icon"
+                                    aria-hidden="true">
+                                    <FontAwesomeIcon icon={faLightbulb} />
+                                </span>
+                                <span>{infoLabel}</span>
+                            </h4>
+                            <div className="people__interest-list">
+                                {infoItems.map((item, i) => (
+                                    <span
+                                        key={i}
+                                        className="people__interest-chip">
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
             </div>
         </article>

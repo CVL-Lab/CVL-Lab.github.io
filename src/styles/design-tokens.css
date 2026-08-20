@@ -158,6 +158,8 @@
     --identity-contact-accent: #e3a0b8;
     --identity-deadlines-soft: #edf4ff;
     --identity-deadlines-accent: #6d95d5;
+    --identity-resources-soft: #eef2f6;
+    --identity-resources-accent: #7a8ba3;
 
     --tab-home-tint: #edf8f4;
     --tab-home-border: #cde9dd;
@@ -190,6 +192,10 @@
     --tab-deadlines-tint: var(--identity-deadlines-soft);
     --tab-deadlines-border: #d0def4;
     --tab-deadlines-accent: var(--identity-deadlines-accent);
+
+    --tab-resources-tint: var(--identity-resources-soft);
+    --tab-resources-border: #d7dfe8;
+    --tab-resources-accent: var(--identity-resources-accent);
 
     --font-base:
         ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -393,6 +399,8 @@
     --identity-contact-accent: #f0bdd1;
     --identity-deadlines-soft: #192b48;
     --identity-deadlines-accent: #a6c6ff;
+    --identity-resources-soft: #22303f;
+    --identity-resources-accent: #a7b8cc;
 
     --tab-home-tint: #142f2d;
     --tab-home-border: #2f5f57;
@@ -405,6 +413,7 @@
     --tab-photo-border: #3d6166;
     --tab-contact-border: #6d4260;
     --tab-deadlines-border: #3b5d92;
+    --tab-resources-border: #3d4f63;
     --backdrop-line: rgba(154, 192, 255, 0.11);
     --backdrop-line-strong: rgba(154, 192, 255, 0.2);
     --backdrop-band: color-mix(

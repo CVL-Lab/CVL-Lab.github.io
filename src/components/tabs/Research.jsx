@@ -1,14 +1,13 @@
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import "./Research.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     getResearchAreas,
-    getResearchResources,
     resolveResearchTopic,
 } from "../../utils/researchData";
 import focusAreaSampleImage from "../../assets/images/research_concepts/optimized/focus-sample.svg";
 
-const TAB_KEYS = new Set(["ArrowRight", "ArrowLeft", "Home", "End"]);
+const NAV_KEYS = new Set(["ArrowRight", "ArrowLeft", "Home", "End"]);
 
 const normalizeText = (value) =>
     typeof value === "string" ? value.trim() : "";
@@ -34,32 +33,10 @@ function Research({ selectedResearchTopic }) {
     const location = useLocation();
     const tabRefs = useRef({});
     const researchContents = useMemo(() => getResearchAreas(), []);
-    const labResources = useMemo(() => getResearchResources(), []);
 
-    const activeDetailTopic = useMemo(() => {
-        const fromProps = resolveResearchTopic(selectedResearchTopic);
-        if (fromProps) {
-            return fromProps;
-        }
-        return researchContents[0]?.topicKey ?? null;
-    }, [selectedResearchTopic, researchContents]);
-
-    const activeDetailIndex = useMemo(
-        () =>
-            researchContents.findIndex(
-                (item) => item.topicKey === activeDetailTopic,
-            ),
-        [researchContents, activeDetailTopic],
-    );
-
-    const activeDetailArea =
-        activeDetailIndex >= 0
-            ? researchContents[activeDetailIndex]
-            : (researchContents[0] ?? null);
-
-    const activeDetailDescription = useMemo(
-        () => buildDetailDescription(activeDetailArea),
-        [activeDetailArea],
+    const currentTopicKey = useMemo(
+        () => resolveResearchTopic(selectedResearchTopic),
+        [selectedResearchTopic],
     );
 
     const areaPathByTopic = useMemo(
@@ -71,6 +48,27 @@ function Research({ selectedResearchTopic }) {
         [researchContents],
     );
 
+    const scrollToAreaPanel = useCallback((topicKey) => {
+        if (typeof window === "undefined") {
+            return;
+        }
+
+        const target = document.getElementById(`research-panel-${topicKey}`);
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, []);
+
+    useEffect(() => {
+        if (!currentTopicKey) {
+            return undefined;
+        }
+
+        const frameId = window.requestAnimationFrame(() => {
+            scrollToAreaPanel(currentTopicKey);
+        });
+
+        return () => window.cancelAnimationFrame(frameId);
+    }, [currentTopicKey, scrollToAreaPanel]);
+
     const navigateToArea = useCallback(
         (topicKey, focusAfterNavigation = false) => {
             const normalizedTopic = resolveResearchTopic(topicKey);
@@ -79,17 +77,17 @@ function Research({ selectedResearchTopic }) {
             }
 
             const nextPath = areaPathByTopic[normalizedTopic] || "/research";
-            if (location.pathname === nextPath) {
-                return;
+            if (location.pathname !== nextPath) {
+                navigate(nextPath, {
+                    state: {
+                        scroll: {
+                            mode: "preserve",
+                        },
+                    },
+                });
             }
 
-            navigate(nextPath, {
-                state: {
-                    scroll: {
-                        mode: "preserve",
-                    },
-                },
-            });
+            scrollToAreaPanel(normalizedTopic);
 
             if (focusAfterNavigation && typeof window !== "undefined") {
                 window.requestAnimationFrame(() => {
@@ -97,12 +95,12 @@ function Research({ selectedResearchTopic }) {
                 });
             }
         },
-        [navigate, areaPathByTopic, location.pathname],
+        [navigate, areaPathByTopic, location.pathname, scrollToAreaPanel],
     );
 
     const handleTabKeyDown = useCallback(
         (event, index) => {
-            if (!TAB_KEYS.has(event.key) || !researchContents.length) {
+            if (!NAV_KEYS.has(event.key) || !researchContents.length) {
                 return;
             }
 
@@ -149,7 +147,6 @@ function Research({ selectedResearchTopic }) {
             <section
                 data-reveal
                 className="research__details page-panel page-panel--section-start"
-                aria-live="polite"
                 aria-labelledby="research-area-details-title">
                 <div className="research__section-head research__section-head--areas">
                     <div>
@@ -157,19 +154,19 @@ function Research({ selectedResearchTopic }) {
                             Research Area Details
                         </h2>
                         <p>
-                            Explore each area through abstract, keywords, active
-                            workstreams, and near-term milestones.
+                            Explore each area through abstract, keywords, and
+                            active focus areas. Use the quick links to jump to
+                            a section.
                         </p>
                     </div>
                 </div>
 
-                <div
+                <nav
                     className="research__detail-tabs"
-                    role="tablist"
-                    aria-label="Research area details tabs">
+                    aria-label="Jump to research area">
                     {researchContents.map((contentItem, index) => {
-                        const isActive =
-                            activeDetailArea?.topicKey === contentItem.topicKey;
+                        const isCurrent =
+                            currentTopicKey === contentItem.topicKey;
 
                         return (
                             <button
@@ -181,13 +178,11 @@ function Research({ selectedResearchTopic }) {
                                             node;
                                     }
                                 }}
-                                role="tab"
                                 id={`research-tab-${contentItem.topicKey}`}
-                                aria-selected={isActive}
-                                aria-controls={`research-panel-${contentItem.topicKey}`}
-                                tabIndex={isActive ? 0 : -1}
+                                aria-current={isCurrent ? "true" : undefined}
+                                tabIndex={isCurrent ? 0 : -1}
                                 className={`research__detail-tab btn btn--secondary btn--sm interactive-button ${
-                                    isActive ? "is-active" : ""
+                                    isCurrent ? "is-active" : ""
                                 }`}
                                 onClick={() =>
                                     navigateToArea(contentItem.topicKey)
@@ -199,73 +194,72 @@ function Research({ selectedResearchTopic }) {
                             </button>
                         );
                     })}
-                </div>
+                </nav>
 
-                {activeDetailArea ? (
-                    <article
-                        key={activeDetailArea.topicKey}
-                        id={`research-panel-${activeDetailArea.topicKey}`}
-                        role="tabpanel"
-                        aria-labelledby={`research-tab-${activeDetailArea.topicKey}`}
-                        className="research__detail-panel">
-                        <div className="research__detail-hero">
-                            <figure className="research__detail-media">
-                                {activeDetailArea.image ? (
-                                    <picture>
-                                        {activeDetailArea.imageLandscape ? (
-                                            <source
-                                                media="(max-width: 68rem)"
-                                                srcSet={
-                                                    activeDetailArea.imageLandscape
-                                                }
+                {researchContents.map((area) => {
+                    const description = buildDetailDescription(area);
+
+                    return (
+                        <article
+                            key={area.topicKey}
+                            id={`research-panel-${area.topicKey}`}
+                            aria-labelledby={`research-tab-${area.topicKey}`}
+                            className="research__detail-panel">
+                            <div className="research__detail-hero">
+                                <figure className="research__detail-media">
+                                    {area.image ? (
+                                        <picture>
+                                            {area.imageLandscape ? (
+                                                <source
+                                                    media="(max-width: 68rem)"
+                                                    srcSet={
+                                                        area.imageLandscape
+                                                    }
+                                                />
+                                            ) : null}
+                                            <img
+                                                src={area.image}
+                                                alt={area.imageAlt}
+                                                loading="lazy"
+                                                decoding="async"
+                                                sizes="(max-width: 68rem) 22rem, 15rem"
                                             />
-                                        ) : null}
-                                        <img
-                                            src={activeDetailArea.image}
-                                            alt={activeDetailArea.imageAlt}
-                                            loading="lazy"
-                                            decoding="async"
-                                            sizes="(max-width: 68rem) 22rem, 15rem"
-                                        />
-                                    </picture>
-                                ) : (
-                                    <div className="research__detail-media-placeholder">
-                                        Image placeholder
-                                    </div>
-                                )}
-                            </figure>
+                                        </picture>
+                                    ) : (
+                                        <div className="research__detail-media-placeholder">
+                                            Image placeholder
+                                        </div>
+                                    )}
+                                </figure>
 
-                            <header className="research__detail-panel-head">
-                                <p className="research__detail-kicker">
-                                    Abstract
-                                </p>
-                                <h3>{activeDetailArea.title}</h3>
-                                {activeDetailDescription ? (
-                                    <p className="research__detail-description">
-                                        {activeDetailDescription}
+                                <header className="research__detail-panel-head">
+                                    <p className="research__detail-kicker">
+                                        Abstract
                                     </p>
-                                ) : null}
-                                <div className="research__detail-keywords-group">
-                                    <div
-                                        className="research__detail-keywords"
-                                        aria-label={`${activeDetailArea.title} keywords`}>
-                                        {activeDetailArea.tags.map(
-                                            (keywordItem) => (
+                                    <h3>{area.title}</h3>
+                                    {description ? (
+                                        <p className="research__detail-description">
+                                            {description}
+                                        </p>
+                                    ) : null}
+                                    <div className="research__detail-keywords-group">
+                                        <div
+                                            className="research__detail-keywords"
+                                            aria-label={`${area.title} keywords`}>
+                                            {area.tags.map((keywordItem) => (
                                                 <span
-                                                    key={`${activeDetailArea.topicKey}-${keywordItem}`}
+                                                    key={`${area.topicKey}-${keywordItem}`}
                                                     className="research__detail-keyword-chip">
                                                     {keywordItem}
                                                 </span>
-                                            ),
-                                        )}
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            </header>
-                        </div>
+                                </header>
+                            </div>
 
-                        <div className="research__detail-focus-areas">
-                            {activeDetailArea.details.focusAreas.map(
-                                (focusArea) => (
+                            <div className="research__detail-focus-areas">
+                                {area.details.focusAreas.map((focusArea) => (
                                     <section
                                         key={focusArea.title}
                                         className="research__detail-focus-area interactive-card">
@@ -283,11 +277,11 @@ function Research({ selectedResearchTopic }) {
                                             <p>{focusArea.description}</p>
                                         </div>
                                     </section>
-                                ),
-                            )}
-                        </div>
-                    </article>
-                ) : null}
+                                ))}
+                            </div>
+                        </article>
+                    );
+                })}
 
                 <div className="research__section-footer">
                     <Link
@@ -297,64 +291,6 @@ function Research({ selectedResearchTopic }) {
                     </Link>
                 </div>
             </section>
-
-            {labResources.length ? (
-                <section
-                    data-reveal
-                    className="research__resources page-panel"
-                    aria-labelledby="research-resources-title">
-                    <div className="research__section-head">
-                        <div>
-                            <h2 id="research-resources-title">
-                                Lab Resources & Infrastructure
-                            </h2>
-                            <p>
-                                Core infrastructure that supports training,
-                                experimentation, and deployment.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="research__resources-grid">
-                        {labResources.map((resource, index) => (
-                            <article
-                                key={resource.id}
-                                data-reveal
-                                data-reveal-load-delay={`${120 + Math.min(index, 4) * 60}`}
-                                style={{
-                                    "--reveal-delay": `${Math.min(index, 4) * 60}ms`,
-                                }}
-                                className="research__resource-card interactive-card">
-                                <div className="research__resource-media">
-                                    {resource.image ? (
-                                        <img
-                                            src={resource.image}
-                                            alt={resource.imageAlt}
-                                            loading="lazy"
-                                            decoding="async"
-                                            sizes="(max-width: 768px) 92vw, 18rem"
-                                        />
-                                    ) : (
-                                        <div className="research__resource-media-placeholder">
-                                            Image placeholder
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="research__resource-copy">
-                                    <p className="research__resource-label">
-                                        {resource.label}
-                                    </p>
-                                    <p className="research__resource-value">
-                                        {resource.value}
-                                    </p>
-                                    <p className="research__resource-description">
-                                        {resource.description}
-                                    </p>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
-                </section>
-            ) : null}
         </div>
     );
 }

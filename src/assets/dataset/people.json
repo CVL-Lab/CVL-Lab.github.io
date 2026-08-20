@@ -3,6 +3,7 @@
         "schema_version": "2.0",
         "section_order": [
             "professor",
+            "administrative_staff",
             "phd",
             "master",
             "intern",
@@ -13,9 +14,9 @@
         "professor": {
             "title": "Professor",
             "entries": {
-                "jonbin_ryu": {
+                "jongbin_ryu": {
                     "order": 0,
-                    "name": "Jonbin Ryu",
+                    "name": "Jongbin Ryu",
                     "image": "Jongbin Ryu.png",
                     "position": "Associate Professor",
                     "email": "jongbinryu@ajou.ac.kr",
@@ -28,9 +29,28 @@
                         "google_scholar": "https://scholar.google.com/citations?user=cvl-lab"
                     },
                     "profile_details": {
-                        "achievements": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-                        "history": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.",
-                        "biography": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat."
+                        "research_overview": "Leads CVL-Lab research in computer vision and learning, connecting core AI methods with applied research projects."
+                    }
+                }
+            }
+        },
+        "administrative_staff": {
+            "title": "Administrative Staff",
+            "entries": {
+                "seonkyung_choi": {
+                    "order": 0,
+                    "name": "Seonkyung Choi",
+                    "image": null,
+                    "position": "Administrative Staff",
+                    "email": "skchoi01@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": [],
+                    "current_position": [],
+                    "note": "Please contact for document submissions and other administrative support.",
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
+                        "google_scholar": null
                     }
                 }
             }
@@ -80,16 +100,16 @@
                     "name": "Hankyul Kang",
                     "position": "Ph.D Student",
                     "email": "consistant1y@ajou.ac.kr",
-                    "homepage": null,
+                    "homepage": "https://hankyul2.github.io",
                     "research_interests": [
                         "Image Classification",
                         "Deep Learning"
                     ],
                     "current_position": [],
                     "links": {
-                        "github": null,
-                        "linkedin": null,
-                        "google_scholar": null
+                        "github": "https://github.com/hankyul2",
+                        "linkedin": "https://www.linkedin.com/in/hankyul-kang-85825b152/",
+                        "google_scholar": "https://scholar.google.com/citations?user=k1ju5YIAAAAJ&hl=en&authuser=3"
                     }
                 },
                 "seungmin_oh": {
@@ -269,6 +289,20 @@
                     "links": {
                         "github": "https://github.com/meansash",
                         "linkedin": "https://www.linkedin.com/in/meansash",
+                        "google_scholar": null
+                    }
+                },
+                "byungjee_hwang": {
+                    "order": 5,
+                    "name": "Byung Jee Hwang",
+                    "position": "M.S Student",
+                    "email": "gable3510@ajou.ac.kr",
+                    "homepage": null,
+                    "research_interests": ["Robot Learning", "VLA"],
+                    "current_position": [],
+                    "links": {
+                        "github": null,
+                        "linkedin": null,
                         "google_scholar": null
                     }
                 }

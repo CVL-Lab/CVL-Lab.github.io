@@ -12,6 +12,7 @@ export const ROUTE_DEFINITIONS = [
     { path: "/news", tabKey: "news" },
     { path: "/research", tabKey: "research" },
     ...RESEARCH_ROUTE_PATHS.map((path) => ({ path, tabKey: "research" })),
+    { path: "/resources", tabKey: "resources" },
     { path: "/deadlines", tabKey: "deadlines" },
     { path: "/publication", tabKey: "publication" },
     { path: "/people", tabKey: "people" },

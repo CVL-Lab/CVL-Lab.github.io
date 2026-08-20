@@ -1,6 +1,8 @@
-# Research 운영 가이드 (영역·상세·리소스)
+# Research 운영 가이드 (영역·상세)
 
-이 문서는 Research tab을 처음 관리하는 운영자가 코드 구조를 추측하지 않고 영역, 상세 정보, Lab Resources & Infrastructure를 안전하게 수정하는 절차를 설명합니다.
+이 문서는 Research tab을 처음 관리하는 운영자가 코드 구조를 추측하지 않고 영역과 상세 정보를 안전하게 수정하는 절차를 설명합니다.
+
+> "Lab Resources & Infrastructure" 카드는 별도의 Resources tab(`/resources`)으로 분리되었습니다. 해당 내용은 [`docs/resources/README.md`](../resources/README.md)를 참고하세요.
 
 ---
 
@@ -10,11 +12,10 @@
 | --- | --- |
 | 영역 이름, 순서, URL, 요약, 키워드, 대표 이미지 | `src/assets/dataset/research_areas.json` |
 | Research Area Details | `src/assets/dataset/research_area_details.json` |
-| Lab Resources & Infrastructure 카드 | `src/assets/dataset/research_resources.json` |
 | 영역 대표 이미지 | `src/assets/images/research_concepts/optimized/*.webp` |
-| Resource 카드가 참조하는 공용 이미지 정보 | `src/assets/dataset/home_media.json` |
-| 공용 이미지의 실제 import/path 연결 | `src/assets/images/home/home_media_index.js` |
 | Publication 원본 | `content/publications/<area_key>/*.md` |
+
+Lab Resources & Infrastructure 카드(`research_resources.json`)는 Resources tab 소관입니다. [`docs/resources/README.md`](../resources/README.md)를 참고하세요.
 
 `src/utils/researchData.js`, route 목록과 화면 component는 위 데이터를 읽어 자동으로 구성합니다. 일반적인 콘텐츠 수정에서는 이 코드들을 직접 고치지 않습니다.
 
@@ -223,39 +224,7 @@ key 변경은 다음 항목을 하나의 변경으로 처리합니다.
 
 검증기가 남은 고아 detail이나 잘못된 Publication category를 오류로 보고합니다.
 
-### H. Lab Resource 수량·설명 수정
-
-`research_resources.json`에서 대상 item의 다음 값을 수정합니다.
-
-- `meta.home_summary`: Home 소개 카드에 표시할 짧은 요약
-- `label`: 카드 제목
-- `value`: 공개할 장비 수량/모델
-- `description`: 용도
-- `image_key`: 공용 이미지 key
-
-수량과 장비명은 실제 근거를 확인한 값만 게시합니다. Resource 수량을 바꾸면 `meta.home_summary`도 같은 사실을 반영하도록 함께 수정합니다. 확인되지 않은 예상 수량을 placeholder로 넣지 않습니다.
-
-```bash
-npm run research:validate
-npm run build
-```
-
-### I. Lab Resource 카드 추가·삭제·순서 변경
-
-- 추가: `items` 배열에 고유한 `id`를 가진 객체 추가
-- 삭제: 해당 객체 제거
-- 순서 변경: `items` 배열 순서 변경
-
-`image_key`는 `home_media.json`의 `items`에 존재해야 합니다. 기존 이미지를 재사용할 때는 사용 가능한 key를 선택하면 됩니다.
-
-새 공용 이미지를 추가해야 한다면:
-
-1. 이미지 파일 또는 Photo pipeline 결과를 준비합니다.
-2. `home_media.json`에 의미 있는 `image_key`, 설명과 alt를 추가합니다.
-3. `home_media_index.js`에 같은 key의 실제 import/path를 연결합니다.
-4. `research_resources.json`에서 그 key를 사용합니다.
-
-### J. Research와 Publication category 연결
+### H. Research와 Publication category 연결
 
 Publication `category`는 Research canonical key 중 하나여야 합니다.
 
@@ -289,8 +258,7 @@ npm run dev
 3. 키보드 `←`, `→`, `Home`, `End` 탭 이동
 4. Home의 Research Areas 카드
 5. `/publication`의 category 필터와 관련 badge
-6. Lab Resources & Infrastructure 카드와 이미지
-7. 좁은 화면에서 탭·카드·긴 제목의 줄바꿈
+6. 좁은 화면에서 탭·카드·긴 제목의 줄바꿈
 
 확인 후 필요한 원본과 생성된 Publication/News JSON을 커밋하고 `main`에 push합니다. GitHub Actions의 `Content Build Check`와 `Deploy GitHub Pages`가 모두 성공한 뒤 실제 사이트를 확인합니다.
 
@@ -301,9 +269,10 @@ npm run dev
 - `Area keys must match`: `area_order`, `areas`, `topics` 중 한 곳의 key가 빠짐
 - `slug must be ...`: snake_case key와 kebab-case URL이 불일치
 - `Missing image`: `images`에 기록한 WebP 파일이 없음
-- `image_key ... is not defined`: Resource가 존재하지 않는 Home media key를 참조
 - `unsupported category`: Publication category가 현재 Research area key가 아님
-- `duplicate values`: order, resource id 또는 focus area title 중복
+- `duplicate values`: order 또는 focus area title 중복
+
+Resource 관련 오류 메시지(`image_key ... is not defined` 등)는 [`docs/resources/README.md`](../resources/README.md)를 참고하세요.
 
 ---
 
@@ -314,8 +283,9 @@ npm run dev
 3. `area_order`, `areas`, `topics`, Publication category가 일치하는가?
 4. 이미지 세 variant와 의미 있는 alt가 있는가?
 5. 상세 내용은 실제 공개 가능한 연구와 목표를 설명하는가?
-6. Resource 수량·모델·설명이 현재 사실과 일치하는가?
-7. `npm run research:validate`가 통과하는가?
-8. `npm run build:static`이 모든 Research route를 prerender하는가?
-9. Home, Research, Publication에서 같은 영역명이 표시되는가?
-10. push 후 두 GitHub Actions가 성공했는가?
+6. `npm run research:validate`가 통과하는가?
+7. `npm run build:static`이 모든 Research route를 prerender하는가?
+8. Home, Research, Publication에서 같은 영역명이 표시되는가?
+9. push 후 두 GitHub Actions가 성공했는가?
+
+Lab Resources & Infrastructure 관련 체크리스트는 [`docs/resources/README.md`](../resources/README.md)를 참고하세요.

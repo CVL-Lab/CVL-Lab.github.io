@@ -1,7 +1,7 @@
 {
   "meta": {
     "schema_version": "4.0",
-    "generated_at": "2026-08-14T05:56:26.108Z",
+    "generated_at": "2026-08-20T08:24:33.429Z",
     "default_sort": "date_desc",
     "source": "content/news + publications(published)",
     "type_labels": {
@@ -25,7 +25,7 @@
       "summary": "Our work on robust visual representation learning was accepted for publication.",
       "date": "2026-02-18",
       "year": 2026,
-      "related_person": "Sungeun Kim, Jonbin Ryu",
+      "related_person": "Sungeun Kim, Jongbin Ryu",
       "venue": "WACV 2026",
       "external_url": "",
       "internal_slug": "paper-accepted-wacv-2026",

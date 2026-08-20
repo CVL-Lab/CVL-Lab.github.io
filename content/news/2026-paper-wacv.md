@@ -4,7 +4,7 @@ type: paper_accepted
 title: "Paper accepted at WACV 2026"
 summary: "Our work on robust visual representation learning was accepted for publication."
 date: 2026-02-18
-related_person: "Sungeun Kim, Jonbin Ryu"
+related_person: "Sungeun Kim, Jongbin Ryu"
 venue: "WACV 2026"
 external_url: ""
 is_external: false

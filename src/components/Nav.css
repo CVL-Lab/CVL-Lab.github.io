@@ -94,57 +94,9 @@
 }
 
 .nav__item {
-    --nav-submenu-gap: var(--space-1);
-
     position: relative;
     display: inline-flex;
     align-items: center;
-}
-
-.nav__submenu {
-    position: absolute;
-    left: 50%;
-    top: calc(100% + var(--nav-submenu-gap));
-    transform: translate(-50%, -0.32rem);
-    inline-size: max-content;
-    min-inline-size: 12.8rem;
-    max-inline-size: min(18rem, calc(100vw - (var(--container-pad-x) * 2)));
-    padding: var(--space-1);
-    border: 1px solid var(--outline-color);
-    border-radius: var(--radius-md);
-    background: var(--surface);
-    box-shadow: var(--shadow-elev-1);
-    display: grid;
-    gap: var(--space-0p5);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: 1100;
-    transform-origin: top center;
-    transition:
-        opacity var(--dur-fast) var(--ease-soft),
-        transform var(--dur-base) var(--ease-standard),
-        visibility 0s linear var(--dur-base);
-}
-
-.nav__submenu::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(-1px - var(--nav-submenu-gap));
-    height: calc(var(--nav-submenu-gap) + 1px);
-}
-
-@keyframes nav-submenu-drop {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -0.42rem);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
 }
 
 @keyframes nav-return-rise {
@@ -178,45 +130,6 @@
     to {
         opacity: 1;
     }
-}
-
-.nav__submenu-link {
-    width: 100%;
-    min-height: var(--target-min);
-    padding: var(--control-pad-y) var(--control-pad-x);
-    border: 1px solid transparent;
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: var(--meta-text-size);
-    font-weight: var(--type-support-weight);
-    line-height: var(--type-support-line-height);
-    display: grid;
-    grid-template-columns: 1rem minmax(0, 1fr) 1rem;
-    align-items: center;
-    justify-items: center;
-    gap: var(--space-1);
-    text-align: center;
-    transition: var(--transition-interactive);
-}
-
-.nav__submenu-link span:first-child {
-    grid-column: 2;
-    justify-self: center;
-}
-
-.nav__submenu-link span:last-child {
-    grid-column: 3;
-    justify-self: end;
-}
-
-.nav__submenu-link:focus-visible {
-    outline: var(--focus-w) solid var(--focus-ring);
-    outline-offset: 1px;
-}
-
-.nav__submenu-link:active {
-    transform: translateX(2px) scale(0.985);
 }
 
 .nav__overlay {
@@ -325,6 +238,12 @@
     --nav-tab-accent: var(--tab-research-accent);
 }
 
+.nav__button--resources {
+    --nav-tab-tint: var(--tab-resources-tint);
+    --nav-tab-border: var(--tab-resources-border);
+    --nav-tab-accent: var(--tab-resources-accent);
+}
+
 .nav__button--publication {
     --nav-tab-tint: var(--tab-publication-tint);
     --nav-tab-border: var(--tab-publication-border);
@@ -378,17 +297,6 @@
     transform: scaleX(1);
 }
 
-.nav__item.has-sections:focus-within .nav__submenu,
-.nav__item.has-sections > .nav__button:focus-visible + .nav__submenu,
-.nav__item.has-sections .nav__submenu:focus-within {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translate(-50%, 0);
-    animation: nav-submenu-drop var(--dur-base) var(--ease-standard);
-    transition-delay: 0ms;
-}
-
 @media (hover: hover) and (pointer: fine) {
     .nav__logo:hover {
         transform: translateY(var(--hover-translate-y-sm));
@@ -409,22 +317,6 @@
         transform: scaleX(1);
     }
 
-    .nav__item.has-sections > .nav__button:hover + .nav__submenu,
-    .nav__item.has-sections > .nav__submenu:hover {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translate(-50%, 0);
-        animation: nav-submenu-drop var(--dur-base) var(--ease-standard);
-        transition-delay: 0ms;
-    }
-
-    .nav__submenu-link:hover {
-        border-color: var(--outline-color);
-        background: var(--surface-2);
-        color: var(--text-primary);
-        transform: translateX(2px);
-    }
 }
 
 @keyframes nav-active-settle {
@@ -520,10 +412,6 @@
         min-height: var(--btn-height);
         justify-content: flex-start;
         padding: 0 var(--btn-pad-x);
-    }
-
-    .nav__submenu {
-        display: none;
     }
 }
 
