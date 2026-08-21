@@ -33,7 +33,7 @@ function Contact() {
           <div className="contact__location-intro">
             <p className="contact__panel-label">Location</p>
             <p className="contact__location-title">
-              Industry-Academic Cooperation Foundation, Room 213
+              Padal Hall, Room 624
             </p>
             <p className="contact__location-copy">
               CVL-Lab is based at Ajou University in Suwon. Use the map for directions and the
@@ -57,7 +57,7 @@ function Contact() {
             <div className="contact__map-wrap">
               <iframe
                 className="contact__map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5357.338900879886!2d127.04129122331311!3d37.283889685557014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5b01481ca7d1%3A0x89aef569dce53536!2z7JWE7KO864yA7ZWZ6rWQIOyCsO2Vme2YkeugpeybkA!5e0!3m2!1sko!2skr!4v1735627049534!5m2!1sko!2skr"
+                src="https://www.google.com/maps?q=%EC%95%84%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90%20%ED%8C%94%EB%8B%AC%EA%B4%80%20%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%88%98%EC%9B%90%EC%8B%9C%20%EC%98%81%ED%86%B5%EA%B5%AC%20%EC%9B%90%EC%B2%9C%EB%8F%99&output=embed"
                 title="Ajou University CVL-Lab location map"
                 loading="lazy"
               ></iframe>
@@ -74,7 +74,7 @@ function Contact() {
             <p className="contact__panel-label">Address</p>
             <p className="contact__panel-title">Department of Computer Science, Ajou University</p>
             <address className="contact__address-text">
-              Industry-Academic Cooperation Foundation Building Room 213,<br />
+              Padal Hall, Room 624,<br />
               Department of Computer Science, Ajou University,<br />
               206 World cup-ro, Yeongtong-gu,<br />
               Suwon 16499, Korea

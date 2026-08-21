@@ -1,7 +1,7 @@
 {
   "meta": {
     "schema_version": "4.0",
-    "generated_at": "2026-08-20T08:24:33.429Z",
+    "generated_at": "2026-08-21T06:03:25.142Z",
     "default_sort": "date_desc",
     "source": "content/news + publications(published)",
     "type_labels": {
@@ -83,24 +83,6 @@
       "venue": "CVL-Lab, Ajou University",
       "external_url": "",
       "internal_slug": "new-gpu-workstation-2025",
-      "is_external": false,
-      "featured": false,
-      "publication_id": "",
-      "publication_title": "",
-      "publication_query": "",
-      "generated_from": ""
-    },
-    {
-      "id": "2025-award-student",
-      "type": "award",
-      "title": "Best Student Presentation Award",
-      "summary": "CVL-Lab received a student presentation award for work on trustworthy computer vision.",
-      "date": "2025-11-14",
-      "year": 2025,
-      "related_person": "Gregor Seifer",
-      "venue": "KCVS 2025",
-      "external_url": "",
-      "internal_slug": "best-student-presentation-2025",
       "is_external": false,
       "featured": false,
       "publication_id": "",

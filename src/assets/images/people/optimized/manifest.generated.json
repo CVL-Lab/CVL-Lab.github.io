@@ -12,6 +12,13 @@
       "source_sha256": "8e9f3e96b6cf9a1a5b7531f112cb2082ee56d8ba67012d7329836a66e86a39dc",
       "output_sha256": "ca502a4a5a01f03be88a6788649ec8ce7f845c0e62e69e67542eb5c7bc1f6e79"
     },
+    "sunkyung_choi": {
+      "section": "administrative_staff",
+      "source": "Sunkyung Choi.png",
+      "output": "Sunkyung Choi.webp",
+      "source_sha256": "3c052c43bf30510ba8d665e40243fc8c0af37ed188959e9df12f96cf8b544c55",
+      "output_sha256": "a95ca39c5c8cd4418743a1c965392e9827a6b8002224ca7891817f80c5b1ee7f"
+    },
     "sungeun_kim": {
       "section": "phd",
       "source": "Sungeun Kim.jpg",
@@ -105,8 +112,8 @@
     },
     "byungjee_hwang": {
       "section": "master",
-      "source": "Byung Jee Hwang.jpg",
-      "output": "Byung Jee Hwang.webp",
+      "source": "Byungjee Hwang.jpg",
+      "output": "Byungjee Hwang.webp",
       "source_sha256": "5bf62eb16b842a635046db497ded16ed24149fc57f612b18029f1639f5ab324f",
       "output_sha256": "a7130e82845a332f0d348f38b889f2dcca384d9ac47d720eb50d3c12fa9e32cb"
     },

@@ -15,6 +15,36 @@
     padding-top: 0;
 }
 
+.deadlines__search-wrap {
+    width: 100%;
+    display: grid;
+    gap: var(--space-1p5);
+}
+
+.deadlines__search-input {
+    width: 100%;
+    max-width: 28rem;
+    min-height: 2.15rem;
+    height: 2.15rem;
+    padding: var(--control-pad-y) var(--control-pad-x);
+    border: 1px solid var(--outline-color);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--text-primary);
+    transition: var(--transition-interactive);
+    font-size: var(--type-button-size);
+    line-height: var(--type-button-line-height);
+}
+
+.deadlines__search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.deadlines__search-input:focus-visible {
+    outline: var(--focus-w) solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
 .deadlines__filter-btn,
 .deadlines__milestone-btn {
     --btn-height-local: 2.05rem;

@@ -50,7 +50,7 @@
 }
 
 .home-research__card-media {
-    height: 7.4rem;
+    aspect-ratio: 1600 / 560;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -206,10 +206,6 @@
     .home-research__card {
         min-height: 13.9rem;
     }
-
-    .home-research__card-media {
-        height: 6.6rem;
-    }
 }
 
 @media (max-width: 52rem) {
@@ -228,10 +224,6 @@
 
     .home-research__card {
         min-height: 0;
-    }
-
-    .home-research__card-media {
-        height: 6rem;
     }
 
     .home-research__card-content {

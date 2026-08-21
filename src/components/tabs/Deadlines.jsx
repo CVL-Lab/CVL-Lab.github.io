@@ -140,6 +140,7 @@ function DeadlineCard({ venue, selectedMilestones, onSelectMilestone, now }) {
 
 function Deadlines() {
     const [selectedArea, setSelectedArea] = useState(ALL_AREAS);
+    const [searchQuery, setSearchQuery] = useState("");
     const [selectedMilestones, setSelectedMilestones] = useState({});
     const [now, setNow] = useState(null);
     const venues = useMemo(() => getAllVenues(), []);
@@ -151,13 +152,20 @@ function Deadlines() {
         return () => window.clearInterval(intervalId);
     }, []);
 
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+
     const filteredVenues = useMemo(
         () =>
-            venues.filter(
-                (venue) =>
-                    selectedArea === ALL_AREAS || venue.areas.includes(selectedArea),
-            ),
-        [selectedArea, venues],
+            venues.filter((venue) => {
+                const matchesArea =
+                    selectedArea === ALL_AREAS || venue.areas.includes(selectedArea);
+                const matchesQuery =
+                    !normalizedQuery ||
+                    venue.name?.toLowerCase().includes(normalizedQuery) ||
+                    venue.full_name?.toLowerCase().includes(normalizedQuery);
+                return matchesArea && matchesQuery;
+            }),
+        [selectedArea, normalizedQuery, venues],
     );
 
     const handleSelectMilestone = (venueId, milestoneId) => {
@@ -182,7 +190,20 @@ function Deadlines() {
                 aria-labelledby="deadlines-controls-title">
                 <div className="deadlines__controls-intro page-controls__intro">
                     <h2 id="deadlines-controls-title">Browse venues</h2>
-                    <p>Choose a research area, then switch between milestones inside each venue.</p>
+                    <p>Search by conference name, choose a research area, then switch between milestones inside each venue.</p>
+                </div>
+                <div className="deadlines__search-wrap">
+                    <label className="deadlines__search-label page-controls__label" htmlFor="deadlines-search">
+                        Search conferences
+                    </label>
+                    <input
+                        id="deadlines-search"
+                        type="search"
+                        className="deadlines__search-input"
+                        placeholder="Search by conference name (e.g. CVPR, NeurIPS)"
+                        value={searchQuery}
+                        onChange={(event) => setSearchQuery(event.target.value)}
+                    />
                 </div>
                 <div className="deadlines__filters page-controls__actions" role="group" aria-label="Filter conference deadlines by research area">
                     <button

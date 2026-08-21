@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getHomeMediaBySection } from "./home/homeData";
 import { getPeopleEntriesBySection } from "../../utils/peopleData";
 import { getResearchResourceSummary } from "../../utils/researchData";
+import HOME_MEDIA_IMAGES from "../../assets/images/home/home_media_index";
 
 const RESEARCH_FOCUS = [
     "Computer Vision",
@@ -28,14 +29,9 @@ const buildIntroductionMediaMap = () => {
         intro_meeting_room: {
             title: "Lab Resources",
             description: resourceSummary,
-            to: "/research",
-            state: {
-                scroll: {
-                    mode: "selector",
-                    selector: "#research-resources-title",
-                    block: "start",
-                },
-            },
+            image: HOME_MEDIA_IMAGES.resource_gpu_nodes,
+            to: "/resources",
+            state: undefined,
         },
     };
 };

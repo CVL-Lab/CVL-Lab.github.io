@@ -37,10 +37,9 @@
         "administrative_staff": {
             "title": "Administrative Staff",
             "entries": {
-                "seonkyung_choi": {
+                "sunkyung_choi": {
                     "order": 0,
-                    "name": "Seonkyung Choi",
-                    "image": null,
+                    "name": "Sunkyung Choi",
                     "position": "Administrative Staff",
                     "email": "skchoi01@ajou.ac.kr",
                     "homepage": null,
@@ -294,7 +293,7 @@
                 },
                 "byungjee_hwang": {
                     "order": 5,
-                    "name": "Byung Jee Hwang",
+                    "name": "Byungjee Hwang",
                     "position": "M.S Student",
                     "email": "gable3510@ajou.ac.kr",
                     "homepage": null,
