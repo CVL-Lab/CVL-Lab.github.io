@@ -1,4 +1,4 @@
-import{j as e,a,h as c,M as o}from"./index-CdRM_c5j.js";function r(){const t="jongbinryu@ajou.ac.kr",l=encodeURIComponent("CVL-Lab Inquiry"),i=encodeURIComponent(`Hello CVL-Lab,
+import{j as e,a,h as c,M as o}from"./index-BPbNENIi.js";function r(){const t="jongbinryu@ajou.ac.kr",l=encodeURIComponent("CVL-Lab Inquiry"),i=encodeURIComponent(`Hello CVL-Lab,
 
 I would like to ask about...
 
