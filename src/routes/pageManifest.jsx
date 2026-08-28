@@ -4,7 +4,6 @@ import { ROUTE_DEFINITIONS, SSG_ROUTE_PATHS } from "./routeDefinitions";
 const HomePage = lazy(() => import("../pages/HomePage"));
 const NewsPage = lazy(() => import("../pages/NewsPage"));
 const ResearchPage = lazy(() => import("../pages/ResearchPage"));
-const ResourcesPage = lazy(() => import("../pages/ResourcesPage"));
 const DeadlinesPage = lazy(() => import("../pages/DeadlinesPage"));
 const PublicationPage = lazy(() => import("../pages/PublicationPage"));
 const PeoplePage = lazy(() => import("../pages/PeoplePage"));
@@ -16,7 +15,6 @@ const PAGE_COMPONENTS = {
     home: HomePage,
     news: NewsPage,
     research: ResearchPage,
-    resources: ResourcesPage,
     deadlines: DeadlinesPage,
     publication: PublicationPage,
     people: PeoplePage,

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "../components/tabs/Home";
-import { getResearchPath } from "../utils/researchData";
+import { getResearchPath, resolveResearchTopic } from "../utils/researchData";
 
 function HomePage() {
     const navigate = useNavigate();
@@ -9,34 +9,32 @@ function HomePage() {
     const handleActiveResearch = useCallback(
         (topicOrPayload) => {
             const fallbackPath = "/research";
-
-            if (typeof topicOrPayload === "string") {
-                navigate(getResearchPath(topicOrPayload), {
-                    state: {
-                        scroll: {
-                            mode: "selector",
-                            selector: "#research-area-details-title",
-                            block: "start",
-                        },
-                    },
-                });
-                return;
-            }
+            const rawTopic =
+                typeof topicOrPayload === "string"
+                    ? topicOrPayload
+                    : topicOrPayload?.topicKey;
+            const topicKey = resolveResearchTopic(rawTopic);
 
             const explicitPath =
                 topicOrPayload && typeof topicOrPayload.path === "string"
                     ? topicOrPayload.path
                     : null;
             const resolvedPath =
-                explicitPath || getResearchPath(topicOrPayload?.topicKey);
+                explicitPath || getResearchPath(rawTopic) || fallbackPath;
 
-            navigate(resolvedPath || fallbackPath, {
+            navigate(resolvedPath, {
                 state: {
-                    scroll: {
-                        mode: "selector",
-                        selector: "#research-area-details-title",
-                        block: "start",
-                    },
+                    scroll: topicKey
+                        ? {
+                              mode: "selector",
+                              selector: `#research-panel-${topicKey}`,
+                              block: "start",
+                          }
+                        : {
+                              mode: "selector",
+                              selector: "#research-area-details-title",
+                              block: "start",
+                          },
                 },
             });
         },

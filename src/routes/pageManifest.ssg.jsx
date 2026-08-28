@@ -2,7 +2,6 @@ import { ROUTE_DEFINITIONS, SSG_ROUTE_PATHS } from "./routeDefinitions";
 import HomePage from "../pages/HomePage";
 import NewsPage from "../pages/NewsPage";
 import ResearchPage from "../pages/ResearchPage";
-import ResourcesPage from "../pages/ResourcesPage";
 import DeadlinesPage from "../pages/DeadlinesPage";
 import PublicationPage from "../pages/PublicationPage";
 import PeoplePage from "../pages/PeoplePage";
@@ -14,7 +13,6 @@ const PAGE_COMPONENTS = {
     home: HomePage,
     news: NewsPage,
     research: ResearchPage,
-    resources: ResourcesPage,
     deadlines: DeadlinesPage,
     publication: PublicationPage,
     people: PeoplePage,

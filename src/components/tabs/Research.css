@@ -216,7 +216,7 @@
     gap: var(--space-2);
     border: 1px solid var(--outline-color);
     border-radius: var(--radius-md);
-    background: var(--surface-2);
+    background: var(--surface);
     padding: var(--panel-pad-sm);
 }
 
@@ -224,7 +224,7 @@
     margin: 0;
     width: 100%;
     aspect-ratio: 16 / 9;
-    border: 1px solid var(--outline-color);
+    border: 0;
     border-radius: var(--radius-md);
     background: var(--surface);
     overflow: hidden;

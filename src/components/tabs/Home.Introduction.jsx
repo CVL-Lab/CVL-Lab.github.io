@@ -30,8 +30,14 @@ const buildIntroductionMediaMap = () => {
             title: "Lab Resources",
             description: resourceSummary,
             image: HOME_MEDIA_IMAGES.resource_gpu_nodes,
-            to: "/resources",
-            state: undefined,
+            to: "/research",
+            state: {
+                scroll: {
+                    mode: "selector",
+                    selector: "#resources-title",
+                    block: "start",
+                },
+            },
         },
     };
 };

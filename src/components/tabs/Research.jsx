@@ -1,12 +1,40 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import "./Research.css";
+import "./Resources.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     getResearchAreas,
+    getResearchResources,
     resolveResearchTopic,
 } from "../../utils/researchData";
 import focusAreaSampleImage from "../../assets/images/research_concepts/optimized/focus-sample.svg";
+import coreArchitectureImage from "../../assets/images/research_concepts/optimized/focus/core-architecture.webp";
+import representationLearningImage from "../../assets/images/research_concepts/optimized/focus/representation-learning.webp";
+import visionLanguageModelImage from "../../assets/images/research_concepts/optimized/focus/vision-language-model.webp";
+import pruningImage from "../../assets/images/research_concepts/optimized/focus/pruning.webp";
+import quantizationImage from "../../assets/images/research_concepts/optimized/focus/quantization.webp";
+import efficientTransferLearningImage from "../../assets/images/research_concepts/optimized/focus/efficient-transfer-learning.webp";
+import multimodalWorldModelImage from "../../assets/images/research_concepts/optimized/focus/multimodal-world-model.webp";
+import robustGeneralizableVlaImage from "../../assets/images/research_concepts/optimized/focus/robust-generalizable-vla.webp";
+import speechSoundVlaImage from "../../assets/images/research_concepts/optimized/focus/speech-sound-vla.webp";
+import medicalImageDiagnosisImage from "../../assets/images/research_concepts/optimized/focus/medical-image-diagnosis.webp";
+import realWorldVisualTrackingImage from "../../assets/images/research_concepts/optimized/focus/real-world-visual-tracking.webp";
+import batteryPrognosticsImage from "../../assets/images/research_concepts/optimized/focus/battery-prognostics.webp";
 
+const FOCUS_AREA_IMAGE_BY_TITLE = {
+    "Core Architecture": coreArchitectureImage,
+    "Representation Learning": representationLearningImage,
+    "Vision-Language Model": visionLanguageModelImage,
+    Pruning: pruningImage,
+    Quantization: quantizationImage,
+    "Efficient Transfer Learning": efficientTransferLearningImage,
+    "Multimodal World Model": multimodalWorldModelImage,
+    "Robust & Generalizable VLA": robustGeneralizableVlaImage,
+    "Speech & Sound VLA": speechSoundVlaImage,
+    "Medical Image Diagnosis": medicalImageDiagnosisImage,
+    "Real-World Visual Tracking": realWorldVisualTrackingImage,
+    "Battery Prognostics": batteryPrognosticsImage,
+};
 const NAV_KEYS = new Set(["ArrowRight", "ArrowLeft", "Home", "End"]);
 
 const normalizeText = (value) =>
@@ -33,6 +61,7 @@ function Research({ selectedResearchTopic }) {
     const location = useLocation();
     const tabRefs = useRef({});
     const researchContents = useMemo(() => getResearchAreas(), []);
+    const labResources = useMemo(() => getResearchResources(), []);
 
     const currentTopicKey = useMemo(
         () => resolveResearchTopic(selectedResearchTopic),
@@ -142,22 +171,68 @@ function Research({ selectedResearchTopic }) {
                     research, multimodal intelligence, robotics, and biomedical
                     impact.
                 </p>
+
+                {labResources.length ? (
+                    <section
+                        data-reveal
+                        className="resources__grid-section"
+                        aria-labelledby="resources-title">
+                        <div className="resources__section-head">
+                            <div>
+                                <h2 id="resources-title">
+                                    Infrastructure
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="resources__grid">
+                            {labResources.map((resource, index) => (
+                                <article
+                                    key={resource.id}
+                                    data-reveal
+                                    data-reveal-load-delay={`${120 + Math.min(index, 4) * 60}`}
+                                    style={{
+                                        "--reveal-delay": `${Math.min(index, 4) * 60}ms`,
+                                    }}
+                                    className="resources__card interactive-card">
+                                    <div className="resources__card-media">
+                                        {resource.image ? (
+                                            <img
+                                                src={resource.image}
+                                                alt={resource.imageAlt}
+                                                loading="lazy"
+                                                decoding="async"
+                                                sizes="(max-width: 480px) 100vw, 12rem"
+                                            />
+                                        ) : (
+                                            <div className="resources__card-media-placeholder">
+                                                Image placeholder
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="resources__card-copy">
+                                        <p className="resources__card-label">
+                                            {resource.label}
+                                        </p>
+                                        <p className="resources__card-value">
+                                            {resource.value}
+                                        </p>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
+                ) : null}
             </div>
 
             <section
                 data-reveal
-                className="research__details page-panel page-panel--section-start"
+                className="research__details page-panel"
                 aria-labelledby="research-area-details-title">
                 <div className="research__section-head research__section-head--areas">
                     <div>
                         <h2 id="research-area-details-title">
-                            Research Area Details
+                            Research Area
                         </h2>
-                        <p>
-                            Explore each area through abstract, keywords, and
-                            active focus areas. Use the quick links to jump to
-                            a section.
-                        </p>
                     </div>
                 </div>
 
@@ -265,9 +340,12 @@ function Research({ selectedResearchTopic }) {
                                         className="research__detail-focus-area interactive-card">
                                         <figure className="research__detail-focus-media">
                                             <img
-                                                src={focusAreaSampleImage}
-                                                alt=""
-                                                aria-hidden="true"
+                                                src={
+                                                    FOCUS_AREA_IMAGE_BY_TITLE[
+                                                        focusArea.title
+                                                    ] || focusAreaSampleImage
+                                                }
+                                                alt={`${focusArea.title} figure`}
                                                 loading="lazy"
                                                 decoding="async"
                                             />

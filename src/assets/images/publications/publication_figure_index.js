@@ -12,6 +12,10 @@ import HQT_FIGURE_1 from "./figures/hqt-figure-1.webp";
 import GEN_SSL_FIGURE_2 from "./figures/gen-ssl-figure-2.webp";
 import CXR_LT_FIGURE_1 from "./figures/cxr-lt-figure-1.webp";
 import FG_SSL_FIGURE_1 from "./figures/fg-ssl-figure-1.webp";
+import TRAIN_OVERCOMPLETE_FIGURE_1 from "./figures/train-overcomplete-figure-1.webp";
+import LAYER_WISE_CURRICULUM_FIGURE_1 from "./figures/layer-wise-curriculum-figure-1.webp";
+import COLLA_Q_FIGURE_1 from "./figures/colla-q-figure-1.webp";
+import RECALIBRATED_CONTRASTIVE_FIGURE_1 from "./figures/recalibrated-contrastive-figure-1.webp";
 
 const PUBLICATION_FIGURES = {
     "biomedical-bapub4-style-kd-class-imbalanced-medical-image": {
@@ -107,6 +111,30 @@ const PUBLICATION_FIGURES = {
         figureLabel: "Figure 1",
         alt: "Figure 1 showing the FG-SSL architecture with shuffled and distorted image branches feeding a shared hierarchical block toward a Barlow Twins style cross-correlation loss.",
         sourceUrl: "https://www.sciencedirect.com/science/article/abs/pii/S0010482524005444",
+    },
+    "llm-2026-train-overcomplete-deploy-compact": {
+        image: TRAIN_OVERCOMPLETE_FIGURE_1,
+        figureLabel: "Figure 1",
+        alt: "Figure 1 comparing LoRA, which keeps pruned layers frozen with low-rank adapters, against the proposed OverRep method, which trains an overcomplete parameterization that is re-parameterized into a compact form at deployment.",
+        sourceUrl: "",
+    },
+    "llm-2026-layer-wise-curriculum-learning": {
+        image: LAYER_WISE_CURRICULUM_FIGURE_1,
+        figureLabel: "Figure 1",
+        alt: "Figure 1 comparing a baseline that optimizes all student layers at once, causing cumulative error to grow with depth, against the proposed easy-to-hard layer-wise curriculum that passes curriculum features between layers to keep cumulative error low.",
+        sourceUrl: "",
+    },
+    "llm-2026-colla-q-moe-quantization": {
+        image: COLLA_Q_FIGURE_1,
+        figureLabel: "Figure 1",
+        alt: "Figure 1 comparing a baseline MoE quantization ensemble that mixes a poorly performing expert into the router's output against Colla-Q, which selects and ensembles collaborative experts for a better aggregated result.",
+        sourceUrl: "",
+    },
+    "core-2026-recalibrated-contrastive-loss-vlm": {
+        image: RECALIBRATED_CONTRASTIVE_FIGURE_1,
+        figureLabel: "Figure 1",
+        alt: "Figure 1 illustrating learnable text prompts and an augmented contrastive space built from image and text encoders over transformed image-text pairs, with adaptive re-calibration reweighting the contrastive loss targets.",
+        sourceUrl: "",
     },
 };
 

@@ -2,7 +2,7 @@
 
 이 문서는 Research tab을 처음 관리하는 운영자가 코드 구조를 추측하지 않고 영역과 상세 정보를 안전하게 수정하는 절차를 설명합니다.
 
-> "Lab Resources & Infrastructure" 카드는 별도의 Resources tab(`/resources`)으로 분리되었습니다. 해당 내용은 [`docs/resources/README.md`](../resources/README.md)를 참고하세요.
+> "Lab Resources & Infrastructure" 카드는 Research 페이지 맨 위 섹션으로 표시됩니다(과거 별도 Resources tab이었던 적이 있으나 다시 합쳐졌습니다). 해당 내용은 [`docs/resources/README.md`](../resources/README.md)를 참고하세요.
 
 ---
 
@@ -15,7 +15,7 @@
 | 영역 대표 이미지 | `src/assets/images/research_concepts/optimized/*.webp` |
 | Publication 원본 | `content/publications/<area_key>/*.md` |
 
-Lab Resources & Infrastructure 카드(`research_resources.json`)는 Resources tab 소관입니다. [`docs/resources/README.md`](../resources/README.md)를 참고하세요.
+Lab Resources & Infrastructure 카드(`research_resources.json`)는 [`docs/resources/README.md`](../resources/README.md)를 참고하세요.
 
 `src/utils/researchData.js`, route 목록과 화면 component는 위 데이터를 읽어 자동으로 구성합니다. 일반적인 콘텐츠 수정에서는 이 코드들을 직접 고치지 않습니다.
 

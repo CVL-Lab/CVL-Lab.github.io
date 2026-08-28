@@ -33,12 +33,6 @@
     --app-accent: var(--tab-deadlines-accent);
 }
 
-.app--resources {
-    --app-tint: var(--tab-resources-tint);
-    --app-border: var(--tab-resources-border);
-    --app-accent: var(--tab-resources-accent);
-}
-
 .app--publication {
     --app-tint: var(--tab-publication-tint);
     --app-border: var(--tab-publication-border);

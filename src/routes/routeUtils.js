@@ -2,7 +2,6 @@ export const TAB_KEYS = [
     "home",
     "news",
     "research",
-    "resources",
     "deadlines",
     "publication",
     "people",

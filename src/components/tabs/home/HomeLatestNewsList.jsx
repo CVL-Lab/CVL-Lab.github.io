@@ -90,10 +90,9 @@ export default function HomeLatestNewsList() {
                     const summary = isNonEmpty(item.summary)
                         ? item.summary.trim()
                         : "";
-                    const details = [item.venue, item.related_person]
-                        .filter((value) => isNonEmpty(value))
-                        .map((value) => value.trim())
-                        .join(" · ");
+                    const details = isNonEmpty(item.related_person)
+                        ? item.related_person.trim()
+                        : "";
                     const commonProps = {
                         "data-reveal": true,
                         "data-reveal-load-delay": revealLoadDelay,

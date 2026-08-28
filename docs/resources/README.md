@@ -1,8 +1,8 @@
 # Resources 운영 가이드 (Lab Resources & Infrastructure)
 
-이 문서는 **Resources tab**(`/resources`, "Lab Resources & Infrastructure" 카드)만 유지보수할 때 필요한 실무 가이드입니다.
+이 문서는 Research 페이지 맨 위에 있는 "Lab Resources & Infrastructure" 섹션만 유지보수할 때 필요한 실무 가이드입니다.
 
-> Resources tab은 원래 Research tab 하단에 있던 "Lab Resources & Infrastructure" 섹션을 별도 메뉴로 분리한 것입니다. 데이터 원본과 검증 스크립트는 Research 파이프라인(`research_resources.json`, `npm run research:validate`)을 그대로 공유합니다.
+> 한때 별도의 Resources tab(`/resources`)으로 분리됐던 적이 있으나, 다시 Research 페이지 상단 섹션으로 합쳐졌습니다. 데이터 원본과 검증 스크립트는 Research 파이프라인(`research_resources.json`, `npm run research:validate`)을 그대로 공유합니다.
 
 ---
 
@@ -13,10 +13,10 @@
 | Lab Resources & Infrastructure 카드(제목/수량/설명) | `src/assets/dataset/research_resources.json` |
 | Resource 카드가 참조하는 공용 이미지 정보 | `src/assets/dataset/home_media.json` |
 | 공용 이미지의 실제 import/path 연결 | `src/assets/images/home/home_media_index.js` |
-| 화면 렌더링 component | `src/components/tabs/Resources.jsx`, `src/components/tabs/Resources.css` |
+| 화면 렌더링 component | `src/components/tabs/Research.jsx`(섹션 마크업), `src/components/tabs/Resources.css`(스타일) |
 | 데이터 조회 유틸 | `src/utils/researchData.js`의 `getResearchResources()` |
 
-`getResearchResources()`는 이름이 `research`로 시작하지만 Research tab이 아니라 Resources tab에서만 사용됩니다(과거 이름을 그대로 유지 중).
+`getResearchResources()`와 `Resources.css`는 이름이 남아있지만, 실제로는 Research 페이지 상단 섹션에서 사용됩니다(과거 별도 tab이었을 때의 이름을 그대로 유지 중).
 
 ---
 
@@ -115,7 +115,7 @@ npm run dev
 
 로컬에서 다음을 확인합니다.
 
-1. `/resources` 페이지 전체 카드
+1. `/research` 페이지 맨 위 Lab Resources & Infrastructure 카드
 2. Home의 Lab Resources 요약(`meta.home_summary`)
 3. 카드 이미지가 잘리거나 여백 없이 잘 보이는지
 4. 좁은 화면에서 3컬럼 → 2컬럼 → 1컬럼으로 반응형이 잘 되는지
@@ -140,6 +140,6 @@ Resource 데이터는 `research_resources.json`을 검증하는 `npm run researc
 2. `meta.home_summary`가 카드 값과 일치하는가?
 3. `image_key`가 `home_media.json` / `home_media_index.js`에 모두 연결됐는가?
 4. `npm run research:validate`가 통과하는가?
-5. `npm run build:static`이 `/resources` route를 prerender하는가?
-6. 실제 `/resources` 페이지와 Home 요약에서 의도한 대로 보이는가?
+5. `npm run build:static`이 `/research` route를 prerender하는가?
+6. 실제 `/research` 페이지 상단과 Home 요약에서 의도한 대로 보이는가?
 7. push 후 두 GitHub Actions(`Content Build Check`, `Deploy GitHub Pages`)가 성공했는가?

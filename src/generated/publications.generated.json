@@ -1,10 +1,11 @@
 {
   "meta": {
     "schema_version": "1.1",
-    "generated_at": "2026-08-21T06:03:25.135Z",
+    "generated_at": "2026-08-28T06:56:23.455Z",
     "source": "content/publications",
     "categories": [
       "computer_vision_and_learning_algorithms",
+      "efficient_learning_for_llms",
       "industrial_and_medical_ai"
     ],
     "statuses": [
@@ -14,6 +15,126 @@
     ]
   },
   "items": [
+    {
+      "id": "core-2026-recalibrated-contrastive-loss-vlm",
+      "key": "core-2026-recalibrated-contrastive-loss-vlm",
+      "category": "computer_vision_and_learning_algorithms",
+      "status": "published",
+      "title": "Re-calibrated Contrastive Loss for Transformation-Aware Prompt Conditioning in Vision-Language Models",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Seungmin Oh, Seunghun Kang, Jongbin Ryu",
+        "published_place": "British Machine Vision Conference (BMVC)",
+        "published_date": "2026-11-23",
+        "keywords": [
+          "Vision-Language Models",
+          "Contrastive Learning",
+          "Prompt Conditioning"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "",
+        "source_code_link": "",
+        "paper_link": ""
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "llm-2026-colla-q-moe-quantization",
+      "key": "llm-2026-colla-q-moe-quantization",
+      "category": "efficient_learning_for_llms",
+      "status": "published",
+      "title": "Colla-Q: Toward Collaborative Experts in MoE Quantization via Minimax Precision Balancing",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "EunJu Shin, Jongbin Ryu",
+        "published_place": "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+        "published_date": "2026-10-24",
+        "keywords": [
+          "Mixture-of-Expert",
+          "Ensemble",
+          "Quantization"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "",
+        "source_code_link": "",
+        "paper_link": ""
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "llm-2026-layer-wise-curriculum-learning",
+      "key": "llm-2026-layer-wise-curriculum-learning",
+      "category": "efficient_learning_for_llms",
+      "status": "published",
+      "title": "Layer-wise Curriculum Learning for Efficient LLM Compression",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Donggeon Lee, Dooyeon Na, Seungmin Oh, Jongbin Ryu",
+        "published_place": "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+        "published_date": "2026-10-24",
+        "keywords": [
+          "Curriculum Learning",
+          "LLM Compression",
+          "Hardware Acceleration"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "",
+        "source_code_link": "",
+        "paper_link": ""
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
+    {
+      "id": "llm-2026-train-overcomplete-deploy-compact",
+      "key": "llm-2026-train-overcomplete-deploy-compact",
+      "category": "efficient_learning_for_llms",
+      "status": "published",
+      "title": "Train Overcomplete, Deploy Compact: Scaling Recovery Capacity for Structured LLM Pruning",
+      "summary": "",
+      "featured": false,
+      "research_meta": {
+        "author": "Seungmin Oh, Donggeon Lee, Jongbin Ryu",
+        "published_place": "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+        "published_date": "2026-10-24",
+        "keywords": [
+          "Structured LLM Pruning",
+          "Overcomplete Re-parameterization",
+          "Capacity-knowledge asymmetry"
+        ],
+        "pdf_link": "",
+        "arxiv_link": "",
+        "github_link": "",
+        "project_link": "",
+        "source_code_link": "",
+        "paper_link": ""
+      },
+      "content": {
+        "problem": "",
+        "solve": "",
+        "expermental_result": ""
+      }
+    },
     {
       "id": "core-capub1-do-your-best-and-get-enough-rest-for-continual",
       "key": "core-capub1-do-your-best-and-get-enough-rest-for-continual",

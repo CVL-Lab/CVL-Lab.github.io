@@ -207,12 +207,7 @@ function News() {
                                     : hasExternalLink
                                       ? "External"
                                       : "Lab update";
-                                const details = [
-                                    item.venue,
-                                    item.related_person,
-                                ]
-                                    .filter(Boolean)
-                                    .join(" · ");
+                                const details = item.related_person || "";
 
                                 return (
                                     <article

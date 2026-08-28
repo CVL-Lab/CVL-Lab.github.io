@@ -98,7 +98,7 @@
                     "order": 2,
                     "name": "Hankyul Kang",
                     "position": "Ph.D Student",
-                    "email": "consistant1y@ajou.ac.kr",
+                    "email": "hankyulkang@ajou.ac.kr",
                     "homepage": "https://hankyul2.github.io",
                     "research_interests": [
                         "Image Classification",
@@ -115,7 +115,7 @@
                     "order": 3,
                     "name": "Seungmin Oh",
                     "position": "Ph.D Student",
-                    "email": "mangusn1@ajou.ac.kr",
+                    "email": "seungminoh@ajou.ac.kr",
                     "homepage": "https://soonge.github.io/",
                     "research_interests": [
                         "Efficient AI",
@@ -134,7 +134,7 @@
                     "order": 4,
                     "name": "Yuri Kim",
                     "position": "Ph.D Student",
-                    "email": "kimuri02@ajou.ac.kr",
+                    "email": "yurikim@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Material Science"
@@ -150,7 +150,7 @@
                     "order": 5,
                     "name": "Seunghun Kang",
                     "position": "Ph.D Student",
-                    "email": "xldi28@ajou.ac.kr",
+                    "email": "seunghun.kang@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Multimodal AI",
@@ -169,7 +169,7 @@
                     "order": 6,
                     "name": "Donghyun Kim",
                     "position": "Ph.D Student",
-                    "email": "dk58319@ajou.ac.kr",
+                    "email": "donghyunkim@ajou.ac.kr",
                     "homepage": "https://dh58319.github.io/",
                     "research_interests": [
                         "Computer Vision",
@@ -188,7 +188,7 @@
                     "order": 7,
                     "name": "Donggun Lee",
                     "position": "Ph.D Student",
-                    "email": "edg1113@ajou.ac.kr",
+                    "email": "donggeon_lee@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Efficient LLM",
@@ -210,7 +210,7 @@
                     "order": 0,
                     "name": "Eunju Shin",
                     "position": "M.S Student",
-                    "email": "sinssinej7@ajou.ac.kr",
+                    "email": "eunjushin@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Efficient LLM",
@@ -227,7 +227,7 @@
                     "order": 1,
                     "name": "Duyeon Na",
                     "position": "M.S Student",
-                    "email": "ndy10101@gmail.com",
+                    "email": "dooyeonna@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Efficient AI",
@@ -246,7 +246,7 @@
                     "order": 2,
                     "name": "Mingyu Jeong",
                     "position": "M.S Student",
-                    "email": "green3438@ajou.ac.kr",
+                    "email": "mingyujung0730@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Deep Learning",
@@ -263,7 +263,7 @@
                     "order": 3,
                     "name": "Chaeyun Eom",
                     "position": "M.S Student",
-                    "email": "ucy0303@ajou.ac.kr",
+                    "email": "chaeyuneom@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": [
                         "Material Science",
@@ -281,7 +281,7 @@
                     "order": 4,
                     "name": "Minjae Kim",
                     "position": "M.S Student",
-                    "email": "meansash@ajou.ac.kr",
+                    "email": "minjae.kim@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": ["Medical AI"],
                     "current_position": [],
@@ -295,7 +295,7 @@
                     "order": 5,
                     "name": "Byungjee Hwang",
                     "position": "M.S Student",
-                    "email": "gable3510@ajou.ac.kr",
+                    "email": "byungjeehwang@ajou.ac.kr",
                     "homepage": null,
                     "research_interests": ["Robot Learning", "VLA"],
                     "current_position": [],

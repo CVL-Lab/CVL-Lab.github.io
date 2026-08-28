@@ -26,16 +26,16 @@
             "abstract": "This area focuses on making large language and multimodal models lighter, faster, and easier to deploy while preserving reasoning quality.",
             "focus_areas": [
                 {
-                    "title": "Pruning & Quantization",
-                    "description": "Compressing through layer pruning and low-bit quantization to reduce memory and latency"
+                    "title": "Pruning",
+                    "description": "Removing redundant parameters and structures from large models while preserving performance"
+                },
+                {
+                    "title": "Quantization",
+                    "description": "Reducing numerical precision of weights and activations to lower memory and compute cost"
                 },
                 {
                     "title": "Efficient Transfer Learning",
-                    "description": "Transferring knowledge across tasks efficiently using Mixture-of-Experts with LoRA"
-                },
-                {
-                    "title": "Vector Symbolic Architecture",
-                    "description": "Encoding compact, hardware-efficient symbolic vector representations in LLMs"
+                    "description": "Adapting pretrained models to new tasks and domains with minimal additional training cost"
                 }
             ]
         },

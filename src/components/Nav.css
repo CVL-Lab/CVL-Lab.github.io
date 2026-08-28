@@ -238,12 +238,6 @@
     --nav-tab-accent: var(--tab-research-accent);
 }
 
-.nav__button--resources {
-    --nav-tab-tint: var(--tab-resources-tint);
-    --nav-tab-border: var(--tab-resources-border);
-    --nav-tab-accent: var(--tab-resources-accent);
-}
-
 .nav__button--publication {
     --nav-tab-tint: var(--tab-publication-tint);
     --nav-tab-border: var(--tab-publication-border);

@@ -135,9 +135,9 @@
     --topic-industrial-and-medical-ai-500: var(--green-500);
     --topic-industrial-and-medical-ai-800: var(--green-800);
 
-    --topic-efficient-learning-for-llms-100: #f1f5f9;
-    --topic-efficient-learning-for-llms-500: #64748b;
-    --topic-efficient-learning-for-llms-800: #334155;
+    --topic-efficient-learning-for-llms-100: #f3e8ff;
+    --topic-efficient-learning-for-llms-500: #a855f7;
+    --topic-efficient-learning-for-llms-800: #6b21a8;
 
     --accent-ui-100: #eff6ff;
     --accent-ui-500: #2563eb;
@@ -158,8 +158,6 @@
     --identity-contact-accent: #e3a0b8;
     --identity-deadlines-soft: #edf4ff;
     --identity-deadlines-accent: #6d95d5;
-    --identity-resources-soft: #eef2f6;
-    --identity-resources-accent: #7a8ba3;
 
     --tab-home-tint: #edf8f4;
     --tab-home-border: #cde9dd;
@@ -192,10 +190,6 @@
     --tab-deadlines-tint: var(--identity-deadlines-soft);
     --tab-deadlines-border: #d0def4;
     --tab-deadlines-accent: var(--identity-deadlines-accent);
-
-    --tab-resources-tint: var(--identity-resources-soft);
-    --tab-resources-border: #d7dfe8;
-    --tab-resources-accent: var(--identity-resources-accent);
 
     --font-base:
         ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -377,9 +371,9 @@
     --red-500: #f0a29d;
     --red-800: #ffd6d0;
 
-    --topic-efficient-learning-for-llms-100: #202e46;
-    --topic-efficient-learning-for-llms-500: #a5b9d4;
-    --topic-efficient-learning-for-llms-800: #d6e1f0;
+    --topic-efficient-learning-for-llms-100: #2e1065;
+    --topic-efficient-learning-for-llms-500: #c4b5fd;
+    --topic-efficient-learning-for-llms-800: #ede9fe;
 
     --accent-ui-100: #1b3256;
     --accent-ui-500: #74a7ff;
@@ -399,8 +393,6 @@
     --identity-contact-accent: #f0bdd1;
     --identity-deadlines-soft: #192b48;
     --identity-deadlines-accent: #a6c6ff;
-    --identity-resources-soft: #22303f;
-    --identity-resources-accent: #a7b8cc;
 
     --tab-home-tint: #142f2d;
     --tab-home-border: #2f5f57;
@@ -413,7 +405,6 @@
     --tab-photo-border: #3d6166;
     --tab-contact-border: #6d4260;
     --tab-deadlines-border: #3b5d92;
-    --tab-resources-border: #3d4f63;
     --backdrop-line: rgba(154, 192, 255, 0.11);
     --backdrop-line-strong: rgba(154, 192, 255, 0.2);
     --backdrop-band: color-mix(

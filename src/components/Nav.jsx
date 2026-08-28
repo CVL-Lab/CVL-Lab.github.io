@@ -158,10 +158,6 @@ export default function Nav() {
             label: "Research",
         },
         {
-            key: "resources",
-            label: "Resources",
-        },
-        {
             key: "publication",
             label: "Publication",
         },
