@@ -4,7 +4,7 @@ type: visit
 title: "Industry collaboration visit hosted"
 summary: "Research exchange session held with an industrial R&D team on applied vision and learning systems."
 date: 2025-10-02
-related_person: "CVL-Lab + Partner R&D Group"
+related_person: "MMAI Lab + Partner R&D Group"
 venue: "Ajou University"
 external_url: ""
 is_external: false

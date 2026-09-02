@@ -167,7 +167,7 @@ function Research({ selectedResearchTopic }) {
                 <h1>Research</h1>
                 <p className="page-head__summary">
                     From foundational algorithms to real-world deployment,
-                    CVL-Lab builds vision and learning systems that connect core
+                    MMAI Lab builds vision and learning systems that connect core
                     research, multimodal intelligence, robotics, and biomedical
                     impact.
                 </p>

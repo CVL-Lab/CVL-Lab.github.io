@@ -24,7 +24,7 @@ export default function HomePeoplePreview() {
                 <div>
                     <h2 id="home-people-title">People</h2>
                     <p>
-                        Meet the professor and members behind current CVL-Lab
+                        Meet the professor and members behind current MMAI Lab
                         research.
                     </p>
                 </div>

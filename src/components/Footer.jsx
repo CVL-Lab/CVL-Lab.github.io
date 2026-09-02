@@ -9,10 +9,10 @@ function Footer() {
                 <section className="footer__panel">
                     <div className="footer__identity">
                         <p className="footer__kicker">
-                            CVL-Lab · Ajou University
+                            MMAI Lab · Ajou University
                         </p>
                         <p id="site-footer-title" className="footer__title">
-                            Computer Vision and Learning Lab
+                            Multi-Modal Artificial Intelligence Lab
                         </p>
                     </div>
 
@@ -50,7 +50,7 @@ function Footer() {
 
                     <div className="footer__bottom">
                         <p className="footer__copyright">
-                            © 2024 CVL-Lab, Department of Artificial
+                            © 2024 MMAI Lab, Department of Artificial
                             Intelligence, Ajou University
                         </p>
                     </div>

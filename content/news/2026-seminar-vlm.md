@@ -4,8 +4,8 @@ type: seminar
 title: "Weekly seminar on efficient vision-learning models"
 summary: "Lab members shared current experiments and discussion notes from ongoing projects."
 date: 2026-02-07
-related_person: "CVL-Lab Seminar Team"
-venue: "CVL-Lab, Ajou University"
+related_person: "MMAI Lab Seminar Team"
+venue: "MMAI Lab, Ajou University"
 external_url: ""
 is_external: false
 featured: false

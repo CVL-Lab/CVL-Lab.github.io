@@ -99,7 +99,7 @@ function People() {
                 <h1>People</h1>
                 <p className="page-head__summary">
                     Meet the professor, graduate researchers, interns, and
-                    alumni contributing to ongoing CVL-Lab projects.
+                    alumni contributing to ongoing MMAI Lab projects.
                 </p>
             </div>
 

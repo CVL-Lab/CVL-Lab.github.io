@@ -5,7 +5,7 @@ title: "New multi-GPU workstation installed"
 summary: "A dedicated training workstation was added to support larger vision and learning experiments."
 date: 2025-12-03
 related_person: "Lab Infrastructure Team"
-venue: "CVL-Lab, Ajou University"
+venue: "MMAI Lab, Ajou University"
 external_url: ""
 is_external: false
 featured: false

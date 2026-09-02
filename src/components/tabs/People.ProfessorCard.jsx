@@ -12,7 +12,7 @@ const getDisplayText = (value) => {
 };
 
 const RESEARCH_DIRECTION_FALLBACK =
-    "Leads CVL-Lab research in computer vision and learning, connecting core AI methods with applied research projects.";
+    "Leads MMAI Lab research in computer vision and learning, connecting core AI methods with applied research projects.";
 
 function PeopleProfessorCard({
     profile,

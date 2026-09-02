@@ -155,8 +155,8 @@ const createAutoPublicationNewsItem = (publicationItem) => {
     const summary =
         publicationSummary ||
         (publicationVenue
-            ? `${publicationVenue} publication update from CVL-Lab.`
-            : "Publication update from CVL-Lab.");
+            ? `${publicationVenue} publication update from MMAI Lab.`
+            : "Publication update from MMAI Lab.");
 
     return {
         id: `publication-${publicationId}`,

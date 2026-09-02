@@ -4,9 +4,9 @@ import MailIcon from "../icons/MailIcon";
 
 function Contact() {
   const emailAddress = "jongbinryu@ajou.ac.kr";
-  const mailSubject = encodeURIComponent("CVL-Lab Inquiry");
+  const mailSubject = encodeURIComponent("MMAI Lab Inquiry");
   const mailBody = encodeURIComponent(
-    "Hello CVL-Lab,\n\nI would like to ask about...\n\nName:\nAffiliation:\n",
+    "Hello MMAI Lab,\n\nI would like to ask about...\n\nName:\nAffiliation:\n",
   );
   const mapMedia = HOME_MEDIA_IMAGES.research_environment || HOME_MEDIA_IMAGES.intro_meeting_room;
 
@@ -20,8 +20,8 @@ function Contact() {
       </div>
       <section data-reveal className="contact__body page-panel">
         <header data-reveal data-reveal-load-delay="60" className="contact__header">
-          <p className="contact__kicker">Ajou University · CVL-Lab</p>
-          <h2>Get in touch with CVL-Lab</h2>
+          <p className="contact__kicker">Ajou University · MMAI Lab</p>
+          <h2>Get in touch with MMAI Lab</h2>
           <p>We welcome collaboration inquiries, student applications, and research partnerships.</p>
         </header>
 
@@ -36,7 +36,7 @@ function Contact() {
               Padal Hall, Room 624
             </p>
             <p className="contact__location-copy">
-              CVL-Lab is based at Ajou University in Suwon. Use the map for directions and the
+              MMAI Lab is based at Ajou University in Suwon. Use the map for directions and the
               address panel below for mailing and campus delivery details.
             </p>
           </div>
@@ -46,19 +46,19 @@ function Contact() {
               <figure className="contact__map-media">
                 <img
                   src={mapMedia}
-                  alt="CVL-Lab building and research environment at Ajou University"
+                  alt="MMAI Lab building and research environment at Ajou University"
                   loading="lazy"
                   decoding="async"
                   sizes="(max-width: 768px) 92vw, 34rem"
                 />
-                <figcaption>Ajou University campus and CVL-Lab environment</figcaption>
+                <figcaption>Ajou University campus and MMAI Lab environment</figcaption>
               </figure>
             ) : null}
             <div className="contact__map-wrap">
               <iframe
                 className="contact__map"
                 src="https://www.google.com/maps?q=%EC%95%84%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90%20%ED%8C%94%EB%8B%AC%EA%B4%80%20%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%88%98%EC%9B%90%EC%8B%9C%20%EC%98%81%ED%86%B5%EA%B5%AC%20%EC%9B%90%EC%B2%9C%EB%8F%99&output=embed"
-                title="Ajou University CVL-Lab location map"
+                title="Ajou University MMAI Lab location map"
                 loading="lazy"
               ></iframe>
             </div>

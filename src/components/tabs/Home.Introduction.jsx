@@ -33,9 +33,7 @@ const buildIntroductionMediaMap = () => {
             to: "/research",
             state: {
                 scroll: {
-                    mode: "selector",
-                    selector: "#resources-title",
-                    block: "start",
+                    mode: "top",
                 },
             },
         },
@@ -62,19 +60,23 @@ function HomeIntroduction() {
             <div
                 data-reveal
                 data-reveal-load-delay="170"
-                className="home-introduction__copy">
-                <div className="home-block__head home-introduction__head">
-                    <div>
-                        <p className="home-introduction__eyebrow">
-                            CVL-Lab · Ajou University
-                        </p>
-                        <h1>Computer Vision and Learning Lab</h1>
-                        <p>
-                            Computer vision and learning research for real-world
-                            impact.
-                        </p>
-                    </div>
+                className="home-block__head home-introduction__head">
+                <div>
+                    <p className="home-introduction__eyebrow">
+                        MMAI Lab · Ajou University
+                    </p>
+                    <h1>Multi-Modal Artificial Intelligence Lab</h1>
+                    <p>
+                        Multi-modal AI research connecting vision, language, and
+                        diverse signals for real-world impact.
+                    </p>
                 </div>
+            </div>
+
+            <div
+                data-reveal
+                data-reveal-load-delay="170"
+                className="home-introduction__copy">
                 <p className="home-introduction__summary">
                     Our research spans a broad range of machine learning
                     problems, with particular emphasis on computer vision and

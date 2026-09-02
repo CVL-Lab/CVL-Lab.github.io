@@ -4,8 +4,8 @@ type: new_member
 title: "New winter-term interns joined the lab"
 summary: "New student researchers joined projects in biomedical AI and real-world deployment."
 date: 2026-01-22
-related_person: "CVL-Lab Intern Cohort"
-venue: CVL-Lab
+related_person: "MMAI Lab Intern Cohort"
+venue: MMAI Lab
 external_url: ""
 is_external: false
 featured: false

@@ -197,7 +197,7 @@ export default function Nav() {
                         aria-label="Go to Home">
                         <img
                             src={navLogoSrc}
-                            alt="CVL-Lab logo"
+                            alt="MMAI Lab logo"
                             decoding="async"
                             fetchPriority="high"
                         />
